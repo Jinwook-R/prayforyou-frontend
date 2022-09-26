@@ -1,8 +1,9 @@
 import axios from "axios";
+import DESTINATION_DOMAIN_ADDRESS from "../utils";
 
 const getRoundInfo = async (userId) => {
   const datas = await axios.get(
-    `https://api.pray4you.net/search/${userId}/round`
+    `${DESTINATION_DOMAIN_ADDRESS}/${userId}/round`
   );
   return datas.data.data;
 };

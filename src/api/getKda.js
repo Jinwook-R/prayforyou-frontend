@@ -1,8 +1,9 @@
 import axios from "axios";
+import { DESTINATION_DOMAIN_ADDRESS } from "../utils/constants";
 
 const getKda = async (userId) => {
   const datas = await axios.get(
-    `https://api.pray4you.net/search/${userId}/stats`
+    `${DESTINATION_DOMAIN_ADDRESS}/${userId}/stats`
   );
   return datas.data.data;
 };

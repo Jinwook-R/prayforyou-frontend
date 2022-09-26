@@ -1,8 +1,9 @@
 import axios from "axios";
+import DESTINATION_DOMAIN_ADDRESS from "../utils";
 
 const getMaps = async (name) => {
   const datas = await axios.get(
-    `https://api.pray4you.net/search/user?nickname=${name}`
+    `${DESTINATION_DOMAIN_ADDRESS}/search/user?nickname=${name}`
   );
   return datas.data.data;
 };

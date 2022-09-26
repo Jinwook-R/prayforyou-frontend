@@ -1,8 +1,9 @@
 import axios from "axios";
+import DESTINATION_DOMAIN_ADDRESS from "DESTINATION_DOMAIN_ADDRESS";
 
 const getLoactionInfo = async (userId) => {
   const datas = await axios.get(
-    `https://api.pray4you.net/search/${userId}/place`
+    `${DESTINATION_DOMAIN_ADDRESS}/${userId}/place`
   );
   return datas.data.data;
 };
