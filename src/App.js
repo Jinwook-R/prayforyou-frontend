@@ -1,24 +1,23 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Route, Routes } from "react-router";
+import MainPage from "./views/MainPage";
 
-const StyledHelloWorld = styled.div`
-  width: 920px;
-  height: 500px;
-  background-color: dodgerblue;
+const Wrapper = styled.div`
   margin: 0 auto;
-  text-align: center;
+  width: 350px;
+  height: 750px;
+  background-color: dodgerblue;
 `;
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route
-          path="/main"
-          element={<StyledHelloWorld>Hello World</StyledHelloWorld>}
-        />
-      </Routes>
+      <Wrapper>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+        </Routes>
+      </Wrapper>
     </div>
   );
 }
