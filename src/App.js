@@ -6,13 +6,13 @@ import MainPage from "./views/MainPage";
 const Wrapper = styled.div`
   margin: 0 auto;
   width: 350px;
-  height: 750px;
+  height: 100vh;
   background-color: dodgerblue;
 `;
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ height: "100%" }}>
       <Wrapper>
         <Routes>
           <Route path="/" element={<MainPage />} />

@@ -1,4 +1,4 @@
-import Header from "../components/Header";
+import Title from "../components/Title";
 import styled from "@emotion/styled";
 import Search from "../components/Search";
 
@@ -13,7 +13,7 @@ const MainPage = () => {
   return (
     <div>
       <StyledMainPage>
-        <Header />
+        <Title />
         <Search />
       </StyledMainPage>
     </div>
