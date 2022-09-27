@@ -1,7 +1,12 @@
 import styled from "@emotion/styled";
 
-const Banner = ({ imgUrl, siteUrl, width, height, ...props }) => {
-  return <StyledBanner style={{ width, height }} {...props}></StyledBanner>;
+const Banner = ({ imgUrl, siteUrl, width, height, marginTop, ...props }) => {
+  return (
+    <StyledBanner
+      style={{ width, height, marginTop }}
+      {...props}
+    ></StyledBanner>
+  );
 };
 
 const StyledBanner = styled.div`

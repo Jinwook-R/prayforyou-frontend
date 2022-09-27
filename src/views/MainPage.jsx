@@ -8,11 +8,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBanners } from "../redux/banner/bannerSlice";
 
-const StyledMainPage = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-`;
+const bannerProps = {
+  width: "100%",
+  height: "100px",
+  marginBottom: "16px",
+};
 
 const MainPage = () => {
   const banners = useSelector((store) => store.banner);
@@ -32,35 +32,39 @@ const MainPage = () => {
       <StyledMainPage>
         <Banner
           imgUrl={banners?.data?.typeA}
-          width="100%"
+          {...bannerProps}
           height="50px"
           marginBottom="100px"
         />
         <Title />
-        <Search handleDropDown={handleDropDown} />
-        {dropDown && <DropDown dropDown={dropDown} />}
-        {!dropDown && <div style={{ width: "100%", minHeight: "250px" }}></div>}
+        <div
+          className="searchWrapper"
+          onMouseDown={(e) => {
+            if (!e.target.className.includes("searchInput")) {
+              e.preventDefault();
+            }
+          }}
+        >
+          <Search handleDropDown={handleDropDown} />
+          {dropDown && <DropDown />}
+          {!dropDown && <div style={{ width: "100%", minHeight: "250px" }} />}
+        </div>
         <Banner
           imgUrl={banners?.data?.typeB}
-          width="100%"
-          height="100px"
-          marginBottom="16px"
+          {...bannerProps}
+          marginTop="16px"
         />
-        <Banner
-          imgUrl={banners?.data?.typeC}
-          width="100%"
-          height="100px"
-          marginBottom="16px"
-        />
-        <Banner
-          imgUrl={banners?.data?.typeA}
-          width="100%"
-          height="50px"
-          marginBottom="16px"
-        />
+        <Banner imgUrl={banners?.data?.typeC} {...bannerProps} />
+        <Banner imgUrl={banners?.data?.typeA} {...bannerProps} />
       </StyledMainPage>
     </div>
   );
 };
+
+const StyledMainPage = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+`;
 
 export default MainPage;

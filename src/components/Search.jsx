@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import SearchImage from "../assets/search.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { searchUsers } from "../redux/user";
@@ -34,18 +34,22 @@ const Search = ({ handleDropDown }) => {
     <StyledSearchWrapper>
       <StyledSearchInputWrapper type="text" placeholder="닉네임을 입력하세요">
         <StyledInput
+          className="searchInput"
           type="text"
-          onFocus={() => {
-            handleDropDown(true);
+          onBlur={(e) => {
+            if (!e.target.className.includes("searchWrapper")) {
+              handleDropDown(false);
+            }
           }}
-          onBlur={() => {
-            handleDropDown(false);
+          onFocus={(e) => {
+            handleDropDown(true);
           }}
           onChange={handleUserName}
           onKeyDown={handleSearch}
-        ></StyledInput>
+        />
       </StyledSearchInputWrapper>
       <StyledSearchImage
+        className="searchImage"
         src={SearchImage}
         alt="search"
         onClick={handleSearch}
