@@ -10,6 +10,7 @@ export const searchUsers = createAsyncThunk(
       .get(`${DESTINATION_DOMAIN_ADDRESS}/user/search?nickname=${searchText}`)
       .then((res) => res.data)
       .then(({ data }) => {
+        console.log(data);
         return data;
       })
       .catch((err) => {

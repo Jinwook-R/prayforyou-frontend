@@ -21,8 +21,14 @@ const Search = ({ handleDropDown }) => {
       if (userName) {
         (async () => {
           const dispatchResponse = await dispatch(searchUsers(userName));
-          if (dispatchResponse.meta.requestStatus === "fulfilled") {
-            setLocalStorage("searchedUsers", [...searchedUsers, userName]);
+          if (!!dispatchResponse?.payload?.length) {
+            const filteredNickname = dispatchResponse.payload.filter(
+              (item) => item?.nickname === userName
+            );
+
+            if (filteredNickname.length) {
+              setLocalStorage("searchedUsers", [...searchedUsers, userName]);
+            }
           }
         })();
         setUserName("");
