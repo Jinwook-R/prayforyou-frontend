@@ -7,18 +7,16 @@ import Footer from "./components/Footer";
 const Wrapper = styled.div`
   margin: 0 auto;
   max-width: 350px;
-  height: 90vh;
   padding: 0 10px;
 `;
 
 const MainWrapper = styled.div`
   margin-top: 50px;
   width: 100%;
-  height: 80vh;
 `;
 function App() {
   return (
-    <div className="App" style={{ height: "100%" }}>
+    <div className="App">
       <Wrapper>
         <MainWrapper>
           <Routes>
