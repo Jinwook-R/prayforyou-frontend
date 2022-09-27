@@ -1,19 +1,7 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
 
-const StyledDropDown = styled.div``;
-const StyledList = styled.div`
-  width: 300px;
-  background-color: #6f42c1;
-`;
-const StyledListItem = styled.div`
-  width: 250px;
-  height: 50px;
-  margin: 5px auto;
-  border-radius: 5px;
-  background-color: #e7e7e7;
-`;
-const DropDown = () => {
+const DropDown = ({ dropDown }) => {
   const [recentlySerach, setRecentlySearch] = useState([
     "개구리",
     "개구리",
@@ -26,8 +14,8 @@ const DropDown = () => {
   return (
     <div>
       <div style={{ display: "flex" }}>
-        <button type="">최근 검색</button>
-        <button type="">즐겨찾기 검색</button>
+        <StyledButton type="">최근 검색</StyledButton>
+        <StyledButton type="">즐겨찾기 검색</StyledButton>
       </div>
       <StyledList>
         {recentlySerach.map((item, idx) => (
@@ -37,5 +25,26 @@ const DropDown = () => {
     </div>
   );
 };
+
+const StyledButton = styled.button`
+  width: 50%;
+  height: 30px;
+  background-color: white;
+  color: black;
+  border: none;
+`;
+
+const StyledList = styled.div`
+  width: 100%;
+  background-color: #6f42c1;
+`;
+const StyledListItem = styled.div`
+  width: 250px;
+  height: 50px;
+  margin: 0 auto;
+  margin-bottom: 7px;
+  border-radius: 5px;
+  background-color: #e7e7e7;
+`;
 
 export default DropDown;

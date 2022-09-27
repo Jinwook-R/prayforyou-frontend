@@ -6,12 +6,12 @@ import Footer from "./components/Footer";
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  width: 680px;
+  max-width: 350px;
   height: 90vh;
 `;
 
 const MainWrapper = styled.div`
-  margin-top: 200px;
+  margin-top: 50px;
   width: 100%;
   height: 80vh;
 `;
@@ -23,8 +23,8 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
           </Routes>
+          <Footer />
         </MainWrapper>
-        <Footer />
       </Wrapper>
     </div>
   );

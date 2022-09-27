@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
 import SearchImage from "../assets/search.png";
 
-const Search = () => {
+const Search = ({ handleDropDown }) => {
   return (
     <StyledSearchWrapper>
       <StyledSearchInputWrapper type="text" placeholder="닉네임을 입력하세요">
-        <StyledInput type="text"></StyledInput>
+        <StyledInput
+          type="text"
+          onFocus={() => {
+            handleDropDown(true);
+          }}
+        ></StyledInput>
       </StyledSearchInputWrapper>
       <StyledSearchImage src={SearchImage} alt="search" />
     </StyledSearchWrapper>

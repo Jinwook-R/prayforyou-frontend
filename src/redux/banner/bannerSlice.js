@@ -5,12 +5,13 @@ import { DESTINATION_DOMAIN_ADDRESS } from "../../utils/constants";
 export const fetchAllBanners = createAsyncThunk(
   "banner/fetchAllBanners",
   async () => {
-    const response = await axios
+    const responseData = await axios
       .get(`${DESTINATION_DOMAIN_ADDRESS}/banner`)
       .then((res) => {
+        console.log(res.data);
         return res.data;
       });
-    return response;
+    return responseData;
   }
 );
 
@@ -27,7 +28,7 @@ export const bannerSlice = createSlice({
     },
     [fetchAllBanners.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.banners = state.banners.concat(action.payload);
+      state.banners = action.payload;
     },
     [fetchAllBanners.rejected]: (state, action) => {
       state.status = "failed";
