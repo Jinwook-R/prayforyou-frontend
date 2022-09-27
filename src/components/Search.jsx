@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -9,6 +10,7 @@ const Search = ({ handleDropDown }) => {
   const [userName, setUserName] = useState("");
   const [searchedUsers, setLocalStorage] = useLocalStorage("searchedUsers", []);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleUserName = (e) => {
     e.preventDefault();
@@ -28,10 +30,11 @@ const Search = ({ handleDropDown }) => {
 
             if (filteredNickname.length) {
               setLocalStorage("searchedUsers", [...searchedUsers, userName]);
+              setUserName("");
+              navigate("/user");
             }
           }
         })();
-        setUserName("");
       }
     }
   };

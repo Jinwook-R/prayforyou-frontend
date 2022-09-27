@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Route, Routes } from "react-router";
-import MainPage from "./views/MainPage";
+import { MainPage, UserPage } from "./views";
 import Footer from "./components/Footer";
 
 const Wrapper = styled.div`
@@ -23,6 +23,7 @@ function App() {
         <MainWrapper>
           <Routes>
             <Route path="/" element={<MainPage />} />
+            <Route path="/user" element={<UserPage />} />
           </Routes>
           <Footer />
         </MainWrapper>

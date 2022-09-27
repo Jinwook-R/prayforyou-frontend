@@ -38,7 +38,6 @@ const MainPage = () => {
         />
         <Title />
         <div
-          className="searchWrapper"
           onMouseDown={(e) => {
             if (!e.target.className.includes("searchInput")) {
               e.preventDefault();

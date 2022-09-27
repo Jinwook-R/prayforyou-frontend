@@ -9,10 +9,7 @@ export const searchUsers = createAsyncThunk(
     const responseData = await axios
       .get(`${DESTINATION_DOMAIN_ADDRESS}/user/search?nickname=${searchText}`)
       .then((res) => res.data)
-      .then(({ data }) => {
-        console.log(data);
-        return data;
-      })
+      .then(({ data }) => data)
       .catch((err) => {
         console.log(err);
       });
