@@ -7,9 +7,10 @@ export const fetchAllBanners = createAsyncThunk(
   async () => {
     const responseData = await axios
       .get(`${DESTINATION_DOMAIN_ADDRESS}/banner`)
-      .then((res) => {
-        console.log(res.data);
-        return res.data;
+      .then((res) => res.data)
+      .then(({ data }) => data)
+      .catch((err) => {
+        console.log(err);
       });
     return responseData;
   }

@@ -1,7 +1,22 @@
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SearchImage from "../assets/search.png";
+import { searchUsers } from "../redux/user";
 
 const Search = ({ handleDropDown }) => {
+  const [userName, setUserName] = useState(null);
+  const dispatch = useDispatch();
+
+  const handleUserName = (e) => {
+    e.preventDefault();
+    setUserName(e.target.value);
+  };
+
+  useEffect(() => {
+    dispatch(searchUsers(userName));
+  }, [userName]);
+
   return (
     <StyledSearchWrapper>
       <StyledSearchInputWrapper type="text" placeholder="닉네임을 입력하세요">
@@ -10,9 +25,21 @@ const Search = ({ handleDropDown }) => {
           onFocus={() => {
             handleDropDown(true);
           }}
+          onChange={handleUserName}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              alert();
+            }
+          }}
         ></StyledInput>
       </StyledSearchInputWrapper>
-      <StyledSearchImage src={SearchImage} alt="search" />
+      <StyledSearchImage
+        src={SearchImage}
+        alt="search"
+        onClick={() => {
+          alert("!");
+        }}
+      />
     </StyledSearchWrapper>
   );
 };
@@ -59,7 +86,7 @@ const StyledInput = styled.input`
 const StyledSearchImage = styled.img`
   position: absolute;
   width: 17px;
-  top: 19px;
+  top: 17px;
   right: 15px;
 `;
 

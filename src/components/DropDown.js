@@ -1,25 +1,19 @@
-import { useState } from "react";
 import styled from "@emotion/styled";
-
+import React from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { useSelector } from "react-redux";
 const DropDown = ({ dropDown }) => {
-  const [recentlySerach, setRecentlySearch] = useState([
-    "개구리",
-    "개구리",
-    "개구리",
-    "개구리",
-    "개구리",
-    "개구리",
-  ]);
-
+  const userList = useSelector((state) => state.user.users);
+  console.log(userList);
   return (
-    <div>
+    <div style={{ minHeight: "250px" }}>
       <div style={{ display: "flex" }}>
         <StyledButton type="">최근 검색</StyledButton>
         <StyledButton type="">즐겨찾기 검색</StyledButton>
       </div>
       <StyledList>
-        {recentlySerach.map((item, idx) => (
-          <StyledListItem>{item}</StyledListItem>
+        {userList?.map((item, idx) => (
+          <StyledListItem key={item.userId}>{item.nickname}</StyledListItem>
         ))}
       </StyledList>
     </div>

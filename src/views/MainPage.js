@@ -39,7 +39,7 @@ const MainPage = () => {
         <Title />
         <Search handleDropDown={handleDropDown} />
         {dropDown && <DropDown dropDown={dropDown} />}
-        {!dropDown && <div style={{ width: "100%", height: "250px" }}></div>}
+        {!dropDown && <div style={{ width: "100%", minHeight: "250px" }}></div>}
         <Banner
           imgUrl={banners?.data?.typeB}
           width="100%"
