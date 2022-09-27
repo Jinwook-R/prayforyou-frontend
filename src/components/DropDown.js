@@ -13,7 +13,7 @@ const DropDown = ({ dropDown }) => {
       </div>
       <StyledList>
         {searchedUsers.map((item, idx) => (
-          <StyledListItem>{item}</StyledListItem>
+          <StyledListItem key={`${idx}`}>{item}</StyledListItem>
         ))}
       </StyledList>
     </div>

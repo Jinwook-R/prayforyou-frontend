@@ -1,6 +1,7 @@
 import { DESTINATION_DOMAIN_ADDRESS } from "../../utils/constants";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 export const searchUsers = createAsyncThunk(
   "user/searchUsers",

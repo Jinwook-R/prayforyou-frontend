@@ -19,8 +19,12 @@ const Search = ({ handleDropDown }) => {
     if (e.key === "Enter") {
       e.preventDefault();
       if (userName) {
-        // dispatch(searchUsers(userName));
-        setLocalStorage("searchedUsers", [...searchedUsers, userName]);
+        (async () => {
+          const dispatchResponse = await dispatch(searchUsers(userName));
+          if (dispatchResponse.meta.requestStatus === "fulfilled") {
+            setLocalStorage("searchedUsers", [...searchedUsers, userName]);
+          }
+        })();
         setUserName("");
       }
     }
@@ -44,9 +48,7 @@ const Search = ({ handleDropDown }) => {
       <StyledSearchImage
         src={SearchImage}
         alt="search"
-        onClick={() => {
-          alert("!");
-        }}
+        onClick={handleSearch}
       />
     </StyledSearchWrapper>
   );
