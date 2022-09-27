@@ -7,8 +7,9 @@ const useLocalStorage = (key, initialValue) => {
   });
 
   const setLocalStorage = (key, newValue) => {
+    console.log(key, newValue);
     setValue(newValue);
-    window.localStorage.setItem("value", JSON.stringify(newValue));
+    window.localStorage.setItem(key, JSON.stringify(newValue));
   };
 
   return [value, setLocalStorage];

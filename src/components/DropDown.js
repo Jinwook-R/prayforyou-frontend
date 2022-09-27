@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { useSelector } from "react-redux";
+
 const DropDown = ({ dropDown }) => {
-  const userList = useSelector((state) => state.user.users);
-  console.log(userList);
+  const [searchedUsers, setLocalStorage] = useLocalStorage("searchedUsers", []);
+
   return (
     <div style={{ minHeight: "250px" }}>
       <div style={{ display: "flex" }}>
@@ -12,8 +12,8 @@ const DropDown = ({ dropDown }) => {
         <StyledButton type="">즐겨찾기 검색</StyledButton>
       </div>
       <StyledList>
-        {userList?.map((item, idx) => (
-          <StyledListItem key={item.userId}>{item.nickname}</StyledListItem>
+        {searchedUsers.map((item, idx) => (
+          <StyledListItem>{item}</StyledListItem>
         ))}
       </StyledList>
     </div>

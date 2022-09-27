@@ -2,10 +2,12 @@ import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchImage from "../assets/search.png";
+import useLocalStorage from "../hooks/useLocalStorage";
 import { searchUsers } from "../redux/user";
 
 const Search = ({ handleDropDown }) => {
-  const [userName, setUserName] = useState(null);
+  const [userName, setUserName] = useState("");
+  const [searchedUsers, setLocalStorage] = useLocalStorage("searchedUsers", []);
   const dispatch = useDispatch();
 
   const handleUserName = (e) => {
@@ -13,9 +15,16 @@ const Search = ({ handleDropDown }) => {
     setUserName(e.target.value);
   };
 
-  useEffect(() => {
-    dispatch(searchUsers(userName));
-  }, [userName]);
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (userName) {
+        // dispatch(searchUsers(userName));
+        setLocalStorage("searchedUsers", [...searchedUsers, userName]);
+        setUserName("");
+      }
+    }
+  };
 
   return (
     <StyledSearchWrapper>
@@ -25,12 +34,11 @@ const Search = ({ handleDropDown }) => {
           onFocus={() => {
             handleDropDown(true);
           }}
-          onChange={handleUserName}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              alert();
-            }
+          onBlur={() => {
+            handleDropDown(false);
           }}
+          onChange={handleUserName}
+          onKeyDown={handleSearch}
         ></StyledInput>
       </StyledSearchInputWrapper>
       <StyledSearchImage
