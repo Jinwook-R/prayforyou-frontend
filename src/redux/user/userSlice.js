@@ -2,8 +2,8 @@ import { DESTINATION_DOMAIN_ADDRESS } from "../../utils/constants";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const searchUsers = createAsyncThunk(
-  "user/searchUsers",
+export const searchUser = createAsyncThunk(
+  "user/searchUser",
   async (searchText) => {
     searchText = searchText === "" ? null : searchText;
     const responseData = await axios
@@ -25,14 +25,14 @@ export const userSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [searchUsers.pending]: (state, action) => {
+    [searchUser.pending]: (state, action) => {
       state.status = "loading";
     },
-    [searchUsers.fulfilled]: (state, action) => {
+    [searchUser.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.users = action.payload;
     },
-    [searchUsers.rejected]: (state, action) => {
+    [searchUser.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     },

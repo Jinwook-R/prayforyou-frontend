@@ -8,9 +8,7 @@ const Title = () => {
         src={MainLogoImage}
         alt="logo"
         style={{
-          paddingTop: "3.6vh",
           maxWidth: "180px",
-          paddingBottom: "2.6vh",
         }}
       />
     </StyledTitle>
@@ -19,12 +17,7 @@ const Title = () => {
 
 const StyledTitle = styled.div`
   margin: 0 auto;
-  height: 75px;
-`;
-
-const StyledMainLogo = styled.div`
-  width: 100%;
-  height: 100%;
+  margin-bottom: 16px;
 `;
 
 export default Title;

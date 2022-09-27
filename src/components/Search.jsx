@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import styled from "@emotion/styled";
 import { useState } from "react";
+import styled from "@emotion/styled";
 import { useDispatch } from "react-redux";
 import SearchImage from "../assets/search.png";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { searchUsers } from "../redux/user";
+import { searchUser } from "../redux/user";
 
 const Search = ({ handleDropDown }) => {
   const [userName, setUserName] = useState("");
@@ -22,16 +22,17 @@ const Search = ({ handleDropDown }) => {
       e.preventDefault();
       if (userName) {
         (async () => {
-          const dispatchResponse = await dispatch(searchUsers(userName));
+          const dispatchResponse = await dispatch(searchUser(userName));
           if (!!dispatchResponse?.payload?.length) {
             const filteredNickname = dispatchResponse.payload.filter(
               (item) => item?.nickname === userName
             );
 
-            if (filteredNickname.length) {
+            if (filteredNickname.length === 1) {
               setLocalStorage("searchedUsers", [...searchedUsers, userName]);
               setUserName("");
-              navigate("/user");
+              console.log(filteredNickname);
+              navigate("user", { state: { ...filteredNickname[0] } });
             }
           }
         })();
