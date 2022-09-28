@@ -15,7 +15,7 @@ const Search = ({ handleDropDown }) => {
     query: `(min-width: ${BREAK_POINT})`,
   });
   const isTabletOrMobile = useMediaQuery({
-    query: `(min-width: ${BREAK_POINT})`,
+    query: `(max-width: ${BREAK_POINT})`,
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();

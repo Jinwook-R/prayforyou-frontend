@@ -20,7 +20,6 @@ const DropDown = ({ ...props }) => {
       style={{
         minHeight: "250px",
         marginTop: "16px",
-        padding: "0 60px",
         ...props,
       }}
     >

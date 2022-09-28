@@ -55,7 +55,11 @@ const MainPage = () => {
               <Search handleDropDown={handleDropDown} />
               {dropDown && <DropDown />}
               {!dropDown && (
-                <div style={{ width: "100%", minHeight: "250px" }} />
+                <div
+                  style={{
+                    height: "250px",
+                  }}
+                />
               )}
             </div>
             <Banner
@@ -114,6 +118,7 @@ const MainPage = () => {
                       top={54}
                       left={-62}
                       width="100%"
+                      padding="0 60px"
                     />
                   )}
                   {!dropDown && <div />}
