@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 const Banner = ({ imgUrl, siteUrl, width, height, marginTop, ...props }) => {
   return (
     <StyledBanner
-      style={{ width, height, marginTop }}
+      style={{ width, height, marginTop, ...props }}
       {...props}
     ></StyledBanner>
   );

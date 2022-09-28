@@ -6,8 +6,7 @@ import Footer from "./components/Footer";
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  max-width: 350px;
-  padding: 0 10px;
+  max-width: 360px;
 `;
 
 const MainWrapper = styled.div`
