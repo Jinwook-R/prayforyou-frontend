@@ -82,6 +82,8 @@ const MainPage = () => {
               </StyledBannerWrapper>
               <StyledMainContentWrapper>
                 <Title />
+                <Search />
+                <DropDown />
               </StyledMainContentWrapper>
               <StyledBannerWrapper>
                 <Banner
@@ -112,7 +114,9 @@ const StyledMainPage = styled.div`
 `;
 
 const StyledMainContentWrapper = styled.div`
-  width: 50%;
+  width: 100%;
+  min-width: 350px;
+  margin: 0 50px;
 `;
 
 const StyledDesktopOrLabtopWrapper = styled.div`
@@ -122,8 +126,7 @@ const StyledDesktopOrLabtopWrapper = styled.div`
 `;
 
 const StyledBannerWrapper = styled.div`
-  width: 25%;
-  height: 1300px;
+  height: 1400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
