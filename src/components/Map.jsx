@@ -1,5 +1,7 @@
 import MapImage from "../assets/map.png";
-const Map = () => {
+const Map = ({ battle }) => {
+  const { battlePlace, battleRound, battleStats } = battle;
+
   return (
     <div
       style={{

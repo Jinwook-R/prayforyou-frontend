@@ -1,12 +1,9 @@
 import styled from "@emotion/styled";
 
 const TopBar = ({ nickname, battle }) => {
-  console.log(battle);
-
-  const { userType, battleGun, battlePlace, battleRound, battleStats } = battle;
+  const { battleStats } = battle;
   const { kill, death, gameCount, rate, updatedAt } = battleStats;
 
-  console.log(battleGun, battlePlace, battleRound, battleStats);
   return (
     <StyledTopBar>
       <div>{nickname}</div>

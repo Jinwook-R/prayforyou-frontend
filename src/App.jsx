@@ -10,9 +10,9 @@ const Wrapper = styled.div`
 `;
 
 const MainWrapper = styled.div`
-  margin-top: 50px;
   width: 100%;
 `;
+
 function App() {
   return (
     <div className="App">

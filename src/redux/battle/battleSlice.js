@@ -19,7 +19,15 @@ export const searchBattle = createAsyncThunk(
 export const battleSlice = createSlice({
   name: "battle",
   initialState: {
-    battles: [],
+    battle: {
+      userId: "",
+      nickname: "",
+      userType: "",
+      battleGun: [],
+      battlePlace: [],
+      battleRound: [],
+      battleStats: { kill: 0, death: 0, gameCount: 0, rate: 0, updatedAt: "" },
+    },
     status: null,
   },
   reducers: {},

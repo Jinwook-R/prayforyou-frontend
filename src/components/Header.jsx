@@ -5,14 +5,22 @@ const Header = () => {
   return (
     <StyledHeader>
       <img src={titleImage} alt="" />
+      <input
+        type="text"
+        style={{
+          width: "100px",
+          borderRadius: "15px",
+        }}
+      />
     </StyledHeader>
   );
 };
 
 const StyledHeader = styled.div`
   width: 100%;
-  height: 50px;
+  height: 35px;
   display: flex;
+  justify-content: space-between;
   background-color: #6f42c1;
   border: 0 1px 9px 0 rgb(30 30 30 / 60%);
 `;

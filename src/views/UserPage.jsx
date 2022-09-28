@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
-import styled from "@emotion/styled";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Header from "../components/Header";
-import TopBar from "../components/TopBar";
-import Map from "../components/Map";
+import { useDispatch, useSelector } from "react-redux";
+import { Header, TopBar, Map, Button, Banner, List } from "../components";
 import { searchBattle } from "../redux/battle";
-import Banner from "../components/Banner";
+import styled from "@emotion/styled";
 
 const BANNER_PROPS = {
   width: "90%",
@@ -14,28 +11,69 @@ const BANNER_PROPS = {
   margin: "16px auto",
 };
 
+const POSITION_BUTTON = "position";
+const MAIN_GUN_BUTTON = "mainGun";
+const ROUND_BUTTON = "round";
+
 const UserPage = () => {
   const location = useLocation();
   const disaptch = useDispatch();
   const banners = useSelector((store) => store.banner);
   const userBattle = useSelector((state) => state.battle.battle);
   const { nickname, userId, userNexonId, userType } = location.state;
+  const [clickedButton, setClickedButton] = useState(POSITION_BUTTON);
 
   useEffect(() => {
     disaptch(searchBattle(userId));
   }, []);
 
+  const handleClickedButton = (e) => {
+    const { name } = e.target;
+    setClickedButton(name);
+  };
+
   return (
     <>
-      <Header></Header>
+      <Header />
       {userBattle && <TopBar nickname={nickname} battle={userBattle}></TopBar>}
-      <Map></Map>
+      {userBattle && <Map battle={userBattle}></Map>}
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />
       <StyledButtonWrapper>
-        <StyledButton>포지션별</StyledButton>
-        <StyledButton>주총별</StyledButton>
-        <StyledButton>라운드별</StyledButton>
+        <Button
+          className={POSITION_BUTTON}
+          name={POSITION_BUTTON}
+          text="포지션별"
+          handleOnClick={handleClickedButton}
+          style={{
+            backgroundColor:
+              clickedButton === POSITION_BUTTON ? "#6f42c1" : "white",
+            color: clickedButton === POSITION_BUTTON ? "white" : "black",
+          }}
+        />
+        <Button
+          className={MAIN_GUN_BUTTON}
+          name={MAIN_GUN_BUTTON}
+          text="주총별"
+          handleOnClick={handleClickedButton}
+          style={{
+            backgroundColor:
+              clickedButton === MAIN_GUN_BUTTON ? "#6f42c1" : "white",
+            color: clickedButton === MAIN_GUN_BUTTON ? "white" : "black",
+          }}
+        />
+        <Button
+          className={ROUND_BUTTON}
+          name={ROUND_BUTTON}
+          text="라운드별"
+          handleOnClick={handleClickedButton}
+          style={{
+            backgroundColor:
+              clickedButton === ROUND_BUTTON ? "#6f42c1" : "white",
+            color: clickedButton === ROUND_BUTTON ? "white" : "black",
+          }}
+        />
       </StyledButtonWrapper>
+      <List data={userBattle}></List>
     </>
   );
 };
@@ -46,14 +84,6 @@ const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 50px;
-`;
-
-const StyledButton = styled.button`
-  height: 30px;
-  text-align: center;
-  width: 75px;
-  border-radius: 15px;
-  border: 2px solid #6f42c1;
 `;
 
 export default UserPage;
