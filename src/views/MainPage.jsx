@@ -29,17 +29,18 @@ const MainPage = () => {
   };
 
   return (
-    <div style={{ padding: "0 16px" }}>
+    <div>
       <StyledMainPage>
         {isTabletOrMobile && (
-          <>
+          <div style={{ padding: "0 16px" }}>
             <Banner
               imgUrl={banners?.data?.typeA}
               {...bannerProps}
               height="50px"
               marginBottom="100px"
+              marginTop="35px"
             />
-            <Title />
+            <Title width="250px" marginBottom="20px" />
             <div
               onMouseDown={(e) => {
                 if (!e.target.className.includes("searchInput")) {
@@ -57,14 +58,26 @@ const MainPage = () => {
               imgUrl={banners?.data?.typeB}
               {...bannerProps}
               marginTop="16px"
+              width="90%"
+              marginLeft="auto"
+              marginRight="auto"
             />
-            <Banner imgUrl={banners?.data?.typeC} {...bannerProps} />
-            <Banner imgUrl={banners?.data?.typeA} {...bannerProps} />
-          </>
+            <Banner
+              imgUrl={banners?.data?.typeC}
+              {...bannerProps}
+              width="90%"
+              marginLeft="auto"
+              marginRight="auto"
+            />
+            <Banner
+              imgUrl={banners?.data?.typeA}
+              {...bannerProps}
+              height="50px"
+            />
+          </div>
         )}
         {isDesktopOrLabtop && (
-          <div>
-            <Header />
+          <>
             <StyledDesktopOrLabtopWrapper>
               <StyledBannerWrapper>
                 <Banner
@@ -81,8 +94,8 @@ const MainPage = () => {
                 />
               </StyledBannerWrapper>
               <StyledMainContentWrapper>
-                <Title />
-                <Search />
+                <Title width="280px" marginBottom="30px" />
+                <Search handleDropDown={handleDropDown} />
                 <DropDown />
               </StyledMainContentWrapper>
               <StyledBannerWrapper>
@@ -100,7 +113,7 @@ const MainPage = () => {
                 />
               </StyledBannerWrapper>
             </StyledDesktopOrLabtopWrapper>
-          </div>
+          </>
         )}
       </StyledMainPage>
     </div>
@@ -108,7 +121,7 @@ const MainPage = () => {
 };
 
 const StyledMainPage = styled.div`
-  width: 100%;
+  max-width: 1500px;
   margin: 0 auto;
   text-align: center;
 `;
@@ -126,7 +139,7 @@ const StyledDesktopOrLabtopWrapper = styled.div`
 `;
 
 const StyledBannerWrapper = styled.div`
-  height: 1400px;
+  height: 1500px;
   display: flex;
   flex-direction: column;
   justify-content: center;

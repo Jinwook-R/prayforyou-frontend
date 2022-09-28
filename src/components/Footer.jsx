@@ -6,7 +6,7 @@ const Footer = () => {
 
 const StyledFooter = styled.div`
   width: 100%;
-  height: 10vh;
+  height: 200px;
   background-color: #1e1839;
   color: #d9d9d9;
   display: flex;

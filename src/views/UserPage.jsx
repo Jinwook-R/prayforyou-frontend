@@ -32,8 +32,6 @@ const UserPage = () => {
     setClickedButton(name);
   };
 
-  console.log(userBattle);
-
   return (
     <>
       <Header />

@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   height: 30px;
   text-align: center;
   border-radius: 15px;
-  border: 2px solid #775ee2;
+  border: 2px solid #775ee1;
   cursor: pointer;
 `;
 

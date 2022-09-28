@@ -11,7 +11,8 @@ const Banner = ({ imgUrl, siteUrl, width, height, marginTop, ...props }) => {
 
 const StyledBanner = styled.div`
   box-sizing: border-box;
-  border: 1px solid black;
+  background-color: #ffffff;
+  border: 1px solid #959595;
   margin-bottom: ${(props) => props.marginBottom};
 `;
 

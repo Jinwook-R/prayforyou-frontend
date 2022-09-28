@@ -16,14 +16,29 @@ const DropDown = () => {
   };
 
   return (
-    <div className="dropDown" style={{ minHeight: "250px", marginTop: "16px" }}>
-      <div style={{ display: "flex" }}>
+    <div
+      className="dropDown"
+      style={{
+        minHeight: "250px",
+        marginTop: "16px",
+        padding: "0 100px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          borderRadius: "15px 15px 0 0",
+          overflow: "hidden",
+          border: "1px solid #b3b3b3",
+          borderBottom: "0",
+        }}
+      >
         <StyledButton
           className="recentSearch"
           type="button"
           onClick={handleOnClick}
           style={{
-            backgroundColor: recentSearchButtonToggle ? "#775ee2" : "white",
+            backgroundColor: recentSearchButtonToggle ? "#775ee1" : "#f7f7f7",
             color: recentSearchButtonToggle ? "white" : "black",
           }}
           onMouseDown={(e) => e.preventDefault()}
@@ -35,8 +50,9 @@ const DropDown = () => {
           type="button"
           onClick={handleOnClick}
           style={{
-            backgroundColor: favoriteButtonToggle ? "#775ee2" : "white",
+            backgroundColor: favoriteButtonToggle ? "#775ee1" : "#f7f7f7",
             color: favoriteButtonToggle ? "white" : "black",
+            borderRadius: "0 15px 0 0",
           }}
         >
           즐겨찾기 검색
@@ -54,24 +70,27 @@ const DropDown = () => {
 
 const StyledButton = styled.button`
   width: 50%;
-  height: 30px;
+  height: 75px;
+  font-size: 20px;
   border: none;
+  cursor: pointer;
 `;
 
 const StyledList = styled.div`
   width: 100%;
   min-height: 250px;
-  background-color: #775ee2;
-  padding: 7px 0;
+  background-color: #775ee1;
+  padding: 20px 0;
 `;
 
 const StyledListItem = styled.div`
-  width: 250px;
-  height: 50px;
+  width: 95%;
+  height: 70px;
   margin: 0 auto;
-  margin-bottom: 16px;
-  border-radius: 5px;
-  background-color: #e7e7e7;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+  cursor: pointer;
 `;
 
 export default DropDown;

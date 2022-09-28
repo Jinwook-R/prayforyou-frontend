@@ -16,7 +16,7 @@ const StyledList = styled.div`
   margin: 0 auto;
   min-height: 250px;
   border-radius: 15px;
-  background-color: #775ee2;
+  background-color: #775ee1;
   padding: 7px 0;
 `;
 

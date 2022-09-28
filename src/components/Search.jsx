@@ -5,10 +5,13 @@ import { useDispatch } from "react-redux";
 import SearchImage from "../assets/search.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { searchUser } from "../redux/user";
+import { useMediaQuery } from "react-responsive";
 
 const Search = ({ handleDropDown }) => {
   const [userName, setUserName] = useState("");
   const [searchedUsers, setLocalStorage] = useLocalStorage("searchedUsers", []);
+  const isDesktopOrLabtop = useMediaQuery({ query: "(min-width: 750px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 750px)" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -41,9 +44,10 @@ const Search = ({ handleDropDown }) => {
 
   return (
     <StyledSearchWrapper>
-      <StyledSearchInputWrapper type="text" placeholder="닉네임을 입력하세요">
+      <StyledSearchInputWrapper type="text">
         <StyledInput
           className="searchInput"
+          placeholder="닉네임을 입력하세요"
           type="text"
           onBlur={(e) => {
             if (!e.target.className.includes("searchWrapper")) {
@@ -57,18 +61,35 @@ const Search = ({ handleDropDown }) => {
           onKeyDown={handleSearch}
         />
       </StyledSearchInputWrapper>
-      <StyledSearchImage
-        className="searchImage"
-        src={SearchImage}
-        alt="search"
-        onClick={handleSearch}
-      />
+      {isTabletOrMobile && (
+        <StyledSearchImage
+          className="searchImage"
+          src={SearchImage}
+          alt="search"
+          onClick={handleSearch}
+        />
+      )}
+      {isDesktopOrLabtop && (
+        <StyledPrayForYouNav
+          className="pray-for-you-nav"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <span style={{ color: "#141414", fontSize: "18px" }}>
+            Pray For You가 무엇인가요?&nbsp;
+          </span>
+          <span style={{ color: "#775ee1" }} className="check-it-out">
+            &nbsp;확인하러 가기👀
+          </span>
+        </StyledPrayForYouNav>
+      )}
     </StyledSearchWrapper>
   );
 };
 
 const StyledSearchWrapper = styled.div`
   width: 100%;
+  margin: 0 auto;
+  max-width: 800px;
   position: relative;
 `;
 
@@ -78,29 +99,28 @@ const StyledSearchInputWrapper = styled.div`
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
-  height: 50px;
+  height: 70px;
   padding: 0 15px;
   font-size: 15px;
-  border-radius: 30px;
-  border: 2.5px solid #775ee2;
-  background-color: #d9d9d9;
-
-  &::placeholder {
-    display: inline-block;
-    color: #141414;
-    padding-left: 15px;
-  }
+  border-radius: 50px;
+  border: 2.5px solid #775ee1;
+  background-color: #f7f7f7;
 `;
 
 const StyledInput = styled.input`
-  background-color: none;
-  padding: 0;
-  border: none;
-  background-color: #d9d9d9;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
   width: 100%;
   height: 35px;
   outline: none;
   border: none;
+  margin-top: 7px;
+  padding-left: 15px;
+  font-size: 20px;
+  &::placeholder {
+    font-size: 20px;
+    margin-top: 55px;
+  }
   &:focus {
     outline: none;
   }
@@ -108,9 +128,20 @@ const StyledInput = styled.input`
 
 const StyledSearchImage = styled.img`
   position: absolute;
-  width: 17px;
-  top: 17px;
-  right: 15px;
+  width: 25px;
+  top: 22px;
+  right: 35px;
+`;
+
+const StyledPrayForYouNav = styled.div`
+  margin-top: 30px;
+  margin-bottom: 100px;
+  span {
+    line-height: 20px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export default Search;

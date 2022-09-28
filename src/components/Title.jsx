@@ -1,15 +1,13 @@
 import styled from "@emotion/styled";
 import MainLogoImage from "../assets/logo_1.png";
 
-const Title = () => {
+const Title = ({ ...props }) => {
   return (
-    <StyledTitle>
+    <StyledTitle {...props}>
       <img
         src={MainLogoImage}
-        alt="logo"
-        style={{
-          maxWidth: "180px",
-        }}
+        alt=""
+        style={{ height: "auto", display: "block", maxWidth: "100%" }}
       />
     </StyledTitle>
   );
@@ -17,7 +15,10 @@ const Title = () => {
 
 const StyledTitle = styled.div`
   margin: 0 auto;
-  margin-bottom: 16px;
+  width: 280px;
+  height: 60px;
+  overflow: hidden;
+  margin-bottom: ${(props) => props.marginBottom};
 `;
 
 export default Title;

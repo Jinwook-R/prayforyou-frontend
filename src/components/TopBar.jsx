@@ -17,7 +17,7 @@ const TopBar = ({ nickname, battle }) => {
 };
 
 const StyledTopBar = styled.div`
-  background-color: #775ee2;
+  background-color: #775ee1;
   color: white;
 `;
 

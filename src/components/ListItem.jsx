@@ -11,12 +11,12 @@ const ListItem = ({ item = { place: "", item: "" } }) => {
 };
 
 const StyledListItem = styled.div`
-  width: 95%;
+  width: 100%;
   height: 65px;
   margin: 0 auto;
   margin-bottom: 16px;
   border-radius: 15px;
-  background-color: #e7e7e7;
+  background-color: #f7f7f7;
 `;
 
 export default ListItem;

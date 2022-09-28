@@ -1,15 +1,12 @@
 import MapImage from "../assets/map.png";
-const Map = ({ battle }) => {
-  const { battlePlace, battleRound, battleStats } = battle;
-
+const Map = () => {
   return (
     <div
       style={{
-        height: "500px",
+        width: "100%",
+        height: "350px",
         backgroundImage: `url(${MapImage})`,
         backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
       }}
     ></div>
   );
