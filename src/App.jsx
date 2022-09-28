@@ -10,8 +10,8 @@ const MainWrapper = styled.div`
 `;
 
 function App() {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 750px)" });
-  const isDesktopOrLabtop = useMediaQuery({ query: "(min-width: 750px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 980px)" });
+  const isDesktopOrLabtop = useMediaQuery({ query: "(min-width: 980px)" });
   const Wrapper = styled.div`
     margin: 0 auto;
     max-width: ${(e) => {

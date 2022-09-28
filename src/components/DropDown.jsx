@@ -21,7 +21,8 @@ const DropDown = () => {
       style={{
         minHeight: "250px",
         marginTop: "16px",
-        padding: "0 100px",
+        padding: "0 60px",
+        boxSizing: "border-box",
       }}
     >
       <div
@@ -78,7 +79,7 @@ const StyledButton = styled.button`
 
 const StyledList = styled.div`
   width: 100%;
-  min-height: 250px;
+  min-height: 350px;
   background-color: #775ee1;
   padding: 20px 0;
 `;

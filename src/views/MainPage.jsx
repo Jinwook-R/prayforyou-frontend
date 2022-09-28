@@ -15,8 +15,8 @@ const bannerProps = {
 const MainPage = () => {
   const banners = useSelector((store) => store.banner);
   const dispatch = useDispatch();
-  const isDesktopOrLabtop = useMediaQuery({ query: "(min-width: 750px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 750px)" });
+  const isDesktopOrLabtop = useMediaQuery({ query: "(min-width: 980px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 980px)" });
 
   useEffect(() => {
     dispatch(fetchAllBanners());
@@ -95,8 +95,17 @@ const MainPage = () => {
               </StyledBannerWrapper>
               <StyledMainContentWrapper>
                 <Title width="280px" marginBottom="30px" />
-                <Search handleDropDown={handleDropDown} />
-                <DropDown />
+                <div
+                  onMouseDown={(e) => {
+                    if (!e.target.className.includes("searchInput")) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
+                  <Search handleDropDown={handleDropDown} />
+                  {dropDown && <DropDown />}
+                  {!dropDown && <div />}
+                </div>
               </StyledMainContentWrapper>
               <StyledBannerWrapper>
                 <Banner
