@@ -5,13 +5,6 @@ const Header = () => {
   return (
     <StyledHeader>
       <img src={titleImage} alt="" />
-      <input
-        type="text"
-        style={{
-          width: "100px",
-          borderRadius: "15px",
-        }}
-      />
     </StyledHeader>
   );
 };
@@ -21,8 +14,9 @@ const StyledHeader = styled.div`
   height: 35px;
   display: flex;
   justify-content: space-between;
-  background-color: #6f42c1;
-  border: 0 1px 9px 0 rgb(30 30 30 / 60%);
+  background-color: #775ee2;
+  z-index: 10;
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
 `;
 
 export default Header;

@@ -5,9 +5,11 @@ const Map = ({ battle }) => {
   return (
     <div
       style={{
-        height: "350px",
+        height: "500px",
         backgroundImage: `url(${MapImage})`,
         backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
       }}
     ></div>
   );

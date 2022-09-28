@@ -31,7 +31,6 @@ const Search = ({ handleDropDown }) => {
             if (filteredNickname.length === 1) {
               setLocalStorage("searchedUsers", [...searchedUsers, userName]);
               setUserName("");
-              console.log(filteredNickname);
               navigate("user", { state: { ...filteredNickname[0] } });
             }
           }
@@ -83,7 +82,7 @@ const StyledSearchInputWrapper = styled.div`
   padding: 0 15px;
   font-size: 15px;
   border-radius: 30px;
-  border: 2.5px solid #6f42c1;
+  border: 2.5px solid #775ee2;
   background-color: #d9d9d9;
 
   &::placeholder {

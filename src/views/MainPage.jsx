@@ -1,12 +1,10 @@
-import styled from "@emotion/styled";
-import Title from "../components/Title";
-import Search from "../components/Search";
-import DropDown from "../components/DropDown";
-import Banner from "../components/Banner";
-import { useEffect } from "react";
 import React from "react";
+import { useEffect } from "react";
+import MediaQuery, { useMediaQuery } from "react-responsive";
+import { Title, Search, DropDown, Banner, Header } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBanners } from "../redux/banner/bannerSlice";
+import styled from "@emotion/styled";
 
 const bannerProps = {
   width: "100%",
@@ -17,6 +15,9 @@ const bannerProps = {
 const MainPage = () => {
   const banners = useSelector((store) => store.banner);
   const dispatch = useDispatch();
+  const isDesktopOrLabtop = useMediaQuery({ query: "(min-width: 750px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 750px)" });
+
   useEffect(() => {
     dispatch(fetchAllBanners());
   }, []);
@@ -28,33 +29,77 @@ const MainPage = () => {
   };
 
   return (
-    <div>
+    <div style={{ padding: "0 16px" }}>
       <StyledMainPage>
-        <Banner
-          imgUrl={banners?.data?.typeA}
-          {...bannerProps}
-          height="50px"
-          marginBottom="100px"
-        />
-        <Title />
-        <div
-          onMouseDown={(e) => {
-            if (!e.target.className.includes("searchInput")) {
-              e.preventDefault();
-            }
-          }}
-        >
-          <Search handleDropDown={handleDropDown} />
-          {dropDown && <DropDown />}
-          {!dropDown && <div style={{ width: "100%", minHeight: "250px" }} />}
-        </div>
-        <Banner
-          imgUrl={banners?.data?.typeB}
-          {...bannerProps}
-          marginTop="16px"
-        />
-        <Banner imgUrl={banners?.data?.typeC} {...bannerProps} />
-        <Banner imgUrl={banners?.data?.typeA} {...bannerProps} />
+        {isTabletOrMobile && (
+          <>
+            <Banner
+              imgUrl={banners?.data?.typeA}
+              {...bannerProps}
+              height="50px"
+              marginBottom="100px"
+            />
+            <Title />
+            <div
+              onMouseDown={(e) => {
+                if (!e.target.className.includes("searchInput")) {
+                  e.preventDefault();
+                }
+              }}
+            >
+              <Search handleDropDown={handleDropDown} />
+              {dropDown && <DropDown />}
+              {!dropDown && (
+                <div style={{ width: "100%", minHeight: "250px" }} />
+              )}
+            </div>
+            <Banner
+              imgUrl={banners?.data?.typeB}
+              {...bannerProps}
+              marginTop="16px"
+            />
+            <Banner imgUrl={banners?.data?.typeC} {...bannerProps} />
+            <Banner imgUrl={banners?.data?.typeA} {...bannerProps} />
+          </>
+        )}
+        {isDesktopOrLabtop && (
+          <div>
+            <Header />
+            <StyledDesktopOrLabtopWrapper>
+              <StyledBannerWrapper>
+                <Banner
+                  imgUrl={banners?.data?.typeA}
+                  {...bannerProps}
+                  width={"300px"}
+                  height={"600px"}
+                />
+                <Banner
+                  imgUrl={banners?.data?.typeA}
+                  {...bannerProps}
+                  width={"300px"}
+                  height={"600px"}
+                />
+              </StyledBannerWrapper>
+              <StyledMainContentWrapper>
+                <Title />
+              </StyledMainContentWrapper>
+              <StyledBannerWrapper>
+                <Banner
+                  imgUrl={banners?.data?.typeA}
+                  {...bannerProps}
+                  width={"160px"}
+                  height={"600px"}
+                />
+                <Banner
+                  imgUrl={banners?.data?.typeA}
+                  {...bannerProps}
+                  width={"160px"}
+                  height={"600px"}
+                />
+              </StyledBannerWrapper>
+            </StyledDesktopOrLabtopWrapper>
+          </div>
+        )}
       </StyledMainPage>
     </div>
   );
@@ -64,6 +109,25 @@ const StyledMainPage = styled.div`
   width: 100%;
   margin: 0 auto;
   text-align: center;
+`;
+
+const StyledMainContentWrapper = styled.div`
+  width: 50%;
+`;
+
+const StyledDesktopOrLabtopWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+`;
+
+const StyledBannerWrapper = styled.div`
+  width: 25%;
+  height: 1300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default MainPage;

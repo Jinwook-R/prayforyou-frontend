@@ -10,9 +10,8 @@ const Button = ({ className, text, handleOnClick, ...props }) => {
 const StyledButton = styled.button`
   height: 30px;
   text-align: center;
-  width: 75px;
   border-radius: 15px;
-  border: 2px solid #6f42c1;
+  border: 2px solid #775ee2;
   cursor: pointer;
 `;
 

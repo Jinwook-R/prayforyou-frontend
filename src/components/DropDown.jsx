@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
+import List from "./List";
 
 const DropDown = () => {
   const [searchedUsers] = useLocalStorage("searchedUsers", []);
@@ -22,7 +23,7 @@ const DropDown = () => {
           type="button"
           onClick={handleOnClick}
           style={{
-            backgroundColor: recentSearchButtonToggle ? "#6f42c1" : "white",
+            backgroundColor: recentSearchButtonToggle ? "#775ee2" : "white",
             color: recentSearchButtonToggle ? "white" : "black",
           }}
           onMouseDown={(e) => e.preventDefault()}
@@ -34,7 +35,7 @@ const DropDown = () => {
           type="button"
           onClick={handleOnClick}
           style={{
-            backgroundColor: favoriteButtonToggle ? "#6f42c1" : "white",
+            backgroundColor: favoriteButtonToggle ? "#775ee2" : "white",
             color: favoriteButtonToggle ? "white" : "black",
           }}
         >
@@ -60,9 +61,10 @@ const StyledButton = styled.button`
 const StyledList = styled.div`
   width: 100%;
   min-height: 250px;
-  background-color: #6f42c1;
+  background-color: #775ee2;
   padding: 7px 0;
 `;
+
 const StyledListItem = styled.div`
   width: 250px;
   height: 50px;
