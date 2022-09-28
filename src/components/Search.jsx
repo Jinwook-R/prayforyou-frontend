@@ -6,12 +6,17 @@ import SearchImage from "../assets/search.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { searchUser } from "../redux/user";
 import { useMediaQuery } from "react-responsive";
+import { BREAK_POINT } from "../utils/constants";
 
 const Search = ({ handleDropDown }) => {
   const [userName, setUserName] = useState("");
   const [searchedUsers, setLocalStorage] = useLocalStorage("searchedUsers", []);
-  const isDesktopOrLabtop = useMediaQuery({ query: "(min-width: 750px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 750px)" });
+  const isDesktopOrLabtop = useMediaQuery({
+    query: `(min-width: ${BREAK_POINT})`,
+  });
+  const isTabletOrMobile = useMediaQuery({
+    query: `(min-width: ${BREAK_POINT})`,
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -4,24 +4,32 @@ import { Route, Routes } from "react-router";
 import { useMediaQuery } from "react-responsive";
 import { MainPage, UserPage } from "./views";
 import { Header, Footer } from "./components";
+import { BREAK_POINT } from "./utils/constants";
 
 const MainWrapper = styled.div`
   width: 100%;
 `;
 
 function App() {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 980px)" });
-  const isDesktopOrLabtop = useMediaQuery({ query: "(min-width: 980px)" });
+  const isTabletOrMobile = useMediaQuery({
+    query: `(max-width: ${BREAK_POINT})`,
+  });
+  const isDesktopOrLabtop = useMediaQuery({
+    query: `(min-width: ${BREAK_POINT})`,
+  });
   const Wrapper = styled.div`
     margin: 0 auto;
     max-width: ${(e) => {
       return isTabletOrMobile ? "750px" : "2000px";
     }};
+    min-width: ${(e) => {
+      return isDesktopOrLabtop && "1250px";
+    }};
   `;
 
   return (
     <div className="App">
-      {isDesktopOrLabtop && <Header height="100px" />}
+      {isDesktopOrLabtop && <Header height="100px" minWidth="1250px" />}
       <Wrapper>
         <MainWrapper>
           <Routes>

@@ -1,9 +1,10 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MediaQuery, { useMediaQuery } from "react-responsive";
 import { Title, Search, DropDown, Banner, Header } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBanners } from "../redux/banner/bannerSlice";
+import { BREAK_POINT } from "../utils/constants";
 import styled from "@emotion/styled";
 
 const bannerProps = {
@@ -15,15 +16,18 @@ const bannerProps = {
 const MainPage = () => {
   const banners = useSelector((store) => store.banner);
   const dispatch = useDispatch();
-  const isDesktopOrLabtop = useMediaQuery({ query: "(min-width: 980px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 980px)" });
+  const isDesktopOrLabtop = useMediaQuery({
+    query: `(min-width: ${BREAK_POINT})`,
+  });
+  const isTabletOrMobile = useMediaQuery({
+    query: `(max-width: ${BREAK_POINT})`,
+  });
 
   useEffect(() => {
     dispatch(fetchAllBanners());
   }, []);
 
-  const [dropDown, setDropDown] = React.useState(false);
-
+  const [dropDown, setDropDown] = useState(false);
   const handleDropDown = (value) => {
     setDropDown(value);
   };
@@ -101,9 +105,17 @@ const MainPage = () => {
                       e.preventDefault();
                     }
                   }}
+                  style={{ position: "relative" }}
                 >
                   <Search handleDropDown={handleDropDown} />
-                  {dropDown && <DropDown />}
+                  {dropDown && (
+                    <DropDown
+                      position="absolute"
+                      top={54}
+                      left={-62}
+                      width="100%"
+                    />
+                  )}
                   {!dropDown && <div />}
                 </div>
               </StyledMainContentWrapper>

@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import titleImage from "../assets/logo_3.png";
 
-const Header = ({ width, height = "35px" }) => {
+const Header = ({ minWidth, height = "35px" }) => {
   return (
-    <StyledHeader style={{ height: height }}>
+    <StyledHeader style={{ height: height, minWidth: minWidth }}>
       <div
         style={{
           width: "100%",

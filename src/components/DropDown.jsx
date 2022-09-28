@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
-import List from "./List";
 
-const DropDown = () => {
+const DropDown = ({ ...props }) => {
   const [searchedUsers] = useLocalStorage("searchedUsers", []);
   const [recentSearchButtonToggle, setRecentSearchButtonToggle] =
     useState(true);
@@ -22,7 +21,7 @@ const DropDown = () => {
         minHeight: "250px",
         marginTop: "16px",
         padding: "0 60px",
-        boxSizing: "border-box",
+        ...props,
       }}
     >
       <div
