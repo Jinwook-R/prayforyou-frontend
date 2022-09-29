@@ -8,6 +8,13 @@ import List from "./List";
 import Search from "./Search";
 import Title from "./Title";
 import TopBar from "./TopBar";
+import Ranking from "./Ranking";
+import {
+  StyledMainPageWrapper,
+  StyledMainContentWrapper,
+  StyledBannerWrapper,
+  StyledDesktopWrapper,
+} from "./wrapper";
 
 export {
   Banner,
@@ -20,4 +27,9 @@ export {
   Search,
   Title,
   TopBar,
+  Ranking,
+  StyledMainPageWrapper,
+  StyledMainContentWrapper,
+  StyledBannerWrapper,
+  StyledDesktopWrapper,
 };
