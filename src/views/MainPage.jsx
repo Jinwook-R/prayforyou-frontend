@@ -36,8 +36,6 @@ const MainPage = () => {
     setDropDown(value);
   };
 
-  // console.log(ranking);
-
   return (
     <div>
       <StyledMainPage>
@@ -173,7 +171,7 @@ const StyledDesktopOrLabtopWrapper = styled.div`
 
 const StyledBannerWrapper = styled.div`
   height: 1500px;
-  width: 600px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;

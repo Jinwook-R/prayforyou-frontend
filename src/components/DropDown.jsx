@@ -20,7 +20,7 @@ const DropDown = ({ ...props }) => {
       style={{
         minHeight: "250px",
         marginTop: "16px",
-        borderRadius: "15px",
+        borderRadius: "0 0 15px 15px",
         overflow: "hidden",
         ...props,
       }}
@@ -82,7 +82,7 @@ const StyledList = styled.div`
   min-height: 350px;
   background-color: #775ee1;
   padding: 20px 0;
-  /* border: 1px solid #b3b3b3; */
+  border-radius: 0 0 15px 15px;
 `;
 
 const StyledListItem = styled.div`
