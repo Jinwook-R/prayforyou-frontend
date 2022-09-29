@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import ListItem from "./ListItem";
 
-const List = ({ data, width = "100%", outputText }) => {
-  console.log(outputText);
+const List = ({ data = [], width = "100%", outputText }) => {
+  console.log(data, "!!!!");
+
   return (
     <StyledList style={{ width }}>
       {data.map((item, index) => {

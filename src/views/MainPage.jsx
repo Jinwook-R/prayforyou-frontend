@@ -1,11 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import MediaQuery, { useMediaQuery } from "react-responsive";
-import { Title, Search, DropDown, Banner, Header } from "../components";
+import { useMediaQuery } from "react-responsive";
+import { Title, Search, DropDown, Banner, Header, List } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBanners } from "../redux/banner/bannerSlice";
+import { fetchAllRanking } from "../redux/ranking/rankingSlice";
 import { BREAK_POINT } from "../utils/constants";
 import styled from "@emotion/styled";
+import Ranking from "../components/Ranking";
 
 const bannerProps = {
   width: "100%",
@@ -15,6 +17,7 @@ const bannerProps = {
 
 const MainPage = () => {
   const banners = useSelector((store) => store.banner);
+  const ranking = useSelector((store) => store.ranking.ranking);
   const dispatch = useDispatch();
   const isDesktopOrLabtop = useMediaQuery({
     query: `(min-width: ${BREAK_POINT})`,
@@ -23,8 +26,11 @@ const MainPage = () => {
     query: `(max-width: ${BREAK_POINT})`,
   });
 
+  const { dailyView, weeklyView } = ranking;
+  console.log(dailyView, weeklyView);
   useEffect(() => {
     dispatch(fetchAllBanners());
+    isDesktopOrLabtop && dispatch(fetchAllRanking());
   }, []);
 
   const [dropDown, setDropDown] = useState(false);
@@ -121,7 +127,7 @@ const MainPage = () => {
                       padding="0 60px"
                     />
                   )}
-                  {!dropDown && <div />}
+                  {!dropDown && <Ranking data={dailyView} />}
                 </div>
               </StyledMainContentWrapper>
               <StyledBannerWrapper>
@@ -162,10 +168,12 @@ const StyledDesktopOrLabtopWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 150px;
+  min-width: 1500px;
 `;
 
 const StyledBannerWrapper = styled.div`
   height: 1500px;
+  width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;

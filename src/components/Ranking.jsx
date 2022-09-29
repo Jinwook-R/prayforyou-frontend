@@ -1,26 +1,24 @@
-import styled from "@emotion/styled";
 import React, { useState } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import styled from "@emotion/styled";
 
-const DropDown = ({ ...props }) => {
-  const [searchedUsers] = useLocalStorage("searchedUsers", []);
-  const [recentSearchButtonToggle, setRecentSearchButtonToggle] =
-    useState(true);
-  const [favoriteButtonToggle, setFavoriteButtonToggle] = useState(false);
+const Ranking = ({ data, ...props }) => {
+  const [weeklyDailyButtonToggle, setWeeklyDailyButtonToggle] =
+    useState("weekly");
 
   const handleOnClick = (e) => {
     e.preventDefault();
-    setRecentSearchButtonToggle(!recentSearchButtonToggle);
-    setFavoriteButtonToggle(!favoriteButtonToggle);
+    if (e.target.className.includes(weeklyDailyButtonToggle)) return;
+    weeklyDailyButtonToggle === "weekly" && setWeeklyDailyButtonToggle("daily");
+    weeklyDailyButtonToggle === "daily" && setWeeklyDailyButtonToggle("weekly");
   };
 
   return (
     <div
-      className="dropDown"
+      className="ranking"
       style={{
+        borderRadius: "15px",
         minHeight: "250px",
         marginTop: "16px",
-        borderRadius: "15px",
         overflow: "hidden",
         ...props,
       }}
@@ -35,39 +33,49 @@ const DropDown = ({ ...props }) => {
         }}
       >
         <StyledButton
-          className="recentSearch"
+          className="weekly"
           type="button"
           onClick={handleOnClick}
           style={{
-            backgroundColor: recentSearchButtonToggle ? "#775ee1" : "#f7f7f7",
-            color: recentSearchButtonToggle ? "white" : "black",
+            backgroundColor:
+              weeklyDailyButtonToggle === "weekly" ? "#775ee1" : "#f7f7f7",
+            color: weeklyDailyButtonToggle === "weekly" ? "white" : "black",
           }}
           onMouseDown={(e) => e.preventDefault()}
         >
-          최근 검색
+          위클리 주간
         </StyledButton>
         <StyledButton
-          className="favorite"
+          className="daily"
           type="button"
           onClick={handleOnClick}
           style={{
-            backgroundColor: favoriteButtonToggle ? "#775ee1" : "#f7f7f7",
-            color: favoriteButtonToggle ? "white" : "black",
+            backgroundColor:
+              weeklyDailyButtonToggle === "daily" ? "#775ee1" : "#f7f7f7",
+            color: weeklyDailyButtonToggle === "daily" ? "white" : "black",
             borderRadius: "0 15px 0 0",
           }}
         >
-          즐겨찾기 검색
+          데일리 일간
         </StyledButton>
       </div>
       <StyledList>
-        {recentSearchButtonToggle &&
-          searchedUsers.map((item, idx) => (
+        {[] &&
+          [].map((item, idx) => (
             <StyledListItem key={`${idx}`}>{item}</StyledListItem>
           ))}
       </StyledList>
     </div>
   );
 };
+
+const StyledRanking = styled.div`
+  margin: 0 auto;
+  min-height: 250px;
+  border-radius: 15px;
+  background-color: #775ee1;
+  padding: 7px 0;
+`;
 
 const StyledButton = styled.button`
   width: 50%;
@@ -82,7 +90,6 @@ const StyledList = styled.div`
   min-height: 350px;
   background-color: #775ee1;
   padding: 20px 0;
-  /* border: 1px solid #b3b3b3; */
 `;
 
 const StyledListItem = styled.div`
@@ -94,5 +101,4 @@ const StyledListItem = styled.div`
   background-color: #f7f7f7;
   cursor: pointer;
 `;
-
-export default DropDown;
+export default Ranking;
