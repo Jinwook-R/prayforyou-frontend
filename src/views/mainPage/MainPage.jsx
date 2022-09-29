@@ -1,8 +1,7 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
-import { BREAK_POINT } from "../utils/constants";
-import styled from "@emotion/styled";
-import { StyledMainPageWrapper } from "../components";
+import { BREAK_POINT } from "../../utils/constants";
+import { StyledMainPageWrapper } from "../../components";
 import Mobile from "./Mobile";
 import Desktop from "./Desktop";
 

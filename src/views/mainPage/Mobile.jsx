@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Banner, Title, Search, DropDown } from "../components";
+import { Banner, Title, Search, DropDown } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllBanners } from "../redux/banner/bannerSlice";
+import { fetchAllBanners } from "../../redux/banner/bannerSlice";
 
 const bannerProps = {
   width: "100%",

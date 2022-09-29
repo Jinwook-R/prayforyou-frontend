@@ -9,9 +9,9 @@ import {
   DropDown,
   Banner,
   Search,
-} from "../components";
-import { fetchAllBanners } from "../redux/banner/bannerSlice";
-import { fetchAllRanking } from "../redux/ranking/rankingSlice";
+} from "../../components";
+import { fetchAllBanners } from "../../redux/banner/bannerSlice";
+import { fetchAllRanking } from "../../redux/ranking/rankingSlice";
 const bannerProps = {
   width: "100%",
   height: "100px",
