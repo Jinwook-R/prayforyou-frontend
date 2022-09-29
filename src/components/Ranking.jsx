@@ -12,6 +12,8 @@ const Ranking = ({ data, ...props }) => {
     weeklyDailyButtonToggle === "daily" && setWeeklyDailyButtonToggle("weekly");
   };
 
+  const { dailyView, weeklyView } = data;
+
   return (
     <div
       className="ranking"
@@ -60,10 +62,20 @@ const Ranking = ({ data, ...props }) => {
         </StyledButton>
       </div>
       <StyledList>
-        {[] &&
-          [].map((item, idx) => (
-            <StyledListItem key={`${idx}`}>{item}</StyledListItem>
-          ))}
+        {data &&
+          weeklyDailyButtonToggle === "weekly" &&
+          weeklyView.map((item, idx) => {
+            return (
+              <StyledListItem key={`${idx}`}>{item.nickname}</StyledListItem>
+            );
+          })}
+        {data &&
+          weeklyDailyButtonToggle === "daily" &&
+          dailyView.map((item, idx) => {
+            return (
+              <StyledListItem key={`${idx}`}>{item.nickname}</StyledListItem>
+            );
+          })}
       </StyledList>
     </div>
   );

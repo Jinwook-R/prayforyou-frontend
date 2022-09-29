@@ -26,8 +26,6 @@ const MainPage = () => {
     query: `(max-width: ${BREAK_POINT})`,
   });
 
-  const { dailyView, weeklyView } = ranking;
-  console.log(dailyView, weeklyView);
   useEffect(() => {
     dispatch(fetchAllBanners());
     isDesktopOrLabtop && dispatch(fetchAllRanking());
@@ -37,6 +35,8 @@ const MainPage = () => {
   const handleDropDown = (value) => {
     setDropDown(value);
   };
+
+  // console.log(ranking);
 
   return (
     <div>
@@ -127,7 +127,7 @@ const MainPage = () => {
                       padding="0 60px"
                     />
                   )}
-                  {!dropDown && <Ranking data={dailyView} />}
+                  {!dropDown && <Ranking data={ranking} />}
                 </div>
               </StyledMainContentWrapper>
               <StyledBannerWrapper>
