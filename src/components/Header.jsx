@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
 import titleImage from "../assets/logo_3.png";
+import useWindowSize from "../hooks/useWindowSize";
 
 const Header = ({ minWidth, height = "35px" }) => {
+  const [width] = useWindowSize();
+
   return (
-    <StyledHeader style={{ height: height, minWidth: minWidth }}>
+    <StyledHeader height={height} width={width}>
       <div
         style={{
-          width: "100%",
           maxWidth: "1500px",
-          minWidth: "350px",
+          width: "100%",
           height: height,
           display: "flex",
           alignItems: "center",
@@ -21,7 +23,8 @@ const Header = ({ minWidth, height = "35px" }) => {
 };
 
 const StyledHeader = styled.div`
-  width: 100%;
+  min-width: 1615px;
+  width: ${(props) => props.width};
   height: ${(props) => props.height};
   display: flex;
   justify-content: center;

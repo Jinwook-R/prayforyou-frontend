@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      {isDesktopOrLabtop && <Header height="100px" minWidth="1250px" />}
+      {isDesktopOrLabtop && <Header height="100px" width="2000px" />}
       <Wrapper>
         <MainWrapper>
           <Routes>
