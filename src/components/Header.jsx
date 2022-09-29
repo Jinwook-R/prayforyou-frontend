@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import titleImage from "../assets/logo_3.png";
 import useWindowSize from "../hooks/useWindowSize";
 
-const Header = ({ minWidth, height = "35px" }) => {
+const Header = ({ fixedWidth, height = "35px" }) => {
   const [width] = useWindowSize();
 
   return (
