@@ -113,7 +113,7 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                   flexBasis: "60%",
                 }}
               >
-                A보급 서플라이 리그
+                A보급 서플라이 리그 테스크클랜
               </p>
               <div
                 style={{
@@ -180,7 +180,7 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
             </div>
             <div>
               <p>
-                A보급 서플라이 리그{" "}
+                A보급 서플라이 리그 테스크클랜
                 <span style={{ marginLeft: "25px" }}>킬뎃 65% 판킬 10</span>
               </p>
             </div>

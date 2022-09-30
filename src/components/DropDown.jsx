@@ -84,7 +84,7 @@ const DropDown = ({ ...props }) => {
                     fontSize="15px"
                     color="#59575b"
                   >
-                    A보급 서플라이리그
+                    A보급 서플라이 리그 테스크클랜
                   </StyledListItemText>
                 </StyledListItem>
               </StyledListItemWrapper>
@@ -109,7 +109,7 @@ const DropDown = ({ ...props }) => {
                     fontSize="15px"
                     color="#59575b"
                   >
-                    A보급 서플라이리그
+                    A보급 서플라이 리그 테스크클랜
                   </StyledListItemText>
                 </StyledListItem>
               </StyledListItemWrapper>
