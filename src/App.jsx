@@ -11,25 +11,25 @@ const MainWrapper = styled.div`
 `;
 
 function App() {
-  const isTabletOrMobile = useMediaQuery({
+  const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
-  const isDesktopOrLabtop = useMediaQuery({
+  const isDesktop = useMediaQuery({
     query: `(min-width: ${BREAK_POINT})`,
   });
   const Wrapper = styled.div`
     margin: 0 auto;
     max-width: ${(e) => {
-      return isTabletOrMobile ? "750px" : "2000px";
+      return isMobile ? "750px" : "2000px";
     }};
     min-width: ${(e) => {
-      return isDesktopOrLabtop && "1250px";
+      return isDesktop && "1250px";
     }};
   `;
 
   return (
     <div className="App">
-      {isDesktopOrLabtop && <Header height="100px" />}
+      {isDesktop && <Header height="100px" />}
       <Wrapper>
         <MainWrapper>
           <Routes>
