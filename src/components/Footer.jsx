@@ -5,14 +5,14 @@ import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
 
 const Footer = () => {
-  const isTabletOrMobile = useMediaQuery({
+  const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
   const [desktopWidth] = useWindowSize();
   return (
     <StyledFooter
-      width={isTabletOrMobile ? "100%" : desktopWidth}
-      minWidth={isTabletOrMobile ? "" : "1615px"}
+      width={isMobile ? "100%" : desktopWidth}
+      minWidth={isMobile ? "" : "1615px"}
     ></StyledFooter>
   );
 };
