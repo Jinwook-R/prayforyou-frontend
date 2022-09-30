@@ -70,7 +70,7 @@ const Desktop = () => {
                 padding="0 60px"
               />
             )}
-            {!dropDown && <Ranking data={ranking} />}
+            {!dropDown && ranking && <Ranking data={ranking} />}
           </div>
         </StyledMainContentWrapper>
         <StyledBannerWrapper>

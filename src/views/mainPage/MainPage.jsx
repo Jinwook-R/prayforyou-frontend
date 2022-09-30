@@ -12,7 +12,6 @@ const MainPage = () => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
-
   return (
     <div>
       <StyledMainPageWrapper>

@@ -14,6 +14,8 @@ const Ranking = ({ data, ...props }) => {
 
   const { dailyView, weeklyView } = data;
 
+  console.log(dailyView, weeklyView);
+
   return (
     <div
       className="ranking"
@@ -62,14 +64,14 @@ const Ranking = ({ data, ...props }) => {
         </StyledButton>
       </div>
       <StyledList>
-        {data &&
+        {weeklyView &&
           weeklyDailyButtonToggle === "weekly" &&
           weeklyView.map((item, idx) => {
             return (
               <StyledListItem key={`${idx}`}>{item.nickname}</StyledListItem>
             );
           })}
-        {data &&
+        {dailyView &&
           weeklyDailyButtonToggle === "daily" &&
           dailyView.map((item, idx) => {
             return (
@@ -80,14 +82,6 @@ const Ranking = ({ data, ...props }) => {
     </div>
   );
 };
-
-const StyledRanking = styled.div`
-  margin: 0 auto;
-  min-height: 250px;
-  border-radius: 15px;
-  background-color: #775ee1;
-  padding: 7px 0;
-`;
 
 const StyledButton = styled.button`
   width: 50%;

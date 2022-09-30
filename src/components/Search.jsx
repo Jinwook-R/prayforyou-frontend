@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import styled from "@emotion/styled";
 import { useDispatch } from "react-redux";
 import SearchImage from "../assets/search.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { searchUser } from "../redux/user";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
+import styled from "@emotion/styled";
 
 const Search = ({ handleDropDown }) => {
   const [userName, setUserName] = useState("");
