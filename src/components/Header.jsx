@@ -1,10 +1,7 @@
 import styled from "@emotion/styled";
 import titleImage from "../assets/logo_3.png";
-import useWindowSize from "../hooks/useWindowSize";
 
 const Header = ({ isMobile, height }) => {
-  const [width] = useWindowSize();
-
   return (
     <StyledHeader
       justifyContents={"center"}

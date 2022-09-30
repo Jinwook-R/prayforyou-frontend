@@ -11,7 +11,6 @@ const bannerProps = {
 
 const Mobile = () => {
   const banners = useSelector((store) => store.banner);
-  const ranking = useSelector((store) => store.ranking.ranking);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -6,9 +6,15 @@ const PLACE_BUTTON = "battlePlace";
 const GUN_BUTTON = "battleGun";
 const ROUND_BUTTON = "battleRound";
 
-const MapButtonGroup = ({ clickedButton, handleClickedButton }) => {
+const MapButtonGroup = ({
+  clickedButton,
+  handleClickedButton,
+  width,
+  justifyContent,
+  marginRight,
+}) => {
   return (
-    <StyledButtonWrapper>
+    <StyledButtonWrapper width={width} justifyContent={justifyContent}>
       <Button
         className={PLACE_BUTTON}
         name={PLACE_BUTTON}
@@ -18,6 +24,7 @@ const MapButtonGroup = ({ clickedButton, handleClickedButton }) => {
           backgroundColor: clickedButton === PLACE_BUTTON ? "#775ee2" : "#fff",
           color: clickedButton === PLACE_BUTTON ? "#fff" : "black",
           width: "75px",
+          marginRight: marginRight ? marginRight : "0px",
         }}
       />
       <Button
@@ -29,6 +36,7 @@ const MapButtonGroup = ({ clickedButton, handleClickedButton }) => {
           backgroundColor: clickedButton === GUN_BUTTON ? "#775ee2" : "#fff",
           color: clickedButton === GUN_BUTTON ? "#fff" : "black",
           width: "75px",
+          marginRight: marginRight ? marginRight : "0px",
         }}
       />
       <Button

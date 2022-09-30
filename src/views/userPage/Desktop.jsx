@@ -87,10 +87,44 @@ const Desktop = ({
             <MapButtonGroup
               clickedButton={clickedButton}
               handleClickedButton={handleClickedButton}
+              width="90%"
+              justifyContent="left"
+              marginRight="5px"
             />
-            <div style={{ marginLeft: "auto" }}>
-              <button>높은 순</button>
-              <button>낮은 순</button>
+            <div
+              style={{
+                margin: "0 auto",
+                width: "90%",
+                textAlign: "right",
+                marginBottom: "15px",
+              }}
+            >
+              <button
+                style={{
+                  color: "#fff",
+                  backgroundColor: "#775ee2",
+                  border: "none",
+                  width: "65px",
+                  height: "25px",
+                  borderRadius: "15px",
+                  marginRight: "10px",
+                }}
+              >
+                높은 순
+              </button>
+              <button
+                style={{
+                  color: "#b3b3b3",
+                  backgroundColor: "#808080",
+                  border: "none",
+                  width: "65px",
+                  height: "25px",
+                  width: "65px",
+                  borderRadius: "15px",
+                }}
+              >
+                낮은 순
+              </button>
             </div>
             <List
               data={userBattle[clickedButton]}
@@ -102,7 +136,7 @@ const Desktop = ({
               }
               offset={offset}
               handleOffset={handleOffset}
-            ></List>
+            />
             <Banner
               imgUrl={banners?.data?.typeA}
               {...BANNER_PROPS}
