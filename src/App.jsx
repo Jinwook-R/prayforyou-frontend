@@ -20,7 +20,7 @@ function App() {
   const Wrapper = styled.div`
     margin: 0 auto;
     max-width: ${(e) => {
-      return isMobile ? "750px" : "2000px";
+      return isMobile ? "750px" : "2400px";
     }};
     min-width: ${(e) => {
       return isDesktop && "1250px";

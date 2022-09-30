@@ -7,6 +7,7 @@ const Map = () => {
         height: "100%",
         maxWidth: "750px",
         minHeight: "600px",
+        maxHeight: "600px",
         backgroundImage: `url(${MapImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",

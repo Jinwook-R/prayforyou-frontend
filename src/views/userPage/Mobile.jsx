@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, { useState, useEffect } from "react";
 import { Header, TopBar, Map, Button, Banner, List } from "../../components";
 import { searchBattle } from "../../redux/battle";
@@ -16,22 +15,20 @@ const PLACE_BUTTON = "battlePlace";
 const GUN_BUTTON = "battleGun";
 const ROUND_BUTTON = "battleRound";
 
-const Mobile = () => {
-  const location = useLocation();
+const Mobile = ({
+  location,
+  userBattle,
+  clickedButton,
+  handleClickedButton,
+}) => {
   const disaptch = useDispatch();
   const banners = useSelector((store) => store.banner);
-  const userBattle = useSelector((state) => state.battle.battle);
+
   const { nickname, userId, userNexonId, userType } = location.state;
-  const [clickedButton, setClickedButton] = useState(PLACE_BUTTON);
 
   useEffect(() => {
     disaptch(searchBattle(userId));
   }, []);
-
-  const handleClickedButton = (e) => {
-    const { name } = e.target;
-    setClickedButton(name);
-  };
 
   return (
     <>
@@ -58,5 +55,5 @@ const Mobile = () => {
     </>
   );
 };
-  
+
 export default Mobile;
