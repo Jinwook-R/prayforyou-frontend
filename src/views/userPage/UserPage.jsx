@@ -8,6 +8,7 @@ const UserPage = () => {
   const isDesktop = useMediaQuery({
     query: `(min-width: ${BREAK_POINT})`,
   });
+
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });

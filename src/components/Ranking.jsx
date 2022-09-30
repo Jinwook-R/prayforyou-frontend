@@ -14,8 +14,6 @@ const Ranking = ({ data, ...props }) => {
 
   const { dailyView, weeklyView } = data;
 
-  console.log(dailyView, weeklyView);
-
   return (
     <div
       className="ranking"

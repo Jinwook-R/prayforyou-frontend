@@ -4,9 +4,12 @@ const Map = () => {
     <div
       style={{
         width: "100%",
-        height: "350px",
+        height: "100%",
+        maxWidth: "750px",
+        minHeight: "600px",
         backgroundImage: `url(${MapImage})`,
         backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     ></div>
   );
