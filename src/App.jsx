@@ -25,6 +25,9 @@ function App() {
     min-width: ${(e) => {
       return isDesktop && "1250px";
     }};
+    min-height: ${(e) => {
+      return isDesktop && "1040px";
+    }};
   `;
 
   return (
