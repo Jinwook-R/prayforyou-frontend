@@ -76,10 +76,14 @@ const Ranking = ({ data, ...props }) => {
             return (
               <StyledListItemWrapper>
                 <StyledListItem key={`${idx}`}>
-                  <StyledListItemText textAlign="left">
+                  <StyledListItemText textAlign="left" fontSize="30px">
                     {item.nickname}
                   </StyledListItemText>
-                  <StyledListItemText textAlign="right">
+                  <StyledListItemText
+                    textAlign="right"
+                    fontSize="20px"
+                    color="#59575b"
+                  >
                     A보급 서플라이리그
                   </StyledListItemText>
                 </StyledListItem>
@@ -89,7 +93,9 @@ const Ranking = ({ data, ...props }) => {
         {(!weeklyView || !weeklyView.length) && (
           <StyledListItemWrapper>
             <StyledListItem textAlign="left">
-              <p>결과 없음</p>
+              <StyledListItemText textAlign="left" fontSize="30px">
+                결과 없음
+              </StyledListItemText>
             </StyledListItem>
           </StyledListItemWrapper>
         )}
@@ -101,10 +107,14 @@ const Ranking = ({ data, ...props }) => {
             return (
               <StyledListItemWrapper>
                 <StyledListItem key={`${idx}`}>
-                  <StyledListItemText textAlign="left">
+                  <StyledListItemText textAlign="left" fontSize="30px">
                     {item.nickname}
                   </StyledListItemText>
-                  <StyledListItemText textAlign="right">
+                  <StyledListItemText
+                    textAlign="right"
+                    fontSize="20px"
+                    color="#59575b"
+                  >
                     A보급 서플라이리그
                   </StyledListItemText>
                 </StyledListItem>
@@ -114,7 +124,9 @@ const Ranking = ({ data, ...props }) => {
         {(!dailyView || !dailyView.length) && (
           <StyledListItemWrapper>
             <StyledListItem textAlign="left">
-              <p>결과 없음</p>
+              <StyledListItemText textAlign="left" fontSize="30px">
+                결과 없음
+              </StyledListItemText>
             </StyledListItem>
           </StyledListItemWrapper>
         )}

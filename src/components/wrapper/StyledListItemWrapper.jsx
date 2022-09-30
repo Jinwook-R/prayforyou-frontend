@@ -8,7 +8,7 @@ const StyledListItemWrapper = styled.div`
   margin: 0 auto;
   margin-bottom: 16px;
   background-color: #f7f7f7;
-  border-radius: 12px;
+  border-radius: 20px;
 `;
 
 export default StyledListItemWrapper;

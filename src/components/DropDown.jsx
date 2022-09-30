@@ -79,7 +79,11 @@ const DropDown = ({ ...props }) => {
                   <StyledListItemText textAlign="left">
                     {item.nickname}
                   </StyledListItemText>
-                  <StyledListItemText textAlign="right">
+                  <StyledListItemText
+                    textAlign="right"
+                    fontSize="15px"
+                    color="#59575b"
+                  >
                     A보급 서플라이리그
                   </StyledListItemText>
                 </StyledListItem>
@@ -100,7 +104,11 @@ const DropDown = ({ ...props }) => {
                   <StyledListItemText textAlign="left">
                     {item.nickname}
                   </StyledListItemText>
-                  <StyledListItemText textAlign="right">
+                  <StyledListItemText
+                    textAlign="right"
+                    fontSize="15px"
+                    color="#59575b"
+                  >
                     A보급 서플라이리그
                   </StyledListItemText>
                 </StyledListItem>
