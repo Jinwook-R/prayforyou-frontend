@@ -27,7 +27,7 @@ function App() {
       return isDesktop && "1250px";
     }};
     min-height: ${(e) => {
-      return isDesktop && "100vh";
+      return "100vh";
     }};
   `;
 

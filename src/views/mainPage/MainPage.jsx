@@ -13,12 +13,12 @@ const MainPage = () => {
     query: `(max-width: ${BREAK_POINT})`,
   });
   return (
-    <div>
+    <>
       <StyledMainPageWrapper>
         {isDesktop && <Desktop />}
         {isMobile && <Mobile />}
       </StyledMainPageWrapper>
-    </div>
+    </>
   );
 };
 

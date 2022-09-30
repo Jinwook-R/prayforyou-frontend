@@ -4,7 +4,8 @@ import DropDown from "./DropDown";
 import Footer from "./Footer";
 import Header from "./Header";
 import Map from "./Map";
-import List from "./List";
+import MapInfoList from "./MapInfoList";
+import MapInfoListItem from "./MapInfoListItem";
 import Search from "./Search";
 import Title from "./Title";
 import TopBar from "./TopBar";
@@ -23,7 +24,8 @@ export {
   DropDown,
   Footer,
   Header,
-  List,
+  MapInfoList,
+  MapInfoListItem,
   Map,
   Search,
   Title,

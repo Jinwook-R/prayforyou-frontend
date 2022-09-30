@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { searchBattle } from "../../redux/battle";
+
 import { Map } from "../../components";
-import { Banner, MapButtonGroup, TopBar, List } from "../../components";
+import { Banner, MapButtonGroup, TopBar, MapInfoList } from "../../components";
 
 const PLACE_BUTTON = "battlePlace";
 const GUN_BUTTON = "battleGun";
@@ -22,14 +22,8 @@ const Desktop = ({
   offset,
   handleOffset,
 }) => {
-  const disaptch = useDispatch();
-  const { nickname, userId } = location.state;
   const banners = useSelector((store) => store.banner);
-
-  useEffect(() => {
-    disaptch(searchBattle(userId));
-  }, []);
-
+  const { nickname, userId } = location.state;
   return (
     <>
       <div
@@ -41,7 +35,11 @@ const Desktop = ({
           paddingTop: "10px",
         }}
       >
-        <TopBar nickname={nickname} battle={userBattle}></TopBar>
+        <TopBar
+          userId={userId}
+          nickname={nickname}
+          battle={userBattle}
+        ></TopBar>
       </div>
       <div
         style={{
@@ -129,13 +127,13 @@ const Desktop = ({
                 낮은순
               </button>
             </div>
-            <List
+            <MapInfoList
               data={userBattle[clickedButton]}
               width="100%"
               outputText={
-                (PLACE_BUTTON && ["place", "rate"]) ||
-                (GUN_BUTTON && ["type", "useCount"]) ||
-                (ROUND_BUTTON && ["round", "rate"])
+                (clickedButton === PLACE_BUTTON && ["place", "rate"]) ||
+                (clickedButton === GUN_BUTTON && ["type", "useCount"]) ||
+                (clickedButton === ROUND_BUTTON && ["round", "rate"])
               }
               offset={offset}
               handleOffset={handleOffset}

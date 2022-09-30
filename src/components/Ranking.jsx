@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import {
+  StyledList,
+  StyledListItemWrapper,
+  StyledListItem,
+  StyledListItemText,
+} from "./wrapper";
 import styled from "@emotion/styled";
 
 const Ranking = ({ data, ...props }) => {
@@ -19,12 +25,14 @@ const Ranking = ({ data, ...props }) => {
       className="ranking"
       style={{
         borderRadius: "15px",
-        minHeight: "250px",
         marginTop: "16px",
         overflow: "hidden",
         ...props,
       }}
     >
+      <p style={{ textAlign: "left", color: "#858585" }}>
+        * 인기 순위는 조회수 기준입니다
+      </p>
       <div
         style={{
           display: "flex",
@@ -61,21 +69,55 @@ const Ranking = ({ data, ...props }) => {
           데일리 일간
         </StyledButton>
       </div>
-      <StyledList>
+      <StyledList borderRadius="0 0 15px 15px">
         {weeklyView &&
           weeklyDailyButtonToggle === "weekly" &&
           weeklyView.map((item, idx) => {
             return (
-              <StyledListItem key={`${idx}`}>{item.nickname}</StyledListItem>
+              <StyledListItemWrapper>
+                <StyledListItem key={`${idx}`}>
+                  <StyledListItemText textAlign="left">
+                    {item.nickname}
+                  </StyledListItemText>
+                  <StyledListItemText textAlign="right">
+                    A보급 서플라이리그
+                  </StyledListItemText>
+                </StyledListItem>
+              </StyledListItemWrapper>
             );
           })}
+        {(!weeklyView || !weeklyView.length) && (
+          <StyledListItemWrapper>
+            <StyledListItem textAlign="left">
+              <p>결과 없음</p>
+            </StyledListItem>
+          </StyledListItemWrapper>
+        )}
+
         {dailyView &&
+          dailyView.length &&
           weeklyDailyButtonToggle === "daily" &&
           dailyView.map((item, idx) => {
             return (
-              <StyledListItem key={`${idx}`}>{item.nickname}</StyledListItem>
+              <StyledListItemWrapper>
+                <StyledListItem key={`${idx}`}>
+                  <StyledListItemText textAlign="left">
+                    {item.nickname}
+                  </StyledListItemText>
+                  <StyledListItemText textAlign="right">
+                    A보급 서플라이리그
+                  </StyledListItemText>
+                </StyledListItem>
+              </StyledListItemWrapper>
             );
           })}
+        {(!dailyView || !dailyView.length) && (
+          <StyledListItemWrapper>
+            <StyledListItem textAlign="left">
+              <p>결과 없음</p>
+            </StyledListItem>
+          </StyledListItemWrapper>
+        )}
       </StyledList>
     </div>
   );
@@ -89,20 +131,4 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledList = styled.div`
-  width: 100%;
-  min-height: 350px;
-  background-color: #775ee1;
-  padding: 20px 0;
-`;
-
-const StyledListItem = styled.div`
-  width: 95%;
-  height: 70px;
-  margin: 0 auto;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  background-color: #f7f7f7;
-  cursor: pointer;
-`;
 export default Ranking;

@@ -31,7 +31,7 @@ const Mobile = () => {
         marginBottom="100px"
         marginTop="35px"
       />
-      <Title width="250px" marginBottom="20px" />
+      <Title width="210px" />
       <div
         onMouseDown={(e) => {
           if (!e.target.className.includes("searchInput")) {
@@ -39,7 +39,7 @@ const Mobile = () => {
           }
         }}
       >
-        <Search handleDropDown={handleDropDown} />
+        <Search height="60px" handleDropDown={handleDropDown} />
         {dropDown && <DropDown />}
         {!dropDown && (
           <div

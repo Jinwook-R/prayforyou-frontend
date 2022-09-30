@@ -20,7 +20,7 @@ export const searchUser = createAsyncThunk(
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    users: [],
+    user: [],
     status: null,
   },
   reducers: {},

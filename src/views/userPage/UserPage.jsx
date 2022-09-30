@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../../utils/constants";
 import { useLocation } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Desktop from "./Desktop";
 import Mobile from "./Mobile";
+import { searchBattle } from "../../redux/battle";
 
 const PLACE_BUTTON = "battlePlace";
 
@@ -18,9 +19,15 @@ const UserPage = () => {
   });
 
   const location = useLocation();
+  const dispatch = useDispatch();
   const userBattle = useSelector((state) => state.battle.battle);
   const [clickedButton, setClickedButton] = useState(PLACE_BUTTON);
   const [offset, setOffset] = useState(1);
+  const { nickname, userId } = location.state;
+
+  useEffect(() => {
+    dispatch(searchBattle(userId));
+  }, []);
 
   const handleClickedButton = (e) => {
     const { name } = e.target;
@@ -33,7 +40,7 @@ const UserPage = () => {
 
   return (
     <>
-      {isMobile && (
+      {isMobile && userBattle && (
         <Mobile
           location={location}
           userBattle={userBattle}
@@ -43,7 +50,7 @@ const UserPage = () => {
           handleOffset={handleOffset}
         />
       )}
-      {isDesktop && (
+      {isDesktop && userBattle && (
         <Desktop
           location={location}
           userBattle={userBattle}

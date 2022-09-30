@@ -1,10 +1,15 @@
 import styled from "@emotion/styled";
+import useLocalStorage from "../hooks/useLocalStorage";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
 
-const TopBar = ({ nickname, battle, ...props }) => {
+const TopBar = ({ userId, nickname, battle, ...props }) => {
   const { battleStats } = battle;
   const { kill, death, gameCount } = battleStats;
+  const [favoriteUsers, setFavoriteUsers] = useLocalStorage(
+    "favoriteUsers",
+    []
+  );
 
   const isDesktop = useMediaQuery({
     query: `(min-width: ${BREAK_POINT})`,
@@ -13,6 +18,22 @@ const TopBar = ({ nickname, battle, ...props }) => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
+
+  const handleOnClick = () => {
+    if (
+      favoriteUsers.length &&
+      favoriteUsers.map((user) => Object.keys(user).includes(userId))
+    ) {
+      return;
+    }
+
+    favoriteUsers.map((user) => Object.keys(user).includes(userId)) &&
+      setFavoriteUsers("favoriteUsers", [
+        ...favoriteUsers,
+        { userId, nickname },
+      ]);
+    alert("즐겨찾기에 추가되었습니다.");
+  };
 
   return (
     <>
@@ -66,9 +87,21 @@ const TopBar = ({ nickname, battle, ...props }) => {
                     height: "30px",
                     borderRadius: "15px",
                     border: "none",
+                    cursor: "pointer",
+                    backgroundColor: favoriteUsers.includes(userId)
+                      ? "#f5f5f5"
+                      : "#ffffff",
                   }}
+                  onClick={handleOnClick}
                 >
-                  별
+                  {favoriteUsers.length &&
+                  favoriteUsers.map((user) =>
+                    Object.keys(user).includes(userId)
+                  ) ? (
+                    <i class="fa fa-star"></i>
+                  ) : (
+                    <i class="fa-regular fa-star"></i>
+                  )}
                 </button>
               </div>
             </div>

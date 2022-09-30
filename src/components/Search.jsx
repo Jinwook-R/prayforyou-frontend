@@ -8,7 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
 import styled from "@emotion/styled";
 
-const Search = ({ handleDropDown }) => {
+const Search = ({ height, handleDropDown }) => {
   const [userName, setUserName] = useState("");
   const [searchedUsers, setLocalStorage] = useLocalStorage("searchedUsers", []);
   const isDesktopOrLabtop = useMediaQuery({
@@ -26,20 +26,26 @@ const Search = ({ handleDropDown }) => {
   };
 
   const handleSearch = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.type === "click") {
       e.preventDefault();
       if (userName) {
         (async () => {
           const dispatchResponse = await dispatch(searchUser(userName));
           if (!!dispatchResponse?.payload?.length) {
-            const filteredNickname = dispatchResponse.payload.filter(
+            const filteredUser = dispatchResponse.payload.filter(
               (item) => item?.nickname === userName
             );
 
-            if (filteredNickname.length === 1) {
-              setLocalStorage("searchedUsers", [...searchedUsers, userName]);
+            if (filteredUser.length === 1) {
+              setLocalStorage("searchedUsers", [
+                ...searchedUsers,
+                {
+                  userId: filteredUser[0].userId,
+                  nickname: filteredUser[0].nickname,
+                },
+              ]);
               setUserName("");
-              navigate("user", { state: { ...filteredNickname[0] } });
+              navigate("user", { state: { ...filteredUser[0] } });
             }
           }
         })();
@@ -49,7 +55,7 @@ const Search = ({ handleDropDown }) => {
 
   return (
     <StyledSearchWrapper>
-      <StyledSearchInputWrapper type="text">
+      <StyledSearchInputWrapper height={height} type="text">
         <StyledInput
           className="searchInput"
           placeholder="닉네임을 입력하세요"
@@ -94,7 +100,7 @@ const Search = ({ handleDropDown }) => {
 const StyledSearchWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 850px;
   position: relative;
 `;
 
@@ -104,7 +110,7 @@ const StyledSearchInputWrapper = styled.div`
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
-  height: 70px;
+  height: ${(props) => props.height};
   padding: 0 15px;
   font-size: 15px;
   border-radius: 50px;
@@ -133,8 +139,8 @@ const StyledInput = styled.input`
 
 const StyledSearchImage = styled.img`
   position: absolute;
-  width: 25px;
-  top: 22px;
+  width: 23px;
+  top: 21px;
   right: 35px;
 `;
 

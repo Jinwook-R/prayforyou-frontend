@@ -1,9 +1,17 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import {
+  StyledList,
+  StyledListItemWrapper,
+  StyledListItem,
+  StyledListItemText,
+} from "./wrapper";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const DropDown = ({ ...props }) => {
   const [searchedUsers] = useLocalStorage("searchedUsers", []);
+  const [favoriteUsers] = useLocalStorage("favoriteUsers", []);
+
   const [recentSearchButtonToggle, setRecentSearchButtonToggle] =
     useState(true);
   const [favoriteButtonToggle, setFavoriteButtonToggle] = useState(false);
@@ -14,11 +22,14 @@ const DropDown = ({ ...props }) => {
     setFavoriteButtonToggle(!favoriteButtonToggle);
   };
 
+  const handleUserCliked = (e) => {
+    console.log(e.currentTarget);
+  };
+
   return (
     <div
       className="dropDown"
       style={{
-        minHeight: "250px",
         marginTop: "16px",
         borderRadius: "0 0 15px 15px",
         overflow: "hidden",
@@ -59,10 +70,48 @@ const DropDown = ({ ...props }) => {
           즐겨찾기 검색
         </StyledButton>
       </div>
-      <StyledList>
+      <StyledList onClick={handleUserCliked} borderRadius="0 0 15px 15px">
         {recentSearchButtonToggle &&
-          searchedUsers.map((item, idx) => (
-            <StyledListItem key={`${idx}`}>{item}</StyledListItem>
+          (searchedUsers.length ? (
+            searchedUsers.map((item, idx) => (
+              <StyledListItemWrapper>
+                <StyledListItem key={`${idx}`}>
+                  <StyledListItemText textAlign="left">
+                    {item.nickname}
+                  </StyledListItemText>
+                  <StyledListItemText textAlign="right">
+                    A보급 서플라이리그
+                  </StyledListItemText>
+                </StyledListItem>
+              </StyledListItemWrapper>
+            ))
+          ) : (
+            <StyledListItemWrapper>
+              <StyledListItem textAlign="left">
+                <p>결과 없음</p>
+              </StyledListItem>
+            </StyledListItemWrapper>
+          ))}
+        {favoriteButtonToggle &&
+          (favoriteUsers.length ? (
+            favoriteUsers.map((item, idx) => (
+              <StyledListItemWrapper>
+                <StyledListItem key={`${idx}`}>
+                  <StyledListItemText textAlign="left">
+                    {item.nickname}
+                  </StyledListItemText>
+                  <StyledListItemText textAlign="right">
+                    A보급 서플라이리그
+                  </StyledListItemText>
+                </StyledListItem>
+              </StyledListItemWrapper>
+            ))
+          ) : (
+            <StyledListItemWrapper>
+              <StyledListItem textAlign="left">
+                <p>결과 없음</p>
+              </StyledListItem>
+            </StyledListItemWrapper>
           ))}
       </StyledList>
     </div>
@@ -74,24 +123,6 @@ const StyledButton = styled.button`
   height: 75px;
   font-size: 20px;
   border: none;
-  cursor: pointer;
-`;
-
-const StyledList = styled.div`
-  width: 100%;
-  min-height: 350px;
-  background-color: #775ee1;
-  padding: 20px 0;
-  border-radius: 0 0 15px 15px;
-`;
-
-const StyledListItem = styled.div`
-  width: 95%;
-  height: 70px;
-  margin: 0 auto;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  background-color: #f7f7f7;
   cursor: pointer;
 `;
 

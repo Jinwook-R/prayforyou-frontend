@@ -60,13 +60,13 @@ const Desktop = () => {
             }}
             style={{ position: "relative" }}
           >
-            <Search handleDropDown={handleDropDown} />
+            <Search height="75px" handleDropDown={handleDropDown} />
             {dropDown && (
               <DropDown
                 position="absolute"
-                top={54}
-                left={-62}
-                width="100%"
+                top={58}
+                left={35}
+                width="80%"
                 padding="0 60px"
               />
             )}

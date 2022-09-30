@@ -15,7 +15,7 @@ const Title = ({ ...props }) => {
 
 const StyledTitle = styled.div`
   margin: 0 auto;
-  width: 280px;
+  width: ${(props) => props.width};
   height: 60px;
   overflow: hidden;
   margin-bottom: ${(props) => props.marginBottom};
