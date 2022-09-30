@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../../utils/constants";
 import { useLocation } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Desktop from "./Desktop";
 import Mobile from "./Mobile";
 
 const PLACE_BUTTON = "battlePlace";
-const GUN_BUTTON = "battleGun";
-const ROUND_BUTTON = "battleRound";
 
 const UserPage = () => {
   const isDesktop = useMediaQuery({

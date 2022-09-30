@@ -74,6 +74,10 @@ const Desktop = ({
               clickedButton={clickedButton}
               handleClickedButton={handleClickedButton}
             />
+            <div style={{ marginLeft: "auto" }}>
+              <button>높은 순</button>
+              <button>낮은 순</button>
+            </div>
             <List
               data={userBattle[clickedButton]}
               width="90%"

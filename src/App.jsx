@@ -17,6 +17,7 @@ function App() {
   const isDesktop = useMediaQuery({
     query: `(min-width: ${BREAK_POINT})`,
   });
+
   const Wrapper = styled.div`
     margin: 0 auto;
     max-width: ${(e) => {

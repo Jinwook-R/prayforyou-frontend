@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Button from "./Button";
 import ListItem from "./ListItem";
 
 const List = ({ data = [], width = "100%", offset, handleOffset }) => {
@@ -9,9 +10,15 @@ const List = ({ data = [], width = "100%", offset, handleOffset }) => {
       {data.slice(0, offset * 8).map((item, index) => {
         return <ListItem key={`${index}`}></ListItem>;
       })}
-      {offset * 8 < data.length && (
-        <button onClick={handleOffset}>더 보기</button>
-      )}
+      <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
+        {offset * 8 < data.length && (
+          <Button
+            onClick={handleOffset}
+            text={"더 보기"}
+            width={"100px"}
+          ></Button>
+        )}
+      </div>
     </StyledList>
   );
 };

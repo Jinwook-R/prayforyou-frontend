@@ -1,13 +1,19 @@
 import styled from "@emotion/styled";
-const Button = ({ className, text, handleOnClick, ...props }) => {
+const Button = ({ className, text, handleOnClick, width, ...props }) => {
   return (
-    <StyledButton className={className} onClick={handleOnClick} {...props}>
+    <StyledButton
+      className={className}
+      onClick={handleOnClick}
+      width={width}
+      {...props}
+    >
       {text}
     </StyledButton>
   );
 };
 
 const StyledButton = styled.button`
+  width: ${(props) => props.width};
   height: 30px;
   text-align: center;
   border-radius: 15px;
