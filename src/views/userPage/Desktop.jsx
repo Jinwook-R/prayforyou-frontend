@@ -82,19 +82,20 @@ const Desktop = ({
               flexGrow: 0,
               flexShrink: 0,
               flexBasis: "45%",
+              marginLeft: "auto",
             }}
           >
             <MapButtonGroup
               clickedButton={clickedButton}
               handleClickedButton={handleClickedButton}
-              width="90%"
+              width="100%"
               justifyContent="left"
               marginRight="5px"
             />
             <div
               style={{
                 margin: "0 auto",
-                width: "90%",
+                width: "100%",
                 textAlign: "right",
                 marginBottom: "15px",
               }}
@@ -128,7 +129,8 @@ const Desktop = ({
             </div>
             <List
               data={userBattle[clickedButton]}
-              width="90%"
+              width="100%"
+              marginLeft="auto"
               outputText={
                 (PLACE_BUTTON && ["place", "rate"]) ||
                 (GUN_BUTTON && ["type", "useCount"]) ||

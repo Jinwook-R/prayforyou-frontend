@@ -2,9 +2,15 @@ import styled from "@emotion/styled";
 import Button from "./Button";
 import ListItem from "./ListItem";
 
-const List = ({ data = [], width = "100%", offset, handleOffset }) => {
+const List = ({
+  data = [],
+  width = "100%",
+  marginLeft,
+  offset,
+  handleOffset,
+}) => {
   return (
-    <StyledList style={{ width }}>
+    <StyledList style={{ width, marginLeft }}>
       {data.slice(0, offset * 8).map((item, index) => {
         return <ListItem key={`${index}`}></ListItem>;
       })}
@@ -12,9 +18,13 @@ const List = ({ data = [], width = "100%", offset, handleOffset }) => {
         {offset * 8 < data.length && (
           <Button
             onClick={handleOffset}
-            text={"더 보기"}
-            width={"100px"}
-          ></Button>
+            text={"더보기"}
+            width={"160px"}
+            height={"50px"}
+            lineHeight={"40px"}
+            fontSize={"20px"}
+            borderRadius={"25px"}
+          />
         )}
       </div>
     </StyledList>
@@ -22,12 +32,14 @@ const List = ({ data = [], width = "100%", offset, handleOffset }) => {
 };
 
 const StyledList = styled.div`
-  margin: 0 auto;
+  width: ${(props) => props.width};
   height: 730px;
   border-radius: 15px;
   background-color: #775ee1;
-  padding: 7px 0;
   overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default List;
