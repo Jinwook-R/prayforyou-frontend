@@ -113,7 +113,7 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                   flexBasis: "60%",
                 }}
               >
-                A보급 서플라이 리그 테스크클랜
+                테스트 클랜
               </p>
               <div
                 style={{
