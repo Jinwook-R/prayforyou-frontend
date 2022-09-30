@@ -10,11 +10,16 @@ const MapButtonGroup = ({
   clickedButton,
   handleClickedButton,
   width,
+  height,
   justifyContent,
   marginRight,
 }) => {
   return (
-    <StyledButtonWrapper width={width} justifyContent={justifyContent}>
+    <StyledButtonWrapper
+      width={width}
+      justifyContent={justifyContent}
+      height={height}
+    >
       <Button
         className={PLACE_BUTTON}
         name={PLACE_BUTTON}
@@ -23,7 +28,7 @@ const MapButtonGroup = ({
         style={{
           backgroundColor: clickedButton === PLACE_BUTTON ? "#775ee2" : "#fff",
           color: clickedButton === PLACE_BUTTON ? "#fff" : "black",
-          width: "75px",
+          width: "80px",
           marginRight: marginRight ? marginRight : "0px",
         }}
       />
@@ -35,7 +40,7 @@ const MapButtonGroup = ({
         style={{
           backgroundColor: clickedButton === GUN_BUTTON ? "#775ee2" : "#fff",
           color: clickedButton === GUN_BUTTON ? "#fff" : "black",
-          width: "75px",
+          width: "80px",
           marginRight: marginRight ? marginRight : "0px",
         }}
       />
@@ -47,7 +52,7 @@ const MapButtonGroup = ({
         style={{
           backgroundColor: clickedButton === ROUND_BUTTON ? "#775ee2" : "#fff",
           color: clickedButton === ROUND_BUTTON ? "#fff" : "black",
-          width: "75px",
+          width: "80px",
         }}
       />
     </StyledButtonWrapper>

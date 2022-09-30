@@ -2,19 +2,19 @@ import styled from "@emotion/styled";
 import Button from "./Button";
 import ListItem from "./ListItem";
 
-const List = ({
-  data = [],
-  width = "100%",
-  marginLeft,
-  offset,
-  handleOffset,
-}) => {
+const List = ({ data = [], width = "100%", offset, handleOffset, margin }) => {
   return (
-    <StyledList style={{ width, marginLeft }}>
+    <StyledList width={width} margin={margin}>
       {data.slice(0, offset * 8).map((item, index) => {
-        return <ListItem key={`${index}`}></ListItem>;
+        return <ListItem key={`${index}`} />;
       })}
-      <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "center",
+        }}
+      >
         {offset * 8 < data.length && (
           <Button
             onClick={handleOffset}
@@ -33,6 +33,7 @@ const List = ({
 
 const StyledList = styled.div`
   width: ${(props) => props.width};
+  margin: ${(props) => props.margin};
   height: 730px;
   border-radius: 15px;
   background-color: #775ee1;

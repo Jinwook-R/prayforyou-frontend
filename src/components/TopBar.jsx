@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
-import useWindowSize from "../hooks/useWindowSize";
+
 const TopBar = ({ nickname, battle, ...props }) => {
   const { battleStats } = battle;
-  const { kill, death, gameCount, rate, updatedAt } = battleStats;
+  const { kill, death, gameCount } = battleStats;
 
   const isDesktop = useMediaQuery({
     query: `(min-width: ${BREAK_POINT})`,

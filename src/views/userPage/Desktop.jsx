@@ -89,6 +89,7 @@ const Desktop = ({
               clickedButton={clickedButton}
               handleClickedButton={handleClickedButton}
               width="100%"
+              height="35px"
               justifyContent="left"
               marginRight="5px"
             />
@@ -105,32 +106,32 @@ const Desktop = ({
                   color: "#fff",
                   backgroundColor: "#775ee2",
                   border: "none",
-                  width: "65px",
+                  width: "75px",
                   height: "25px",
                   borderRadius: "15px",
                   marginRight: "10px",
+                  textAlign: "center",
                 }}
               >
-                높은 순
+                높은순
               </button>
               <button
                 style={{
                   color: "#b3b3b3",
                   backgroundColor: "#808080",
                   border: "none",
-                  width: "65px",
+                  width: "75px",
                   height: "25px",
-                  width: "65px",
                   borderRadius: "15px",
+                  textAlign: "center",
                 }}
               >
-                낮은 순
+                낮은순
               </button>
             </div>
             <List
               data={userBattle[clickedButton]}
               width="100%"
-              marginLeft="auto"
               outputText={
                 (PLACE_BUTTON && ["place", "rate"]) ||
                 (GUN_BUTTON && ["type", "useCount"]) ||

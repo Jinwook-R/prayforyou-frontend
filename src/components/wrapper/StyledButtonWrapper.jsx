@@ -6,7 +6,7 @@ const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "space-between"};
-  height: 50px;
+  height: ${(props) => props.height};
 `;
 
 export default StyledButtonWrapper;

@@ -19,13 +19,13 @@ const Mobile = ({
   userBattle,
   clickedButton,
   handleClickedButton,
+  offset,
+  handleOffset,
 }) => {
   const disaptch = useDispatch();
   const banners = useSelector((store) => store.banner);
 
   const { nickname, userId } = location.state;
-
-  const [offset, setOffset] = useState(1);
 
   useEffect(() => {
     disaptch(searchBattle(userId));
@@ -40,16 +40,21 @@ const Mobile = ({
       <MapButtonGroup
         clickedButton={clickedButton}
         handleClickedButton={handleClickedButton}
+        height="30px"
+        width="85%"
       />
+      <div style={{ marginTop: "20px" }}></div>
       <List
         data={userBattle[clickedButton]}
         width="90%"
+        margin="0 auto"
         outputText={
           (PLACE_BUTTON && ["place", "rate"]) ||
           (GUN_BUTTON && ["type", "useCount"]) ||
           (ROUND_BUTTON && ["round", "rate"])
         }
         offset={offset}
+        handleOffset={handleOffset}
       ></List>
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />
