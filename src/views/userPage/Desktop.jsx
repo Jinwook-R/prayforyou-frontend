@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { searchBattle } from "../../redux/battle";
-import { Map, Ranking } from "../../components";
-import { ButtonGroup, TopBar, List } from "../../components";
+import { Map } from "../../components";
+import { Banner, MapButtonGroup, TopBar, List } from "../../components";
 
 const PLACE_BUTTON = "battlePlace";
 const GUN_BUTTON = "battleGun";
 const ROUND_BUTTON = "battleRound";
+
+const BANNER_PROPS = {
+  width: "85%",
+  height: "100px",
+  margin: "16px auto",
+};
 
 const Desktop = ({
   location,
@@ -18,7 +23,8 @@ const Desktop = ({
   handleOffset,
 }) => {
   const disaptch = useDispatch();
-  const { nickname, userId, userNexonId, userType } = location.state;
+  const { nickname, userId } = location.state;
+  const banners = useSelector((store) => store.banner);
 
   useEffect(() => {
     disaptch(searchBattle(userId));
@@ -60,8 +66,16 @@ const Desktop = ({
             }}
           >
             <Map battle={userBattle}></Map>
-            <div>Banner</div>
-            <div>Banner</div>
+            <Banner
+              imgUrl={banners?.data?.typeA}
+              {...BANNER_PROPS}
+              height="50px"
+            />
+            <Banner
+              imgUrl={banners?.data?.typeA}
+              {...BANNER_PROPS}
+              height="50px"
+            />
           </div>
           <div
             style={{
@@ -70,7 +84,7 @@ const Desktop = ({
               flexBasis: "45%",
             }}
           >
-            <ButtonGroup
+            <MapButtonGroup
               clickedButton={clickedButton}
               handleClickedButton={handleClickedButton}
             />
@@ -89,8 +103,16 @@ const Desktop = ({
               offset={offset}
               handleOffset={handleOffset}
             ></List>
-            <div>Banner</div>
-            <div>Banner</div>
+            <Banner
+              imgUrl={banners?.data?.typeA}
+              {...BANNER_PROPS}
+              height="50px"
+            />
+            <Banner
+              imgUrl={banners?.data?.typeA}
+              {...BANNER_PROPS}
+              height="50px"
+            />
           </div>
         </div>
       </div>

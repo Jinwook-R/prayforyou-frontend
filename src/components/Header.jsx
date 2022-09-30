@@ -11,7 +11,7 @@ const Header = ({ isMobile, height }) => {
       padding={isMobile ? "0 20px" : ""}
       boxSizing={isMobile ? "border-box" : ""}
       height={height}
-      width={isMobile ? "100%" : width}
+      width="100%"
       minWidth={isMobile ? "100%" : "1615px"}
     >
       <div

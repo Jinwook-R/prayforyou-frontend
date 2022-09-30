@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import { StyledButtonWrapper } from "./wrapper";
+
 const PLACE_BUTTON = "battlePlace";
 const GUN_BUTTON = "battleGun";
 const ROUND_BUTTON = "battleRound";
-const ButtonGroup = ({ clickedButton, handleClickedButton }) => {
+
+const MapButtonGroup = ({ clickedButton, handleClickedButton }) => {
   return (
     <StyledButtonWrapper>
       <Button
@@ -13,8 +15,8 @@ const ButtonGroup = ({ clickedButton, handleClickedButton }) => {
         text="포지션별"
         handleOnClick={handleClickedButton}
         style={{
-          backgroundColor: clickedButton === PLACE_BUTTON ? "#775ee2" : "white",
-          color: clickedButton === PLACE_BUTTON ? "white" : "black",
+          backgroundColor: clickedButton === PLACE_BUTTON ? "#775ee2" : "#fff",
+          color: clickedButton === PLACE_BUTTON ? "#fff" : "black",
           width: "75px",
         }}
       />
@@ -24,8 +26,8 @@ const ButtonGroup = ({ clickedButton, handleClickedButton }) => {
         text="주총별"
         handleOnClick={handleClickedButton}
         style={{
-          backgroundColor: clickedButton === GUN_BUTTON ? "#775ee2" : "white",
-          color: clickedButton === GUN_BUTTON ? "white" : "black",
+          backgroundColor: clickedButton === GUN_BUTTON ? "#775ee2" : "#fff",
+          color: clickedButton === GUN_BUTTON ? "#fff" : "black",
           width: "75px",
         }}
       />
@@ -35,8 +37,8 @@ const ButtonGroup = ({ clickedButton, handleClickedButton }) => {
         text="라운드별"
         handleOnClick={handleClickedButton}
         style={{
-          backgroundColor: clickedButton === ROUND_BUTTON ? "#775ee2" : "white",
-          color: clickedButton === ROUND_BUTTON ? "white" : "black",
+          backgroundColor: clickedButton === ROUND_BUTTON ? "#775ee2" : "#fff",
+          color: clickedButton === ROUND_BUTTON ? "#fff" : "black",
           width: "75px",
         }}
       />
@@ -44,4 +46,4 @@ const ButtonGroup = ({ clickedButton, handleClickedButton }) => {
   );
 };
 
-export default ButtonGroup;
+export default MapButtonGroup;

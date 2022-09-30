@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Header, TopBar, Map, Button, Banner, List } from "../../components";
 import { searchBattle } from "../../redux/battle";
-import { useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import ButtonGroup from "../../components/ButtonGroup";
+import { MapButtonGroup } from "../../components";
 
 const BANNER_PROPS = {
   width: "85%",
@@ -24,7 +23,7 @@ const Mobile = ({
   const disaptch = useDispatch();
   const banners = useSelector((store) => store.banner);
 
-  const { nickname, userId, userNexonId, userType } = location.state;
+  const { nickname, userId } = location.state;
 
   const [offset, setOffset] = useState(1);
 
@@ -38,7 +37,7 @@ const Mobile = ({
       <TopBar nickname={nickname} battle={userBattle}></TopBar>
       <Map battle={userBattle}></Map>
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} height="50px" />
-      <ButtonGroup
+      <MapButtonGroup
         clickedButton={clickedButton}
         handleClickedButton={handleClickedButton}
       />

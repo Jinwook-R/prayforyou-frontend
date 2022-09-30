@@ -9,7 +9,7 @@ import Search from "./Search";
 import Title from "./Title";
 import TopBar from "./TopBar";
 import Ranking from "./Ranking";
-import ButtonGroup from "./ButtonGroup";
+import MapButtonGroup from "./MapButtonGroup";
 import {
   StyledMainPageWrapper,
   StyledMainContentWrapper,
@@ -29,7 +29,7 @@ export {
   Title,
   TopBar,
   Ranking,
-  ButtonGroup,
+  MapButtonGroup,
   StyledMainPageWrapper,
   StyledMainContentWrapper,
   StyledBannerWrapper,
