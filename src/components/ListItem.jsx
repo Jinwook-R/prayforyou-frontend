@@ -11,7 +11,7 @@ const ListItem = ({ key, item = { place: "", item: "" } }) => {
 };
 
 const StyledListItem = styled.div`
-  width: 100%;
+  width: 95%;
   height: 65px;
   margin: 0 auto;
   margin-bottom: 16px;
