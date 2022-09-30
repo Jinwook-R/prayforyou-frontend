@@ -1,12 +1,17 @@
 import styled from "@emotion/styled";
 import ListItem from "./ListItem";
 
-const List = ({ data = [], width = "100%", outputText }) => {
+const List = ({ data = [], width = "100%", offset, handleOffset }) => {
+  console.log(offset);
+  console.log(data.slice(0, offset * 8));
   return (
     <StyledList style={{ width }}>
-      {data.map((item, index) => {
-        return <ListItem></ListItem>;
+      {data.slice(0, offset * 8).map((item, index) => {
+        return <ListItem key={`${index}`}></ListItem>;
       })}
+      {offset * 8 < data.length && (
+        <button onClick={handleOffset}>더 보기</button>
+      )}
     </StyledList>
   );
 };

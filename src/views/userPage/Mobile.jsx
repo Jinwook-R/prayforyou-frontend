@@ -26,6 +26,8 @@ const Mobile = ({
 
   const { nickname, userId, userNexonId, userType } = location.state;
 
+  const [offset, setOffset] = useState(1);
+
   useEffect(() => {
     disaptch(searchBattle(userId));
   }, []);
@@ -48,6 +50,7 @@ const Mobile = ({
           (GUN_BUTTON && ["type", "useCount"]) ||
           (ROUND_BUTTON && ["round", "rate"])
         }
+        offset={offset}
       ></List>
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />

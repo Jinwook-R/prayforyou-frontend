@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const ListItem = ({ item = { place: "", item: "" } }) => {
+const ListItem = ({ key, item = { place: "", item: "" } }) => {
   const { place, rate } = item;
   return (
     <StyledListItem>

@@ -14,6 +14,8 @@ const Desktop = ({
   userBattle,
   clickedButton,
   handleClickedButton,
+  offset,
+  handleOffset,
 }) => {
   const disaptch = useDispatch();
   const { nickname, userId, userNexonId, userType } = location.state;
@@ -80,6 +82,8 @@ const Desktop = ({
                 (GUN_BUTTON && ["type", "useCount"]) ||
                 (ROUND_BUTTON && ["round", "rate"])
               }
+              offset={offset}
+              handleOffset={handleOffset}
             ></List>
             <div>Banner</div>
             <div>Banner</div>

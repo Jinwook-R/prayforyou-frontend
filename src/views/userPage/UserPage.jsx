@@ -22,10 +22,15 @@ const UserPage = () => {
   const location = useLocation();
   const userBattle = useSelector((state) => state.battle.battle);
   const [clickedButton, setClickedButton] = useState(PLACE_BUTTON);
+  const [offset, setOffset] = useState(1);
 
   const handleClickedButton = (e) => {
     const { name } = e.target;
     setClickedButton(name);
+  };
+
+  const handleOffset = () => {
+    setOffset(offset + 1);
   };
 
   return (
@@ -36,6 +41,8 @@ const UserPage = () => {
           userBattle={userBattle}
           clickedButton={clickedButton}
           handleClickedButton={handleClickedButton}
+          offset={offset}
+          handleOffset={handleOffset}
         />
       )}
       {isDesktop && (
@@ -44,6 +51,8 @@ const UserPage = () => {
           userBattle={userBattle}
           clickedButton={clickedButton}
           handleClickedButton={handleClickedButton}
+          offset={offset}
+          handleOffset={handleOffset}
         />
       )}
     </>
