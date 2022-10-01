@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   StyledList,
   StyledListItemWrapper,
@@ -19,6 +19,49 @@ const Ranking = ({ data, ...props }) => {
   };
 
   const { dailyView, weeklyView } = data;
+
+  const renderList = useCallback(() => {
+    const targetList =
+      weeklyDailyButtonToggle === "weekly" ? weeklyView : dailyView;
+
+    return targetList && targetList.length > 0 ? (
+      <>
+        {targetList.map((item, idx) => {
+          return (
+            <StyledListItemWrapper key={`${idx}`}>
+              <StyledListItem>
+                <StyledListItemText
+                  width={"50px"}
+                  textAlign="left"
+                  fontSize="20px"
+                >
+                  {idx + 1}
+                </StyledListItemText>
+                <StyledListItemText flex={1} textAlign="left" fontSize="20px">
+                  {item.nickname}
+                </StyledListItemText>
+                <StyledListItemText
+                  textAlign="right"
+                  fontSize="16px"
+                  color="#59575b"
+                >
+                  테스트 클랜
+                </StyledListItemText>
+              </StyledListItem>
+            </StyledListItemWrapper>
+          );
+        })}
+      </>
+    ) : (
+      <StyledListItemWrapper>
+        <StyledListItem textAlign="left">
+          <StyledListItemText textAlign="left" fontSize="20px">
+            결과 없음
+          </StyledListItemText>
+        </StyledListItem>
+      </StyledListItemWrapper>
+    );
+  }, [dailyView, weeklyView, weeklyDailyButtonToggle]);
 
   return (
     <div
@@ -47,6 +90,8 @@ const Ranking = ({ data, ...props }) => {
           type="button"
           onClick={handleOnClick}
           style={{
+            textDecoration:
+              weeklyDailyButtonToggle === "weekly" ? "underline" : "none",
             backgroundColor:
               weeklyDailyButtonToggle === "weekly" ? "#775ee1" : "#f7f7f7",
             color: weeklyDailyButtonToggle === "weekly" ? "white" : "black",
@@ -60,6 +105,8 @@ const Ranking = ({ data, ...props }) => {
           type="button"
           onClick={handleOnClick}
           style={{
+            textDecoration:
+              weeklyDailyButtonToggle === "daily" ? "underline" : "none",
             backgroundColor:
               weeklyDailyButtonToggle === "daily" ? "#775ee1" : "#f7f7f7",
             color: weeklyDailyButtonToggle === "daily" ? "white" : "black",
@@ -69,68 +116,7 @@ const Ranking = ({ data, ...props }) => {
           데일리 일간
         </StyledButton>
       </div>
-      <StyledList borderRadius="0 0 15px 15px">
-        {weeklyView &&
-          weeklyDailyButtonToggle === "weekly" &&
-          weeklyView.map((item, idx) => {
-            return (
-              <StyledListItemWrapper>
-                <StyledListItem key={`${idx}`}>
-                  <StyledListItemText textAlign="left" fontSize="30px">
-                    {item.nickname}
-                  </StyledListItemText>
-                  <StyledListItemText
-                    textAlign="right"
-                    fontSize="20px"
-                    color="#59575b"
-                  >
-                    테스트 클랜
-                  </StyledListItemText>
-                </StyledListItem>
-              </StyledListItemWrapper>
-            );
-          })}
-        {(!weeklyView || !weeklyView.length) && (
-          <StyledListItemWrapper>
-            <StyledListItem textAlign="left">
-              <StyledListItemText textAlign="left" fontSize="30px">
-                결과 없음
-              </StyledListItemText>
-            </StyledListItem>
-          </StyledListItemWrapper>
-        )}
-
-        {dailyView &&
-          dailyView.length &&
-          weeklyDailyButtonToggle === "daily" &&
-          dailyView.map((item, idx) => {
-            return (
-              <StyledListItemWrapper>
-                <StyledListItem key={`${idx}`}>
-                  <StyledListItemText textAlign="left" fontSize="30px">
-                    {item.nickname}
-                  </StyledListItemText>
-                  <StyledListItemText
-                    textAlign="right"
-                    fontSize="20px"
-                    color="#59575b"
-                  >
-                    테스트 클랜
-                  </StyledListItemText>
-                </StyledListItem>
-              </StyledListItemWrapper>
-            );
-          })}
-        {(!dailyView || !dailyView.length) && (
-          <StyledListItemWrapper>
-            <StyledListItem textAlign="left">
-              <StyledListItemText textAlign="left" fontSize="30px">
-                결과 없음
-              </StyledListItemText>
-            </StyledListItem>
-          </StyledListItemWrapper>
-        )}
-      </StyledList>
+      <StyledList borderRadius="0 0 15px 15px">{renderList()}</StyledList>
     </div>
   );
 };
@@ -138,9 +124,10 @@ const Ranking = ({ data, ...props }) => {
 const StyledButton = styled.button`
   width: 50%;
   height: 75px;
-  font-size: 20px;
+  font-size: 18px;
   border: none;
   cursor: pointer;
+  text-underline-offset: 10px;
 `;
 
 export default Ranking;

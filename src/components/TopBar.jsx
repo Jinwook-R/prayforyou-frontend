@@ -151,7 +151,6 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
       {isDesktop && (
         <StyledTopBar
           height="100px"
-          minWidth="1500px"
           justifyContents="space-between"
           alignItems="center"
           display="flex"
@@ -214,7 +213,6 @@ const StyledTopBar = styled.div`
   background-color: #775ee1;
   color: white;
   box-shadow: ${(props) => props.boxShadow};
-  min-width: ${(props) => props.minWidth};
   justify-content: ${(props) => props.justifyContents};
   display: ${(props) => props.display};
 `;

@@ -51,7 +51,7 @@ const Desktop = () => {
           />
         </StyledBannerWrapper>
         <StyledMainContentWrapper>
-          <Title width="280px" marginBottom="30px" />
+          <Title width="280px" marginBottom="50px" />
           <div
             onMouseDown={(e) => {
               if (!e.target.className.includes("searchInput")) {
@@ -60,18 +60,18 @@ const Desktop = () => {
             }}
             style={{ position: "relative" }}
           >
-            <Search height="75px" handleDropDown={handleDropDown} />
+            <Search height="90px" handleDropDown={handleDropDown} />
             {dropDown && (
               <DropDown
                 position="absolute"
-                top={58}
-                left={35}
-                width="80%"
-                padding="0 60px"
+                top={73}
+                left={0}
+                width="100%"
+                padding="0 30px"
               />
             )}
-            {!dropDown && ranking && <Ranking data={ranking} />}
           </div>
+          {!dropDown && ranking && <Ranking data={ranking} />}
         </StyledMainContentWrapper>
         <StyledBannerWrapper>
           <Banner

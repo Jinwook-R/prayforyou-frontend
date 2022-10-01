@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 const StyledListItem = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   font-size: 25px;
   text-align: left;

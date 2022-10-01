@@ -23,6 +23,7 @@ const Search = ({ height, handleDropDown }) => {
   const handleUserName = (e) => {
     e.preventDefault();
     setUserName(e.target.value);
+    handleDropDown(!!e.target.value);
   };
 
   const handleSearch = (e) => {
@@ -83,9 +84,9 @@ const Search = ({ height, handleDropDown }) => {
       {isDesktopOrLabtop && (
         <StyledPrayForYouNav
           className="pray-for-you-nav"
-          style={{ display: "flex", justifyContent: "center" }}
+          style={{ display: "flex", justifyContent: "center", fontSize: "20px" }}
         >
-          <span style={{ color: "#141414", fontSize: "18px" }}>
+          <span style={{ color: "#141414" }}>
             Pray For You가 무엇인가요?&nbsp;
           </span>
           <span style={{ color: "#775ee1" }} className="check-it-out">
@@ -100,18 +101,18 @@ const Search = ({ height, handleDropDown }) => {
 const StyledSearchWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
-  max-width: 850px;
   position: relative;
 `;
 
 const StyledSearchInputWrapper = styled.div`
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   display: flex;
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
   height: ${(props) => props.height};
-  padding: 0 15px;
+  padding: 0 64px;
   font-size: 15px;
   border-radius: 50px;
   border: 2.5px solid #775ee1;
@@ -125,11 +126,9 @@ const StyledInput = styled.input`
   height: 35px;
   outline: none;
   border: none;
-  margin-top: 7px;
-  padding-left: 15px;
-  font-size: 20px;
+  font-size: 24px;
   &::placeholder {
-    font-size: 20px;
+    font-size: 24px;
     margin-top: 55px;
   }
   &:focus {

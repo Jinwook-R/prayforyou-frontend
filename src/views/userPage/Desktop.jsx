@@ -34,7 +34,6 @@ const Desktop = ({
       <div
         style={{
           display: "flex",
-          minWidth: "1615px",
           backgroundColor: "#775ee1",
           boxShadow: "0 5px 10px #6852c6 inset",
           paddingTop: "10px",
@@ -46,11 +45,7 @@ const Desktop = ({
           battle={userBattle}
         ></TopBar>
       </div>
-      <div
-        style={{
-          minWidth: "1615px",
-        }}
-      >
+      <div>
         <div
           style={{
             justifyContent: "space-between",

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   StyledList,
   StyledListItemWrapper,
@@ -26,9 +26,42 @@ const DropDown = ({ ...props }) => {
     console.log(e.currentTarget);
   };
 
-  const handleListItemWrapperClick = (e) => {
-    
-  }
+  const handleListItemWrapperClick = (e) => {};
+
+  const renderList = useCallback(() => {
+    const targetList = recentSearchButtonToggle ? searchedUsers : favoriteUsers;
+
+    return targetList && targetList.length > 0 ? (
+      <>
+        {targetList.map((item, idx) => {
+          return (
+            <StyledListItemWrapper key={`${idx}`}>
+              <StyledListItem>
+                <StyledListItemText flex={1} textAlign="left" fontSize="20px">
+                  {item.nickname}
+                </StyledListItemText>
+                <StyledListItemText
+                  textAlign="right"
+                  fontSize="16px"
+                  color="#000"
+                >
+                  테스트 클랜
+                </StyledListItemText>
+              </StyledListItem>
+            </StyledListItemWrapper>
+          );
+        })}
+      </>
+    ) : (
+      <StyledListItemWrapper>
+        <StyledListItem textAlign="left">
+          <StyledListItemText textAlign="left" fontSize="20px">
+            결과 없음
+          </StyledListItemText>
+        </StyledListItem>
+      </StyledListItemWrapper>
+    );
+  }, [searchedUsers, favoriteUsers, recentSearchButtonToggle]);
 
   return (
     <div
@@ -75,56 +108,7 @@ const DropDown = ({ ...props }) => {
         </StyledButton>
       </div>
       <StyledList onClick={handleUserCliked} borderRadius="0 0 15px 15px">
-        {recentSearchButtonToggle &&
-          (searchedUsers.length ? (
-            searchedUsers.map((item, idx) => (
-              <StyledListItemWrapper onClick={handleListItemWrapperClick}>
-                <StyledListItem key={`${idx}`}>
-                  <StyledListItemText textAlign="left">
-                    {item.nickname}
-                  </StyledListItemText>
-                  <StyledListItemText
-                    textAlign="right"
-                    fontSize="15px"
-                    color="#59575b"
-                  >
-                    테스트 클랜
-                  </StyledListItemText>
-                </StyledListItem>
-              </StyledListItemWrapper>
-            ))
-          ) : (
-            <StyledListItemWrapper>
-              <StyledListItem textAlign="left">
-                <p>결과 없음</p>
-              </StyledListItem>
-            </StyledListItemWrapper>
-          ))}
-        {favoriteButtonToggle &&
-          (favoriteUsers.length ? (
-            favoriteUsers.map((item, idx) => (
-              <StyledListItemWrapper>
-                <StyledListItem key={`${idx}`}>
-                  <StyledListItemText textAlign="left">
-                    {item.nickname}
-                  </StyledListItemText>
-                  <StyledListItemText
-                    textAlign="right"
-                    fontSize="15px"
-                    color="#59575b"
-                  >
-                    테스트 클랜
-                  </StyledListItemText>
-                </StyledListItem>
-              </StyledListItemWrapper>
-            ))
-          ) : (
-            <StyledListItemWrapper>
-              <StyledListItem textAlign="left">
-                <p>결과 없음</p>
-              </StyledListItem>
-            </StyledListItemWrapper>
-          ))}
+        {renderList()}
       </StyledList>
     </div>
   );

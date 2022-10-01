@@ -11,20 +11,17 @@ const MainWrapper = styled.div`
 `;
 
 function App() {
-  const isMobile = useMediaQuery({
-    query: `(max-width: ${BREAK_POINT})`,
-  });
-  const isDesktop = useMediaQuery({
-    query: `(min-width: ${BREAK_POINT})`,
-  });
+  // const isMobile = useMediaQuery({
+  //   query: `(max-width: ${BREAK_POINT})`,
+  // });
+  // const isDesktop = useMediaQuery({
+  //   query: `(min-width: ${BREAK_POINT})`,
+  // });
 
   const Wrapper = styled.div`
     margin: 0 auto;
     max-width: ${(e) => {
-      return isMobile ? "750px" : "9600px";
-    }};
-    min-width: ${(e) => {
-      return isDesktop && "1250px";
+      return false ? "750px" : "9600px";
     }};
     min-height: ${(e) => {
       return "100vh";
@@ -33,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      {isDesktop && <Header height="100px" />}
+      {true && <Header />}
       <Wrapper>
         <MainWrapper>
           <Routes>

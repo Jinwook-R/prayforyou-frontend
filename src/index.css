@@ -100,10 +100,13 @@ nav,
 section {
   ‌display: block;
 }
+* {
+  font-family: Roboto, Helvetica, sans-serif;
+}
 body {
   margin: 0;
   background-color: #f7f7f7;
-  font: Roboto, Helvetica, sans-serif;
+
 }
 ol,
 ul {
@@ -131,4 +134,7 @@ table {
 .far,
 .fas {
   font-weight: 900 !important;
+}
+*{
+  box-sizing: border-box;
 }
