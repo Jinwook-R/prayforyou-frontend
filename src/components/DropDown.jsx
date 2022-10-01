@@ -26,6 +26,10 @@ const DropDown = ({ ...props }) => {
     console.log(e.currentTarget);
   };
 
+  const handleListItemWrapperClick = (e) => {
+    
+  }
+
   return (
     <div
       className="dropDown"
@@ -74,7 +78,7 @@ const DropDown = ({ ...props }) => {
         {recentSearchButtonToggle &&
           (searchedUsers.length ? (
             searchedUsers.map((item, idx) => (
-              <StyledListItemWrapper>
+              <StyledListItemWrapper onClick={handleListItemWrapperClick}>
                 <StyledListItem key={`${idx}`}>
                   <StyledListItemText textAlign="left">
                     {item.nickname}
@@ -84,7 +88,7 @@ const DropDown = ({ ...props }) => {
                     fontSize="15px"
                     color="#59575b"
                   >
-                    A보급 서플라이 리그 테스크클랜
+                    테스트 클랜
                   </StyledListItemText>
                 </StyledListItem>
               </StyledListItemWrapper>
