@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import ListItem from "./MapInfoListItem";
+import MapInfoListItem from "./MapInfoListItem";
 import { StyledList, StyledListItemWrapper, StyledListItem } from "./wrapper";
 const MapInfoList = ({
   data = [],
@@ -15,11 +15,11 @@ const MapInfoList = ({
       {data.length &&
         data.slice(0, offset * 8).map((item, index) => {
           return (
-            <ListItem
+            <MapInfoListItem
               key={`${index}`}
               item={item}
               outputText={outputText}
-            ></ListItem>
+            ></MapInfoListItem>
           );
         })}
       {!data.length && (
@@ -51,17 +51,5 @@ const MapInfoList = ({
     </StyledList>
   );
 };
-
-// const StyledList = styled.div`
-//   width: ${(props) => props.width};
-//   margin: ${(props) => props.margin};
-//   height: 730px;
-//   border-radius: 15px;
-//   background-color: #775ee1;
-//   overflow: scroll;
-//   ::-webkit-scrollbar {
-//     display: none;
-//   }
-// `;
 
 export default MapInfoList;

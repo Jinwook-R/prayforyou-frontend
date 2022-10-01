@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import styled from "@emotion/styled";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Map } from "../../components";
 import { Banner, MapButtonGroup, TopBar, MapInfoList } from "../../components";
 
@@ -24,6 +24,13 @@ const Desktop = ({
 }) => {
   const banners = useSelector((store) => store.banner);
   const { nickname, userId } = location.state;
+  const [sortOrder, setSortOrder] = useState('desc')
+
+  const handleOnClick = (e) => {
+    if(e.target.className === sortOrder) return;
+    e.target.className.includes('asc') && setSortOrder('asc');
+    e.target.className.includes('desc') && setSortOrder('desc');
+  }
   return (
     <>
       <div
@@ -99,36 +106,52 @@ const Desktop = ({
                 marginBottom: "15px",
               }}
             >
-              <button
-                style={{
-                  color: "#fff",
-                  backgroundColor: "#775ee2",
-                  border: "none",
-                  width: "75px",
-                  height: "25px",
-                  borderRadius: "15px",
-                  marginRight: "10px",
-                  textAlign: "center",
-                }}
+              <StyledSortButton
+                className="desc"
+                onClick={handleOnClick}
+                color = {sortOrder === 'desc' ? '#fff' : '#b3b3b3'}
+                backgroundColor = {sortOrder === 'desc' ? '#775ee2' : '#808080'}
               >
                 높은순
-              </button>
-              <button
-                style={{
-                  color: "#b3b3b3",
-                  backgroundColor: "#808080",
-                  border: "none",
-                  width: "75px",
-                  height: "25px",
-                  borderRadius: "15px",
-                  textAlign: "center",
-                }}
-              >
+              </StyledSortButton>
+              <StyledSortButton
+                className="asc"
+                onClick={handleOnClick}           
+                color = {sortOrder === 'asc' ? '#fff' : '#b3b3b3'}
+                backgroundColor = {sortOrder === 'asc' ? '#775ee2' : '#808080'}                
+                >
                 낮은순
-              </button>
+              </StyledSortButton>
             </div>
             <MapInfoList
-              data={userBattle[clickedButton]}
+              data={userBattle[clickedButton].slice().sort((a,b) => {
+                if(sortOrder === 'asc'){
+                  if(clickedButton === PLACE_BUTTON) {
+                    return a['rate'] - b['rate']
+                  }
+                  
+                  if(clickedButton === GUN_BUTTON) {
+                    return a['useCount'] - b['useCount']
+                  }
+                                    
+                  if(clickedButton === ROUND_BUTTON) {
+                    return a['rate'] - b['rate']
+                  }
+
+                }else if(sortOrder === 'desc') {
+                  if(clickedButton === PLACE_BUTTON) {
+                    return b['rate'] - a['rate']
+                  }
+
+                  if(clickedButton === GUN_BUTTON) {
+                    return b['useCount'] - a['useCount']
+                  }
+
+                  if(clickedButton === ROUND_BUTTON) {
+                    return b['rate'] - a['rate']
+                  }
+                }
+              })}
               width="100%"
               outputText={
                 (clickedButton === PLACE_BUTTON && ["place", "rate"]) ||
@@ -154,5 +177,17 @@ const Desktop = ({
     </>
   );
 };
+
+const StyledSortButton = styled.button`
+  color: ${(props)=> props.color};
+  background-color: ${(props)=> props.backgroundColor};
+  border: none;
+  width: 75px;
+  height: 30px;
+  border-radius: 15px;
+  margin-right: 10px;
+  text-align: center;
+`;
+
 
 export default Desktop;
