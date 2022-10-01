@@ -9,6 +9,7 @@ const MapInfoList = ({
   handleOffset,
   margin,
   outputText,
+  clickedButton
 }) => {
   return (
     <StyledList width={width} margin={margin} borderRadius="15px">
@@ -16,6 +17,7 @@ const MapInfoList = ({
         data.slice(0, offset * 8).map((item, index) => {
           return (
             <MapInfoListItem
+              clickedButton={clickedButton}
               key={`${index}`}
               item={item}
               outputText={outputText}

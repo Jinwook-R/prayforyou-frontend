@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Map } from "../../components";
 import { Banner, MapButtonGroup, TopBar, MapInfoList } from "../../components";
+import { PLACE_BUTTON, GUN_BUTTON, ROUND_BUTTON } from "../../utils/constants";
 
-const PLACE_BUTTON = "battlePlace";
-const GUN_BUTTON = "battleGun";
-const ROUND_BUTTON = "battleRound";
 
 const BANNER_PROPS = {
   width: "85%",
@@ -124,6 +122,7 @@ const Desktop = ({
               </StyledSortButton>
             </div>
             <MapInfoList
+              clickedButton={clickedButton}
               data={userBattle[clickedButton].slice().sort((a,b) => {
                 if(sortOrder === 'asc'){
                   if(clickedButton === PLACE_BUTTON) {
@@ -187,6 +186,7 @@ const StyledSortButton = styled.button`
   border-radius: 15px;
   margin-right: 10px;
   text-align: center;
+  cursor: pointer;
 `;
 
 
