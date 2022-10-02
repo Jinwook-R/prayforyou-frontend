@@ -11,12 +11,12 @@ import styled from "@emotion/styled";
 const Search = ({ height, handleDropDown }) => {
   const [userName, setUserName] = useState("");
   const [searchedUsers, setLocalStorage] = useLocalStorage("searchedUsers", []);
-  const isDesktopOrLabtop = useMediaQuery({
-    query: `(min-width: ${BREAK_POINT})`,
-  });
-  const isTabletOrMobile = useMediaQuery({
+
+  const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
+
+  console.log("media?", isMobile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -73,49 +73,37 @@ const Search = ({ height, handleDropDown }) => {
           onKeyDown={handleSearch}
         />
       </StyledSearchInputWrapper>
-      {isTabletOrMobile && (
-        <StyledSearchImage
-          className="searchImage"
-          src={SearchImage}
-          alt="search"
-          onClick={handleSearch}
-        />
-      )}
-      {isDesktopOrLabtop && (
-        <StyledPrayForYouNav
-          className="pray-for-you-nav"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            fontSize: "20px",
-          }}
-          marginTop={"40px"}
-          marginBottom={"10px"}
-        >
-          <span style={{ color: "#141414" }}>
-            Pray For You가 무엇인가요?&nbsp;
-          </span>
-          <span style={{ color: "#775ee1" }} className="check-it-out">
-            &nbsp;확인하러 가기👀
-          </span>
-        </StyledPrayForYouNav>
-      )}
-      {isDesktopOrLabtop && (
-        <StyledPrayForYouNav
-          className="pray-for-you-nav"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            fontSize: "20px",
-          }}
-          marginBottom={"100px"}
-        >
-          <span style={{ color: "#141414" }}>Pray For You</span>
-          <span style={{ color: "#775ee1" }} className="check-it-out">
-            &nbsp;리그 신청하러가기🔫
-          </span>
-        </StyledPrayForYouNav>
-      )}
+      <StyledPrayForYouNav
+        className="pray-for-you-nav"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          fontSize: "20px",
+        }}
+        marginTop={"40px"}
+        marginBottom={"10px"}
+      >
+        <span style={{ color: "#141414" }}>
+          Pray For You가 무엇인가요?&nbsp;
+        </span>
+        <span style={{ color: "#775ee1" }} className="check-it-out">
+          &nbsp;확인하러 가기👀
+        </span>
+      </StyledPrayForYouNav>
+      <StyledPrayForYouNav
+        className="pray-for-you-nav"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          fontSize: "20px",
+        }}
+        marginBottom={"100px"}
+      >
+        <span style={{ color: "#141414" }}>Pray For You</span>
+        <span style={{ color: "#775ee1" }} className="check-it-out">
+          &nbsp;리그 신청하러가기🔫
+        </span>
+      </StyledPrayForYouNav>
     </StyledSearchWrapper>
   );
 };
