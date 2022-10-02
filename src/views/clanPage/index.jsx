@@ -1,3 +1,3 @@
-import ClanPage from "./clanPage";
+import ClanPage from "./ClanPage";
 
 export { ClanPage };

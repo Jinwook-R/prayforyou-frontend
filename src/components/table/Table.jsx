@@ -43,6 +43,7 @@ const Table = ({
               key={`${index}`}
               justifyContent={cellConfig?.align || "start"}
               width={cellConfig?.width}
+              style={cellConfig?.style}
             >
               {cellConfig.name}
             </HeaderCell>
@@ -63,6 +64,7 @@ const Table = ({
                       key={`${rowIndex}-${cellIndex}`}
                       justifyContent={cellConfig?.align || "start"}
                       width={cellConfig?.width}
+                      style={cellConfig?.style}
                     >
                       {cellConfig?.key
                         ? listItemData[cellConfig.key] || ""
@@ -118,6 +120,7 @@ const TableBody = styled.div`
 const HeaderCell = styled.div`
   color: white;
   display: flex;
+  background: #775ee2;
   font-size: 20px;
   font-weight: bold;
   flex: ${(props) => (props.width ? "none" : 1)};
@@ -128,17 +131,17 @@ const HeaderCell = styled.div`
 `;
 const TableRow = styled.div`
   height: 80px;
-  width: 100%;
   display: flex;
   align-items: center;
   background: white;
+  width: 100%;
 `;
 const RowCell = styled.div`
   display: flex;
   font-size: 20px;
   font-weight: normal;
   flex: ${(props) => (props.width ? "none" : 1)};
-  width: ${(props) => props.width || "auto"};
+  width: ${(props) => props.width};
   justify-content: ${(props) => props.justifyContent || "start"};
   align-items: center;
 `;

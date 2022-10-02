@@ -64,7 +64,7 @@ const Desktop = () => {
       },
       {
         name: "클랜",
-        width: "430px",
+        style: { flex: 1, minWidth: "430px" },
         renderer: (info) => {
           {
             /* TODO : export extra component, <User {...userProps} />} */
@@ -95,7 +95,7 @@ const Desktop = () => {
       },
       {
         name: "래더",
-        width: "230px",
+        width: "200px",
         renderer: (info) => {
           return `${info["ladderPoint"]}점`;
         },
@@ -145,7 +145,11 @@ const Desktop = () => {
             </div>
           </div>
         </TablePageTitleWrapper>
-        <Table {...mockTableProps} />
+        <Table
+          headerStyle={{ width: "100%" }}
+          bodyStyle={{ width: "100%" }}
+          {...mockTableProps}
+        />
       </StyledMainContentWrapper>
     </StyledDesktopWrapper>
   );
