@@ -17,6 +17,7 @@ const MapInfoList = ({
               clickedButton={clickedButton}
               key={`${index}`}
               item={item}
+              index={index}
               outputText={outputText}
             />
           );

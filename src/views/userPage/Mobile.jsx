@@ -1,13 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {
-  Header,
-  TopBar,
-  Button,
-  Banner,
-  MapInfoList,
-  BattleMap,
-} from "../../components";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { TopBar, Banner, MapInfoList, BattleMap } from "../../components";
+import { useSelector } from "react-redux";
 import { MapButtonGroup } from "../../components";
 
 const BANNER_PROPS = {
@@ -21,6 +14,7 @@ const GUN_BUTTON = "battleGun";
 const ROUND_BUTTON = "battleRound";
 
 const Mobile = ({
+  mapPositions,
   location,
   userBattle,
   clickedButton,
@@ -33,9 +27,8 @@ const Mobile = ({
 
   return (
     <>
-      <Header isMobile={true} height="75px" />
-      <TopBar nickname={nickname} userId={userId} battle={userBattle}></TopBar>
-      <BattleMap battle={userBattle}></BattleMap>
+      <TopBar nickname={nickname} userId={userId} battle={userBattle} />
+      <BattleMap positions={mapPositions} />
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} height="50px" />
       <MapButtonGroup
         clickedButton={clickedButton}
@@ -43,7 +36,7 @@ const Mobile = ({
         height="30px"
         width="85%"
       />
-      <div style={{ marginTop: "20px" }}></div>
+      <div style={{ marginTop: "20px" }} />
       <MapInfoList
         data={userBattle[clickedButton]}
         width="90%"
@@ -53,9 +46,10 @@ const Mobile = ({
           (clickedButton === GUN_BUTTON && ["type", "useCount"]) ||
           (clickedButton === ROUND_BUTTON && ["round", "rate"])
         }
+        clickedButton={clickedButton}
         offset={offset}
         handleOffset={handleOffset}
-      ></MapInfoList>
+      />
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} height="50px" />

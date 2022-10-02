@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import {
   Banner,
@@ -8,7 +8,12 @@ import {
   MapInfoList,
   BattleMap,
 } from "../../components";
-import { PLACE_BUTTON, GUN_BUTTON, ROUND_BUTTON } from "../../utils/constants";
+import {
+  PLACE_BUTTON,
+  GUN_BUTTON,
+  ROUND_BUTTON,
+  COMMON_LAYOUT_PC_HORIZONTAL_MAX,
+} from "../../utils/constants";
 
 const BANNER_PROPS = {
   width: "85%",
@@ -35,30 +40,6 @@ const Desktop = ({
     e.target.className.includes("desc") && setSortOrder("desc");
   };
 
-  const userBattlePlaceData = userBattle.battlePlace;
-
-  const parsedPositions = useMemo(() => {
-    let result = [];
-    const battleDataMap = new Map();
-    userBattlePlaceData.forEach((data) => {
-      if (data?.place) battleDataMap.set(data.place, data.rate);
-    });
-    (mapPositions || []).forEach((mapData) => {
-      const polygonString = mapData.polygon;
-      if (polygonString.includes("POLYGON")) {
-        result.push({
-          polygon: polygonString.replaceAll(
-            new RegExp(/(POLYGON \(\()|(\)\))/g),
-            ""
-          ),
-          placeType: mapData.placeType,
-          rate: battleDataMap.get(mapData.placeType) || "0",
-        });
-      }
-    });
-    return result;
-  }, [mapPositions, userBattlePlaceData]);
-
   return (
     <>
       <div
@@ -67,16 +48,31 @@ const Desktop = ({
           backgroundColor: "#775ee1",
           boxShadow: "0 5px 10px #6852c6 inset",
           paddingTop: "10px",
+          paddingLeft: "16px",
         }}
       >
-        <TopBar userId={userId} nickname={nickname} battle={userBattle} />
+        <TopBar
+          style={{
+            paddingLeft: "10px",
+            margin: "0 auto",
+            width: "100%",
+            maxWidth: COMMON_LAYOUT_PC_HORIZONTAL_MAX,
+          }}
+          userId={userId}
+          nickname={nickname}
+          battle={userBattle}
+        />
       </div>
-      <div>
+      <div
+        style={{
+          paddingInline: "16px",
+        }}
+      >
         <div
           style={{
             justifyContent: "space-between",
             display: "flex",
-            maxWidth: "1500px",
+            maxWidth: COMMON_LAYOUT_PC_HORIZONTAL_MAX,
             margin: "0 auto",
             marginTop: "32px",
             marginBottom: "16px",
@@ -89,7 +85,7 @@ const Desktop = ({
               flexBasis: "40%",
             }}
           >
-            <BattleMap positions={parsedPositions} />
+            <BattleMap positions={mapPositions} />
             <Banner
               imgUrl={banners?.data?.typeA}
               {...BANNER_PROPS}
@@ -106,7 +102,6 @@ const Desktop = ({
               flexGrow: 0,
               flexShrink: 0,
               flexBasis: "45%",
-              marginLeft: "auto",
             }}
           >
             <MapButtonGroup

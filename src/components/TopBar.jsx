@@ -14,10 +14,6 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
     []
   );
 
-  const isDesktop = useMediaQuery({
-    query: `(min-width: ${BREAK_POINT})`,
-  });
-
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
@@ -151,13 +147,14 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
           </div>
         </StyledTopBar>
       )}
-      {isDesktop && (
+      {!isMobile && (
         <StyledTopBar
           height="100px"
           justifyContents="space-between"
           alignItems="center"
           display="flex"
           padding="0 20px"
+          {...props}
         >
           <div>
             <div
@@ -186,19 +183,6 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                 <span style={{ marginLeft: "25px" }}>킬뎃 65% 판킬 10</span>
               </p>
             </div>
-          </div>
-          <div
-            style={{
-              flexGrow: 0,
-              flexShrink: 0,
-              flexBasis: "50%",
-              textAlign: "right",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
-            <p>제3보급창고</p>
           </div>
         </StyledTopBar>
       )}

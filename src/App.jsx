@@ -5,7 +5,7 @@ import { HomePage, UserPage } from "./views";
 import { Header, Footer } from "./components";
 import { PrivatePage } from "./views/privatePage";
 import { ClanPage } from "./views/clanPage";
-import { LeaguePage } from "./views/league";
+import { LeaguePage } from "./views/leaguePage";
 
 const MainWrapper = styled.div`
   width: 100%;

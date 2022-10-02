@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../../utils/constants";
 import { useLocation } from "react-router";
@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Desktop from "./Desktop";
 import Mobile from "./Mobile";
 import { searchBattle } from "../../redux/battle";
-import { fetchAllRanking } from "../../redux/ranking";
 import { getMapPositions } from "../../redux/map";
 
 const PLACE_BUTTON = "battlePlace";
@@ -26,12 +25,12 @@ const UserPage = () => {
   const { positions } = useSelector((store) => store.map);
   const [clickedButton, setClickedButton] = useState(PLACE_BUTTON);
   const [offset, setOffset] = useState(1);
-  const { nickname, userId } = location.state;
+  const { userId } = location.state;
 
   useEffect(() => {
     dispatch(getMapPositions());
     dispatch(searchBattle(userId));
-  }, []);
+  }, [dispatch, userId]);
 
   const handleClickedButton = (e) => {
     const { name } = e.target;
@@ -42,10 +41,35 @@ const UserPage = () => {
     setOffset(offset + 1);
   };
 
+  const userBattlePlaceData = userBattle.battlePlace;
+
+  const parsedPositions = useMemo(() => {
+    let result = [];
+    const battleDataMap = new Map();
+    userBattlePlaceData.forEach((data) => {
+      if (data?.place) battleDataMap.set(data.place, data.rate);
+    });
+    (positions || []).forEach((mapData) => {
+      const polygonString = mapData.polygon;
+      if (polygonString.includes("POLYGON")) {
+        result.push({
+          polygon: polygonString.replaceAll(
+            new RegExp(/(POLYGON \(\()|(\)\))/g),
+            ""
+          ),
+          placeType: mapData.placeType,
+          rate: battleDataMap.get(mapData.placeType) || "0",
+        });
+      }
+    });
+    return result;
+  }, [positions, userBattlePlaceData]);
+
   return (
     <>
       {isMobile && userBattle && (
         <Mobile
+          mapPositions={parsedPositions}
           location={location}
           userBattle={userBattle}
           clickedButton={clickedButton}
@@ -56,7 +80,7 @@ const UserPage = () => {
       )}
       {isDesktop && userBattle && (
         <Desktop
-          mapPositions={positions}
+          mapPositions={parsedPositions}
           location={location}
           userBattle={userBattle}
           clickedButton={clickedButton}
