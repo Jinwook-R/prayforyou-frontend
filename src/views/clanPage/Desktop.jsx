@@ -20,12 +20,10 @@ const sampleClanItemData1 = {
   id: 1235123,
   rank: 1,
   thumbnail: sampleImg,
-  nickname: "1부 클랜",
+  clanName: "1부 클랜",
   winCount: 132,
   loseCount: 82,
   rate: 11.1, // winCount / (winCount+loseCount),
-  killDeathRate: 11.1,
-  killAverage: 8.8,
   ladderPoint: 1111,
 };
 
@@ -33,12 +31,10 @@ const sampleClanItemData2 = {
   id: 1235123,
   rank: 1,
   thumbnail: sampleImg,
-  nickname: "2부 클랜",
+  clanName: "2부 클랜",
   winCount: 132,
   loseCount: 82,
   rate: 11.1, // winCount / (winCount+loseCount),
-  killDeathRate: 11.1,
-  killAverage: 8.8,
   ladderPoint: 1111,
 };
 
@@ -67,13 +63,13 @@ const Desktop = () => {
         align: "center",
       },
       {
-        name: "닉네임",
+        name: "클랜",
         width: "430px",
         renderer: (info) => {
           {
             /* TODO : export extra component, <User {...userProps} />} */
           }
-          return <User thumbnail={info.thumbnail} name={info.nickname} />;
+          return <User thumbnail={info.thumbnail} name={info.clanName} />;
         },
       },
       {
@@ -98,22 +94,8 @@ const Desktop = () => {
         },
       },
       {
-        name: "킬뎃",
-        width: "200px",
-        renderer: (info) => {
-          return `${info["killDeathRate"]}%`;
-        },
-      },
-      {
-        name: "평균킬",
-        width: "200px",
-        renderer: (info) => {
-          return `${info["killAverage"]}킬`;
-        },
-      },
-      {
         name: "래더",
-        width: "200px",
+        width: "230px",
         renderer: (info) => {
           return `${info["ladderPoint"]}점`;
         },
