@@ -106,7 +106,14 @@ const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
             </div>
           </div>
         </TablePageTitleWrapper>
-        <Table {...clanTableProps} />
+        <Table
+          rowStyler={(clanData) => {
+            return {
+              background: clanData.isLadderDownTarget ? "#ffebeb" : "white",
+            };
+          }}
+          {...clanTableProps}
+        />
       </StyledMainContentWrapper>
     </StyledDesktopWrapper>
   );
