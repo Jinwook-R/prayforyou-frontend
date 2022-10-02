@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import {
   Header,
   TopBar,
-  Map,
   Button,
   Banner,
   MapInfoList,
+  BattleMap,
 } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { MapButtonGroup } from "../../components";
@@ -35,7 +35,7 @@ const Mobile = ({
     <>
       <Header isMobile={true} height="75px" />
       <TopBar nickname={nickname} userId={userId} battle={userBattle}></TopBar>
-      <Map battle={userBattle}></Map>
+      <BattleMap battle={userBattle}></BattleMap>
       <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} height="50px" />
       <MapButtonGroup
         clickedButton={clickedButton}

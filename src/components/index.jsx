@@ -3,7 +3,7 @@ import Button from "./Button";
 import DropDown from "./DropDown";
 import Footer from "./Footer";
 import Header from "./Header";
-import Map from "./Map";
+import BattleMap from "./BattleMap";
 import MapInfoList from "./MapInfoList";
 import MapInfoListItem from "./MapInfoListItem";
 import Search from "./Search";
@@ -26,7 +26,7 @@ export {
   Header,
   MapInfoList,
   MapInfoListItem,
-  Map,
+  BattleMap,
   Search,
   Title,
   TopBar,

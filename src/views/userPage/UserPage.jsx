@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Desktop from "./Desktop";
 import Mobile from "./Mobile";
 import { searchBattle } from "../../redux/battle";
+import { fetchAllRanking } from "../../redux/ranking";
+import { getMapPositions } from "../../redux/map";
 
 const PLACE_BUTTON = "battlePlace";
 
@@ -21,11 +23,13 @@ const UserPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const userBattle = useSelector((state) => state.battle.battle);
+  const { positions } = useSelector((store) => store.map);
   const [clickedButton, setClickedButton] = useState(PLACE_BUTTON);
   const [offset, setOffset] = useState(1);
   const { nickname, userId } = location.state;
 
   useEffect(() => {
+    dispatch(getMapPositions());
     dispatch(searchBattle(userId));
   }, []);
 
@@ -52,6 +56,7 @@ const UserPage = () => {
       )}
       {isDesktop && userBattle && (
         <Desktop
+          mapPositions={positions}
           location={location}
           userBattle={userBattle}
           clickedButton={clickedButton}

@@ -8,7 +8,6 @@ export const fetchAllRanking = createAsyncThunk(
     const responseData = await axios
       .get(`${DESTINATION_DOMAIN_ADDRESS}/view/ranking`)
       .then((res) => res.data)
-      .then((res) => res.data)
       .catch((err) => {
         console.log(err);
       });

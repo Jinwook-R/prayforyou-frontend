@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useMediaQuery } from "react-responsive";
-import { BREAK_POINT } from "../utils/constants";
+import {
+  BREAK_POINT,
+  COMMON_LAYOUT_PC_HORIZONTAL_MAX,
+} from "../utils/constants";
 
 const TopBar = ({ userId, nickname, battle, ...props }) => {
   const { battleStats } = battle;
@@ -208,8 +211,8 @@ const StyledTopBar = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   padding-top: ${(props) => props.paddingTop};
-  margin: 0 auto;
   margin-bottom: 16px;
+  max-width: ${COMMON_LAYOUT_PC_HORIZONTAL_MAX};
   background-color: #775ee1;
   color: white;
   box-shadow: ${(props) => props.boxShadow};

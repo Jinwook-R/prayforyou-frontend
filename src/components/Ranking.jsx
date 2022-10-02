@@ -6,50 +6,45 @@ import {
   StyledListItemText,
 } from "./wrapper";
 import styled from "@emotion/styled";
+import { clanListItemMockData } from "./listItem/ClanListItem";
+import { ClanListItem } from "./listItem";
+
+const mockData = {
+  firstClanList: Array.from(
+    { length: 20 }, // 유사배열
+    () => {
+      return { ...clanListItemMockData };
+    }
+  ),
+  secondClanList: Array.from(
+    { length: 20 }, // 유사배열
+    () => {
+      return { ...clanListItemMockData };
+    }
+  ),
+};
 
 const Ranking = ({ data, ...props }) => {
-  const [weeklyDailyButtonToggle, setWeeklyDailyButtonToggle] =
-    useState("weekly");
+  const [clanListTypeSwitch, setClanListTypeSwitch] = useState("first");
 
   const handleOnClick = (e) => {
     e.preventDefault();
-    if (e.target.className.includes(weeklyDailyButtonToggle)) return;
-    weeklyDailyButtonToggle === "weekly" && setWeeklyDailyButtonToggle("daily");
-    weeklyDailyButtonToggle === "daily" && setWeeklyDailyButtonToggle("weekly");
+    if (e.target.className.includes(clanListTypeSwitch)) return;
+    clanListTypeSwitch === "first" && setClanListTypeSwitch("second");
+    clanListTypeSwitch === "second" && setClanListTypeSwitch("first");
   };
 
-  const { dailyView, weeklyView } = data;
+  //const { dailyView, weeklyView } = data;
 
+  const { firstClanList, secondClanList } = mockData;
   const renderList = useCallback(() => {
     const targetList =
-      weeklyDailyButtonToggle === "weekly" ? weeklyView : dailyView;
+      clanListTypeSwitch === "first" ? firstClanList : secondClanList;
 
     return targetList && targetList.length > 0 ? (
       <>
-        {targetList.map((item, idx) => {
-          return (
-            <StyledListItemWrapper key={`${idx}`}>
-              <StyledListItem>
-                <StyledListItemText
-                  width={"50px"}
-                  textAlign="left"
-                  fontSize="20px"
-                >
-                  {idx + 1}
-                </StyledListItemText>
-                <StyledListItemText flex={1} textAlign="left" fontSize="20px">
-                  {item.nickname}
-                </StyledListItemText>
-                <StyledListItemText
-                  textAlign="right"
-                  fontSize="16px"
-                  color="#59575b"
-                >
-                  테스트 클랜
-                </StyledListItemText>
-              </StyledListItem>
-            </StyledListItemWrapper>
-          );
+        {targetList.map((item, index) => {
+          return <ClanListItem key={`${index}`} {...item} />;
         })}
       </>
     ) : (
@@ -61,7 +56,7 @@ const Ranking = ({ data, ...props }) => {
         </StyledListItem>
       </StyledListItemWrapper>
     );
-  }, [dailyView, weeklyView, weeklyDailyButtonToggle]);
+  }, [firstClanList, secondClanList, clanListTypeSwitch]);
 
   return (
     <div
@@ -86,34 +81,34 @@ const Ranking = ({ data, ...props }) => {
         }}
       >
         <StyledButton
-          className="weekly"
+          className="first"
           type="button"
           onClick={handleOnClick}
           style={{
             textDecoration:
-              weeklyDailyButtonToggle === "weekly" ? "underline" : "none",
+              clanListTypeSwitch === "first" ? "underline" : "none",
             backgroundColor:
-              weeklyDailyButtonToggle === "weekly" ? "#775ee1" : "#f7f7f7",
-            color: weeklyDailyButtonToggle === "weekly" ? "white" : "black",
+              clanListTypeSwitch === "first" ? "#775ee1" : "#f7f7f7",
+            color: clanListTypeSwitch === "first" ? "white" : "black",
           }}
           onMouseDown={(e) => e.preventDefault()}
         >
-          위클리 주간
+          1부 리그
         </StyledButton>
         <StyledButton
-          className="daily"
+          className="second"
           type="button"
           onClick={handleOnClick}
           style={{
             textDecoration:
-              weeklyDailyButtonToggle === "daily" ? "underline" : "none",
+              clanListTypeSwitch === "second" ? "underline" : "none",
             backgroundColor:
-              weeklyDailyButtonToggle === "daily" ? "#775ee1" : "#f7f7f7",
-            color: weeklyDailyButtonToggle === "daily" ? "white" : "black",
+              clanListTypeSwitch === "second" ? "#775ee1" : "#f7f7f7",
+            color: clanListTypeSwitch === "second" ? "white" : "black",
             borderRadius: "0 15px 0 0",
           }}
         >
-          데일리 일간
+          2부 리그
         </StyledButton>
       </div>
       <StyledList borderRadius="0 0 15px 15px">{renderList()}</StyledList>

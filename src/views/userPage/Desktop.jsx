@@ -1,10 +1,14 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Map } from "../../components";
-import { Banner, MapButtonGroup, TopBar, MapInfoList } from "../../components";
+import React, { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  Banner,
+  MapButtonGroup,
+  TopBar,
+  MapInfoList,
+  BattleMap,
+} from "../../components";
 import { PLACE_BUTTON, GUN_BUTTON, ROUND_BUTTON } from "../../utils/constants";
-
 
 const BANNER_PROPS = {
   width: "85%",
@@ -13,6 +17,7 @@ const BANNER_PROPS = {
 };
 
 const Desktop = ({
+  mapPositions,
   location,
   userBattle,
   clickedButton,
@@ -22,13 +27,38 @@ const Desktop = ({
 }) => {
   const banners = useSelector((store) => store.banner);
   const { nickname, userId } = location.state;
-  const [sortOrder, setSortOrder] = useState('desc')
+  const [sortOrder, setSortOrder] = useState("desc");
 
   const handleOnClick = (e) => {
-    if(e.target.className === sortOrder) return;
-    e.target.className.includes('asc') && setSortOrder('asc');
-    e.target.className.includes('desc') && setSortOrder('desc');
-  }
+    if (e.target.className === sortOrder) return;
+    e.target.className.includes("asc") && setSortOrder("asc");
+    e.target.className.includes("desc") && setSortOrder("desc");
+  };
+
+  const userBattlePlaceData = userBattle.battlePlace;
+
+  const parsedPositions = useMemo(() => {
+    let result = [];
+    const battleDataMap = new Map();
+    userBattlePlaceData.forEach((data) => {
+      if (data?.place) battleDataMap.set(data.place, data.rate);
+    });
+    (mapPositions || []).forEach((mapData) => {
+      const polygonString = mapData.polygon;
+      if (polygonString.includes("POLYGON")) {
+        result.push({
+          polygon: polygonString.replaceAll(
+            new RegExp(/(POLYGON \(\()|(\)\))/g),
+            ""
+          ),
+          placeType: mapData.placeType,
+          rate: battleDataMap.get(mapData.placeType) || "0",
+        });
+      }
+    });
+    return result;
+  }, [mapPositions, userBattlePlaceData]);
+
   return (
     <>
       <div
@@ -39,11 +69,7 @@ const Desktop = ({
           paddingTop: "10px",
         }}
       >
-        <TopBar
-          userId={userId}
-          nickname={nickname}
-          battle={userBattle}
-        ></TopBar>
+        <TopBar userId={userId} nickname={nickname} battle={userBattle} />
       </div>
       <div>
         <div
@@ -63,7 +89,7 @@ const Desktop = ({
               flexBasis: "40%",
             }}
           >
-            <Map battle={userBattle}></Map>
+            <BattleMap positions={parsedPositions} />
             <Banner
               imgUrl={banners?.data?.typeA}
               {...BANNER_PROPS}
@@ -102,47 +128,46 @@ const Desktop = ({
               <StyledSortButton
                 className="desc"
                 onClick={handleOnClick}
-                color = {sortOrder === 'desc' ? '#fff' : '#b3b3b3'}
-                backgroundColor = {sortOrder === 'desc' ? '#775ee2' : '#808080'}
+                color={sortOrder === "desc" ? "#fff" : "#b3b3b3"}
+                backgroundColor={sortOrder === "desc" ? "#775ee2" : "#808080"}
               >
                 높은순
               </StyledSortButton>
               <StyledSortButton
                 className="asc"
-                onClick={handleOnClick}           
-                color = {sortOrder === 'asc' ? '#fff' : '#b3b3b3'}
-                backgroundColor = {sortOrder === 'asc' ? '#775ee2' : '#808080'}                
-                >
+                onClick={handleOnClick}
+                color={sortOrder === "asc" ? "#fff" : "#b3b3b3"}
+                backgroundColor={sortOrder === "asc" ? "#775ee2" : "#808080"}
+              >
                 낮은순
               </StyledSortButton>
             </div>
             <MapInfoList
               clickedButton={clickedButton}
-              data={userBattle[clickedButton].slice().sort((a,b) => {
-                if(sortOrder === 'asc'){
-                  if(clickedButton === PLACE_BUTTON) {
-                    return a['rate'] - b['rate']
-                  }
-                  
-                  if(clickedButton === GUN_BUTTON) {
-                    return a['useCount'] - b['useCount']
-                  }
-                                    
-                  if(clickedButton === ROUND_BUTTON) {
-                    return a['rate'] - b['rate']
+              data={userBattle[clickedButton].slice().sort((a, b) => {
+                if (sortOrder === "asc") {
+                  if (clickedButton === PLACE_BUTTON) {
+                    return a["rate"] - b["rate"];
                   }
 
-                }else if(sortOrder === 'desc') {
-                  if(clickedButton === PLACE_BUTTON) {
-                    return b['rate'] - a['rate']
+                  if (clickedButton === GUN_BUTTON) {
+                    return a["useCount"] - b["useCount"];
                   }
 
-                  if(clickedButton === GUN_BUTTON) {
-                    return b['useCount'] - a['useCount']
+                  if (clickedButton === ROUND_BUTTON) {
+                    return a["rate"] - b["rate"];
+                  }
+                } else if (sortOrder === "desc") {
+                  if (clickedButton === PLACE_BUTTON) {
+                    return b["rate"] - a["rate"];
                   }
 
-                  if(clickedButton === ROUND_BUTTON) {
-                    return b['rate'] - a['rate']
+                  if (clickedButton === GUN_BUTTON) {
+                    return b["useCount"] - a["useCount"];
+                  }
+
+                  if (clickedButton === ROUND_BUTTON) {
+                    return b["rate"] - a["rate"];
                   }
                 }
               })}
@@ -173,8 +198,8 @@ const Desktop = ({
 };
 
 const StyledSortButton = styled.button`
-  color: ${(props)=> props.color};
-  background-color: ${(props)=> props.backgroundColor};
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.backgroundColor};
   border: none;
   width: 75px;
   height: 30px;
@@ -183,6 +208,5 @@ const StyledSortButton = styled.button`
   text-align: center;
   cursor: pointer;
 `;
-
 
 export default Desktop;
