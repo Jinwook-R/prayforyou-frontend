@@ -84,13 +84,35 @@ const Search = ({ height, handleDropDown }) => {
       {isDesktopOrLabtop && (
         <StyledPrayForYouNav
           className="pray-for-you-nav"
-          style={{ display: "flex", justifyContent: "center", fontSize: "20px" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "20px",
+          }}
+          marginTop={"40px"}
+          marginBottom={"10px"}
         >
           <span style={{ color: "#141414" }}>
             Pray For You가 무엇인가요?&nbsp;
           </span>
           <span style={{ color: "#775ee1" }} className="check-it-out">
             &nbsp;확인하러 가기👀
+          </span>
+        </StyledPrayForYouNav>
+      )}
+      {isDesktopOrLabtop && (
+        <StyledPrayForYouNav
+          className="pray-for-you-nav"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "20px",
+          }}
+          marginBottom={"100px"}
+        >
+          <span style={{ color: "#141414" }}>Pray For You</span>
+          <span style={{ color: "#775ee1" }} className="check-it-out">
+            &nbsp;리그 신청하러가기🔫
           </span>
         </StyledPrayForYouNav>
       )}
@@ -144,8 +166,9 @@ const StyledSearchImage = styled.img`
 `;
 
 const StyledPrayForYouNav = styled.div`
-  margin-top: 30px;
-  margin-bottom: 100px;
+  margin-top: ${(props) => props.marginTop || "0px"};
+  height: 30px;
+  margin-bottom: ${(props) => props.marginBottom || "0px"};
   span {
     line-height: 20px;
     &:hover {
