@@ -39,26 +39,25 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
     <>
       {isMobile && (
         <StyledTopBar
-          height="70px"
-          paddingTop="20px"
+          height="98px"
           boxShadow="0 5px 10px #6852c6 inset"
           backgroundColor="#775ee1"
+          style={{ paddingTop: "16px", paddingInline: "30px" }}
           inset
           {...props}
         >
           <div
             style={{
-              height: "100%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              width: "80%",
               margin: "0 auto",
             }}
           >
             <div
               style={{
                 display: "flex",
+                justifyContent: "space-between",
               }}
             >
               <div
@@ -75,12 +74,13 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
               </div>
               <div
                 style={{
-                  flexGrow: 0,
-                  flexShrink: 0,
-                  flexBasis: "50%",
-                  textAlign: "right",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  color: "white",
                 }}
               >
+                <div>{`${"스나이퍼"}`}</div>
                 <button
                   style={{
                     width: "65px",
@@ -105,45 +105,20 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                 </button>
               </div>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <p
-                style={{
-                  flexGrow: 0,
-                  flexShrink: 0,
-                  flexBasis: "60%",
-                }}
-              >
-                테스트 클랜
-              </p>
-              <div
-                style={{
-                  flexGrow: 0,
-                  flexShrink: 0,
-                  flexBasis: "40%",
-                  display: "flex",
-                }}
-              >
-                <p
-                  style={{
-                    flexGrow: 0,
-                    flexShrink: 0,
-                    flexBasis: "50%",
-                    textAlign: "right",
-                  }}
-                >
-                  킬뎃 {Math.floor((kill / (kill + death)) * 100)}%{" "}
-                </p>
-                <p
-                  style={{
-                    flexGrow: 0,
-                    flexShrink: 0,
-                    flexBasis: "50%",
-                    textAlign: "right",
-                  }}
-                >
-                  판킬 {Math.floor(kill / gameCount)}{" "}
-                </p>
-              </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginTop: "10px",
+                fontSize: "16px",
+              }}
+            >
+              <div>테스트 클랜</div>
+              <div style={{ fontWeight: "bold" }}>{`킬뎃 ${(
+                (kill * 100) /
+                (kill + death)
+              ).toFixed(1)}%  판킬 ${(kill / gameCount).toFixed(2)}`}</div>
             </div>
           </div>
         </StyledTopBar>

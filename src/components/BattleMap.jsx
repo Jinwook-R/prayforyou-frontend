@@ -67,7 +67,7 @@ const BattleMap = ({ positions }) => {
                 className={idx.toString()}
                 id={position.placeType}
                 points={position.polygon}
-                style={highlighted ? targetedStyle : {}}
+                style={highlighted ? targetedStyle : { fill: "transparent" }}
                 onClick={(event) => {
                   clickPosition(event, position);
                 }}
