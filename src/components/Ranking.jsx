@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import {
   StyledList,
   StyledListItemWrapper,
   StyledListItem,
   StyledListItemText,
+  StyledButtonWrapper,
 } from "./wrapper";
 import styled from "@emotion/styled";
 import { clanListItemMockData } from "./listItem/ClanListItem";
@@ -24,14 +25,24 @@ const mockData = {
   ),
 };
 
-const Ranking = ({ data, ...props }) => {
+const Ranking = ({ data, pageUnit = 8, ...props }) => {
   const [clanListTypeSwitch, setClanListTypeSwitch] = useState("first");
+
+  const [pageCount, setPageCount] = useState(0);
+  const isEnd = useMemo(() => {
+    return (pageCount + 1) * pageUnit > data.length;
+  }, [pageUnit, data, pageCount]);
 
   const handleOnClick = (e) => {
     e.preventDefault();
     if (e.target.className.includes(clanListTypeSwitch)) return;
     clanListTypeSwitch === "first" && setClanListTypeSwitch("second");
     clanListTypeSwitch === "second" && setClanListTypeSwitch("first");
+    setPageCount(0);
+  };
+
+  const moreButtonHandler = () => {
+    setPageCount((prevState) => prevState + 1);
   };
 
   //const { dailyView, weeklyView } = data;
@@ -40,10 +51,15 @@ const Ranking = ({ data, ...props }) => {
   const renderList = useCallback(() => {
     const targetList =
       clanListTypeSwitch === "first" ? firstClanList : secondClanList;
-
-    return targetList && targetList.length > 0 ? (
+    const slicedData = (() => {
+      const sliceCount = (pageCount + 1) * pageUnit;
+      const parsed =
+        targetList.length < sliceCount ? targetList.length : sliceCount;
+      return (targetList || []).slice(0, parsed);
+    })();
+    return slicedData && slicedData.length > 0 ? (
       <>
-        {targetList.map((item, index) => {
+        {slicedData.map((item, index) => {
           return <ClanListItem key={`${index}`} {...item} />;
         })}
       </>
@@ -56,21 +72,24 @@ const Ranking = ({ data, ...props }) => {
         </StyledListItem>
       </StyledListItemWrapper>
     );
-  }, [firstClanList, secondClanList, clanListTypeSwitch]);
+  }, [
+    firstClanList,
+    secondClanList,
+    clanListTypeSwitch,
+    data,
+    pageCount,
+    pageUnit,
+  ]);
 
   return (
     <div
       className="ranking"
       style={{
-        borderRadius: "15px",
         marginTop: "16px",
         overflow: "hidden",
         ...props,
       }}
     >
-      <p style={{ textAlign: "left", color: "#858585" }}>
-        * 인기 순위는 조회수 기준입니다
-      </p>
       <div
         style={{
           display: "flex",
@@ -112,6 +131,24 @@ const Ranking = ({ data, ...props }) => {
         </StyledButton>
       </div>
       <StyledList borderRadius="0 0 15px 15px">{renderList()}</StyledList>
+      {!isEnd && (
+        <StyledButtonWrapper
+          height={"80px"}
+          justifyContent={"center"}
+          onClick={moreButtonHandler}
+          style={{
+            width: "100%",
+            marginTop: "20px",
+            alignItems: "center",
+            background: "#775ee2",
+            fontWeight: "bold",
+            fontSize: "20px",
+            color: "white",
+          }}
+        >
+          더보기
+        </StyledButtonWrapper>
+      )}
     </div>
   );
 };
