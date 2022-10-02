@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import titleImage from "../assets/logo_3.png";
 import { NavLink } from "react-router-dom";
+import { ReactComponent as Search } from "../assets/search.svg";
 import {
   BREAK_POINT,
   COMMON_LAYOUT_PC_HORIZONTAL_MAX,
@@ -8,9 +9,11 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { StyledButtonWrapper } from "./wrapper";
 import { useRef, useState } from "react";
+import { useLocation } from "react-router";
 
 const Header = () => {
   const menuRef = useRef(null);
+  const { pathname } = useLocation();
   const [mobileMenuDropdown, setMobileMenuDropdown] = useState(false);
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
@@ -28,15 +31,54 @@ const Header = () => {
     >
       <StyledHeaderInnerWrapper>
         <StyledHeaderInner padding={0} height={isMobile ? "56px" : "120px"}>
-          <NavLink to={"/"}>
-            <div>
+          <div style={{ display: "flex", width: "100%", alignItems: "center" }}>
+            <NavLink to={"/"}>
               <img
                 src={titleImage}
                 alt=""
                 style={{ height: isMobile ? "24px" : "40px" }}
               />
-            </div>
-          </NavLink>
+            </NavLink>
+            {!isMobile && pathname === "/user" && (
+              <>
+                <div style={{ display: "flex", flex: 1 }}>
+                  <StyledHeaderNavigation padding={0}>
+                    <StyledNavLink
+                      to={"/league"}
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      리그홈
+                    </StyledNavLink>
+                    <StyledNavLink
+                      to={"/private"}
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      개인랭킹
+                    </StyledNavLink>
+                    <StyledNavLink
+                      to={"/clan"}
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      클랜홈
+                    </StyledNavLink>
+                  </StyledHeaderNavigation>
+                </div>
+                <SearchInputWrapper height={"64px"} type="text">
+                  <Search
+                    width={"30px"}
+                    height={"30px"}
+                    style={{ marginRight: "24px" }}
+                  />
+                  <StyledInput
+                    className="searchInput"
+                    placeholder="사용자 검색"
+                    type="text"
+                    onChange={() => {}}
+                  />
+                </SearchInputWrapper>
+              </>
+            )}
+          </div>
           {isMobile && (
             <div
               ref={menuRef}
@@ -95,7 +137,7 @@ const Header = () => {
           )}
         </StyledHeaderInner>
       </StyledHeaderInnerWrapper>
-      {!isMobile && (
+      {!isMobile && pathname !== "/user" && (
         <StyledHeaderInnerWrapper>
           <StyledHeaderNavigation padding={0}>
             <StyledNavLink
@@ -172,6 +214,38 @@ const Dropdown = styled.div`
     margin-top: 5px;
   }
   z-index: 99;
+`;
+const SearchInputWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: ${(props) => props.height};
+  width: 308px;
+  color: white;
+  font-size: 24px;
+  padding-inline: 32px;
+  border-radius: 50px;
+  border: 2px solid white;
+  background-color: transparent;
+`;
+
+const StyledInput = styled.input`
+  box-sizing: border-box;
+  background-color: transparent;
+  width: 100%;
+  height: 35px;
+  outline: none;
+  color: white;
+  border: none;
+  font-size: 24px;
+  &::placeholder {
+    font-size: 24px;
+    color: white;
+    margin-top: 55px;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 const DropdownItem = styled(NavLink)`
