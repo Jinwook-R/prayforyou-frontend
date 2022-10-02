@@ -1,6 +1,8 @@
 import React from "react";
 import MapInfoListItem from "./MapInfoListItem";
 import { StyledList, StyledListItemWrapper, StyledListItem } from "./wrapper";
+import { useMediaQuery } from "react-responsive";
+import { BREAK_POINT } from "../utils/constants";
 const MapInfoList = ({
   data = [],
   width,
@@ -8,8 +10,16 @@ const MapInfoList = ({
   outputText,
   clickedButton,
 }) => {
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${BREAK_POINT})`,
+  });
   return (
-    <StyledList width={width} margin={margin} borderRadius="15px">
+    <StyledList
+      maxHeight={isMobile ? "auto" : "850px"}
+      width={width}
+      margin={margin}
+      borderRadius="15px"
+    >
       {data.length &&
         data.map((item, index) => {
           return (
