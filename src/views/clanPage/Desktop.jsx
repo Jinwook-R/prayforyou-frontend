@@ -145,11 +145,7 @@ const Desktop = () => {
             </div>
           </div>
         </TablePageTitleWrapper>
-        <Table
-          headerStyle={{ width: "100%" }}
-          bodyStyle={{ width: "100%" }}
-          {...mockTableProps}
-        />
+        <Table {...mockTableProps} />
       </StyledMainContentWrapper>
     </StyledDesktopWrapper>
   );

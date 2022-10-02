@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { StyledButtonWrapper } from "../wrapper";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 /** CellConfig
  *  @field name : string (컬럼 표시명)
@@ -34,6 +34,7 @@ const Table = ({
   const moreButtonHandler = () => {
     setPageCount((prevState) => prevState + 1);
   };
+
   return (
     <>
       <StyledTable>
@@ -102,17 +103,22 @@ const Table = ({
 
 const StyledTable = styled.div`
   overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 `;
 
 const TableHeader = styled.div`
   height: 40px;
-  width: fit-content;
   background: #775ee2;
+  align-self: stretch;
   display: flex;
 `;
 
 const TableBody = styled.div`
-  width: fit-content;
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
   > * + * {
     margin-top: 5px;
   }
@@ -124,7 +130,7 @@ const HeaderCell = styled.div`
   font-size: 20px;
   font-weight: bold;
   flex: ${(props) => (props.width ? "none" : 1)};
-  width: ${(props) => props.width || "auto"};
+  width: ${(props) => props.width};
   justify-content: ${(props) => props.justifyContent || "start"};
   align-items: center;
   height: 100%;
@@ -132,14 +138,16 @@ const HeaderCell = styled.div`
 const TableRow = styled.div`
   height: 80px;
   display: flex;
+  justify-self: stretch;
   align-items: center;
   background: white;
-  width: 100%;
 `;
 const RowCell = styled.div`
   display: flex;
   font-size: 20px;
   font-weight: normal;
+  background: white;
+  height: 100%;
   flex: ${(props) => (props.width ? "none" : 1)};
   width: ${(props) => props.width};
   justify-content: ${(props) => props.justifyContent || "start"};

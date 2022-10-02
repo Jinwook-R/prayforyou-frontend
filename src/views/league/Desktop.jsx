@@ -72,7 +72,7 @@ const Desktop = () => {
     cellConfigs: [
       {
         name: "참여중인 클랜",
-        width: "430px",
+        style: { flex: 1, minWidth: "430px" },
         renderer: (clan) => {
           return <User thumbnail={clan.thumbnail} name={clan.clanName} />;
         },
