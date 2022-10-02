@@ -1,2 +1,3 @@
 import Text from "./Text";
-export { Text };
+import User from "./User";
+export { Text, User };

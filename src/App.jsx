@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import { MainPage, UserPage } from "./views";
 import { Header, Footer } from "./components";
 import { BREAK_POINT } from "./utils/constants";
+import { PrivatePage } from "./views/private";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -34,7 +35,8 @@ function App() {
       <Wrapper>
         <MainWrapper>
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route exact path="/" element={<MainPage />} />
+            <Route path="/private" element={<PrivatePage />} />
             <Route path="/user" element={<UserPage />} />
           </Routes>
         </MainWrapper>

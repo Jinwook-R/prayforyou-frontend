@@ -7,6 +7,7 @@ import StyledList from "./StyledList";
 import StyledListItemWrapper from "./StyledListItemWrapper";
 import StyledListItem from "./StyledListItem";
 import StyledListItemText from "./StyledListItemText";
+import TablePageTitleWrapper from "./TablePageTitleWrapper";
 export {
   StyledMainContentWrapper,
   StyledBannerWrapper,
@@ -17,4 +18,5 @@ export {
   StyledListItemWrapper,
   StyledListItem,
   StyledListItemText,
+  TablePageTitleWrapper,
 };
