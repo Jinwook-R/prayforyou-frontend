@@ -4,7 +4,6 @@ import {
   StyledMainContentWrapper,
 } from "../../components";
 import { Table } from "../../components/table";
-import sampleImg from "../../assets/clan_logo_sample_1.png";
 import { User } from "../../components/common";
 import { TablePageTitleWrapper } from "../../components/wrapper";
 
@@ -12,26 +11,7 @@ import { TablePageTitleWrapper } from "../../components/wrapper";
  * @field
  */
 
-const samplePrivateItemData = {
-  id: 1235123,
-  rank: 1,
-  thumbnail: sampleImg,
-  nickname: "김토끼",
-  winCount: 132,
-  loseCount: 82,
-  rate: 11.1, // winCount / (winCount+loseCount),
-  killDeathRate: 11.1,
-  killAverage: 8.8,
-  ladderPoint: 1111,
-};
-
-const privatePageMockData = {
-  infoList: Array.from({ length: 30 }, () => {
-    return { ...samplePrivateItemData };
-  }),
-};
-
-const Desktop = () => {
+const Desktop = ({ userInfoList }) => {
   const mockTableProps = {
     cellConfigs: [
       {
@@ -93,7 +73,7 @@ const Desktop = () => {
         },
       },
     ],
-    data: [...privatePageMockData.infoList].map((item, index) => ({
+    data: [...userInfoList].map((item, index) => ({
       ...item,
       rank: index + 1,
     })),
@@ -109,7 +89,12 @@ const Desktop = () => {
             랭킹은 1시간마다 갱신되며, 배치고사가 종료된 플레이어만 표시됩니다.
           </div>
         </TablePageTitleWrapper>
-        <Table {...mockTableProps} />
+        <Table
+          rowStyler={(row) => ({
+            background: row.isLadderDownTarget ? "#ffebeb" : "white",
+          })}
+          {...mockTableProps}
+        />
       </StyledMainContentWrapper>
     </StyledDesktopWrapper>
   );

@@ -1,74 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledDesktopWrapper,
   StyledMainContentWrapper,
 } from "../../components";
 import { Table } from "../../components/table";
-import sampleImg from "../../assets/clan_logo_sample_1.png";
 import { User, Toggle } from "../../components/common";
 import { TablePageTitleWrapper } from "../../components/wrapper";
 import { format, isDate } from "date-fns";
 
-const clanListItemMockData = {
-  clanName: "토끼토끼 클랜",
-  thumbnail: sampleImg, //img url
-  leagueType: "first",
-  winCount: 2124,
-  loseCount: 124,
-  createdDate: new Date(),
-  ladderPoint: 1235,
-  //rate = winCount / (winCount + loseCount)
-};
-
-const mapListMockData = {
-  mapName: "제3보급창고",
-  mapId: 123512,
-};
-
-const managerMockData = {
-  managerName: "김순경",
-};
-
-const leaguePageMockData = {
-  leagueTitle: "P4U 공식리그",
-  leagueType: "public", //public or private
-  isFavorite: false,
-  includingCount: 46,
-  includingManagers: Array.from({ length: 1 }, () => {
-    return { ...managerMockData };
-  }),
-  includingMaps: Array.from({ length: 2 }, () => {
-    return { ...mapListMockData };
-  }),
-  includingClans: Array.from({ length: 30 }, () => {
-    return { ...clanListItemMockData };
-  }),
-};
-
-const Desktop = () => {
-  //TODO : connect 'favorite' Update Api
-  const [isFavorite, setIsFavorite] = useState(leaguePageMockData.isFavorite);
-
-  const mockManagerTableProps = {
-    cellConfigs: [
-      {
-        name: "리그 관리자",
-        key: "managerName",
-      },
-    ],
-    data: [...leaguePageMockData.includingManagers],
-  };
-  const mockMapTableProps = {
-    cellConfigs: [
-      {
-        name: "리그 맵",
-        key: "mapName",
-      },
-    ],
-    data: [...leaguePageMockData.includingMaps],
-  };
-
-  const mockClanTableProps = {
+const Desktop = ({
+  leagueTitle,
+  leagueType,
+  includingCount,
+  clanData,
+  managerTableProps,
+  mapTableProps,
+  isFavorite,
+  onClickFavorite,
+}) => {
+  const clanTableProps = {
     cellConfigs: [
       {
         name: "참여중인 클랜",
@@ -124,7 +74,7 @@ const Desktop = () => {
         },
       },
     ],
-    data: [...leaguePageMockData.includingClans].map((item, index) => ({
+    data: [...clanData].map((item, index) => ({
       ...item,
       rank: index + 1,
     })),
@@ -142,20 +92,17 @@ const Desktop = () => {
                 display: "inline-block",
               }}
             >
-              {leaguePageMockData.leagueTitle}
+              {leagueTitle}
             </div>
             <div style={{ display: "inline-block", marginLeft: "50px" }}>
-              <Toggle
-                toggled={isFavorite}
-                onClick={() => setIsFavorite((prevState) => !prevState)}
-              />
+              <Toggle toggled={isFavorite} onClick={onClickFavorite} />
             </div>
           </div>
           <div style={{ height: "29px", fontSize: "20px" }}>
-            {`${leaguePageMockData.leagueType === "public" ? "공식" : "개인"}`}
+            {`${leagueType === "public" ? "공식" : "개인"}`}
           </div>
           <div style={{ height: "29px", fontSize: "20px" }}>
-            {`${leaguePageMockData.includingCount}개의 클랜 참여중`}
+            {`${includingCount}개의 클랜 참여중`}
           </div>
         </TablePageTitleWrapper>
         <Table
@@ -167,7 +114,7 @@ const Desktop = () => {
               height: "60px",
             };
           }}
-          {...mockManagerTableProps}
+          {...managerTableProps}
         />
         <Table
           bodyStyle={{ width: "100%" }}
@@ -178,7 +125,7 @@ const Desktop = () => {
               height: "60px",
             };
           }}
-          {...mockMapTableProps}
+          {...mapTableProps}
         />
         <Table
           headerStyle={{ paddingInline: "56px" }}
@@ -187,7 +134,7 @@ const Desktop = () => {
               paddingInline: "56px",
             };
           }}
-          {...mockClanTableProps}
+          {...clanTableProps}
         />
       </StyledMainContentWrapper>
     </StyledDesktopWrapper>

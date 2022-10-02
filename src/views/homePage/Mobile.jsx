@@ -39,7 +39,11 @@ const Mobile = () => {
           }
         }}
       >
-        <Search height="60px" handleDropDown={handleDropDown} />
+        <Search
+          height="60px"
+          handleDropDown={handleDropDown}
+          style={{ marginInline: "32px" }}
+        />
         {dropDown && <DropDown />}
         {!dropDown && (
           <div

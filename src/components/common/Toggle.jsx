@@ -2,14 +2,15 @@ import { StyledButtonWrapper } from "../wrapper";
 import { ReactComponent as Star } from "../../assets/star_empty.svg";
 import styled from "@emotion/styled";
 
-const Toggle = ({ onClick, toggled }) => {
+const Toggle = ({ onClick, toggled, style, iconStyle }) => {
   return (
     <ToggleWrapper
+      style={style}
       onClick={onClick}
       justifyContent={"center"}
       color={toggled ? "#775ee1" : "transparent"}
     >
-      <Star />
+      <Star style={iconStyle} />
     </ToggleWrapper>
   );
 };

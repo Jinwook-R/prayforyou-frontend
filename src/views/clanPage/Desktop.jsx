@@ -4,57 +4,18 @@ import {
   StyledMainContentWrapper,
 } from "../../components";
 import { Table } from "../../components/table";
-import sampleImg from "../../assets/clan_logo_sample_1.png";
 import { User } from "../../components/common";
 import {
   StyledButtonWrapper,
   TablePageTitleWrapper,
 } from "../../components/wrapper";
-import { useState, useCallback } from "react";
 
 /** PrivateTableRow
  * @field
  */
 
-const sampleClanItemData1 = {
-  id: 1235123,
-  rank: 1,
-  thumbnail: sampleImg,
-  clanName: "1부 클랜",
-  winCount: 132,
-  loseCount: 82,
-  rate: 11.1, // winCount / (winCount+loseCount),
-  ladderPoint: 1111,
-};
-
-const sampleClanItemData2 = {
-  id: 1235123,
-  rank: 1,
-  thumbnail: sampleImg,
-  clanName: "2부 클랜",
-  winCount: 132,
-  loseCount: 82,
-  rate: 11.1, // winCount / (winCount+loseCount),
-  ladderPoint: 1111,
-};
-
-const clanPageMockData = {
-  first: Array.from({ length: 30 }, () => {
-    return { ...sampleClanItemData1 };
-  }),
-  second: Array.from({ length: 30 }, () => {
-    return { ...sampleClanItemData2 };
-  }),
-};
-
-const Desktop = () => {
-  //TODO : 필요에 따라, 아래 방식이 아닌 개별 라우트 페이지처리 필요
-  const [isFirstView, setIsFirstView] = useState(true); //first or second
-
-  const linkButtonHandler = useCallback(() => {
-    setIsFirstView((prevState) => !prevState);
-  }, []);
-  const mockTableProps = {
+const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
+  const clanTableProps = {
     cellConfigs: [
       {
         name: "순위",
@@ -101,7 +62,7 @@ const Desktop = () => {
         },
       },
     ],
-    data: [...clanPageMockData[isFirstView ? "first" : "second"]].map(
+    data: [...clanData[isFirstView ? "first" : "second"]].map(
       (item, index) => ({
         ...item,
         rank: index + 1,
@@ -127,7 +88,7 @@ const Desktop = () => {
               style={{ flex: "none", display: "flex", alignItems: "center" }}
             >
               <StyledButtonWrapper
-                onClick={linkButtonHandler}
+                onClick={onClickViewChange}
                 justifyContent={"center"}
                 height={"50px"}
                 style={{
@@ -145,7 +106,7 @@ const Desktop = () => {
             </div>
           </div>
         </TablePageTitleWrapper>
-        <Table {...mockTableProps} />
+        <Table {...clanTableProps} />
       </StyledMainContentWrapper>
     </StyledDesktopWrapper>
   );

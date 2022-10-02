@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import SearchImage from "../assets/search.png";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { searchUser } from "../redux/user";
 import { useMediaQuery } from "react-responsive";
@@ -16,7 +15,6 @@ const Search = ({ height, handleDropDown }) => {
     query: `(max-width: ${BREAK_POINT})`,
   });
 
-  console.log("media?", isMobile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -55,7 +53,7 @@ const Search = ({ height, handleDropDown }) => {
   };
 
   return (
-    <StyledSearchWrapper>
+    <StyledSearchWrapper style={{ paddingInline: isMobile ? "32px" : "0" }}>
       <StyledSearchInputWrapper height={height} type="text">
         <StyledInput
           className="searchInput"
@@ -144,13 +142,6 @@ const StyledInput = styled.input`
   &:focus {
     outline: none;
   }
-`;
-
-const StyledSearchImage = styled.img`
-  position: absolute;
-  width: 23px;
-  top: 21px;
-  right: 35px;
 `;
 
 const StyledPrayForYouNav = styled.div`

@@ -1,14 +1,23 @@
 import styled from "@emotion/styled";
 import { Text } from "./index";
 
-const User = ({ name, thumbnail }) => {
+const User = ({
+  name,
+  thumbnail,
+  thumbnailSize = 40,
+  fontSize = "20px",
+  fontWeight = "normal",
+  paddingBetween = "22px",
+}) => {
   return (
     <UserWrapper>
-      <UserCell paddingInline={"0px"} paddingRight={"11px"}>
-        <img width={40} height={40} src={thumbnail} />
+      <UserCell paddingInline={"0px"} paddingRight={paddingBetween}>
+        <img width={thumbnailSize} height={thumbnailSize} src={thumbnail} />
       </UserCell>
-      <UserCell>
-        <Text fontSize={"20px"}>{name}</Text>
+      <UserCell paddingInline={"0px"}>
+        <Text fontSize={fontSize} fontWeight={fontWeight}>
+          {name}
+        </Text>
       </UserCell>
     </UserWrapper>
   );
@@ -16,7 +25,6 @@ const User = ({ name, thumbnail }) => {
 
 const UserWrapper = styled.div`
   border-radius: 15px;
-  background: white;
   display: flex;
   align-items: center;
 `;

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { StyledButtonWrapper } from "../wrapper";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 
 /** CellConfig
  *  @field name : string (컬럼 표시명)
@@ -13,6 +13,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
  */
 
 const Table = ({
+  overflow = "auto",
   cellConfigs,
   data,
   pageUnit = 8,
@@ -37,7 +38,7 @@ const Table = ({
 
   return (
     <>
-      <StyledTable>
+      <StyledTable overflow={overflow}>
         <TableHeader style={headerStyle}>
           {(cellConfigs || []).map((cellConfig, index) => (
             <HeaderCell
@@ -102,7 +103,7 @@ const Table = ({
 };
 
 const StyledTable = styled.div`
-  overflow-x: auto;
+  overflow-x: ${(props) => props.overflow};
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -146,7 +147,7 @@ const RowCell = styled.div`
   display: flex;
   font-size: 20px;
   font-weight: normal;
-  background: white;
+  background: inherit;
   height: 100%;
   flex: ${(props) => (props.width ? "none" : 1)};
   width: ${(props) => props.width};

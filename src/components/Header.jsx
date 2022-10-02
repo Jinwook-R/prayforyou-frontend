@@ -171,6 +171,7 @@ const Dropdown = styled.div`
   > * + * {
     margin-top: 5px;
   }
+  z-index: 99;
 `;
 
 const DropdownItem = styled(NavLink)`

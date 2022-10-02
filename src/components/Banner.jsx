@@ -1,11 +1,19 @@
 import styled from "@emotion/styled";
 
-const Banner = ({ imgUrl, siteUrl, width, height, marginTop, ...props }) => {
+const Banner = ({
+  imgUrl,
+  siteUrl,
+  width,
+  height,
+  marginTop,
+  margin,
+  ...props
+}) => {
   return (
     <StyledBanner
-      style={{ width, height, marginTop, ...props }}
+      style={{ width, height, marginTop, margin, ...props }}
       {...props}
-    ></StyledBanner>
+    />
   );
 };
 
@@ -14,6 +22,7 @@ const StyledBanner = styled.div`
   background-color: #ffffff;
   border: 1px solid #959595;
   margin-bottom: ${(props) => props.marginBottom};
+  margin: ${(props) => props.margin};
 `;
 
 export default Banner;
