@@ -3,7 +3,7 @@ import {
   StyledDesktopWrapper,
   StyledMainContentWrapper,
 } from "../../components";
-import { RankTable } from "../../components/table";
+import { Table } from "../../components/table";
 import sampleImg from "../../assets/clan_logo_sample_1.png";
 import { User } from "../../components/common";
 import {
@@ -145,7 +145,7 @@ const Desktop = () => {
             </div>
           </div>
         </TablePageTitleWrapper>
-        <RankTable {...mockTableProps} />
+        <Table {...mockTableProps} />
       </StyledMainContentWrapper>
     </StyledDesktopWrapper>
   );

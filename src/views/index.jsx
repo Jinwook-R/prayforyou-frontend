@@ -1,4 +1,6 @@
-import { MainPage } from "./mainPage";
+import { HomePage } from "./HomePage";
 import { UserPage } from "./userPage";
+import { PrivatePage } from "./privatePage";
+import { ClanPage } from "./clanPage";
 
-export { MainPage, UserPage };
+export { HomePage, UserPage, PrivatePage, ClanPage };

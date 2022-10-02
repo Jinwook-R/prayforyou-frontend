@@ -1,2 +1,2 @@
-import RankTable from "./RankTable";
-export { RankTable };
+import Table from "./Table";
+export { Table };

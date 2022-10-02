@@ -2,11 +2,12 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Route, Routes } from "react-router";
 import { useMediaQuery } from "react-responsive";
-import { MainPage, UserPage } from "./views";
+import { HomePage, UserPage } from "./views";
 import { Header, Footer } from "./components";
 import { BREAK_POINT } from "./utils/constants";
-import { PrivatePage } from "./views/private";
+import { PrivatePage } from "./views/privatePage";
 import { ClanPage } from "./views/clanPage";
+import { LeaguePage } from "./views/league";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -36,10 +37,11 @@ function App() {
       <Wrapper>
         <MainWrapper>
           <Routes>
-            <Route exact path="/" element={<MainPage />} />
+            <Route exact path="/" element={<HomePage />} />
             <Route path="/private" element={<PrivatePage />} />
             <Route path="/clan" element={<ClanPage />} />
             <Route path="/user" element={<UserPage />} />
+            <Route path="/league" element={<LeaguePage />} />
           </Routes>
         </MainWrapper>
       </Wrapper>

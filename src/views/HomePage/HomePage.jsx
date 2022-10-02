@@ -5,7 +5,7 @@ import { StyledMainPageWrapper } from "../../components";
 import Mobile from "./Mobile";
 import Desktop from "./Desktop";
 
-const MainPage = () => {
+const HomePage = () => {
   const isDesktop = useMediaQuery({
     query: `(min-width: ${BREAK_POINT})`,
   });
@@ -22,4 +22,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default HomePage;

@@ -1,3 +1,4 @@
 import Text from "./Text";
 import User from "./User";
-export { Text, User };
+import Toggle from "./Toggle";
+export { Text, User, Toggle };

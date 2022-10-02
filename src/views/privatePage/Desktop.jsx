@@ -3,7 +3,7 @@ import {
   StyledDesktopWrapper,
   StyledMainContentWrapper,
 } from "../../components";
-import { RankTable } from "../../components/table";
+import { Table } from "../../components/table";
 import sampleImg from "../../assets/clan_logo_sample_1.png";
 import { User } from "../../components/common";
 import { TablePageTitleWrapper } from "../../components/wrapper";
@@ -109,7 +109,7 @@ const Desktop = () => {
             랭킹은 1시간마다 갱신되며, 배치고사가 종료된 플레이어만 표시됩니다.
           </div>
         </TablePageTitleWrapper>
-        <RankTable {...mockTableProps} />
+        <Table {...mockTableProps} />
       </StyledMainContentWrapper>
     </StyledDesktopWrapper>
   );

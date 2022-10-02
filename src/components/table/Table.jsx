@@ -9,9 +9,17 @@ import { useMemo, useState } from "react";
  *  @field width? : string (as width, 셀 width)
  *  @field align? : string (as start | center | end, cell의 align 속성)
  *  @field renderer : (data : object)=>ReactNode (data를 통해 각 셀을 그리게 될 렌더러)
+ *  @field rowStyler : (data : object (rowData),index)=> style object (특정 rowData, index 혹은 전체 row에 대한 스타일 설정)
  */
 
-const RankTable = ({ cellConfigs, data, pageUnit = 8 }) => {
+const Table = ({
+  cellConfigs,
+  data,
+  pageUnit = 8,
+  bodyStyle,
+  headerStyle,
+  rowStyler,
+}) => {
   const [pageCount, setPageCount] = useState(0);
   const isEnd = useMemo(() => {
     return (pageCount + 1) * pageUnit > data.length;
@@ -28,28 +36,33 @@ const RankTable = ({ cellConfigs, data, pageUnit = 8 }) => {
   };
   return (
     <>
-      <Table>
-        <TableHeader>
+      <StyledTable>
+        <TableHeader style={headerStyle}>
           {(cellConfigs || []).map((cellConfig, index) => (
             <HeaderCell
               key={`${index}`}
               justifyContent={cellConfig?.align || "start"}
-              width={cellConfig?.width || "auto"}
+              width={cellConfig?.width}
             >
               {cellConfig.name}
             </HeaderCell>
           ))}
         </TableHeader>
-        <TableBody>
+        <TableBody style={bodyStyle}>
           {(slicedData || []).map((listItemData, rowIndex) => {
             return (
-              <TableRow key={`${rowIndex}`}>
+              <TableRow
+                key={`${rowIndex}`}
+                style={
+                  rowStyler ? rowStyler(listItemData, rowIndex) : undefined
+                }
+              >
                 {cellConfigs.map((cellConfig, cellIndex) => {
                   return (
                     <RowCell
                       key={`${rowIndex}-${cellIndex}`}
                       justifyContent={cellConfig?.align || "start"}
-                      width={cellConfig?.width || "auto"}
+                      width={cellConfig?.width}
                     >
                       {cellConfig?.key
                         ? listItemData[cellConfig.key] || ""
@@ -61,7 +74,7 @@ const RankTable = ({ cellConfigs, data, pageUnit = 8 }) => {
             );
           })}
         </TableBody>
-      </Table>
+      </StyledTable>
 
       {!isEnd && (
         <StyledButtonWrapper
@@ -85,7 +98,7 @@ const RankTable = ({ cellConfigs, data, pageUnit = 8 }) => {
   );
 };
 
-const Table = styled.div`
+const StyledTable = styled.div`
   overflow-x: auto;
 `;
 
@@ -130,9 +143,9 @@ const RowCell = styled.div`
   align-items: center;
 `;
 
-RankTable.propTypes = {
+Table.propTypes = {
   cellConfigs: PropTypes.arrayOf(PropTypes.element), // = CellConfig[]
   data: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default RankTable;
+export default Table;

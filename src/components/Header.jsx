@@ -2,10 +2,8 @@ import styled from "@emotion/styled";
 import titleImage from "../assets/logo_3.png";
 import { NavLink } from "react-router-dom";
 import { COMMON_LAYOUT_PC_HORIZONTAL_MAX } from "../utils/constants";
-import { useLocation } from "react-router";
 
 const Header = ({ isMobile }) => {
-  const { pathname } = useLocation();
   return (
     <StyledHeader
       justifyContents={isMobile ? "center" : ""}
@@ -22,15 +20,12 @@ const Header = ({ isMobile }) => {
               style={{ height: isMobile ? "30px" : "40px" }}
             />
           </NavLink>
-
-          {isMobile && <StyledMapName>3 보급창고</StyledMapName>}
         </StyledHeaderInner>
       </StyledHeaderInnerWrapper>
       <StyledHeaderInnerWrapper>
         <StyledHeaderNavigation padding={0}>
           <StyledNavLink
-            to={"/"}
-            end
+            to={"/league"}
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             리그홈
