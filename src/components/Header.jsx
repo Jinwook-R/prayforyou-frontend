@@ -26,32 +26,29 @@ const Header = ({ isMobile }) => {
           {isMobile && <StyledMapName>3 보급창고</StyledMapName>}
         </StyledHeaderInner>
       </StyledHeaderInnerWrapper>
-
-      {pathname === "/" && (
-        <StyledHeaderInnerWrapper>
-          <StyledHeaderNavigation padding={0}>
-            <StyledNavLink
-              to={"/"}
-              end
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              리그홈
-            </StyledNavLink>
-            <StyledNavLink
-              to={"/private"}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              개인랭킹
-            </StyledNavLink>
-            <StyledNavLink
-              to={"/clan"}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              클랜홈
-            </StyledNavLink>
-          </StyledHeaderNavigation>
-        </StyledHeaderInnerWrapper>
-      )}
+      <StyledHeaderInnerWrapper>
+        <StyledHeaderNavigation padding={0}>
+          <StyledNavLink
+            to={"/"}
+            end
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            리그홈
+          </StyledNavLink>
+          <StyledNavLink
+            to={"/private"}
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            개인랭킹
+          </StyledNavLink>
+          <StyledNavLink
+            to={"/clan"}
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            클랜홈
+          </StyledNavLink>
+        </StyledHeaderNavigation>
+      </StyledHeaderInnerWrapper>
     </StyledHeader>
   );
 };

@@ -6,6 +6,7 @@ import { MainPage, UserPage } from "./views";
 import { Header, Footer } from "./components";
 import { BREAK_POINT } from "./utils/constants";
 import { PrivatePage } from "./views/private";
+import { ClanPage } from "./views/clanPage";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -37,6 +38,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<MainPage />} />
             <Route path="/private" element={<PrivatePage />} />
+            <Route path="/clan" element={<ClanPage />} />
             <Route path="/user" element={<UserPage />} />
           </Routes>
         </MainWrapper>
