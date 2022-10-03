@@ -16,12 +16,11 @@ const samplePrivateItemData = {
   killDeathRate: 11.1,
   killAverage: 8.8,
   ladderPoint: 1111,
-  isLadderDownTarget: false,
 };
 
 const privatePageMockData = {
   infoList: Array.from({ length: 30 }, (_, index) => {
-    return { ...samplePrivateItemData, isLadderDownTarget: index % 2 === 0 };
+    return { ...samplePrivateItemData };
   }),
 };
 

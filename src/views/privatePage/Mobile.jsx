@@ -13,7 +13,6 @@ const Mobile = ({ userInfoList }) => {
         renderer: (userInfo) => {
           return (
             <MobileUserListItem
-              isDownTarget={userInfo.isLadderDownTarget}
               userName={userInfo.nickname}
               thumbnail={userInfo.thumbnail}
               rank={userInfo.rank}
