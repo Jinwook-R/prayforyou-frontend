@@ -33,6 +33,7 @@ const Mobile = () => {
       />
       <Title width="210px" />
       <div
+        style={{ position: "relative" }}
         onMouseDown={(e) => {
           if (!e.target.className.includes("searchInput")) {
             e.preventDefault();
@@ -40,11 +41,13 @@ const Mobile = () => {
         }}
       >
         <Search
-          height="60px"
+          dropDown={dropDown}
           handleDropDown={handleDropDown}
           style={{ marginInline: "32px" }}
         />
-        {dropDown && <DropDown />}
+        {dropDown && (
+          <DropDown width="100%" top={48} left={0} marginBottom={"20px"} />
+        )}
         {!dropDown && (
           <div
             style={{

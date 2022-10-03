@@ -9,7 +9,7 @@ const StyledListItem = styled.div`
   width: 90%;
   margin: 0 auto;
   cursor: pointer;
-  height: 85px;
+  height: ${(props) => props.height || "85px"};
 `;
 
 export default StyledListItem;

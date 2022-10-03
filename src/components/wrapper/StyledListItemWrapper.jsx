@@ -5,9 +5,9 @@ const StyledListItemWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  margin-bottom: 16px;
+  margin-bottom: ${(props) => props.marginBottom};
   background-color: #f7f7f7;
-  border-radius: 20px;
+  border-radius: ${(props) => props.borderRadius || "20px"};
 `;
 
 export default StyledListItemWrapper;

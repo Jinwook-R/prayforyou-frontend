@@ -7,8 +7,13 @@ import {
   StyledListItemText,
 } from "./wrapper";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { useMediaQuery } from "react-responsive";
+import { BREAK_POINT } from "../utils/constants";
 
 const DropDown = ({ ...props }) => {
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${BREAK_POINT})`,
+  });
   const [searchedUsers] = useLocalStorage("searchedUsers", []);
   const [favoriteUsers] = useLocalStorage("favoriteUsers", []);
 
@@ -35,15 +40,23 @@ const DropDown = ({ ...props }) => {
       <>
         {targetList.map((item, idx) => {
           return (
-            <StyledListItemWrapper key={`${idx}`}>
-              <StyledListItem>
-                <StyledListItemText flex={1} textAlign="left" fontSize="20px">
+            <StyledListItemWrapper
+              key={`${idx}`}
+              marginBottom={isMobile ? "10px" : "16px"}
+              borderRadius={isMobile && "15px"}
+            >
+              <StyledListItem height={"72px"}>
+                <StyledListItemText
+                  flex={1}
+                  textAlign="left"
+                  fontSize={isMobile ? "15px" : "20px"}
+                >
                   {item.nickname}
                 </StyledListItemText>
                 <StyledListItemText
                   textAlign="right"
-                  fontSize="16px"
-                  color="#000"
+                  fontSize={isMobile ? "12px" : "16px"}
+                  color="#28252b"
                 >
                   테스트 클랜
                 </StyledListItemText>
@@ -55,7 +68,10 @@ const DropDown = ({ ...props }) => {
     ) : (
       <StyledListItemWrapper>
         <StyledListItem textAlign="left">
-          <StyledListItemText textAlign="left" fontSize="20px">
+          <StyledListItemText
+            textAlign="left"
+            fontSize={isMobile ? "15px" : "20px"}
+          >
             결과 없음
           </StyledListItemText>
         </StyledListItem>
@@ -89,6 +105,8 @@ const DropDown = ({ ...props }) => {
           style={{
             backgroundColor: recentSearchButtonToggle ? "#775ee1" : "#f7f7f7",
             color: recentSearchButtonToggle ? "white" : "black",
+            fontSize: isMobile ? "12px" : "20px",
+            height: isMobile ? "56px" : "75px",
           }}
           onMouseDown={(e) => e.preventDefault()}
         >
@@ -102,12 +120,18 @@ const DropDown = ({ ...props }) => {
             backgroundColor: favoriteButtonToggle ? "#775ee1" : "#f7f7f7",
             color: favoriteButtonToggle ? "white" : "black",
             borderRadius: "0 15px 0 0",
+            fontSize: isMobile ? "12px" : "20px",
+            height: isMobile ? "56px" : "75px",
           }}
         >
           즐겨찾기 검색
         </StyledButton>
       </div>
-      <StyledList onClick={handleUserCliked} borderRadius="0 0 15px 15px">
+      <StyledList
+        onClick={handleUserCliked}
+        borderRadius="0 0 15px 15px"
+        padding={isMobile && "6px"}
+      >
         {renderList()}
       </StyledList>
     </div>

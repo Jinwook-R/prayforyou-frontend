@@ -4,7 +4,7 @@ const StyledList = styled.div`
   width: 100%;
   background-color: #775ee1;
   max-height: ${(props) => props.maxHeight || "auto"};
-  padding: 20px;
+  padding: ${(props) => props.padding || "20px"};
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : "15px"};
   overflow: scroll;
