@@ -17,6 +17,7 @@ const MapInfoList = ({
     <StyledList
       maxHeight={isMobile ? "auto" : "850px"}
       width={width}
+      padding={isMobile && "6px"}
       margin={margin}
       borderRadius="15px"
     >

@@ -3,9 +3,18 @@ import {
   StyledListItem,
   StyledListItemText,
 } from "./wrapper";
-import { PLACE_BUTTON, GUN_BUTTON, ROUND_BUTTON } from "../utils/constants";
+import {
+  PLACE_BUTTON,
+  GUN_BUTTON,
+  ROUND_BUTTON,
+  BREAK_POINT,
+} from "../utils/constants";
+import { useMediaQuery } from "react-responsive";
 
 const MapInfoListItem = ({ outputText, item, clickedButton, index }) => {
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${BREAK_POINT})`,
+  });
   const renderPositionInner = () => {
     return (
       <>
@@ -62,7 +71,7 @@ const MapInfoListItem = ({ outputText, item, clickedButton, index }) => {
   };
 
   return (
-    <StyledListItemWrapper>
+    <StyledListItemWrapper marginBottom={isMobile && "10px"}>
       <StyledListItem>{renderInner()}</StyledListItem>
     </StyledListItemWrapper>
   );

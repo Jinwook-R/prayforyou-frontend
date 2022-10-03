@@ -1,6 +1,7 @@
 import MapImage from "../assets/map.svg";
 import { useState } from "react";
 import { BREAK_POINT } from "../utils/constants";
+import { useMediaQuery } from "react-responsive";
 
 /** Position
  * @field rate : string
@@ -43,7 +44,7 @@ const BattleMap = ({ positions }) => {
   };
 
   return (
-    <div className="map-info-wrapper">
+    <div className="map-info-wrapper" style={{ marginBottom: "24px" }}>
       <div
         style={{ maxWidth: BREAK_POINT, maxHeight: BREAK_POINT }}
         className="map"
@@ -53,7 +54,7 @@ const BattleMap = ({ positions }) => {
           src={MapImage}
           useMap="#image-map"
         />
-        <svg
+        {/* TODO 추후 작업 <svg
           id="svg"
           onScroll={() => {}}
           viewBox="0 0 560 560"
@@ -82,7 +83,7 @@ const BattleMap = ({ positions }) => {
               />
             );
           })}
-        </svg>
+        </svg>*/}
       </div>
     </div>
   );
