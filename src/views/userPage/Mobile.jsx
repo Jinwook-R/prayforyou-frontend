@@ -22,7 +22,6 @@ const Mobile = ({
   offset,
   handleOffset,
 }) => {
-  //const banners = useSelector((store) => store.banner);
   const { nickname, userId } = location.state;
 
   return (

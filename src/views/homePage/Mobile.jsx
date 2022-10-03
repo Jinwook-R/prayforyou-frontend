@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Title, Search, DropDown } from "../../components";
 import { useDispatch } from "react-redux";
 import { fetchAllBanners } from "../../redux/banner/bannerSlice";
-
+import {
+  StyledList,
+  StyledListItemWrapper,
+  StyledListItem,
+  StyledListItemText,
+} from "../../components/wrapper";
 const Mobile = () => {
   const dispatch = useDispatch();
 
@@ -14,6 +19,9 @@ const Mobile = () => {
   const handleDropDown = (value) => {
     setDropDown(value);
   };
+
+  const [filteredUserNames, setFilteredUserNames] = useState([]);
+  const [userName, setUserName] = useState("");
 
   return (
     <div style={{ padding: "0 16px", paddingTop: "100px" }}>
@@ -30,11 +38,37 @@ const Mobile = () => {
           dropDown={dropDown}
           handleDropDown={handleDropDown}
           style={{ marginInline: "32px" }}
+          setFilteredUserNames={setFilteredUserNames}
+          setUserName={setUserName}
+          userName={userName}
         />
-        {dropDown && (
+        {dropDown && !userName && (
           <DropDown width="100%" top={48} left={0} marginBottom={"20px"} />
         )}
-        {!dropDown && (
+
+        {dropDown && userName && (
+          <StyledList>
+            {filteredUserNames.map((item, idx) => (
+              <StyledListItemWrapper
+                key={`${idx}`}
+                marginBottom={"10px"}
+                borderRadius={"15px"}
+              >
+                <StyledListItem height={"72px"}>
+                  <StyledListItemText
+                    flex={1}
+                    textAlign="left"
+                    fontSize={"15px"}
+                  >
+                    {item.nickname}
+                  </StyledListItemText>
+                </StyledListItem>
+              </StyledListItemWrapper>
+            ))}
+          </StyledList>
+        )}
+
+        {!dropDown && !userName && (
           <div
             style={{
               height: "250px",

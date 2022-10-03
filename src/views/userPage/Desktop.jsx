@@ -174,7 +174,7 @@ const Desktop = ({
               imgUrl={banners?.data?.typeA}
               {...BANNER_PROPS}
               height="50px"
-            />*/}
+            /> */}
           </div>
         </div>
       </div>

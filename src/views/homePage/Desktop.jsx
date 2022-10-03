@@ -10,8 +10,15 @@ import {
   Banner,
   Search,
 } from "../../components";
+import {
+  StyledList,
+  StyledListItemWrapper,
+  StyledListItem,
+  StyledListItemText,
+} from "../../components/wrapper";
 import { fetchAllBanners } from "../../redux/banner/bannerSlice";
 import { fetchAllRanking } from "../../redux/ranking/rankingSlice";
+
 const bannerProps = {
   width: "100%",
   height: "100px",
@@ -32,6 +39,9 @@ const Desktop = () => {
   const handleDropDown = (value) => {
     setDropDown(value);
   };
+
+  const [filteredUserNames, setFilteredUserNames] = useState([]);
+  const [userName, setUserName] = useState("");
 
   return (
     <StyledDesktopWrapper>
@@ -59,8 +69,14 @@ const Desktop = () => {
           }}
           style={{ position: "relative" }}
         >
-          <Search height="90px" handleDropDown={handleDropDown} />
-          {dropDown && (
+          <Search
+            height="90px"
+            handleDropDown={handleDropDown}
+            setFilteredUserNames={setFilteredUserNames}
+            setUserName={setUserName}
+            userName={userName}
+          />
+          {dropDown && !userName && (
             <DropDown
               position="absolute"
               top={73}
@@ -68,6 +84,31 @@ const Desktop = () => {
               width="100%"
               padding="0 30px"
             />
+          )}
+          {dropDown && userName && (
+            <>
+              <StyledList>
+                {dropDown &&
+                  userName &&
+                  filteredUserNames.map((item, idx) => (
+                    <StyledListItemWrapper
+                      key={`${idx}`}
+                      marginBottom={"16px"}
+                      borderRadius={"15px"}
+                    >
+                      <StyledListItem height={"72px"}>
+                        <StyledListItemText
+                          flex={1}
+                          textAlign="left"
+                          fontSize={"20px"}
+                        >
+                          {item.nickname}
+                        </StyledListItemText>
+                      </StyledListItem>
+                    </StyledListItemWrapper>
+                  ))}
+              </StyledList>
+            </>
           )}
         </div>
         {!dropDown && ranking && <Ranking data={ranking} />}
