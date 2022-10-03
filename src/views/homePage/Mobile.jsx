@@ -16,8 +16,8 @@ const Mobile = () => {
   };
 
   return (
-    <div style={{ padding: "0 16px" }}>
-      <Title width="210px" style={{ paddingTop: "100px" }} />
+    <div style={{ padding: "0 16px", paddingTop: "100px" }}>
+      <Title width="210px" />
       <div
         style={{ position: "relative" }}
         onMouseDown={(e) => {
