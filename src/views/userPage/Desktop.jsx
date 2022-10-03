@@ -86,16 +86,6 @@ const Desktop = ({
             }}
           >
             <BattleMap positions={mapPositions} />
-            <Banner
-              imgUrl={banners?.data?.typeA}
-              {...BANNER_PROPS}
-              height="50px"
-            />
-            <Banner
-              imgUrl={banners?.data?.typeA}
-              {...BANNER_PROPS}
-              height="50px"
-            />
           </div>
           <div
             style={{
@@ -175,7 +165,7 @@ const Desktop = ({
               offset={offset}
               handleOffset={handleOffset}
             />
-            <Banner
+            {/* <Banner
               imgUrl={banners?.data?.typeA}
               {...BANNER_PROPS}
               height="50px"
@@ -184,7 +174,7 @@ const Desktop = ({
               imgUrl={banners?.data?.typeA}
               {...BANNER_PROPS}
               height="50px"
-            />
+            />*/}
           </div>
         </div>
       </div>

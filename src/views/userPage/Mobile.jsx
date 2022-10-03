@@ -1,13 +1,13 @@
 import React from "react";
-import { TopBar, Banner, MapInfoList, BattleMap } from "../../components";
-import { useSelector } from "react-redux";
+import { TopBar, MapInfoList, BattleMap } from "../../components";
 import { MapButtonGroup } from "../../components";
 
+/*
 const BANNER_PROPS = {
   width: "85%",
   height: "100px",
   margin: "16px auto",
-};
+};*/
 
 const PLACE_BUTTON = "battlePlace";
 const GUN_BUTTON = "battleGun";
@@ -22,14 +22,13 @@ const Mobile = ({
   offset,
   handleOffset,
 }) => {
-  const banners = useSelector((store) => store.banner);
+  //const banners = useSelector((store) => store.banner);
   const { nickname, userId } = location.state;
 
   return (
     <>
       <TopBar nickname={nickname} userId={userId} battle={userBattle} />
       <BattleMap positions={mapPositions} />
-      <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} height="50px" />
       <MapButtonGroup
         clickedButton={clickedButton}
         handleClickedButton={handleClickedButton}
@@ -50,9 +49,9 @@ const Mobile = ({
         offset={offset}
         handleOffset={handleOffset}
       />
-      <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />
-      <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />
-      <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} height="50px" />
+      {/* <Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} /> */}
+      {/*<Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} />*/}
+      {/*<Banner imgUrl={banners?.data?.typeA} {...BANNER_PROPS} height="50px" />*/}
     </>
   );
 };
