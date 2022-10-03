@@ -98,7 +98,6 @@ const Ranking = ({ data, pageUnit = 8, ...props }) => {
           display: "flex",
           borderRadius: "15px 15px 0 0",
           overflow: "hidden",
-          border: "1px solid #b3b3b3",
           borderBottom: "0",
         }}
       >
@@ -107,11 +106,14 @@ const Ranking = ({ data, pageUnit = 8, ...props }) => {
           type="button"
           onClick={handleOnClick}
           style={{
+            borderRadius: "15px 0 0 0",
             textDecoration:
               clanListTypeSwitch === "first" ? "underline" : "none",
             backgroundColor:
               clanListTypeSwitch === "first" ? "#775ee1" : "#f7f7f7",
             color: clanListTypeSwitch === "first" ? "white" : "black",
+            border:
+              clanListTypeSwitch === "first" ? "none" : "1px solid #b3b3b3",
           }}
           onMouseDown={(e) => e.preventDefault()}
         >
@@ -128,6 +130,8 @@ const Ranking = ({ data, pageUnit = 8, ...props }) => {
               clanListTypeSwitch === "second" ? "#775ee1" : "#f7f7f7",
             color: clanListTypeSwitch === "second" ? "white" : "black",
             borderRadius: "0 15px 0 0",
+            border:
+              clanListTypeSwitch === "second" ? "none" : "1px solid #b3b3b3",
           }}
         >
           2부 리그

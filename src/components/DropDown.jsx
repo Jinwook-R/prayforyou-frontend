@@ -94,7 +94,7 @@ const DropDown = ({ ...props }) => {
           display: "flex",
           borderRadius: "15px 15px 0 0",
           overflow: "hidden",
-          border: "1px solid #b3b3b3",
+          // border: "1px solid #b3b3b3",
           borderBottom: "0",
         }}
       >
@@ -105,6 +105,9 @@ const DropDown = ({ ...props }) => {
           style={{
             backgroundColor: recentSearchButtonToggle ? "#775ee1" : "#f7f7f7",
             color: recentSearchButtonToggle ? "white" : "black",
+            border: recentSearchButtonToggle ? "none" : "solid #b3b3b3",
+            borderWidth: recentSearchButtonToggle ? "none" : "1px 0 0 1px",
+            borderRadius: "15px 0 0 0",
             fontSize: isMobile ? "12px" : "20px",
             height: isMobile ? "56px" : "75px",
           }}
@@ -119,6 +122,8 @@ const DropDown = ({ ...props }) => {
           style={{
             backgroundColor: favoriteButtonToggle ? "#775ee1" : "#f7f7f7",
             color: favoriteButtonToggle ? "white" : "black",
+            border: favoriteButtonToggle ? "none" : "solid #b3b3b3",
+            borderWidth: favoriteButtonToggle ? "none" : "1px 1px 0 0",
             borderRadius: "0 15px 0 0",
             fontSize: isMobile ? "12px" : "20px",
             height: isMobile ? "56px" : "75px",
