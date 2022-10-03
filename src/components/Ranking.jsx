@@ -28,10 +28,13 @@ const mockData = {
 const Ranking = ({ data, pageUnit = 8, ...props }) => {
   const [clanListTypeSwitch, setClanListTypeSwitch] = useState("first");
 
+  const { firstClanList, secondClanList } = mockData;
   const [pageCount, setPageCount] = useState(0);
   const isEnd = useMemo(() => {
-    return (pageCount + 1) * pageUnit > data.length;
-  }, [pageUnit, data, pageCount]);
+    const targetList =
+      clanListTypeSwitch === "first" ? firstClanList : secondClanList;
+    return (pageCount + 1) * pageUnit > targetList.length;
+  }, [pageUnit, firstClanList, secondClanList, pageCount]);
 
   const handleOnClick = (e) => {
     e.preventDefault();
@@ -47,7 +50,6 @@ const Ranking = ({ data, pageUnit = 8, ...props }) => {
 
   //const { dailyView, weeklyView } = data;
 
-  const { firstClanList, secondClanList } = mockData;
   const renderList = useCallback(() => {
     const targetList =
       clanListTypeSwitch === "first" ? firstClanList : secondClanList;
@@ -86,6 +88,7 @@ const Ranking = ({ data, pageUnit = 8, ...props }) => {
       className="ranking"
       style={{
         marginTop: "16px",
+        marginBottom: "16px",
         overflow: "hidden",
         ...props,
       }}
