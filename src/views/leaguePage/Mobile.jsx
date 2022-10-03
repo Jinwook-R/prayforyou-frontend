@@ -10,8 +10,8 @@ const Mobile = ({
   leagueType,
   includingCount,
   clanData,
-  managerTableProps,
-  mapTableProps,
+  //managerTableProps,
+  //mapTableProps,
   isFavorite,
   onClickFavorite,
 }) => {
@@ -92,7 +92,7 @@ const Mobile = ({
         </div>
       </MobilePageToolbarWrapper>
       <Banner height={"50px"} margin={"10px"} />
-      <Table
+      {/* TODO 추후 연동 <Table
         bodyStyle={{ width: "100%" }}
         headerStyle={{ width: "100%", paddingInline: "30px" }}
         rowStyler={() => {
@@ -102,8 +102,8 @@ const Mobile = ({
           };
         }}
         {...managerTableProps}
-      />
-      <Table
+      />*/}
+      {/* TODO: 추후 연동 <Table
         bodyStyle={{ width: "100%" }}
         headerStyle={{
           width: "100%",
@@ -117,7 +117,7 @@ const Mobile = ({
           };
         }}
         {...mapTableProps}
-      />
+      />*/}
       <Table
         headerStyle={{ paddingInline: "30px" }}
         rowStyler={() => {

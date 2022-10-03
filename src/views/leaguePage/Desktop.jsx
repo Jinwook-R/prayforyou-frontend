@@ -13,8 +13,8 @@ const Desktop = ({
   leagueType,
   includingCount,
   clanData,
-  managerTableProps,
-  mapTableProps,
+  //managerTableProps,
+  //mapTableProps,
   isFavorite,
   onClickFavorite,
 }) => {
@@ -105,7 +105,7 @@ const Desktop = ({
             {`${includingCount}개의 클랜 참여중`}
           </div>
         </TablePageTitleWrapper>
-        <Table
+        {/* TODO: 추후 연동 <Table
           bodyStyle={{ width: "100%" }}
           headerStyle={{ width: "100%", paddingInline: "56px" }}
           rowStyler={() => {
@@ -115,8 +115,8 @@ const Desktop = ({
             };
           }}
           {...managerTableProps}
-        />
-        <Table
+        /> */}
+        {/* TODO: 추후 연동 <Table
           bodyStyle={{ width: "100%" }}
           headerStyle={{ width: "100%", paddingInline: "56px" }}
           rowStyler={() => {
@@ -126,7 +126,7 @@ const Desktop = ({
             };
           }}
           {...mapTableProps}
-        />
+        />*/}
         <Table
           headerStyle={{ paddingInline: "56px" }}
           rowStyler={() => {

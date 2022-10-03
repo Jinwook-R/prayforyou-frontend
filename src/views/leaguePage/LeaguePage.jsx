@@ -48,6 +48,7 @@ const LeaguePage = () => {
   //TODO : connect 'favorite' Update Api
   const [isFavorite, setIsFavorite] = useState(leaguePageMockData.isFavorite);
 
+  /* TODO: 추후 연동 사항
   const mockManagerTableProps = {
     cellConfigs: [
       {
@@ -67,7 +68,7 @@ const LeaguePage = () => {
       },
     ],
     data: [...leaguePageMockData.includingMaps],
-  };
+  };*/
 
   const favoriteClickHandler = () => setIsFavorite((prevState) => !prevState);
   return isMobile ? (
@@ -76,8 +77,8 @@ const LeaguePage = () => {
       leagueType={leaguePageMockData.leagueType}
       includingCount={leaguePageMockData.includingCount}
       clanData={leaguePageMockData.includingClans}
-      managerTableProps={mockManagerTableProps}
-      mapTableProps={mockMapTableProps}
+      //managerTableProps={mockManagerTableProps}
+      //mapTableProps={mockMapTableProps}
       isFavorite={isFavorite}
       onClickFavorite={favoriteClickHandler}
     />
@@ -87,8 +88,8 @@ const LeaguePage = () => {
       leagueType={leaguePageMockData.leagueType}
       includingCount={leaguePageMockData.includingCount}
       clanData={leaguePageMockData.includingClans}
-      managerTableProps={mockManagerTableProps}
-      mapTableProps={mockMapTableProps}
+      //managerTableProps={mockManagerTableProps}
+      //mapTableProps={mockMapTableProps}
       isFavorite={isFavorite}
       onClickFavorite={favoriteClickHandler}
     />
