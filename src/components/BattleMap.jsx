@@ -1,5 +1,6 @@
 import MapImage from "../assets/map.svg";
 import { useState } from "react";
+import { BREAK_POINT } from "../utils/constants";
 
 /** Position
  * @field rate : string
@@ -43,7 +44,10 @@ const BattleMap = ({ positions }) => {
 
   return (
     <div className="map-info-wrapper">
-      <div style={{ width: "560px", height: "560px" }} className="map">
+      <div
+        style={{ maxWidth: BREAK_POINT, maxHeight: BREAK_POINT }}
+        className="map"
+      >
         <img
           style={{ width: "100%", height: "100%" }}
           src={MapImage}
