@@ -100,7 +100,7 @@ nav,
 section {
   ‌display: block;
 }
-html{
+html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
@@ -110,7 +110,6 @@ html{
 body {
   margin: 0;
   background-color: #f7f7f7;
-
 }
 ol,
 ul {
@@ -139,6 +138,12 @@ table {
 .fas {
   font-weight: 900 !important;
 }
-*{
+* {
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-size: 1rem;
 }

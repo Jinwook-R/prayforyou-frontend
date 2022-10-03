@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useMediaQuery } from "react-responsive";
@@ -6,6 +7,7 @@ import {
   BREAK_POINT,
   COMMON_LAYOUT_PC_HORIZONTAL_MAX,
 } from "../utils/constants";
+import { Toggle } from "./common";
 
 const TopBar = ({ userId, nickname, battle, ...props }) => {
   const { battleStats } = battle;
@@ -15,24 +17,36 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
     []
   );
 
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const isFavorite =
+      favoriteUsers?.some((user) => user.userId === userId) ?? false;
+    setIsFavorite(isFavorite);
+  }, [favoriteUsers]);
+
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
 
   const handleOnClick = () => {
-    if (
-      favoriteUsers.length &&
-      favoriteUsers.map((user) => Object.keys(user).includes(userId))
-    ) {
-      return;
-    }
-
-    favoriteUsers.map((user) => Object.keys(user).includes(userId)) &&
+    if (!favoriteUsers.length) {
       setFavoriteUsers("favoriteUsers", [
         ...favoriteUsers,
         { userId, nickname },
       ]);
-    alert("즐겨찾기에 추가되었습니다.");
+      return;
+    }
+
+    const filteredFavoriteUsers = favoriteUsers.filter(
+      (user) => user.userId !== userId
+    );
+    setFavoriteUsers(
+      "favoriteUsers",
+      filteredFavoriteUsers.length === favoriteUsers.length
+        ? [...filteredFavoriteUsers, { userId, nickname }]
+        : [...filteredFavoriteUsers]
+    );
   };
 
   return (
@@ -58,6 +72,7 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
               <div
@@ -80,8 +95,15 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                   color: "white",
                 }}
               >
-                <div>{`${"스나이퍼"}`}</div>
-                <button
+                <div>
+                  <span>{`${"스나이퍼"}`}</span>
+                </div>
+                <Toggle
+                  onClick={handleOnClick}
+                  style={{ width: "54px", height: "30px", cursor: "pointer" }}
+                  toggled={isFavorite}
+                />
+                {/* <button
                   style={{
                     width: "65px",
                     height: "30px",
@@ -102,7 +124,7 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                   ) : (
                     <i class="fa-regular fa-star"></i>
                   )}
-                </button>
+                </button> */}
               </div>
             </div>
             <div

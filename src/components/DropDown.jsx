@@ -31,8 +31,6 @@ const DropDown = ({ ...props }) => {
     console.log(e.currentTarget);
   };
 
-  const handleListItemWrapperClick = (e) => {};
-
   const renderList = useCallback(() => {
     const targetList = recentSearchButtonToggle ? searchedUsers : favoriteUsers;
 

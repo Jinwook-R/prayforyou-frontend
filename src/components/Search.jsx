@@ -54,15 +54,26 @@ const Search = ({
             );
 
             if (filteredUser.length === 1) {
-              setLocalStorage("searchedUsers", [
-                ...searchedUsers,
-                {
-                  userId: filteredUser[0].userId,
-                  nickname: filteredUser[0].nickname,
-                },
-              ]);
+              if (searchedUsers.length > 0) {
+                setLocalStorage("searchedUsers", [
+                  ...searchedUsers.filter(
+                    (user) => user.userId !== filteredUser[0].userId
+                  ),
+                  {
+                    userId: filteredUser[0].userId,
+                    nickname: filteredUser[0].nickname,
+                  },
+                ]);
+              } else {
+                setLocalStorage("searchedUsers", [
+                  {
+                    userId: filteredUser[0].userId,
+                    nickname: filteredUser[0].nickname,
+                  },
+                ]);
+              }
+
               setUserName("");
-              console.log(filteredUser);
               navigate("user", { state: { ...filteredUser[0] } });
             }
           }

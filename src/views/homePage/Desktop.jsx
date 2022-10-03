@@ -87,7 +87,7 @@ const Desktop = () => {
           )}
           {dropDown && userName && (
             <>
-              <StyledList>
+              <StyledList padding={filteredUserNames.length ? false : "none"}>
                 {dropDown &&
                   userName &&
                   filteredUserNames.map((item, idx) => (

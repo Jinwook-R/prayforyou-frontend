@@ -151,6 +151,7 @@ const Ranking = ({ data, pageUnit = 8, ...props }) => {
             fontWeight: "bold",
             fontSize: "20px",
             color: "white",
+            cursor: "pointer",
           }}
         >
           더보기
