@@ -103,28 +103,6 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                   style={{ width: "54px", height: "30px", cursor: "pointer" }}
                   toggled={isFavorite}
                 />
-                {/* <button
-                  style={{
-                    width: "65px",
-                    height: "30px",
-                    borderRadius: "15px",
-                    border: "none",
-                    cursor: "pointer",
-                    backgroundColor: favoriteUsers.includes(userId)
-                      ? "#f5f5f5"
-                      : "#ffffff",
-                  }}
-                  onClick={handleOnClick}
-                >
-                  {favoriteUsers.length &&
-                  favoriteUsers.map((user) =>
-                    Object.keys(user).includes(userId)
-                  ) ? (
-                    <i class="fa fa-star"></i>
-                  ) : (
-                    <i class="fa-regular fa-star"></i>
-                  )}
-                </button> */}
               </div>
             </div>
             <div
@@ -151,7 +129,6 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
           justifyContents="space-between"
           alignItems="center"
           display="flex"
-          padding="0 20px"
           {...props}
         >
           <div>
@@ -206,6 +183,11 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
               <div>{`래더점수 ${371}점`}</div>
             </div>
           </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <SearchInputWrapper>
+              <StyledButton onChange={() => {}}>맵으로</StyledButton>
+            </SearchInputWrapper>
+          </div>
         </StyledTopBar>
       )}
     </>
@@ -218,12 +200,38 @@ const StyledTopBar = styled.div`
   height: ${(props) => props.height};
   padding-top: ${(props) => props.paddingTop};
   margin-bottom: 16px;
-  max-width: ${COMMON_LAYOUT_PC_HORIZONTAL_MAX};
+  max-width: 1632px;
   background-color: #775ee1;
   color: white;
   box-shadow: ${(props) => props.boxShadow};
   justify-content: ${(props) => props.justifyContents};
   display: ${(props) => props.display};
+  padding: 0 16px;
+`;
+const StyledButton = styled.button`
+  background-color: transparent;
+  width: 100%;
+  height: 70px;
+  outline: none;
+  color: white;
+  border: none;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+`;
+
+const SearchInputWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: ${(props) => props.height};
+  box-sizing: border-box;
+  width: 150px;
+  color: white;
+  font-size: 24px;
+  border-radius: 50px;
+  border: 2px solid white;
+  background-color: transparent;
 `;
 
 export default TopBar;

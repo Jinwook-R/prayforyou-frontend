@@ -61,6 +61,19 @@ const Header = () => {
                     클랜랭킹
                   </StyledNavLink>
                 </StyledHeaderNavigation>
+                <SearchInputWrapper height={"64px"} type="text">
+                  <Search
+                    width={"30px"}
+                    height={"30px"}
+                    style={{ marginRight: "24px" }}
+                  />
+                  <StyledInput
+                    className="searchInput"
+                    placeholder="사용자 검색"
+                    type="text"
+                    onChange={() => {}}
+                  />
+                </SearchInputWrapper>
               </div>
             )}
             {!isMobile && pathname === "/user" && (
