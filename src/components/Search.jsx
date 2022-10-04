@@ -82,6 +82,8 @@ const Search = ({
     }
   };
 
+  console.log(dropDown, "!!!!!!!!!!");
+
   return (
     <StyledSearchWrapper style={{ paddingInline: isMobile ? "32px" : "0" }}>
       <StyledSearchInputWrapper
@@ -159,6 +161,8 @@ const StyledSearchInputWrapper = styled.div`
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
+  max-width: 844px;
+  margin: 0 auto;
   height: ${(props) => props.height};
   padding: ${(props) => props.padding};
   font-size: 15px;

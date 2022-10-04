@@ -88,9 +88,9 @@ const DropDown = ({ ...props }) => {
     <div
       className="dropDown"
       style={{
-        marginTop: "16px",
         borderRadius: "0 0 15px 15px",
         overflow: "hidden",
+        maxWidth: "719px",
         ...props,
       }}
     >

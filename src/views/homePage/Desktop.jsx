@@ -75,15 +75,10 @@ const Desktop = () => {
             setFilteredUserNames={setFilteredUserNames}
             setUserName={setUserName}
             userName={userName}
+            dropDown={dropDown}
           />
           {dropDown && !userName && (
-            <DropDown
-              position="absolute"
-              top={73}
-              left={0}
-              width="100%"
-              padding="0 30px"
-            />
+            <DropDown width="100%" padding="0 30px" margin="0 auto" />
           )}
           {dropDown && userName && (
             <>

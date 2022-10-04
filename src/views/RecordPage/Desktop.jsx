@@ -43,7 +43,7 @@ const Desktop = () => {
           style={{
             flexGrow: 0,
             flexShrink: 0,
-            flexBasis: "73%",
+            flexBasis: "70%",
           }}
         >
           {Array.from({ length: 10 }).map((e, i) => {
@@ -53,18 +53,23 @@ const Desktop = () => {
                 style={{
                   display: "flex",
                   justifyContent: "right",
-                  alignContent: "stretch",
                   height: "180px",
                   maxWidth: COMMON_LAYOUT_PC_HORIZONTAL_MAX,
                   width: "100%",
                   backgroundColor: i % 2 ? "#676472" : "#775ee2",
                   margin: "10px",
+                  textAlign: "center",
+                  paddingLeft: "20px",
                 }}
               >
                 <ul
                   style={{
                     flexGrow: 1,
                     backgroundColor: "#fff",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
                   }}
                 >
                   <li>제3보급창고</li>
@@ -76,76 +81,124 @@ const Desktop = () => {
                   style={{
                     flexGrow: 1,
                     backgroundColor: "#fff",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <li>레더</li>
-                  <li>+12점</li>
+                  <li style={{ paddingBottom: "5px" }}>레더</li>
+                  <li style={{ color: "#775ee2", paddingTop: "5px" }}>+12점</li>
                 </ul>
                 <ul
                   style={{
                     flexGrow: 2,
                     backgroundColor: "#fff",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <li>토끼토끼 클랜</li>
-                  <li>1부리그 18,985점</li>
+                  <li style={{ fontWeight: "bold", paddingBottom: "5px" }}>
+                    토끼토끼 클랜
+                  </li>
+                  <li style={{ paddingTop: "5px", fontSize: "0.6em" }}>
+                    1부리그 18,985점
+                  </li>
                 </ul>
                 <ul
                   style={{
                     flexGrow: 0.5,
                     backgroundColor: "transparent",
                     color: "#fff",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <li>vs</li>
+                  <li style={{ fontSize: "0.6em" }}>vs</li>
                 </ul>
                 <ul
                   style={{
                     flexGrow: 2,
                     backgroundColor: "#fff",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <li>#ToRtOiSe</li>
-                  <li>1부리그 18,985점</li>
+                  <li style={{ fontWeight: "bold", paddingBottom: "5px" }}>
+                    #ToRtOiSe
+                  </li>
+                  <li style={{ paddingTop: "5px", fontSize: "0.6em" }}>
+                    1부리그 18,985점
+                  </li>
                 </ul>
                 <ul
                   style={{
                     flexGrow: 1,
                     backgroundColor: "#fff",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <li>선레드</li>
-                  <li>5 vs 5</li>
+                  <li style={{ paddingBottom: "5px" }}>선레드</li>
+                  <li style={{ paddingTop: "5px", color: "#775ee2" }}>
+                    5 vs 5
+                  </li>
                 </ul>
                 <ul
                   style={{
+                    marginLeft: "5px",
+                    paddingLeft: "10px",
                     flexGrow: 2,
                     backgroundColor: "#fff",
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
                   }}
                 >
                   <li>개구리</li>
-                  <li>개구리</li>
-                  <li>개구리</li>
-                  <li>개구리</li>
-                  <li>개구리</li>
+                  <li>Namsaeng</li>
+                  <li>아주긴이름일…</li>
+                  <li>GEOBUK</li>
+                  <li>최엉금</li>
+                  <li>유남생</li>
                 </ul>
                 <ul
                   style={{
+                    marginLeft: "5px",
+                    paddingLeft: "10px",
                     flexGrow: 2,
                     backgroundColor: "#fff",
+                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
                   }}
                 >
-                  <li>개구리</li>
-                  <li>개구리</li>
-                  <li>개구리</li>
-                  <li>개구리</li>
-                  <li>개구리</li>
+                  <li>Namsaeng</li>
+                  <li>아주긴이름일…</li>
+                  <li>GEOBUK</li>
+                  <li>최엉금</li>
+                  <li>유남생</li>
                 </ul>
                 <ul
                   style={{
-                    width: "120px",
+                    flexGrow: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
                     backgroundColor: "transparent",
                     color: "#fff",
+                    fontWeight: "bold",
                   }}
                 >
                   <li>상세보기</li>
@@ -184,7 +237,7 @@ const Desktop = () => {
             }}
           >
             <p>승률</p>
-            <p>717tmd 512vo 57.9%</p>
+            <p>717승 512패 57.9%</p>
           </div>
           <div
             style={{
