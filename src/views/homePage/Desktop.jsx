@@ -67,7 +67,12 @@ const Desktop = () => {
               e.preventDefault();
             }
           }}
-          style={{ position: "relative" }}
+          style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
           <Search
             height="90px"
@@ -77,12 +82,9 @@ const Desktop = () => {
             userName={userName}
             dropDown={dropDown}
           />
-          {dropDown && !userName && (
-            <DropDown width="100%" padding="0 30px" margin="0 auto" />
-          )}
-          {dropDown && userName && (
+          {dropDown && userName !== "" && (
             <>
-              <StyledList padding={filteredUserNames.length ? false : "none"}>
+              <StyledList width={"80%"} padding={"16px 30px"}>
                 {dropDown &&
                   userName &&
                   filteredUserNames.map((item, idx) => (
@@ -91,13 +93,24 @@ const Desktop = () => {
                       marginBottom={"16px"}
                       borderRadius={"15px"}
                     >
-                      <StyledListItem height={"72px"}>
+                      <StyledListItem
+                        justifyContent={"spaceBetween"}
+                        height={"72px"}
+                      >
                         <StyledListItemText
                           flex={1}
                           textAlign="left"
                           fontSize={"20px"}
                         >
                           {item.nickname}
+                        </StyledListItemText>
+                        <StyledListItemText
+                          flex={1}
+                          textAlign="right"
+                          fontSize={"20px"}
+                        >
+                          {/* 클랜명 들어가야함. */}
+                          {"클랜 명"}
                         </StyledListItemText>
                       </StyledListItem>
                     </StyledListItemWrapper>

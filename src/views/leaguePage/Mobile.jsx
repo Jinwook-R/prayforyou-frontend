@@ -1,6 +1,5 @@
 import React from "react";
 import { Banner } from "../../components";
-import { Toggle } from "../../components/common";
 import { Table } from "../../components/table";
 import MobilePageToolbarWrapper from "../../components/wrapper/MobilePageToolbarWrapper";
 import MobileClanListItem from "../../components/listItem/MobileClanListItem";
@@ -59,14 +58,6 @@ const Mobile = ({
             }}
           >
             {leagueTitle}
-          </div>
-          <div style={{ display: "inline-block", marginLeft: "50px" }}>
-            <Toggle
-              style={{ height: "30px", width: "54px" }}
-              iconStyle={{ width: "14px" }}
-              toggled={isFavorite}
-              onClick={onClickFavorite}
-            />
           </div>
         </div>
         <div

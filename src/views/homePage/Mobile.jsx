@@ -27,7 +27,12 @@ const Mobile = () => {
     <div style={{ padding: "0 16px", paddingTop: "100px" }}>
       <Title width="210px" />
       <div
-        style={{ position: "relative" }}
+        style={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
         onMouseDown={(e) => {
           if (!e.target.className.includes("searchInput")) {
             e.preventDefault();
@@ -41,13 +46,12 @@ const Mobile = () => {
           setFilteredUserNames={setFilteredUserNames}
           setUserName={setUserName}
           userName={userName}
-        /> 
-        {dropDown && !userName && (
-          <DropDown width="100%" top={48} left={0} marginBottom={"20px"} />
-        )}
-
+        />
         {dropDown && userName && (
-          <StyledList padding={filteredUserNames.length ? false : "none"}>
+          <StyledList
+            width={"80%"}
+            padding={filteredUserNames.length ? false : "none"}
+          >
             {filteredUserNames.map((item, idx) => (
               <StyledListItemWrapper
                 key={`${idx}`}
@@ -62,12 +66,19 @@ const Mobile = () => {
                   >
                     {item.nickname}
                   </StyledListItemText>
+                  <StyledListItemText
+                    flex={1}
+                    textAlign="right"
+                    fontSize={"15px"}
+                  >
+                    {/* TODO: 클랜명 연동 */}
+                    {"테스트 클랜명"}
+                  </StyledListItemText>
                 </StyledListItem>
               </StyledListItemWrapper>
             ))}
           </StyledList>
         )}
-
         {!dropDown && !userName && (
           <div
             style={{

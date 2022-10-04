@@ -94,9 +94,6 @@ const Desktop = ({
             >
               {leagueTitle}
             </div>
-            <div style={{ display: "inline-block", marginLeft: "50px" }}>
-              <Toggle toggled={isFavorite} onClick={onClickFavorite} />
-            </div>
           </div>
           <div style={{ height: "29px", fontSize: "20px" }}>
             {`${leagueType === "public" ? "공식" : "개인"}`}
