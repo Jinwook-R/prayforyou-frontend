@@ -88,6 +88,7 @@ const Mobile = () => {
 };
 
 const StyledButton = styled.button`
+  display: block;
   width: 90%;
   margin: 0 auto;
   height: 50px;
