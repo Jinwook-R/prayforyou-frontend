@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { searchUser } from "../redux/user";
@@ -7,23 +7,40 @@ import { useMediaQuery } from "react-responsive";
 import { ReactComponent as SearchIcon } from "../assets/search.svg";
 import { BREAK_POINT } from "../utils/constants";
 import styled from "@emotion/styled";
+import useDispatchDebounce from "../hooks/useDispatchDebounce";
 
-const Search = ({ dropDown, handleDropDown }) => {
-  const [userName, setUserName] = useState("");
+const Search = ({
+  dropDown,
+  handleDropDown,
+  userName,
+  setUserName,
+  setFilteredUserNames,
+}) => {
   const [searchedUsers, setLocalStorage] = useLocalStorage("searchedUsers", []);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [runSearchUser, clearRunSearchUser, searchedUserNames] =
+    useDispatchDebounce(searchUser, 600, []);
 
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleUserName = (e) => {
+  const handleUserName = async (e) => {
     e.preventDefault();
     setUserName(e.target.value);
-    handleDropDown(!!e.target.value);
   };
+
+  useEffect(() => {
+    (async () => {
+      await runSearchUser(userName);
+    })();
+    return () => clearRunSearchUser;
+  }, [userName]);
+
+  useEffect(() => {
+    setFilteredUserNames(searchedUserNames);
+  }, [searchedUserNames]);
 
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.type === "click") {
@@ -37,21 +54,35 @@ const Search = ({ dropDown, handleDropDown }) => {
             );
 
             if (filteredUser.length === 1) {
-              setLocalStorage("searchedUsers", [
-                ...searchedUsers,
-                {
-                  userId: filteredUser[0].userId,
-                  nickname: filteredUser[0].nickname,
-                },
-              ]);
+              if (searchedUsers.length > 0) {
+                setLocalStorage("searchedUsers", [
+                  ...searchedUsers.filter(
+                    (user) => user.userId !== filteredUser[0].userId
+                  ),
+                  {
+                    userId: filteredUser[0].userId,
+                    nickname: filteredUser[0].nickname,
+                  },
+                ]);
+              } else {
+                setLocalStorage("searchedUsers", [
+                  {
+                    userId: filteredUser[0].userId,
+                    nickname: filteredUser[0].nickname,
+                  },
+                ]);
+              }
+
               setUserName("");
-              navigate("user", { state: { ...filteredUser[0] } });
+              navigate("record", { state: { ...filteredUser[0] } });
             }
           }
         })();
       }
     }
   };
+
+  console.log(dropDown, "!!!!!!!!!!");
 
   return (
     <StyledSearchWrapper style={{ paddingInline: isMobile ? "32px" : "0" }}>
@@ -64,7 +95,7 @@ const Search = ({ dropDown, handleDropDown }) => {
           className="searchInput"
           placeholder="닉네임을 입력하세요"
           fontSize={isMobile ? "12px" : "24px"}
-          type="text"
+          type={isMobile ? "search" : "text"}
           onBlur={(e) => {
             if (!e.target.className.includes("searchWrapper")) {
               handleDropDown(false);
@@ -78,7 +109,7 @@ const Search = ({ dropDown, handleDropDown }) => {
         />
         {isMobile && <SearchIcon />}
       </StyledSearchInputWrapper>
-      {!dropDown && (
+      {!dropDown && !userName && (
         <StyledPrayForYouNav
           className="pray-for-you-nav"
           style={{
@@ -97,7 +128,7 @@ const Search = ({ dropDown, handleDropDown }) => {
           </span>
         </StyledPrayForYouNav>
       )}
-      {!dropDown && (
+      {!dropDown && !userName && (
         <StyledPrayForYouNav
           className="pray-for-you-nav"
           style={{
@@ -130,6 +161,8 @@ const StyledSearchInputWrapper = styled.div`
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
+  max-width: 844px;
+  margin: 0 auto;
   height: ${(props) => props.height};
   padding: ${(props) => props.padding};
   font-size: 15px;

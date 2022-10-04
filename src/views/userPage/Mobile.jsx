@@ -1,7 +1,7 @@
 import React from "react";
 import { TopBar, MapInfoList, BattleMap } from "../../components";
 import { MapButtonGroup } from "../../components";
-
+import useLocalStorage from "../../hooks/useLocalStorage";
 /*
 const BANNER_PROPS = {
   width: "85%",
@@ -22,7 +22,6 @@ const Mobile = ({
   offset,
   handleOffset,
 }) => {
-  //const banners = useSelector((store) => store.banner);
   const { nickname, userId } = location.state;
 
   return (

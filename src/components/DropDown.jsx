@@ -9,6 +9,7 @@ import {
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
+import { useNavigate } from "react-router";
 
 const DropDown = ({ ...props }) => {
   const isMobile = useMediaQuery({
@@ -16,6 +17,7 @@ const DropDown = ({ ...props }) => {
   });
   const [searchedUsers] = useLocalStorage("searchedUsers", []);
   const [favoriteUsers] = useLocalStorage("favoriteUsers", []);
+  const navigate = useNavigate();
 
   const [recentSearchButtonToggle, setRecentSearchButtonToggle] =
     useState(true);
@@ -31,8 +33,6 @@ const DropDown = ({ ...props }) => {
     console.log(e.currentTarget);
   };
 
-  const handleListItemWrapperClick = (e) => {};
-
   const renderList = useCallback(() => {
     const targetList = recentSearchButtonToggle ? searchedUsers : favoriteUsers;
 
@@ -44,6 +44,11 @@ const DropDown = ({ ...props }) => {
               key={`${idx}`}
               marginBottom={isMobile ? "10px" : "16px"}
               borderRadius={isMobile && "15px"}
+              onClick={() => {
+                navigate("/record", {
+                  state: { userId: item.userId, nickname: item.nickname },
+                });
+              }}
             >
               <StyledListItem height={"72px"}>
                 <StyledListItemText
@@ -83,9 +88,9 @@ const DropDown = ({ ...props }) => {
     <div
       className="dropDown"
       style={{
-        marginTop: "16px",
         borderRadius: "0 0 15px 15px",
         overflow: "hidden",
+        maxWidth: "719px",
         ...props,
       }}
     >
@@ -94,7 +99,7 @@ const DropDown = ({ ...props }) => {
           display: "flex",
           borderRadius: "15px 15px 0 0",
           overflow: "hidden",
-          border: "1px solid #b3b3b3",
+          // border: "1px solid #b3b3b3",
           borderBottom: "0",
         }}
       >
@@ -105,6 +110,9 @@ const DropDown = ({ ...props }) => {
           style={{
             backgroundColor: recentSearchButtonToggle ? "#775ee1" : "#f7f7f7",
             color: recentSearchButtonToggle ? "white" : "black",
+            border: recentSearchButtonToggle ? "none" : "solid #b3b3b3",
+            borderWidth: recentSearchButtonToggle ? "none" : "1px 0 0 1px",
+            borderRadius: "15px 0 0 0",
             fontSize: isMobile ? "12px" : "20px",
             height: isMobile ? "56px" : "75px",
           }}
@@ -119,6 +127,8 @@ const DropDown = ({ ...props }) => {
           style={{
             backgroundColor: favoriteButtonToggle ? "#775ee1" : "#f7f7f7",
             color: favoriteButtonToggle ? "white" : "black",
+            border: favoriteButtonToggle ? "none" : "solid #b3b3b3",
+            borderWidth: favoriteButtonToggle ? "none" : "1px 1px 0 0",
             borderRadius: "0 15px 0 0",
             fontSize: isMobile ? "12px" : "20px",
             height: isMobile ? "56px" : "75px",

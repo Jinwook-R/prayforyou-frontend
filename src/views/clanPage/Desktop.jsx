@@ -99,6 +99,7 @@ const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
                   fontSize: "20px",
                   fontWeight: "bold",
                   borderRadius: "25px",
+                  cursor: "pointer",
                 }}
               >
                 {`${isFirstView ? 2 : 1}부 리그 보러가기 >`}

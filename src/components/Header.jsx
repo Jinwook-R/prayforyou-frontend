@@ -39,6 +39,43 @@ const Header = () => {
                 style={{ height: isMobile ? "24px" : "40px" }}
               />
             </NavLink>
+            {!isMobile && pathname === "/record" && (
+              <div style={{ display: "flex", flex: 1 }}>
+                <StyledHeaderNavigation padding={0}>
+                  <StyledNavLink
+                    to={"/league"}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    리그홈
+                  </StyledNavLink>
+                  <StyledNavLink
+                    to={"/private"}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    개인랭킹
+                  </StyledNavLink>
+                  <StyledNavLink
+                    to={"/clan"}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    클랜랭킹
+                  </StyledNavLink>
+                </StyledHeaderNavigation>
+                <SearchInputWrapper height={"64px"} type="text">
+                  <Search
+                    width={"30px"}
+                    height={"30px"}
+                    style={{ marginRight: "24px" }}
+                  />
+                  <StyledInput
+                    className="searchInput"
+                    placeholder="사용자 검색"
+                    type="text"
+                    onChange={() => {}}
+                  />
+                </SearchInputWrapper>
+              </div>
+            )}
             {!isMobile && pathname === "/user" && (
               <>
                 <div style={{ display: "flex", flex: 1 }}>
@@ -137,7 +174,7 @@ const Header = () => {
           )}
         </StyledHeaderInner>
       </StyledHeaderInnerWrapper>
-      {!isMobile && pathname !== "/user" && (
+      {!isMobile && pathname !== "/user" && pathname !== "/record" && (
         <StyledHeaderInnerWrapper>
           <StyledHeaderNavigation padding={0}>
             <StyledNavLink
@@ -271,7 +308,7 @@ const StyledNavLink = styled(NavLink)`
   padding: 10px 33px;
   background: ${(props) => props.background || "none"};
   height: 50px;
-  cursor: ${(props) => (props.active ? "pointer" : "auto")};
+  cursor: pointer;
   font-size: ${(props) => props.fontSize || "20px"} !important;
   &:hover {
     //color: aquamarine;
