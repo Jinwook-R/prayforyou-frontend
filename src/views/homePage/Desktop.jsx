@@ -93,13 +93,24 @@ const Desktop = () => {
                       marginBottom={"16px"}
                       borderRadius={"15px"}
                     >
-                      <StyledListItem height={"72px"}>
+                      <StyledListItem
+                        justifyContent={"spaceBetween"}
+                        height={"72px"}
+                      >
                         <StyledListItemText
                           flex={1}
                           textAlign="left"
                           fontSize={"20px"}
                         >
                           {item.nickname}
+                        </StyledListItemText>
+                        <StyledListItemText
+                          flex={1}
+                          textAlign="right"
+                          fontSize={"20px"}
+                        >
+                          {/* 클랜명 들어가야함. */}
+                          {"클랜 명"}
                         </StyledListItemText>
                       </StyledListItem>
                     </StyledListItemWrapper>
