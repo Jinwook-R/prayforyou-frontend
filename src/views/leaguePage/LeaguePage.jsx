@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Desktop from "./Desktop";
+import Mobile from "./Mobile";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../../utils/constants";
-import Mobile from "./Mobile";
+
 import sampleImg from "../../assets/clan_logo_sample_1.png";
 
 const clanListItemMockData = {

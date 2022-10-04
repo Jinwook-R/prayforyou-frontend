@@ -9,6 +9,7 @@ import {
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
+import { useNavigate } from "react-router";
 
 const DropDown = ({ ...props }) => {
   const isMobile = useMediaQuery({
@@ -16,6 +17,7 @@ const DropDown = ({ ...props }) => {
   });
   const [searchedUsers] = useLocalStorage("searchedUsers", []);
   const [favoriteUsers] = useLocalStorage("favoriteUsers", []);
+  const navigate = useNavigate();
 
   const [recentSearchButtonToggle, setRecentSearchButtonToggle] =
     useState(true);
@@ -42,6 +44,11 @@ const DropDown = ({ ...props }) => {
               key={`${idx}`}
               marginBottom={isMobile ? "10px" : "16px"}
               borderRadius={isMobile && "15px"}
+              onClick={() => {
+                navigate("/record", {
+                  state: { userId: item.userId, nickname: item.nickname },
+                });
+              }}
             >
               <StyledListItem height={"72px"}>
                 <StyledListItemText

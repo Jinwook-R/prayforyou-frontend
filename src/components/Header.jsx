@@ -39,6 +39,30 @@ const Header = () => {
                 style={{ height: isMobile ? "24px" : "40px" }}
               />
             </NavLink>
+            {!isMobile && pathname === "/record" && (
+              <div style={{ display: "flex", flex: 1 }}>
+                <StyledHeaderNavigation padding={0}>
+                  <StyledNavLink
+                    to={"/league"}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    리그홈
+                  </StyledNavLink>
+                  <StyledNavLink
+                    to={"/private"}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    개인랭킹
+                  </StyledNavLink>
+                  <StyledNavLink
+                    to={"/clan"}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    클랜랭킹
+                  </StyledNavLink>
+                </StyledHeaderNavigation>
+              </div>
+            )}
             {!isMobile && pathname === "/user" && (
               <>
                 <div style={{ display: "flex", flex: 1 }}>
@@ -137,7 +161,7 @@ const Header = () => {
           )}
         </StyledHeaderInner>
       </StyledHeaderInnerWrapper>
-      {!isMobile && pathname !== "/user" && (
+      {!isMobile && pathname !== "/user" && pathname !== "/record" && (
         <StyledHeaderInnerWrapper>
           <StyledHeaderNavigation padding={0}>
             <StyledNavLink

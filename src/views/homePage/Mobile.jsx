@@ -41,7 +41,7 @@ const Mobile = () => {
           setFilteredUserNames={setFilteredUserNames}
           setUserName={setUserName}
           userName={userName}
-        />
+        /> 
         {dropDown && !userName && (
           <DropDown width="100%" top={48} left={0} marginBottom={"20px"} />
         )}
