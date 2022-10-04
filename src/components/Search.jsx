@@ -87,7 +87,7 @@ const Search = ({
   return (
     <StyledSearchWrapper style={{ paddingInline: isMobile ? "32px" : "0" }}>
       <StyledSearchInputWrapper
-        height={isMobile ? "50px" : "60px"}
+        height={isMobile ? "50px" : "90px"}
         type="text"
         padding={isMobile ? "0 24px" : "0 64px"}
       >

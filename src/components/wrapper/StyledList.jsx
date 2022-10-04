@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 const StyledList = styled.div`
-  width: 100%;
+  width: ${(props) => props.width};
   background-color: #775ee1;
   max-height: ${(props) => props.maxHeight || "auto"};
   padding: ${(props) => props.padding || "20px"};

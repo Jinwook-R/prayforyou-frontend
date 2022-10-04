@@ -67,7 +67,12 @@ const Desktop = () => {
               e.preventDefault();
             }
           }}
-          style={{ position: "relative" }}
+          style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
           <Search
             height="90px"
@@ -77,12 +82,9 @@ const Desktop = () => {
             userName={userName}
             dropDown={dropDown}
           />
-          {dropDown && !userName && (
-            <DropDown width="100%" padding="0 30px" margin="0 auto" />
-          )}
-          {dropDown && userName && (
+          {dropDown && userName !== "" && (
             <>
-              <StyledList padding={filteredUserNames.length ? false : "none"}>
+              <StyledList width={"80%"} padding={"16px 30px"}>
                 {dropDown &&
                   userName &&
                   filteredUserNames.map((item, idx) => (
