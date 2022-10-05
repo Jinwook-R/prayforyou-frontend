@@ -61,6 +61,7 @@ const Header = () => {
                     클랜랭킹
                   </StyledNavLink>
                 </StyledHeaderNavigation>
+                {/*
                 <SearchInputWrapper height={"64px"} type="text">
                   <Search
                     width={"30px"}
@@ -73,48 +74,50 @@ const Header = () => {
                     type="text"
                     onChange={() => {}}
                   />
-                </SearchInputWrapper>
+                </SearchInputWrapper>*/}
               </div>
             )}
-            {!isMobile && pathname === "/user" && (
-              <>
-                <div style={{ display: "flex", flex: 1 }}>
-                  <StyledHeaderNavigation padding={0}>
-                    <StyledNavLink
-                      to={"/league"}
-                      className={({ isActive }) => (isActive ? "active" : "")}
-                    >
-                      리그홈
-                    </StyledNavLink>
-                    <StyledNavLink
-                      to={"/private"}
-                      className={({ isActive }) => (isActive ? "active" : "")}
-                    >
-                      개인랭킹
-                    </StyledNavLink>
-                    <StyledNavLink
-                      to={"/clan"}
-                      className={({ isActive }) => (isActive ? "active" : "")}
-                    >
-                      클랜랭킹
-                    </StyledNavLink>
-                  </StyledHeaderNavigation>
-                </div>
-                <SearchInputWrapper height={"64px"} type="text">
-                  <Search
-                    width={"30px"}
-                    height={"30px"}
-                    style={{ marginRight: "24px" }}
-                  />
-                  <StyledInput
-                    className="searchInput"
-                    placeholder="사용자 검색"
-                    type="text"
-                    onChange={() => {}}
-                  />
-                </SearchInputWrapper>
-              </>
-            )}
+            {!isMobile &&
+              (pathname.includes("/clan/") ||
+                pathname.includes("/record/")) && (
+                <>
+                  <div style={{ display: "flex", flex: 1 }}>
+                    <StyledHeaderNavigation padding={0}>
+                      <StyledNavLink
+                        to={"/league"}
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                      >
+                        리그홈
+                      </StyledNavLink>
+                      <StyledNavLink
+                        to={"/private"}
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                      >
+                        개인랭킹
+                      </StyledNavLink>
+                      <StyledNavLink
+                        to={"/clan"}
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                      >
+                        클랜랭킹
+                      </StyledNavLink>
+                    </StyledHeaderNavigation>
+                  </div>
+                  {/*<SearchInputWrapper height={"64px"} type="text">
+                    <Search
+                      width={"30px"}
+                      height={"30px"}
+                      style={{ marginRight: "24px" }}
+                    />
+                    <StyledInput
+                      className="searchInput"
+                      placeholder="사용자 검색"
+                      type="text"
+                      onChange={() => {}}
+                    />
+                  </SearchInputWrapper>*/}
+                </>
+              )}
           </div>
           {isMobile && (
             <div
@@ -174,30 +177,32 @@ const Header = () => {
           )}
         </StyledHeaderInner>
       </StyledHeaderInnerWrapper>
-      {!isMobile && pathname !== "/user" && pathname !== "/record" && (
-        <StyledHeaderInnerWrapper>
-          <StyledHeaderNavigation padding={0}>
-            <StyledNavLink
-              to={"/league"}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              리그홈
-            </StyledNavLink>
-            <StyledNavLink
-              to={"/private"}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              개인랭킹
-            </StyledNavLink>
-            <StyledNavLink
-              to={"/clan"}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              클랜랭킹
-            </StyledNavLink>
-          </StyledHeaderNavigation>
-        </StyledHeaderInnerWrapper>
-      )}
+      {!isMobile &&
+        !pathname.includes("/record/") &&
+        !pathname.includes("/clan/") && (
+          <StyledHeaderInnerWrapper>
+            <StyledHeaderNavigation padding={0}>
+              <StyledNavLink
+                to={"/league"}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                리그홈
+              </StyledNavLink>
+              <StyledNavLink
+                to={"/private"}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                개인랭킹
+              </StyledNavLink>
+              <StyledNavLink
+                to={"/clan"}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                클랜랭킹
+              </StyledNavLink>
+            </StyledHeaderNavigation>
+          </StyledHeaderInnerWrapper>
+        )}
     </StyledHeader>
   );
 };
