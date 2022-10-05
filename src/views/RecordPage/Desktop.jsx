@@ -11,6 +11,7 @@ import { InfoFieldItem, MatchListItem } from "../../components/listItem";
 import { MatchRecordMockData } from "../../components/listItem/MatchListItem";
 import MatchDetailTable from "../../components/table/MatchDetailTable";
 import { MatchRecordList } from "../../components/list";
+import { StyledButtonWrapper } from "../../components/wrapper";
 
 const memberMockData = {
   nickname: "안녕하살법사",
@@ -87,6 +88,22 @@ const Desktop = () => {
                   })}
                 />
               </div>
+              <StyledButtonWrapper
+                height={"80px"}
+                justifyContent={"center"}
+                style={{
+                  width: "100%",
+                  marginTop: "20px",
+                  alignItems: "center",
+                  background: "#775ee2",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+              >
+                더보기
+              </StyledButtonWrapper>
             </div>
             <div
               style={{
