@@ -36,7 +36,12 @@ const MatchListItem = ({ matchRecordMockData }) => {
     return matchRecordMockData.isWin ? "#775ee2" : "#676472";
   }, [matchRecordMockData.isWin]);
   return (
-    <div style={{ display: "flex", height: "180px" }}>
+    <div
+      style={{
+        display: "flex",
+        height: "180px",
+      }}
+    >
       <Bar background={winLoseColor} />
       <Cell width={"120px"}>
         <div style={{ fontSize: "18px" }}>

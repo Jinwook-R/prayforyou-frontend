@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 import TableWithTitle from "./TableWithTitle";
 import { useMemo } from "react";
 
-const MatchDetailTable = ({ winTeam, loseTeam }) => {
+const MatchDetailTable = ({ winTeam, loseTeam, gameTime, mapName }) => {
   const winTeamTableProps = useMemo(() => {
     return {
       cellConfigs: [
         {
-          name: "플레이어",
+          name: <div style={{ paddingLeft: "60px" }}>플레이어</div>,
           style: {
-            minWidth: "380px",
+            width: "380px",
             flex: 1,
           },
           renderer: (user) => {
@@ -18,21 +18,30 @@ const MatchDetailTable = ({ winTeam, loseTeam }) => {
         },
         {
           name: "래더",
-          width: "254px",
+          style: {
+            width: "254px",
+            flex: 1,
+          },
           renderer: (user) => {
             return `${user.ladderPoint}점`;
           },
         },
         {
           name: "K/D",
-          width: "254px",
+          style: {
+            width: "254px",
+            flex: 1,
+          },
           renderer: (user) => {
             return `${user.kill}/${user.death}`;
           },
         },
         {
           name: "무기",
-          width: "254px",
+          style: {
+            width: "254px",
+            flex: 1,
+          },
           renderer: (user) => {
             return `${user.weapon}`;
           },
@@ -43,7 +52,6 @@ const MatchDetailTable = ({ winTeam, loseTeam }) => {
         fontWeight: "normal",
         fontSize: "18px",
         color: "black",
-        paddingLeft: "60px",
         background: "white",
       },
       rowStyler: () => ({ background: "#f4f2ff", fontSize: "18px" }),
@@ -54,9 +62,9 @@ const MatchDetailTable = ({ winTeam, loseTeam }) => {
     return {
       cellConfigs: [
         {
-          name: "플레이어",
+          name: <div style={{ paddingLeft: "60px" }}>플레이어</div>,
           style: {
-            minWidth: "380px",
+            width: "380px",
             flex: 1,
           },
           renderer: (user) => {
@@ -65,21 +73,31 @@ const MatchDetailTable = ({ winTeam, loseTeam }) => {
         },
         {
           name: "래더",
-          width: "254px",
+          style: {
+            width: "254px",
+            flex: 1,
+          },
           renderer: (user) => {
             return `${user.ladderPoint}점`;
           },
         },
         {
           name: "K/D",
-          width: "254px",
+          style: {
+            width: "254px",
+            flex: 1,
+          },
           renderer: (user) => {
             return `${user.kill}/${user.death}`;
           },
         },
         {
           name: "무기",
-          width: "254px",
+
+          style: {
+            width: "254px",
+            flex: 1,
+          },
           renderer: (user) => {
             return `${user.weapon}`;
           },
@@ -91,7 +109,6 @@ const MatchDetailTable = ({ winTeam, loseTeam }) => {
         fontSize: "18px",
         background: "white",
         color: "black",
-        paddingLeft: "60px",
       },
       rowStyler: () => ({ background: "#efefef", fontSize: "18px" }),
     };
@@ -99,6 +116,13 @@ const MatchDetailTable = ({ winTeam, loseTeam }) => {
 
   return (
     <div>
+      <TableHeader>
+        <div style={{ display: "flex" }}>
+          <div style={{ marginRight: "10px" }}>{mapName}</div>
+          <div>5 vs 5</div>
+        </div>
+        <div>{gameTime}</div>
+      </TableHeader>
       <TableWithTitle
         title={<TableTitle background={"#775ee2"}>승리</TableTitle>}
         {...winTeamTableProps}
@@ -110,6 +134,17 @@ const MatchDetailTable = ({ winTeam, loseTeam }) => {
     </div>
   );
 };
+
+const TableHeader = styled.div`
+  height: 60px;
+  background: #f4f2ff;
+  padding-left: 18px;
+  padding-right: 40px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 const TableTitle = styled.div`
   background: ${(props) => props.background};
