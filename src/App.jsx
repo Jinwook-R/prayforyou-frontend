@@ -28,7 +28,7 @@ function App() {
             <Route exact path="/clan" element={<ClanPage />} />
             <Route exact path="/user" element={<UserPage />} />
             <Route exact path="/league" element={<LeaguePage />} />
-            <Route exact path="/record" element={<RecordPage />} />
+            <Route path="/record/*" element={<RecordPage />} />
             <Route path="/clan/*" element={<ClanDetailPage />} />
           </Routes>
         </MainWrapper>
