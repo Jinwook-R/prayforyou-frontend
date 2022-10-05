@@ -74,15 +74,22 @@ const Search = ({
               }
 
               setUserName("");
-              navigate("record", { state: { ...filteredUser[0] } });
+              console.log(filteredUser[0]);
+              const mockUser = {
+                nickname: "테스트",
+                userId: 1,
+                userNexonId: 1930208181,
+                userType: "SUDDEN_BATTLE",
+              };
+              // navigate("record", { state: { ...filteredUser[0] } });
+              // navigate("user", { state: { ...filteredUser[0] } });
+              navigate("user", { state: { ...mockUser } });
             }
           }
         })();
       }
     }
   };
-
-  console.log(dropDown, "!!!!!!!!!!");
 
   return (
     <StyledSearchWrapper style={{ paddingInline: isMobile ? "32px" : "0" }}>

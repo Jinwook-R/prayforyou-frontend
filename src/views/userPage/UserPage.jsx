@@ -8,7 +8,7 @@ import Mobile from "./Mobile";
 import { searchBattle } from "../../redux/battle";
 import { getMapPositions } from "../../redux/map";
 
-const PLACE_BUTTON = "battlePlace";
+const POSITION_BUTTON = "battlePlace";
 
 const UserPage = () => {
   const isDesktop = useMediaQuery({
@@ -23,7 +23,7 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const userBattle = useSelector((state) => state.battle.battle);
   const { positions } = useSelector((store) => store.map);
-  const [clickedButton, setClickedButton] = useState(PLACE_BUTTON);
+  const [clickedButton, setClickedButton] = useState(POSITION_BUTTON);
   const [offset, setOffset] = useState(1);
   const { userId } = location.state;
 
@@ -83,8 +83,8 @@ const UserPage = () => {
           mapPositions={parsedPositions}
           location={location}
           userBattle={userBattle}
-          clickedButton={clickedButton}
-          handleClickedButton={handleClickedButton}
+          clickedButton={POSITION_BUTTON}
+          // handleClickedButton={handleClickedButton}
           offset={offset}
           handleOffset={handleOffset}
         />

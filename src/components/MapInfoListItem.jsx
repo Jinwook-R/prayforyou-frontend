@@ -71,7 +71,10 @@ const MapInfoListItem = ({ outputText, item, clickedButton, index }) => {
   };
 
   return (
-    <StyledListItemWrapper marginBottom={isMobile && "10px"}>
+    <StyledListItemWrapper
+      style={{ margin: "8px 0" }}
+      marginBottom={isMobile && "10px"}
+    >
       <StyledListItem>{renderInner()}</StyledListItem>
     </StyledListItemWrapper>
   );

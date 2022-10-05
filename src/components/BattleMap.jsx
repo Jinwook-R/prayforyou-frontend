@@ -1,5 +1,5 @@
 import MapImage from "../assets/map.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BREAK_POINT } from "../utils/constants";
 import { useMediaQuery } from "react-responsive";
 
@@ -24,29 +24,51 @@ const targetedStyle = {
 const BattleMap = ({ positions }) => {
   const [hoveringPosition, setHoveringPosition] = useState(false);
   const [targetPosition, setTargetPosition] = useState(null);
+  const [placeType, setPlaceType] = useState("");
+  const [rate, setRate] = useState("");
 
-  const mouseLeavePosition = () => {
-    setHoveringPosition(null);
-  };
-  const mouseOverPosition = (event, position) => {
-    console.log("mouseOver ", event, event.pageX, event.pageY, position);
+  const [pickerX, setPickerX] = useState(0);
+  const [pickerY, setPickerY] = useState(0);
+  const [pickerVisible, setPickerVisible] = useState("hidden");
+
+  const mouseOverPosition = (event, position, nextX, nextY) => {
+    console.log("mouseOver ", position.placeType, nextX, nextY);
+    setPlaceType(position.placeType);
+    setRate(`${position.rate}%`);
+
     setHoveringPosition({
       ...position,
     });
+    setPickerX(nextX);
+    setPickerY(nextY);
+    setPickerVisible("visible");
   };
 
-  const clickPosition = (event, position) => {
-    setTargetPosition({
-      ...position,
-      pointX: event.pageX,
-      pointY: event.pageY,
+  const mouseLeavePosition = () => {
+    setHoveringPosition(null);
+    setPickerVisible("hidden");
+  };
+
+  const getPickerPosition = (arr) => {
+    let x = 0;
+    let y = Number.MAX_VALUE;
+    arr.map((item) => {
+      const [polygonX, polygonY] = item.trim().split(" ").map(Number);
+      if (x < polygonX) x = polygonX;
+      if (y > polygonY) y = polygonY;
     });
+    return [x, y];
   };
 
   return (
     <div className="map-info-wrapper" style={{ marginBottom: "24px" }}>
       <div
-        style={{ maxWidth: BREAK_POINT, maxHeight: BREAK_POINT }}
+        style={{
+          maxWidth: BREAK_POINT,
+          maxHeight: BREAK_POINT,
+          cursor: "pointer",
+          position: "relative",
+        }}
         className="map"
       >
         <img
@@ -54,36 +76,57 @@ const BattleMap = ({ positions }) => {
           src={MapImage}
           useMap="#image-map"
         />
-        {/* TODO 추후 작업 <svg
+        <svg
           id="svg"
-          onScroll={() => {}}
           viewBox="0 0 560 560"
-          style={{ position: "relative", bottom: "100%" }}
+          style={{ position: "absolute", top: 0, left: 0 }}
         >
           {positions.map((position, idx) => {
+            console.log(position.placeType, position.polygon, "!!");
+            const [pickerX, pickerY] = getPickerPosition(
+              position.polygon.split(",")
+            );
+
             const highlighted =
               (hoveringPosition &&
                 hoveringPosition.placeType === position.placeType) ||
               (targetPosition &&
                 targetPosition.placeType === position.placeType);
             return (
-              <polygon
-                key={`${position.placeType}`}
-                className={idx.toString()}
-                id={position.placeType}
-                points={position.polygon}
-                style={highlighted ? targetedStyle : { fill: "transparent" }}
-                onClick={(event) => {
-                  clickPosition(event, position);
-                }}
-                onMouseOver={(event) => {
-                  mouseOverPosition(event, position);
-                }}
-                onMouseLeave={mouseLeavePosition}
-              />
+              <>
+                <polygon
+                  key={`${position.placeType}`}
+                  className={idx.toString()}
+                  id={position.placeType}
+                  points={position.polygon}
+                  style={highlighted ? targetedStyle : { fill: "transparent" }}
+                  onMouseOver={(event) => {
+                    mouseOverPosition(event, position, pickerX, pickerY);
+                  }}
+                  onMouseLeave={mouseLeavePosition}
+                ></polygon>
+              </>
             );
           })}
-        </svg>*/}
+        </svg>
+        <div
+          style={{
+            position: "absolute",
+            height: "50px",
+            width: "200px",
+            textAlign: "center",
+            lineHeight: "50px",
+            position: "absolute",
+            top: pickerY,
+            left: pickerX,
+            borderRadius: "25px",
+            backgroundColor: "#775ee0",
+            color: "#fff",
+            visibility: pickerVisible,
+          }}
+        >
+          {placeType} <span style={{ fontWeight: "bold" }}>{rate}</span>
+        </div>
       </div>
     </div>
   );

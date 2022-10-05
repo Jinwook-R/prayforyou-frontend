@@ -8,7 +8,6 @@ const ROUND_BUTTON = "battleRound";
 
 const MapButtonGroup = ({
   clickedButton,
-  handleClickedButton,
   width,
   height,
   justifyContent,
@@ -24,7 +23,6 @@ const MapButtonGroup = ({
         className={PLACE_BUTTON}
         name={PLACE_BUTTON}
         text="포지션별"
-        handleOnClick={handleClickedButton}
         style={{
           backgroundColor: clickedButton === PLACE_BUTTON ? "#775ee2" : "#fff",
           color: clickedButton === PLACE_BUTTON ? "#fff" : "black",
@@ -32,7 +30,7 @@ const MapButtonGroup = ({
           marginRight: marginRight ? marginRight : "0px",
         }}
       />
-      <Button
+      {/* <Button
         className={GUN_BUTTON}
         name={GUN_BUTTON}
         text="주총별"
@@ -54,7 +52,7 @@ const MapButtonGroup = ({
           color: clickedButton === ROUND_BUTTON ? "#fff" : "black",
           width: "80px",
         }}
-      />
+      /> */}
     </StyledButtonWrapper>
   );
 };
