@@ -41,7 +41,10 @@ const ClanDetailPage = () => {
         <div style={{ display: "flex", marginTop: "49px", gap: "117px" }}>
           <div style={{ overflow: "auto" }}>
             <div style={{ marginBottom: "10px" }}>
-              <MatchListItem matchRecordMockData={{ ...MatchRecordMockData }} />
+              <MatchListItem
+                matchRecordMockData={{ ...MatchRecordMockData }}
+                rightButtonText={"닫기"}
+              />
               <MatchDetailTable
                 mapName={matchDetailMockData.map}
                 gameTime={matchDetailMockData.gameTime}

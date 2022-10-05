@@ -31,7 +31,11 @@ export const MatchRecordMockData = {
     ...MatchMockTeam,
   },
 };
-const MatchListItem = ({ matchRecordMockData }) => {
+const MatchListItem = ({
+  matchRecordMockData,
+  onClickRightButton,
+  rightButtonText = "상세 보기",
+}) => {
   const winLoseColor = useMemo(() => {
     return matchRecordMockData.isWin ? "#775ee2" : "#676472";
   }, [matchRecordMockData.isWin]);
@@ -111,8 +115,12 @@ const MatchListItem = ({ matchRecordMockData }) => {
         })}
       </Cell>
       {/* 해당 페이지 도메인 + pathParam 혹은 query param 으로 처리*/}
-      <DetailButton background={winLoseColor} to={matchRecordMockData.matchId}>
-        상세 보기
+      <DetailButton
+        onClick={onClickRightButton}
+        background={winLoseColor}
+        to={matchRecordMockData.matchId}
+      >
+        {rightButtonText}
       </DetailButton>
     </div>
   );
