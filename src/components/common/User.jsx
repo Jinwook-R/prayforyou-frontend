@@ -4,13 +4,14 @@ import { Text } from "./index";
 const User = ({
   name,
   thumbnail,
+  onClick,
   thumbnailSize = 40,
   fontSize = "20px",
   fontWeight = "normal",
   paddingBetween = "22px",
 }) => {
   return (
-    <UserWrapper>
+    <UserWrapper onClick={onClick} cursor={onClick && "pointer"}>
       <UserCell paddingInline={"0px"} paddingRight={paddingBetween}>
         <img width={thumbnailSize} height={thumbnailSize} src={thumbnail} />
       </UserCell>
@@ -24,6 +25,7 @@ const User = ({
 };
 
 const UserWrapper = styled.div`
+  cursor: ${(props) => props.cursor};
   border-radius: 15px;
   display: flex;
   align-items: center;

@@ -4,8 +4,10 @@ import { Banner } from "../../components";
 import { Table } from "../../components/table";
 import { MobileUserListItem } from "../../components/listItem";
 import { StyledButtonWrapper } from "../../components/wrapper";
+import { useNavigate } from "react-router-dom";
 
 const Mobile = ({ isFirstView, onClickViewChange, clanData }) => {
+  const navigate = useNavigate();
   const mockTableProps = {
     cellConfigs: [
       {
@@ -14,6 +16,7 @@ const Mobile = ({ isFirstView, onClickViewChange, clanData }) => {
         renderer: (clan, index) => {
           return (
             <MobileUserListItem
+              onClick={() => navigate(`/clan/${clan.id}`)}
               isDownTarget={clan.isLadderDownTarget}
               userName={clan.clanName}
               thumbnail={clan.thumbnail}

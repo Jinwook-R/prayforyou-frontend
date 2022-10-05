@@ -96,7 +96,7 @@ const Header = () => {
                       to={"/clan"}
                       className={({ isActive }) => (isActive ? "active" : "")}
                     >
-                      클랜홈
+                      클랜랭킹
                     </StyledNavLink>
                   </StyledHeaderNavigation>
                 </div>
@@ -166,7 +166,7 @@ const Header = () => {
                     onClick={mobileHeaderMenuHandler}
                     className={({ isActive }) => (isActive ? "active" : "")}
                   >
-                    클랜홈
+                    클랜랭킹
                   </DropdownItem>
                 </Dropdown>
               )}
@@ -193,7 +193,7 @@ const Header = () => {
               to={"/clan"}
               className={({ isActive }) => (isActive ? "active" : "")}
             >
-              클랜홈
+              클랜랭킹
             </StyledNavLink>
           </StyledHeaderNavigation>
         </StyledHeaderInnerWrapper>

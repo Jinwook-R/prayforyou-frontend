@@ -9,12 +9,14 @@ import {
   StyledButtonWrapper,
   TablePageTitleWrapper,
 } from "../../components/wrapper";
+import { useNavigate } from "react-router-dom";
 
 /** PrivateTableRow
  * @field
  */
 
 const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
+  const navigate = useNavigate();
   const clanTableProps = {
     cellConfigs: [
       {
@@ -30,7 +32,15 @@ const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
           {
             /* TODO : export extra component, <User {...userProps} />} */
           }
-          return <User thumbnail={info.thumbnail} name={info.clanName} />;
+          return (
+            <User
+              onClick={() => {
+                navigate(`/clan/${info.id}`);
+              }}
+              thumbnail={info.thumbnail}
+              name={info.clanName}
+            />
+          );
         },
       },
       {

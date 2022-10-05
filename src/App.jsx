@@ -10,6 +10,7 @@ import {
   RecordPage,
 } from "./views";
 import { Header, Footer } from "./components";
+import { ClanDetailPage } from "./views/clanDetailPage";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -23,11 +24,12 @@ function App() {
         <MainWrapper>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route path="/private" element={<PrivatePage />} />
-            <Route path="/clan" element={<ClanPage />} />
-            <Route path="/user" element={<UserPage />} />
-            <Route path="/league" element={<LeaguePage />} />
-            <Route path="/record" element={<RecordPage />} />
+            <Route exact path="/private" element={<PrivatePage />} />
+            <Route exact path="/clan" element={<ClanPage />} />
+            <Route exact path="/user" element={<UserPage />} />
+            <Route exact path="/league" element={<LeaguePage />} />
+            <Route path="/record/*" element={<RecordPage />} />
+            <Route path="/clan/*" element={<ClanDetailPage />} />
           </Routes>
         </MainWrapper>
       </Wrapper>

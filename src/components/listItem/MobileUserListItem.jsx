@@ -5,6 +5,7 @@ const MobileUserListItem = ({
   userName,
   thumbnail,
   rank,
+  onClick,
   isDownTarget,
   winCount,
   loseCount,
@@ -18,6 +19,7 @@ const MobileUserListItem = ({
         <User
           paddingBetween={"8px"}
           name={userName}
+          onClick={onClick}
           thumbnail={thumbnail}
           fontSize={"15px"}
           thumbnailSize={20}

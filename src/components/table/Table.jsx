@@ -45,7 +45,13 @@ const Table = ({
               key={`${index}`}
               justifyContent={cellConfig?.align || "start"}
               width={cellConfig?.width}
-              style={cellConfig?.style}
+              style={{
+                ...cellConfig?.style,
+                fontWeight: headerStyle?.fontWeight && "inherit",
+                fontSize: headerStyle?.fontSize && "inherit",
+                color: headerStyle?.color && "inherit",
+                background: headerStyle?.background && "inherit",
+              }}
             >
               {cellConfig.name}
             </HeaderCell>
@@ -53,6 +59,9 @@ const Table = ({
         </TableHeader>
         <TableBody style={bodyStyle}>
           {(slicedData || []).map((listItemData, rowIndex) => {
+            const inheritStyle = rowStyler
+              ? rowStyler(listItemData, rowIndex)
+              : undefined;
             return (
               <TableRow
                 key={`${rowIndex}`}
@@ -66,7 +75,13 @@ const Table = ({
                       key={`${rowIndex}-${cellIndex}`}
                       justifyContent={cellConfig?.align || "start"}
                       width={cellConfig?.width}
-                      style={cellConfig?.style}
+                      style={{
+                        ...cellConfig?.style,
+                        fontWeight: inheritStyle?.fontWeight && "inherit",
+                        fontSize: inheritStyle?.fontSize && "inherit",
+                        color: inheritStyle?.color && "inherit",
+                        background: inheritStyle?.background && "inherit",
+                      }}
                     >
                       {cellConfig?.key
                         ? listItemData[cellConfig.key] || ""
@@ -129,8 +144,8 @@ const HeaderCell = styled.div`
   color: white;
   display: flex;
   background: #775ee2;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: ${(props) => props.fontSize || "20px"};
+  font-weight: ${(props) => props.fontWeight || "bold"};
   flex: ${(props) => (props.width ? "none" : 1)};
   width: ${(props) => props.width};
   justify-content: ${(props) => props.justifyContent || "start"};

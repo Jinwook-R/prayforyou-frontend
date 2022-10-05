@@ -27,7 +27,7 @@ const bannerProps = {
 
 const Desktop = () => {
   const banners = useSelector((store) => store.banner);
-  const ranking = useSelector((store) => store.ranking.ranking);
+  //const ranking = useSelector((store) => store.ranking.ranking);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -119,7 +119,6 @@ const Desktop = () => {
             </>
           )}
         </div>
-        {!dropDown && ranking && <Ranking data={ranking} />}
       </StyledMainContentWrapper>
       <StyledBannerWrapper>
         <Banner
