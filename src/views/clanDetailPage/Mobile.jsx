@@ -1,6 +1,6 @@
 import React from "react";
 import { InfoFieldItem } from "../../components/listItem";
-import { TopBar } from "../../components";
+import { ClanDetailTopBar, TopBar } from "../../components";
 import { StyledButtonWrapper } from "../../components/wrapper";
 import MobileMatchTable from "../../components/table/MobileMatchTable";
 import styled from "@emotion/styled";
@@ -8,7 +8,7 @@ const Mobile = ({ userBattle, matches }) => {
   return (
     <>
       {/* TODO : Top 바 기록실, 클랜 페이지 각각 커스텀 필요 */}
-      <TopBar nickname={"토끼토끼 클랜"} userId={123124} battle={userBattle} />
+      <ClanDetailTopBar nickname={"토끼토끼 클랜"} userId={123124} />
       <div>
         <div
           style={{

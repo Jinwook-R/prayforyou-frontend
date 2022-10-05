@@ -11,6 +11,7 @@ import Title from "./Title";
 import TopBar from "./TopBar";
 import Ranking from "./Ranking";
 import MapButtonGroup from "./MapButtonGroup";
+import ClanDetailTopBar from "./ClanDetailTopBar";
 import {
   StyledMainPageWrapper,
   StyledMainContentWrapper,
@@ -32,6 +33,7 @@ export {
   TopBar,
   Ranking,
   MapButtonGroup,
+  ClanDetailTopBar,
   StyledMainPageWrapper,
   StyledMainContentWrapper,
   StyledBannerWrapper,
