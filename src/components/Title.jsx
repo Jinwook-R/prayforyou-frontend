@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import MainLogoImage from "../assets/logo_1.png";
+import MainLogoImage from "../assets/logo_brother_1.png";
 
 const Title = ({ ...props }) => {
   return (
