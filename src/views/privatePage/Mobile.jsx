@@ -65,7 +65,7 @@ const Mobile = ({ userInfoList }) => {
           랭킹은 1시간마다 갱신되며, 배치고사가 종료된 플레이어만 표시됩니다.
         </div>
       </MobilePageToolbarWrapper>
-      <Banner height={"50px"} margin={"10px"} />
+      {/*<Banner height={"50px"} margin={"10px"} /> */}
       <Table
         headerStyle={{ paddingInline: "30px" }}
         rowStyler={() => {

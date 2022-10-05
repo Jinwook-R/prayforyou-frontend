@@ -46,7 +46,7 @@ const Desktop = () => {
   return (
     <StyledDesktopWrapper>
       <StyledBannerWrapper>
-        <Banner
+        {/*<Banner
           imgUrl={banners?.data?.typeA}
           {...bannerProps}
           width={"300px"}
@@ -57,7 +57,7 @@ const Desktop = () => {
           {...bannerProps}
           width={"300px"}
           height={"600px"}
-        />
+        />*/}
       </StyledBannerWrapper>
       <StyledMainContentWrapper style={{ paddingInline: "50px" }}>
         <Title width="280px" marginBottom="50px" marginTop={"130px"} />
@@ -120,7 +120,7 @@ const Desktop = () => {
           )}
         </div>
       </StyledMainContentWrapper>
-      <StyledBannerWrapper>
+      {/*<StyledBannerWrapper>
         <Banner
           imgUrl={banners?.data?.typeA}
           {...bannerProps}
@@ -133,7 +133,7 @@ const Desktop = () => {
           width={"160px"}
           height={"600px"}
         />
-      </StyledBannerWrapper>
+      </StyledBannerWrapper>*/}
     </StyledDesktopWrapper>
   );
 };

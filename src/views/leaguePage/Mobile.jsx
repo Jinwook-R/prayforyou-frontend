@@ -82,7 +82,7 @@ const Mobile = ({
           </div>
         </div>
       </MobilePageToolbarWrapper>
-      <Banner height={"50px"} margin={"10px"} />
+      {/*<Banner height={"50px"} margin={"10px"} /> */}
       {/* TODO 추후 연동 <Table
         bodyStyle={{ width: "100%" }}
         headerStyle={{ width: "100%", paddingInline: "30px" }}

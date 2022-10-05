@@ -84,7 +84,7 @@ const Mobile = ({ isFirstView, onClickViewChange, clanData }) => {
           랭킹은 1시간마다 갱신되며, 배치고사가 종료된 클랜만 표시됩니다.
         </div>
       </MobilePageToolbarWrapper>
-      <Banner height={"50px"} margin={"10px"} />
+      {/* <Banner height={"50px"} margin={"10px"} />*/}
       <Table
         headerStyle={{ paddingInline: "30px" }}
         rowStyler={() => {

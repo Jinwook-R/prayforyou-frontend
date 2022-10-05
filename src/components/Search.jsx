@@ -116,7 +116,7 @@ const Search = ({
         />
         {isMobile && <SearchIcon />}
       </StyledSearchInputWrapper>
-      {!dropDown && !userName && (
+      {!userName && (
         <StyledPrayForYouNav
           className="pray-for-you-nav"
           style={{
@@ -135,7 +135,7 @@ const Search = ({
           </span>
         </StyledPrayForYouNav>
       )}
-      {!dropDown && !userName && (
+      {!userName && (
         <StyledPrayForYouNav
           className="pray-for-you-nav"
           style={{
