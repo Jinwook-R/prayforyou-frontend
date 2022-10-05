@@ -45,7 +45,7 @@ const Mobile = ({ userBattle, matches }) => {
                 lastGameDay={match.lastGameDay}
                 addScore={match.addScore}
                 mapName={match.mapName}
-                gameTime={match.gameTime}
+                gameProgressTime={match.gameProgressTime}
                 redTeam={match.redTeam}
                 blueTeam={match.blueTeam}
               />

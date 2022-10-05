@@ -4,7 +4,7 @@ import { ReactComponent as DownArrow } from "../../assets/down_arrow.svg";
 import { useCallback, useMemo } from "react";
 import TableWithTitle from "./TableWithTitle";
 
-const MatchDetailTable = ({ redTeam, blueTeam, gameTime, isWin }) => {
+const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
   const getWinLoseColor = useCallback((isWinner) => {
     return isWinner ? "#775ee2" : "#676472";
   }, []);
@@ -121,7 +121,7 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameTime, isWin }) => {
     <div>
       <TableHeader background={getWinLoseColor(isWin)}>
         <div>5 vs 5</div>
-        <div>{gameTime}</div>
+        <div>{gameProgressTime}</div>
       </TableHeader>
       <TableWithTitle
         title={
@@ -194,7 +194,7 @@ const MobileMatchTable = ({
   mapName,
   lastGameDay,
   addScore,
-  gameTime,
+  gameProgressTime,
   isWin,
   kill,
   death,
@@ -254,7 +254,7 @@ const MobileMatchTable = ({
         <MatchDetailTable
           redTeam={redTeam}
           blueTeam={blueTeam}
-          gameTime={gameTime}
+          gameProgressTime={gameProgressTime}
           isWin={isWin}
         />
       )}

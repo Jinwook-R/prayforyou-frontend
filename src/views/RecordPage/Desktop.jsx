@@ -51,7 +51,7 @@ const Desktop = ({ userBattle, matches }) => {
                 <MatchDetailTable
                   isWin={sampleDetailMatch.isWin}
                   mapName={sampleDetailMatch.mapName}
-                  gameTime={sampleDetailMatch.gameTime}
+                  gameProgressTime={sampleDetailMatch.gameProgressTime}
                   redTeam={sampleDetailMatch.redTeam}
                   blueTeam={sampleDetailMatch.blueTeam}
                 />

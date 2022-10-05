@@ -35,9 +35,9 @@ const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
           return (
             <User
               onClick={() => {
-                navigate(`/clan/${info.id}`);
+                navigate(`/clan/${info.clanId}`);
               }}
-              thumbnail={info.thumbnail}
+              thumbnail={info.clanMarkUrl}
               name={info.clanName}
             />
           );
@@ -68,7 +68,7 @@ const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
         name: "래더",
         width: "200px",
         renderer: (info) => {
-          return `${info["ladderPoint"]}점`;
+          return `${info["score"]}점`;
         },
       },
     ],
@@ -120,7 +120,7 @@ const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
         <Table
           rowStyler={(clanData) => {
             return {
-              background: clanData.isLadderDownTarget ? "#ffebeb" : "white",
+              background: clanData.downDanger ? "#ffebeb" : "white",
             };
           }}
           {...clanTableProps}

@@ -28,8 +28,8 @@ function App() {
             <Route exact path="/clan" element={<ClanPage />} />
             <Route exact path="/user" element={<UserPage />} />
             <Route exact path="/league" element={<LeaguePage />} />
-            <Route path="/record/*" element={<RecordPage />} />
-            <Route path="/clan/*" element={<ClanDetailPage />} />
+            <Route path="/record/:userId" element={<RecordPage />} />
+            <Route path="/clan/:clanId" element={<ClanDetailPage />} />
           </Routes>
         </MainWrapper>
       </Wrapper>

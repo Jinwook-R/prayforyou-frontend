@@ -18,7 +18,7 @@ export const memberMockData = {
 
 export const matchDetailMockData = {
   mapName: "제3보급창고",
-  gameTime: "게임시작시각: 2022년 09월 25일 오후 11시 55분",
+  gameProgressTime: "게임시작시각: 2022년 09월 25일 오후 11시 55분",
   isWin: false,
   redTeam: {
     clanName: "토끼토끼",

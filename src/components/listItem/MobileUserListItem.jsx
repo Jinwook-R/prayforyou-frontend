@@ -11,8 +11,10 @@ const MobileUserListItem = ({
   loseCount,
   killAverage,
   killDeathRate,
+  rate,
   ladderPoint,
 }) => {
+  console.log("안녕", thumbnail);
   return (
     <Wrapper style={{ background: isDownTarget ? "#ffebeb" : "white" }}>
       <Row style={{ fontSize: "13px" }}>
@@ -33,7 +35,7 @@ const MobileUserListItem = ({
       </Row>
       <Row style={{ marginTop: "8px", fontSize: "13px" }}>
         <div style={{ display: "flex" }}>
-          <div>{`승률 ${(winCount / (winCount + loseCount)).toFixed(1)}%`}</div>
+          <div>{`승률 ${rate}%`}</div>
           {killDeathRate && (
             <div style={{ marginLeft: "10px" }}>{`KD ${killDeathRate}%`}</div>
           )}

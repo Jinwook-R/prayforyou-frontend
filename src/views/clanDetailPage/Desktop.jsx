@@ -10,7 +10,7 @@ import { MatchRecordList } from "../../components/list";
 import { matchDetailMockData } from "../RecordPage/RecordPage";
 import { COMMON_LAYOUT_PC_HORIZONTAL_MAX } from "../../utils/constants";
 
-const Desktop = ({ userBattle, matches }) => {
+const Desktop = ({ matches }) => {
   const sampleDetailMatch = {
     ...matchDetailMockData,
   };
@@ -47,7 +47,7 @@ const Desktop = ({ userBattle, matches }) => {
                 />
                 <MatchDetailTable
                   mapName={sampleDetailMatch.mapName}
-                  gameTime={sampleDetailMatch.gameTime}
+                  gameProgressTime={sampleDetailMatch.gameProgressTime}
                   redTeam={sampleDetailMatch.redTeam}
                   blueTeam={sampleDetailMatch.blueTeam}
                 />

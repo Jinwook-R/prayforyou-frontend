@@ -2,7 +2,13 @@ import styled from "@emotion/styled";
 import TableWithTitle from "./TableWithTitle";
 import { useCallback, useMemo } from "react";
 
-const MatchDetailTable = ({ redTeam, blueTeam, gameTime, mapName, isWin }) => {
+const MatchDetailTable = ({
+  redTeam,
+  blueTeam,
+  gameProgressTime,
+  mapName,
+  isWin,
+}) => {
   const getWinLoseColor = useCallback((isWinner) => {
     return isWinner ? "#775ee2" : "#676472";
   }, []);
@@ -130,7 +136,7 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameTime, mapName, isWin }) => {
           <div style={{ marginRight: "10px" }}>{mapName}</div>
           <div>5 vs 5</div>
         </div>
-        <div>{gameTime}</div>
+        <div>{gameProgressTime}</div>
       </TableHeader>
       <TableWithTitle
         title={

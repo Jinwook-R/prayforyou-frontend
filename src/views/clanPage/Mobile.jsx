@@ -1,6 +1,5 @@
 import React from "react";
 import MobilePageToolbarWrapper from "../../components/wrapper/MobilePageToolbarWrapper";
-import { Banner } from "../../components";
 import { Table } from "../../components/table";
 import { MobileUserListItem } from "../../components/listItem";
 import { StyledButtonWrapper } from "../../components/wrapper";
@@ -13,17 +12,19 @@ const Mobile = ({ isFirstView, onClickViewChange, clanData }) => {
       {
         name: "참여중인 클랜",
         style: { width: "100%", fontSize: "15px" },
-        renderer: (clan, index) => {
+        renderer: (clan) => {
           return (
             <MobileUserListItem
-              onClick={() => navigate(`/clan/${clan.id}`)}
-              isDownTarget={clan.isLadderDownTarget}
+              key={clan.clanId}
+              onClick={() => navigate(`/clan/${clan.clanId}`)}
+              isDownTarget={clan.downDanger}
               userName={clan.clanName}
-              thumbnail={clan.thumbnail}
+              thumbnail={clan.clanMarkUrl}
               rank={clan.rank}
               winCount={clan.winCount}
               loseCount={clan.loseCount}
-              ladderPoint={clan.ladderPoint}
+              ladderPoint={clan.score}
+              rate={clan.rate}
             />
           );
         },

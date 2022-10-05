@@ -21,7 +21,7 @@ const MatchMockTeam = {
 };
 export const MatchRecordMockData = {
   mapName: "제3보급창고",
-  gameTime: "18분 12초",
+  gameProgressTime: "18분 12초",
   isWin: false,
   matchId: 1231241,
   lastGameDay: "5일 전",
@@ -52,7 +52,7 @@ const MatchListItem = ({
       <Bar background={winLoseColor} />
       <Cell width={"120px"}>
         <div style={{ fontSize: "18px" }}>{matchData.mapName}</div>
-        <div>{matchData.gameTime}</div>
+        <div>{matchData.gameProgressTime}</div>
         <div style={{ color: winLoseColor }}>
           {matchData.isWin ? "승리" : "패배"}
         </div>
