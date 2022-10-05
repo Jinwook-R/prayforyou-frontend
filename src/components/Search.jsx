@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { searchUser } from "../redux/user";
@@ -81,8 +81,6 @@ const Search = ({
       }
     }
   };
-
-  console.log(dropDown, "!!!!!!!!!!");
 
   return (
     <StyledSearchWrapper style={{ paddingInline: isMobile ? "32px" : "0" }}>

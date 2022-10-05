@@ -2,9 +2,12 @@ import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 import { useMemo } from "react";
 
-export const MatchMockUser = {
-  nickname: "유저 이름입니다",
-  userId: 12312,
+const memberMockData = {
+  nickname: "안녕하살법사",
+  ladderPoint: 1727,
+  kill: 12,
+  death: 5,
+  weapon: "라이플",
 };
 
 const MatchMockTeam = {
@@ -12,18 +15,18 @@ const MatchMockTeam = {
   clanId: 1241231,
   clanLevel: "1부 리그",
   ladderPoint: 1972,
-  members: Array.from({ length: 5 }, (_, index) => {
-    return { ...MatchMockUser };
+  members: Array.from({ length: 5 }, (_) => {
+    return { ...memberMockData };
   }),
 };
 export const MatchRecordMockData = {
-  matchingMap: "제3보급창고",
-  gameProgressTime: "18분 12초",
+  mapName: "제3보급창고",
+  gameTime: "18분 12초",
   isWin: false,
   matchId: 1231241,
   lastGameDay: "5일 전",
   addScore: -18,
-  isFirstRed: Boolean,
+  isFirstRed: false,
   redTeam: {
     ...MatchMockTeam,
   },
@@ -32,13 +35,13 @@ export const MatchRecordMockData = {
   },
 };
 const MatchListItem = ({
-  matchRecordMockData,
+  matchData,
   onClickRightButton,
   rightButtonText = "상세 보기",
 }) => {
   const winLoseColor = useMemo(() => {
-    return matchRecordMockData.isWin ? "#775ee2" : "#676472";
-  }, [matchRecordMockData.isWin]);
+    return matchData.isWin ? "#775ee2" : "#676472";
+  }, [matchData.isWin]);
   return (
     <div
       style={{
@@ -48,26 +51,24 @@ const MatchListItem = ({
     >
       <Bar background={winLoseColor} />
       <Cell width={"120px"}>
-        <div style={{ fontSize: "18px" }}>
-          {matchRecordMockData.matchingMap}
-        </div>
-        <div>{matchRecordMockData.gameProgressTime}</div>
+        <div style={{ fontSize: "18px" }}>{matchData.mapName}</div>
+        <div>{matchData.gameTime}</div>
         <div style={{ color: winLoseColor }}>
-          {matchRecordMockData.isWin ? "승리" : "패배"}
+          {matchData.isWin ? "승리" : "패배"}
         </div>
-        <div>{matchRecordMockData.lastGameDay}</div>
+        <div>{matchData.lastGameDay}</div>
       </Cell>
       <Cell width={"100px"} fontSize={"18px"}>
         <div>래더</div>
         <div
           style={{ fontWeight: "bold", color: winLoseColor }}
-        >{`${matchRecordMockData.addScore}점`}</div>
+        >{`${matchData.addScore}점`}</div>
       </Cell>
       <Cell width={"206px"} fontSize={"13px"}>
         <div style={{ fontWeight: "bold", fontSize: "18px" }}>
-          {matchRecordMockData.redTeam.clanName}
+          {matchData.redTeam.clanName}
         </div>
-        <div>{`${matchRecordMockData.redTeam.clanLevel} ${matchRecordMockData.redTeam.ladderPoint}`}</div>
+        <div>{`${matchData.redTeam.clanLevel} ${matchData.redTeam.ladderPoint}`}</div>
       </Cell>
       <Cell
         width={"50px"}
@@ -79,15 +80,15 @@ const MatchListItem = ({
       </Cell>
       <Cell width={"206px"} fontSize={"13px"}>
         <div style={{ fontWeight: "bold", fontSize: "18px" }}>
-          {matchRecordMockData.blueTeam.clanName}
+          {matchData.blueTeam.clanName}
         </div>
-        <div>{`${matchRecordMockData.blueTeam.clanLevel} ${matchRecordMockData.blueTeam.ladderPoint}`}</div>
+        <div>{`${matchData.blueTeam.clanLevel} ${matchData.blueTeam.ladderPoint}`}</div>
       </Cell>
       <Cell width={"206px"} fontSize={"18px"} color={winLoseColor}>
         <div>5 vs 5</div>
       </Cell>
       <Cell width={"206px"} fontSize={"15px"}>
-        {matchRecordMockData.redTeam.members.map((member) => {
+        {matchData.redTeam.members.map((member) => {
           return (
             <div
               key={member.userId}
@@ -101,7 +102,7 @@ const MatchListItem = ({
         })}
       </Cell>
       <Cell width={"206px"} fontSize={"15px"}>
-        {matchRecordMockData.blueTeam.members.map((member) => {
+        {matchData.blueTeam.members.map((member) => {
           return (
             <div
               key={member.userId}
@@ -118,7 +119,7 @@ const MatchListItem = ({
       <DetailButton
         onClick={onClickRightButton}
         background={winLoseColor}
-        to={matchRecordMockData.matchId}
+        to={matchData.matchId}
       >
         {rightButtonText}
       </DetailButton>

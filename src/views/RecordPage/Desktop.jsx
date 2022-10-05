@@ -4,42 +4,19 @@ import {
   StyledMainContentWrapper,
   TopBar,
 } from "../../components";
-import { useLocation } from "react-router-dom";
 import { COMMON_LAYOUT_PC_HORIZONTAL_MAX } from "../../utils/constants";
-import { useSelector } from "react-redux";
 import { InfoFieldItem, MatchListItem } from "../../components/listItem";
 import { MatchRecordMockData } from "../../components/listItem/MatchListItem";
 import MatchDetailTable from "../../components/table/MatchDetailTable";
 import { MatchRecordList } from "../../components/list";
 import { StyledButtonWrapper } from "../../components/wrapper";
+import { matchDetailMockData } from "./RecordPage";
 
-const memberMockData = {
-  nickname: "안녕하살법사",
-  ladderPoint: 1727,
-  kill: 12,
-  death: 5,
-  weapon: "라이플",
-};
+const Desktop = ({ userBattle, matches }) => {
+  const sampleDetailMatch = {
+    ...matchDetailMockData,
+  };
 
-const matchDetailMockData = {
-  map: "제3보급창고",
-  gameTime: "게임시작시각: 2022년 09월 25일 오후 11시 55분",
-  winTeam: {
-    members: Array.from({ length: 5 }, (_, index) => {
-      return { ...memberMockData };
-    }),
-  },
-  loseTeam: {
-    members: Array.from({ length: 5 }, (_, index) => {
-      return { ...memberMockData };
-    }),
-  },
-};
-
-const Desktop = () => {
-  const userBattle = useSelector((state) => state.battle.battle);
-
-  const { winTeam, loseTeam } = matchDetailMockData;
   return (
     <>
       <div
@@ -68,25 +45,19 @@ const Desktop = () => {
             <div style={{ overflow: "auto" }}>
               <div style={{ marginBottom: "10px" }}>
                 <MatchListItem
-                  matchRecordMockData={{ ...MatchRecordMockData }}
+                  matchData={{ ...MatchRecordMockData }}
                   rightButtonText={"닫기"}
                 />
                 <MatchDetailTable
-                  mapName={matchDetailMockData.map}
-                  gameTime={matchDetailMockData.gameTime}
-                  winTeam={winTeam}
-                  loseTeam={loseTeam}
+                  isWin={sampleDetailMatch.isWin}
+                  mapName={sampleDetailMatch.mapName}
+                  gameTime={sampleDetailMatch.gameTime}
+                  redTeam={sampleDetailMatch.redTeam}
+                  blueTeam={sampleDetailMatch.blueTeam}
                 />
               </div>
               <div style={{ marginBottom: "10px" }}>
-                <MatchRecordList
-                  matches={Array.from({ length: 15 }, (_, index) => {
-                    return {
-                      ...MatchRecordMockData,
-                      isWin: index % 2 === 0,
-                    };
-                  })}
-                />
+                <MatchRecordList matches={matches} />
               </div>
               <StyledButtonWrapper
                 height={"80px"}
