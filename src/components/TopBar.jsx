@@ -98,11 +98,11 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                 <div>
                   <span>{`${"스나이퍼"}`}</span>
                 </div>
-                <Toggle
+                {/*<Toggle
                   onClick={handleOnClick}
                   style={{ width: "54px", height: "30px", cursor: "pointer" }}
                   toggled={isFavorite}
-                />
+                />*/}
               </div>
             </div>
             <div
