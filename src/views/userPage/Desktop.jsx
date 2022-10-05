@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
-  Banner,
   MapButtonGroup,
   TopBar,
   MapInfoList,
@@ -26,7 +25,6 @@ const Desktop = ({
   location,
   userBattle,
   clickedButton,
-  handleClickedButton,
   offset,
   handleOffset,
 }) => {
@@ -39,6 +37,8 @@ const Desktop = ({
     e.target.className.includes("asc") && setSortOrder("asc");
     e.target.className.includes("desc") && setSortOrder("desc");
   };
+
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -96,7 +96,6 @@ const Desktop = ({
           >
             <MapButtonGroup
               clickedButton={clickedButton}
-              handleClickedButton={handleClickedButton}
               width="100%"
               height="35px"
               justifyContent="left"
@@ -165,6 +164,7 @@ const Desktop = ({
               offset={offset}
               handleOffset={handleOffset}
             />
+
             {/* <Banner
               imgUrl={banners?.data?.typeA}
               {...BANNER_PROPS}

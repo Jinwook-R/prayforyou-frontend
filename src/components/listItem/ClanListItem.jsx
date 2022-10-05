@@ -66,7 +66,7 @@ const ClanListItemWrapper = styled.div`
   border-radius: 15px;
   background: white;
   padding: 18px 32px;
-  
+
   height: 90px;
   display: flex;
   align-items: center;
