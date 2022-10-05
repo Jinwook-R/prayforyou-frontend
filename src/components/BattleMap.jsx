@@ -29,10 +29,11 @@ const BattleMap = ({ positions }) => {
 
   const [pickerX, setPickerX] = useState(0);
   const [pickerY, setPickerY] = useState(0);
-  const [pickerVisible, setPickerVisible] = useState("hidden");
+
+  const isMobile = useMediaQuery({ query: `(max-width: ${BREAK_POINT}px)` });
 
   const mouseOverPosition = (event, position, nextX, nextY) => {
-    console.log("mouseOver ", position.placeType, nextX, nextY);
+    console.log("mouseOver ", position.placeType, nextX, nextY, position);
     setPlaceType(position.placeType);
     setRate(`${position.rate}%`);
 
@@ -41,12 +42,10 @@ const BattleMap = ({ positions }) => {
     });
     setPickerX(nextX);
     setPickerY(nextY);
-    setPickerVisible("visible");
   };
 
   const mouseLeavePosition = () => {
     setHoveringPosition(null);
-    setPickerVisible("hidden");
   };
 
   const getPickerPosition = (arr) => {
@@ -82,7 +81,6 @@ const BattleMap = ({ positions }) => {
           style={{ position: "absolute", top: 0, left: 0 }}
         >
           {positions.map((position, idx) => {
-            console.log(position.placeType, position.polygon, "!!");
             const [pickerX, pickerY] = getPickerPosition(
               position.polygon.split(",")
             );
@@ -92,41 +90,71 @@ const BattleMap = ({ positions }) => {
                 hoveringPosition.placeType === position.placeType) ||
               (targetPosition &&
                 targetPosition.placeType === position.placeType);
+
             return (
               <>
-                <polygon
-                  key={`${position.placeType}`}
-                  className={idx.toString()}
-                  id={position.placeType}
-                  points={position.polygon}
-                  style={highlighted ? targetedStyle : { fill: "transparent" }}
-                  onMouseOver={(event) => {
-                    mouseOverPosition(event, position, pickerX, pickerY);
-                  }}
-                  onMouseLeave={mouseLeavePosition}
-                ></polygon>
+                <g onMouseLeave={mouseLeavePosition}>
+                  <polygon
+                    key={`${position.placeType}`}
+                    className={idx.toString()}
+                    id={position.placeType}
+                    points={position.polygon}
+                    style={
+                      highlighted ? targetedStyle : { fill: "transparent" }
+                    }
+                    onMouseOver={(event) => {
+                      mouseOverPosition(event, position, pickerX, pickerY);
+                    }}
+                  />
+                  <g>
+                    <foreignObject
+                      x={pickerX}
+                      y={pickerY}
+                      width={isMobile ? "100px" : "181px"}
+                      height="50px"
+                      style={
+                        highlighted
+                          ? { fill: "#775ee1", color: "#fff" }
+                          : { display: "none" }
+                      }
+                    >
+                      <div
+                        style={{
+                          backgroundColor: "#775ee1",
+                          display: "flex",
+                          justifyContent: "space-around",
+                          borderRadius: "35px",
+                          fontSize: isMobile ? "12px" : "15px",
+                          padding: "0 5px",
+                        }}
+                      >
+                        <p>{placeType}</p>
+                        <p>{rate}</p>
+                      </div>
+                    </foreignObject>
+                    {/* <rect
+                      key={`${position.placeType}`}
+                      className={idx.toString()}
+                      id={position.placeType}
+                      x={pickerX}
+                      y={pickerY}
+                      width="25%"
+                      height="50px"
+                      rx="5%"
+                      ry="5%"
+                    >
+                      <foreignObject width="25%" height="50px">
+                        <text x={pickerX + 25} y={pickerY + 30} fill="#fff">
+                          {placeType} {rate}
+                        </text>
+                      </foreignObject>
+                    </rect> */}
+                  </g>
+                </g>
               </>
             );
           })}
         </svg>
-        <div
-          style={{
-            position: "absolute",
-            height: "50px",
-            width: "200px",
-            textAlign: "center",
-            lineHeight: "50px",
-            position: "absolute",
-            top: pickerY,
-            left: pickerX,
-            borderRadius: "25px",
-            backgroundColor: "#775ee0",
-            color: "#fff",
-            visibility: pickerVisible,
-          }}
-        >
-          {placeType} <span style={{ fontWeight: "bold" }}>{rate}</span>
-        </div>
       </div>
     </div>
   );

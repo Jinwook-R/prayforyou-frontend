@@ -8,6 +8,7 @@ const StyledList = styled.div`
   border-radius: ${(props) =>
     props.borderRadius ? props.borderRadius : "15px"};
   overflow: scroll;
+  margin: ${(props) => props.margin};
   > * {
     margin-top: 10px;
   }

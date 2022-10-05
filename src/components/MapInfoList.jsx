@@ -13,6 +13,7 @@ const MapInfoList = ({
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
+
   return (
     <StyledList
       maxHeight={isMobile ? "auto" : "850px"}
