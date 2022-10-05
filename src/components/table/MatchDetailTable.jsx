@@ -1,9 +1,12 @@
 import styled from "@emotion/styled";
 import TableWithTitle from "./TableWithTitle";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
-const MatchDetailTable = ({ winTeam, loseTeam, gameTime, mapName }) => {
-  const winTeamTableProps = useMemo(() => {
+const MatchDetailTable = ({ redTeam, blueTeam, gameTime, mapName, isWin }) => {
+  const getWinLoseColor = useCallback((isWinner) => {
+    return isWinner ? "#775ee2" : "#676472";
+  }, []);
+  const redTeamTableProps = useMemo(() => {
     return {
       cellConfigs: [
         {
@@ -47,18 +50,21 @@ const MatchDetailTable = ({ winTeam, loseTeam, gameTime, mapName }) => {
           },
         },
       ],
-      data: [...winTeam.members],
+      data: [...redTeam.members],
       headerStyle: {
         fontWeight: "normal",
         fontSize: "18px",
         color: "black",
         background: "white",
       },
-      rowStyler: () => ({ background: "#f4f2ff", fontSize: "18px" }),
+      rowStyler: () => ({
+        background: isWin ? "#f4f2ff" : "#efefef",
+        fontSize: "18px",
+      }),
     };
-  }, [winTeam]);
+  }, [redTeam, isWin]);
 
-  const loseTeamTableProps = useMemo(() => {
+  const blueTeamTableProps = useMemo(() => {
     return {
       cellConfigs: [
         {
@@ -103,16 +109,19 @@ const MatchDetailTable = ({ winTeam, loseTeam, gameTime, mapName }) => {
           },
         },
       ],
-      data: [...winTeam.members],
+      data: [...blueTeam.members],
       headerStyle: {
         fontWeight: "normal",
         fontSize: "18px",
         background: "white",
         color: "black",
       },
-      rowStyler: () => ({ background: "#efefef", fontSize: "18px" }),
+      rowStyler: () => ({
+        background: !isWin ? "#f4f2ff" : "#efefef",
+        fontSize: "18px",
+      }),
     };
-  }, [loseTeam]);
+  }, [blueTeam, isWin]);
 
   return (
     <div>
@@ -124,12 +133,20 @@ const MatchDetailTable = ({ winTeam, loseTeam, gameTime, mapName }) => {
         <div>{gameTime}</div>
       </TableHeader>
       <TableWithTitle
-        title={<TableTitle background={"#775ee2"}>승리</TableTitle>}
-        {...winTeamTableProps}
+        title={
+          <TableTitle background={getWinLoseColor(isWin)}>
+            {isWin ? "승리" : "패배"}
+          </TableTitle>
+        }
+        {...redTeamTableProps}
       />
       <TableWithTitle
-        title={<TableTitle background={"#676472"}>패배</TableTitle>}
-        {...loseTeamTableProps}
+        title={
+          <TableTitle background={getWinLoseColor(!isWin)}>
+            {!isWin ? "승리" : "패배"}
+          </TableTitle>
+        }
+        {...blueTeamTableProps}
       />
     </div>
   );

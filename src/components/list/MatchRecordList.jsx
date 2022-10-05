@@ -5,7 +5,7 @@ const MatchRecordList = ({ matches }) => {
   return (
     <DesktopContainer>
       {(matches || []).map((match) => (
-        <MatchListItem matchRecordMockData={match} />
+        <MatchListItem matchData={match} />
       ))}
     </DesktopContainer>
   );
