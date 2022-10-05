@@ -3,6 +3,7 @@ import { InfoFieldItem } from "../../components/listItem";
 import { TopBar } from "../../components";
 import { StyledButtonWrapper } from "../../components/wrapper";
 import MobileMatchTable from "../../components/table/MobileMatchTable";
+import styled from "@emotion/styled";
 const Mobile = ({ userBattle, matches }) => {
   return (
     <>
@@ -34,7 +35,7 @@ const Mobile = ({ userBattle, matches }) => {
             value={`${1231}점`}
           />
         </div>
-        <div>
+        <MatchList>
           {matches.map((match, index) => {
             return (
               <MobileMatchTable
@@ -50,7 +51,7 @@ const Mobile = ({ userBattle, matches }) => {
               />
             );
           })}
-        </div>
+        </MatchList>
 
         <StyledButtonWrapper
           height={"80px"}
@@ -72,5 +73,11 @@ const Mobile = ({ userBattle, matches }) => {
     </>
   );
 };
+
+const MatchList = styled.div`
+  > * + * {
+    margin-top: 10px;
+  }
+`;
 
 export default Mobile;
