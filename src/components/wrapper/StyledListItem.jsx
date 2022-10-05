@@ -6,7 +6,7 @@ const StyledListItem = styled.div`
   align-items: center;
   font-size: 25px;
   text-align: left;
-  width: 90%;
+  padding-inline: ${(props) => props.paddingInline || "16px"};
   margin: 0 auto;
   cursor: pointer;
   height: ${(props) => props.height || "85px"};

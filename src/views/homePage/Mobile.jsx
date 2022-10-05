@@ -50,7 +50,7 @@ const Mobile = () => {
         {dropDown && userName && (
           <StyledList
             width={"80%"}
-            padding={filteredUserNames.length ? false : "none"}
+            padding={filteredUserNames.length ? "10px" : "none"}
           >
             {filteredUserNames.map((item, idx) => (
               <StyledListItemWrapper

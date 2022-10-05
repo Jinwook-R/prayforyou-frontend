@@ -114,7 +114,7 @@ const Search = ({
           onChange={handleUserName}
           onKeyDown={handleSearch}
         />
-        {isMobile && <SearchIcon />}
+        {isMobile && <SearchIcon onClick={handleSearch} />}
       </StyledSearchInputWrapper>
       {!userName && (
         <StyledPrayForYouNav

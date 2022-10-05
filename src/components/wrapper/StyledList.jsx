@@ -9,7 +9,7 @@ const StyledList = styled.div`
     props.borderRadius ? props.borderRadius : "15px"};
   overflow: scroll;
   margin: ${(props) => props.margin};
-  > * {
+  > * + * {
     margin-top: 10px;
   }
   ::-webkit-scrollbar {
