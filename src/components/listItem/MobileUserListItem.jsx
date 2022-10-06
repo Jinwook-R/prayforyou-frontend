@@ -14,7 +14,6 @@ const MobileUserListItem = ({
   rate,
   ladderPoint,
 }) => {
-  console.log("안녕", thumbnail);
   return (
     <Wrapper style={{ background: isDownTarget ? "#ffebeb" : "white" }}>
       <Row style={{ fontSize: "13px" }}>
@@ -31,13 +30,15 @@ const MobileUserListItem = ({
       </Row>
       <Row style={{ marginTop: "7px", fontSize: "13px" }}>
         <div>{`${winCount}승/${loseCount}패`}</div>
-        {killAverage && <div>{`평균킬 ${killAverage}`}</div>}
+        {killAverage && <div>{`평균킬 ${killAverage.toFixed(1)}`}</div>}
       </Row>
       <Row style={{ marginTop: "8px", fontSize: "13px" }}>
         <div style={{ display: "flex" }}>
-          <div>{`승률 ${rate}%`}</div>
+          {rate && <div>{`승률 ${rate.toFixed(1)}%`}</div>}
           {killDeathRate && (
-            <div style={{ marginLeft: "10px" }}>{`KD ${killDeathRate}%`}</div>
+            <div style={{ marginLeft: "10px" }}>{`KD ${killDeathRate.toFixed(
+              1
+            )}%`}</div>
           )}
         </div>{" "}
         <div>{`래더 ${ladderPoint}점`}</div>

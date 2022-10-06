@@ -8,8 +8,7 @@ export const getPrivateRankings = createAsyncThunk(
     const responseData = await axios
       .get(`${DESTINATION_DOMAIN_ADDRESS}/user/ranking?page=${page}`)
       .then((res) => {
-        console.log("what?", res.data);
-        return res.data.content;
+        return res.data.data;
       })
       .catch((err) => {
         console.log(err);
@@ -21,7 +20,10 @@ export const getPrivateRankings = createAsyncThunk(
 export const privateRankingSlice = createSlice({
   name: "privateRankingList",
   initialState: {
-    users: [],
+    data: {
+      content: [],
+      isLast: true,
+    },
     status: null,
   },
   reducers: {},
@@ -31,7 +33,8 @@ export const privateRankingSlice = createSlice({
     },
     [getPrivateRankings.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.users = action.payload;
+      const { content, last } = action.payload;
+      state.data = { content, isLast: last };
     },
     [getPrivateRankings.rejected]: (state, action) => {
       state.status = "failed";

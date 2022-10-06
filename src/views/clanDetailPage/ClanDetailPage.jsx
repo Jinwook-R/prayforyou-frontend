@@ -38,7 +38,6 @@ const ClanDetailPage = ({ ...props }) => {
     dispatch(getMapPositions());
     dispatch(searchBattle(1));
     if (clanId !== undefined) {
-      console.log("안녕하시렵니까?", clanId);
       dispatch(getClanRecords({ clanId }));
     }
   }, [dispatch, clanId]);

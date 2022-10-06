@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMapPositions } from "../../redux/map";
 import { searchBattle } from "../../redux/battle";
 import { MatchRecordMockData } from "../../components/listItem/MatchListItem";
+import { useParams } from "react-router";
+import { getUserInfo } from "../../redux/user/userInfoSlice";
 
 export const memberMockData = {
   nickname: "안녕하살법사",
@@ -42,17 +44,23 @@ const mockMatches = Array.from({ length: 15 }, (_, index) => {
 });
 
 const RecordPage = () => {
+  const { userNexonId } = useParams();
+
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
 
   const dispatch = useDispatch();
   const userBattle = useSelector((state) => state.battle.battle);
+  const userInfo = useSelector((store) => store.userInfo);
+
+  console.log("유저 인포?", userInfo);
 
   useEffect(() => {
     dispatch(getMapPositions());
     dispatch(searchBattle(1));
-  }, [dispatch]);
+    dispatch(getUserInfo(userNexonId));
+  }, [dispatch, userNexonId]);
 
   return isMobile ? (
     <Mobile userBattle={userBattle} matches={mockMatches} />
