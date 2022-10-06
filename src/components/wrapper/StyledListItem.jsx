@@ -4,6 +4,7 @@ const StyledListItem = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: ${(props) => props.width || "auto"};
   font-size: 25px;
   text-align: left;
   padding-inline: ${(props) => props.paddingInline || "16px"};

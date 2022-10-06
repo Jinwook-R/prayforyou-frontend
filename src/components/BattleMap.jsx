@@ -2,7 +2,7 @@ import MapImage from "../assets/map.svg";
 import { useEffect, useState } from "react";
 import { BREAK_POINT } from "../utils/constants";
 import { useMediaQuery } from "react-responsive";
-
+import { useSelector } from "react-redux";
 /** Position
  * @field rate : string
  * @field polygon : string (number number, ...)
@@ -23,16 +23,25 @@ const targetedStyle = {
 
 const BattleMap = ({ mapPositions, userBattlePositions }) => {
   const [hoveringPosition, setHoveringPosition] = useState(false);
-  const [targetPosition, setTargetPosition] = useState(null);
+
   const [placeType, setPlaceType] = useState("");
   const [rate, setRate] = useState("");
-
-  const [pickerX, setPickerX] = useState(0);
-  const [pickerY, setPickerY] = useState(0);
-
+  const hover = useSelector((state) => state.map.hover);
   const isMobile = useMediaQuery({ query: `(max-width: ${BREAK_POINT}px)` });
 
-  console.log(mapPositions, userBattlePositions);
+  useEffect(() => {
+    if (hover.isHovered) {
+      const hoveredPosition = userBattlePositions.find(
+        (item) => item.description === hover.hoveredPlaceType
+      );
+
+      setPlaceType(hoveredPosition.description);
+      setRate(hoveredPosition.rate);
+    } else {
+      setPlaceType("");
+      setRate("");
+    }
+  }, [hover]);
 
   const mouseOverPosition = (event, position, nextX, nextY) => {
     setPlaceType(position.placeType);
@@ -40,14 +49,11 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
       (item) => item.description === position.placeType
     );
 
-    console.log(userBattlePosition);
-    setRate(`${userBattlePosition ? `${userBattlePosition.rate}%` : "0%"}`);
+    setRate(`${userBattlePosition ? `${userBattlePosition.rate}` : "0"}`);
 
     setHoveringPosition({
       ...position,
     });
-    setPickerX(nextX);
-    setPickerY(nextY);
   };
 
   const mouseLeavePosition = () => {
@@ -94,8 +100,8 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
             const highlighted =
               (hoveringPosition &&
                 hoveringPosition.placeType === position.placeType) ||
-              (targetPosition &&
-                targetPosition.placeType === position.placeType);
+              (hover.isHovered &&
+                hover.hoveredPlaceType === position.placeType);
 
             return (
               <>
@@ -135,7 +141,7 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
                         }}
                       >
                         <p>{placeType}</p>
-                        <p>{rate}</p>
+                        <p>{rate}%</p>
                       </div>
                     </foreignObject>
                   </g>

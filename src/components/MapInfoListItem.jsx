@@ -3,62 +3,36 @@ import {
   StyledListItem,
   StyledListItemText,
 } from "./wrapper";
-import {
-  PLACE_BUTTON,
-  GUN_BUTTON,
-  ROUND_BUTTON,
-  BREAK_POINT,
-} from "../utils/constants";
+import { BREAK_POINT } from "../utils/constants";
 import { useMediaQuery } from "react-responsive";
-
+import { setHover } from "../redux/map/mapSlice";
+import { useDispatch } from "react-redux";
 const MapInfoListItem = ({ outputText, item, index }) => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
+  const dispatch = useDispatch();
+
   const renderPositionInner = () => {
     return (
-      <>
-        <StyledListItemText fontSize="15px">{index + 1}</StyledListItemText>
-        <StyledListItemText flex={1} fontSize="15px">
-          {item[outputText[0]]}
-        </StyledListItemText>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <StyledListItemText fontSize="15px">{index + 1}</StyledListItemText>
+          <StyledListItemText flex={1} fontSize="15px">
+            {item[outputText[0]]}
+          </StyledListItemText>
+        </div>
         <StyledListItemText fontSize="15px" fontWeight="bold">
           {`${item[outputText[1]]}%`}
         </StyledListItemText>
-      </>
+      </div>
     );
-  };
-
-  const renderGunsInner = () => {
-    return (
-      <>
-        <StyledListItemText fontSize="15px">{index + 1}</StyledListItemText>
-        <StyledListItemText flex={1} fontSize="15px">
-          {item[outputText[0]]}
-        </StyledListItemText>
-        <StyledListItemText fontSize="15px" fontWeight="bold">
-          {`${item[outputText[1]]}회`}
-        </StyledListItemText>
-      </>
-    );
-  };
-
-  const renderRoundInner = () => {
-    return (
-      <>
-        <StyledListItemText fontSize="15px">{index + 1}</StyledListItemText>
-        <StyledListItemText flex={1} fontSize="15px">
-          {`${item[outputText[0]]} 라운드`}
-        </StyledListItemText>
-        <StyledListItemText fontSize="15px" fontWeight="bold">
-          {`${item[outputText[1]]}회`}
-        </StyledListItemText>
-      </>
-    );
-  };
-
-  const renderInner = () => {
-    return renderPositionInner();
   };
 
   return (
@@ -66,7 +40,27 @@ const MapInfoListItem = ({ outputText, item, index }) => {
       style={{ margin: "8px 0" }}
       marginBottom={isMobile && "10px"}
     >
-      <StyledListItem>{renderInner()}</StyledListItem>
+      <StyledListItem
+        onMouseOver={() => {
+          dispatch(
+            setHover({
+              isHovered: true,
+              hoveredPlaceType: item[outputText[0]],
+            })
+          );
+        }}
+        onMouseOut={() => {
+          dispatch(
+            setHover({
+              isHovered: false,
+              hoveredPlaceType: "",
+            })
+          );
+        }}
+        width="100%"
+      >
+        {renderPositionInner()}
+      </StyledListItem>
     </StyledListItemWrapper>
   );
 };

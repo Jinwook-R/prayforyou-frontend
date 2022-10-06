@@ -74,10 +74,7 @@ const Search = ({
               }
 
               setUserName("");
-
-              // navigate("record", { state: { ...filteredUser[0] } });
               navigate("user", { state: { ...filteredUser[0] } });
-              // navigate("user", { state: { ...mockUser } });
             }
           }
         })();

@@ -36,7 +36,7 @@ const Desktop = ({
           paddingLeft: "16px",
         }}
       >
-        {userBattle && (
+        {userBattlePositions && (
           <TopBar
             style={{
               paddingLeft: "10px",
@@ -46,7 +46,7 @@ const Desktop = ({
             }}
             userId={userId}
             nickname={nickname}
-            battle={userBattle}
+            userBattlePositions={userBattlePositions}
           />
         )}
       </div> */}
@@ -124,7 +124,7 @@ const Desktop = ({
                 }
               })}
               width="100%"
-              outputText={["place", "rate"]}
+              outputText={["description", "rate"]}
               offset={offset}
               handleOffset={handleOffset}
             />

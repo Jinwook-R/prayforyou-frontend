@@ -75,9 +75,8 @@ const UserPage = () => {
         <Mobile
           mapPositions={parsedPositions}
           location={location}
-          userBattle={userBattlePositions}
+          userBattlePositions={userBattlePositions}
           clickedButton={clickedButton}
-          handleClickedButton={handleClickedButton}
           offset={offset}
           handleOffset={handleOffset}
         />

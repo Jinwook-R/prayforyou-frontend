@@ -12,7 +12,7 @@ const Mobile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllBanners());
+    // dispatch(fetchAllBanners());
   }, []);
 
   const [dropDown, setDropDown] = useState(false);
@@ -34,9 +34,9 @@ const Mobile = () => {
           alignItems: "center",
         }}
         onMouseDown={(e) => {
-          if (!e.target.className.includes("searchInput")) {
-            e.preventDefault();
-          }
+          // if (!e.target.className.includes("searchInput")) {
+          //   e.preventDefault();
+          // }
         }}
       >
         <Search
