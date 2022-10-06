@@ -1,35 +1,22 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import {
-  MapButtonGroup,
-  TopBar,
-  MapInfoList,
-  BattleMap,
-} from "../../components";
-import {
-  PLACE_BUTTON,
-  GUN_BUTTON,
-  ROUND_BUTTON,
-  COMMON_LAYOUT_PC_HORIZONTAL_MAX,
-} from "../../utils/constants";
+// import { useSelector } from "react-redux";
+import { TopBar, MapInfoList, BattleMap } from "../../components";
+import { COMMON_LAYOUT_PC_HORIZONTAL_MAX } from "../../utils/constants";
 
-const BANNER_PROPS = {
-  width: "85%",
-  height: "100px",
-  margin: "16px auto",
-};
+// const BANNER_PROPS = {
+//   width: "85%",
+//   height: "100px",
+//   margin: "16px auto",
+// };
 
 const Desktop = ({
   mapPositions,
-  location,
-  userBattle,
-  clickedButton,
+  userBattlePositions,
   offset,
   handleOffset,
 }) => {
-  const banners = useSelector((store) => store.banner);
-  const { nickname, userId } = location.state;
+  // const banners = useSelector((store) => store.banner);
   const [sortOrder, setSortOrder] = useState("desc");
 
   const handleOnClick = (e) => {
@@ -38,11 +25,9 @@ const Desktop = ({
     e.target.className.includes("desc") && setSortOrder("desc");
   };
 
-  useEffect(() => {}, []);
-
   return (
     <>
-      <div
+      {/* <div
         style={{
           display: "flex",
           backgroundColor: "#775ee1",
@@ -51,18 +36,20 @@ const Desktop = ({
           paddingLeft: "16px",
         }}
       >
-        <TopBar
-          style={{
-            paddingLeft: "10px",
-            margin: "0 auto",
-            width: "100%",
-            maxWidth: COMMON_LAYOUT_PC_HORIZONTAL_MAX,
-          }}
-          userId={userId}
-          nickname={nickname}
-          battle={userBattle}
-        />
-      </div>
+        {userBattle && (
+          <TopBar
+            style={{
+              paddingLeft: "10px",
+              margin: "0 auto",
+              width: "100%",
+              maxWidth: COMMON_LAYOUT_PC_HORIZONTAL_MAX,
+            }}
+            userId={userId}
+            nickname={nickname}
+            battle={userBattle}
+          />
+        )}
+      </div> */}
       <div
         style={{
           paddingInline: "16px",
@@ -85,7 +72,10 @@ const Desktop = ({
               flexBasis: "40%",
             }}
           >
-            <BattleMap positions={mapPositions} />
+            <BattleMap
+              mapPositions={mapPositions}
+              userBattlePositions={userBattlePositions}
+            />
           </div>
           <div
             style={{
@@ -94,13 +84,6 @@ const Desktop = ({
               flexBasis: "45%",
             }}
           >
-            <MapButtonGroup
-              clickedButton={clickedButton}
-              width="100%"
-              height="35px"
-              justifyContent="left"
-              marginRight="5px"
-            />
             <div
               style={{
                 margin: "0 auto",
@@ -127,40 +110,21 @@ const Desktop = ({
               </StyledSortButton>
             </div>
             <MapInfoList
-              clickedButton={clickedButton}
-              data={userBattle[clickedButton].slice().sort((a, b) => {
+              data={userBattlePositions.slice().sort((a, b) => {
                 if (sortOrder === "asc") {
-                  if (clickedButton === PLACE_BUTTON) {
-                    return a["rate"] - b["rate"];
-                  }
-
-                  if (clickedButton === GUN_BUTTON) {
-                    return a["useCount"] - b["useCount"];
-                  }
-
-                  if (clickedButton === ROUND_BUTTON) {
-                    return a["rate"] - b["rate"];
-                  }
+                  return (
+                    Math.floor(b["kill"] / b["kill"] + b["death"]) -
+                    Math.floor(a["kill"] / a["kill"] + a["death"])
+                  );
                 } else if (sortOrder === "desc") {
-                  if (clickedButton === PLACE_BUTTON) {
-                    return b["rate"] - a["rate"];
-                  }
-
-                  if (clickedButton === GUN_BUTTON) {
-                    return b["useCount"] - a["useCount"];
-                  }
-
-                  if (clickedButton === ROUND_BUTTON) {
-                    return b["rate"] - a["rate"];
-                  }
+                  return (
+                    Math.floor(a["kill"] / a["kill"] + a["death"]) -
+                    Math.floor(b["kill"] / b["kill"] + b["death"])
+                  );
                 }
               })}
               width="100%"
-              outputText={
-                (clickedButton === PLACE_BUTTON && ["place", "rate"]) ||
-                (clickedButton === GUN_BUTTON && ["type", "useCount"]) ||
-                (clickedButton === ROUND_BUTTON && ["round", "rate"])
-              }
+              outputText={["place", "rate"]}
               offset={offset}
               handleOffset={handleOffset}
             />

@@ -3,13 +3,7 @@ import MapInfoListItem from "./MapInfoListItem";
 import { StyledList, StyledListItemWrapper, StyledListItem } from "./wrapper";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
-const MapInfoList = ({
-  data = [],
-  width,
-  margin,
-  outputText,
-  clickedButton,
-}) => {
+const MapInfoList = ({ data = [], width, margin, outputText }) => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
@@ -22,11 +16,10 @@ const MapInfoList = ({
       margin={margin}
       borderRadius="15px"
     >
-      {data.length &&
+      {!!data.length &&
         data.map((item, index) => {
           return (
             <MapInfoListItem
-              clickedButton={clickedButton}
               key={`${index}`}
               item={item}
               index={index}
@@ -34,7 +27,7 @@ const MapInfoList = ({
             />
           );
         })}
-      {!data.length && (
+      {!!!data.length && (
         <StyledListItemWrapper>
           <StyledListItem textAlign="left">
             <p>결과 없음</p>

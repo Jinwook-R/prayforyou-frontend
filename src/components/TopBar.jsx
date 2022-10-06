@@ -11,7 +11,7 @@ import { Toggle } from "./common";
 
 const TopBar = ({ userId, nickname, battle, ...props }) => {
   const { battleStats } = battle;
-  const { kill, death, gameCount } = battleStats;
+  const { kill, death, gameCount } = battle.battleStats;
   const [favoriteUsers, setFavoriteUsers] = useLocalStorage(
     "favoriteUsers",
     []

@@ -3,15 +3,18 @@ import axios from "axios";
 import { DESTINATION_DOMAIN_ADDRESS } from "../../utils/constants";
 import { searchBattle } from "../battle";
 
-export const getMapPositions = createAsyncThunk("map/positions", async () => {
-  const responseData = await axios
-    .get(`${DESTINATION_DOMAIN_ADDRESS}/battle/positions`)
-    .then((res) => res.data.data)
-    .catch((err) => {
-      console.log(err);
-    });
-  return responseData;
-});
+export const getMapPositions = createAsyncThunk(
+  "battle/positions",
+  async () => {
+    const responseData = await axios
+      .get(`${DESTINATION_DOMAIN_ADDRESS}/battle/positions`)
+      .then((res) => res.data.data)
+      .catch((err) => {
+        console.log(err);
+      });
+    return responseData;
+  }
+);
 
 export const mapSlice = createSlice({
   name: "map",

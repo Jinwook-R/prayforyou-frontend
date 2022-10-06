@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { searchUser } from "../redux/user";
+import { searchUserByName } from "../redux/user";
 import { useMediaQuery } from "react-responsive";
 import { ReactComponent as SearchIcon } from "../assets/search.svg";
 import { BREAK_POINT } from "../utils/constants";
@@ -20,7 +20,7 @@ const Search = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [runSearchUser, clearRunSearchUser, searchedUserNames] =
-    useDispatchDebounce(searchUser, 600, []);
+    useDispatchDebounce(searchUserByName, 600, []);
 
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
@@ -47,7 +47,7 @@ const Search = ({
       e.preventDefault();
       if (userName) {
         (async () => {
-          const dispatchResponse = await dispatch(searchUser(userName));
+          const dispatchResponse = await dispatch(searchUserByName(userName));
           if (!!dispatchResponse?.payload?.length) {
             const filteredUser = dispatchResponse.payload.filter(
               (item) => item?.nickname === userName
@@ -74,16 +74,10 @@ const Search = ({
               }
 
               setUserName("");
-              console.log(filteredUser[0]);
-              const mockUser = {
-                nickname: "테스트",
-                userId: 1,
-                userNexonId: 1930208181,
-                userType: "SUDDEN_BATTLE",
-              };
+
               // navigate("record", { state: { ...filteredUser[0] } });
-              // navigate("user", { state: { ...filteredUser[0] } });
-              navigate("user", { state: { ...mockUser } });
+              navigate("user", { state: { ...filteredUser[0] } });
+              // navigate("user", { state: { ...mockUser } });
             }
           }
         })();

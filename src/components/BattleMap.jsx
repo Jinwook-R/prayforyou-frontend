@@ -8,7 +8,7 @@ import { useMediaQuery } from "react-responsive";
  * @field polygon : string (number number, ...)
  * @field placeType : string
  *   - used as Position Id and Position name
- * @field positions
+ * @field mapPositions
  */
 
 /** PositionWithPoint extends Position
@@ -21,7 +21,7 @@ const targetedStyle = {
   fill: "#b4a2ff",
 };
 
-const BattleMap = ({ positions }) => {
+const BattleMap = ({ mapPositions, userBattlePositions }) => {
   const [hoveringPosition, setHoveringPosition] = useState(false);
   const [targetPosition, setTargetPosition] = useState(null);
   const [placeType, setPlaceType] = useState("");
@@ -32,10 +32,16 @@ const BattleMap = ({ positions }) => {
 
   const isMobile = useMediaQuery({ query: `(max-width: ${BREAK_POINT}px)` });
 
+  console.log(mapPositions, userBattlePositions);
+
   const mouseOverPosition = (event, position, nextX, nextY) => {
-    console.log("mouseOver ", position.placeType, nextX, nextY, position);
     setPlaceType(position.placeType);
-    setRate(`${position.rate}%`);
+    const userBattlePosition = userBattlePositions.find(
+      (item) => item.description === position.placeType
+    );
+
+    console.log(userBattlePosition);
+    setRate(`${userBattlePosition ? `${userBattlePosition.rate}%` : "0%"}`);
 
     setHoveringPosition({
       ...position,
@@ -80,7 +86,7 @@ const BattleMap = ({ positions }) => {
           viewBox="0 0 560 560"
           style={{ position: "absolute", top: 0, left: 0 }}
         >
-          {positions.map((position, idx) => {
+          {mapPositions.map((position, idx) => {
             const [pickerX, pickerY] = getPickerPosition(
               position.polygon.split(",")
             );
@@ -110,7 +116,7 @@ const BattleMap = ({ positions }) => {
                     <foreignObject
                       x={pickerX}
                       y={pickerY}
-                      width={isMobile ? "100px" : "181px"}
+                      width={isMobile ? "100px" : "148px"}
                       height="50px"
                       style={
                         highlighted
@@ -132,23 +138,6 @@ const BattleMap = ({ positions }) => {
                         <p>{rate}</p>
                       </div>
                     </foreignObject>
-                    {/* <rect
-                      key={`${position.placeType}`}
-                      className={idx.toString()}
-                      id={position.placeType}
-                      x={pickerX}
-                      y={pickerY}
-                      width="25%"
-                      height="50px"
-                      rx="5%"
-                      ry="5%"
-                    >
-                      <foreignObject width="25%" height="50px">
-                        <text x={pickerX + 25} y={pickerY + 30} fill="#fff">
-                          {placeType} {rate}
-                        </text>
-                      </foreignObject>
-                    </rect> */}
                   </g>
                 </g>
               </>

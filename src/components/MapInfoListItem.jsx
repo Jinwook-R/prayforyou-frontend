@@ -11,7 +11,7 @@ import {
 } from "../utils/constants";
 import { useMediaQuery } from "react-responsive";
 
-const MapInfoListItem = ({ outputText, item, clickedButton, index }) => {
+const MapInfoListItem = ({ outputText, item, index }) => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
@@ -58,16 +58,7 @@ const MapInfoListItem = ({ outputText, item, clickedButton, index }) => {
   };
 
   const renderInner = () => {
-    switch (clickedButton) {
-      case PLACE_BUTTON:
-        return renderPositionInner();
-      case GUN_BUTTON:
-        return renderGunsInner();
-      case ROUND_BUTTON:
-        return renderRoundInner();
-      default:
-        return renderPositionInner();
-    }
+    return renderPositionInner();
   };
 
   return (
