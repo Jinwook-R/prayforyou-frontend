@@ -95,7 +95,6 @@ const Search = ({
           className="searchInput"
           placeholder="닉네임을 입력하세요"
           fontSize={isMobile ? "12px" : "24px"}
-          type={isMobile ? "search" : "text"}
           onBlur={(e) => {
             if (!e.target.className.includes("searchWrapper")) {
               handleDropDown(false);
