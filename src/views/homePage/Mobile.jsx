@@ -20,7 +20,7 @@ const Mobile = () => {
 
   return (
     <div style={{ padding: "0 16px", paddingTop: "100px" }}>
-      <Title width="210px" />
+      <Title marginBottom="50px" width="210px" />
       <div
         style={{
           position: "relative",

@@ -91,7 +91,7 @@ const Mobile = ({
       </MobilePageToolbarWrapper>
       {/* <Banner height={"50px"} margin={"10px"} />*/}
       <Table
-        headerStyle={{ paddingInline: "30px" }}
+        headerStyle={{ height: "0px" }}
         rowStyler={() => {
           return {
             height: "auto",

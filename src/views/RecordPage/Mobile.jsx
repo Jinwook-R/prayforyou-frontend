@@ -56,7 +56,7 @@ const Mobile = ({ userInfo, matches, isEnd, onClickMoreButton }) => {
           })}
         </MatchList>
 
-        {!isEnd && (
+        {!isEnd && (matches || []).length > 0 && (
           <StyledButtonWrapper
             height={"80px"}
             justifyContent={"center"}

@@ -71,7 +71,7 @@ const Mobile = ({ userInfoList, isEnd, onClickMoreButton }) => {
       <Table
         isEnd={isEnd}
         onClickMoreButton={onClickMoreButton}
-        headerStyle={{ paddingInline: "30px" }}
+        headerStyle={{ height: "0px" }}
         rowStyler={() => {
           return {
             height: "auto",

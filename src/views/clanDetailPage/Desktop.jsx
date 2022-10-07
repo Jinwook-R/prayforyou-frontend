@@ -81,26 +81,28 @@ const Desktop = ({
                 </StyledButtonWrapper>
               )}
             </div>
-            <div
-              style={{
-                display: "flex",
-                width: "308px",
-                flexDirection: "column",
-              }}
-            >
-              <InfoFieldItem
-                fieldName={"래더"}
-                value={`${clanInfo.ladderPoint}점`}
-              />
-              <InfoFieldItem
-                fieldName={"승률"}
-                value={`${(clanInfo?.winLosePercent || 0).toFixed(2)}%`}
-              />
-              <InfoFieldItem
-                fieldName={"랭킹"}
-                value={`${clanInfo.ranking}위`}
-              />
-            </div>
+            {clanInfo && (
+              <div
+                style={{
+                  display: "flex",
+                  width: "308px",
+                  flexDirection: "column",
+                }}
+              >
+                <InfoFieldItem
+                  fieldName={"래더"}
+                  value={`${clanInfo?.ladderPoint}점`}
+                />
+                <InfoFieldItem
+                  fieldName={"승률"}
+                  value={`${(clanInfo?.winLosePercent || 0).toFixed(2)}%`}
+                />
+                <InfoFieldItem
+                  fieldName={"랭킹"}
+                  value={`${clanInfo.ranking}위`}
+                />
+              </div>
+            )}
           </div>
         </StyledMainContentWrapper>
       </StyledDesktopWrapper>

@@ -28,12 +28,19 @@ const Desktop = ({
       {
         name: "순위",
         key: "rank",
-        width: "96px",
+        style: {
+          width: "96px",
+          flex: 2,
+        },
         align: "center",
       },
       {
         name: "클랜",
-        style: { flex: 1, minWidth: "430px" },
+
+        style: {
+          width: "430px",
+          flex: 7,
+        },
         renderer: (info) => {
           {
             /* TODO : export extra component, <User {...userProps} />} */
@@ -51,28 +58,40 @@ const Desktop = ({
       },
       {
         name: "승리",
-        width: "200px",
+        style: {
+          width: "200px",
+          flex: 2,
+        },
         renderer: (info) => {
           return `${info["winCount"]}승`;
         },
       },
       {
         name: "패배",
-        width: "200px",
+        style: {
+          width: "200px",
+          flex: 2,
+        },
         renderer: (info) => {
           return `${info["loseCount"]}패`;
         },
       },
       {
         name: "승률",
-        width: "200px",
+        style: {
+          width: "200px",
+          flex: 2,
+        },
         renderer: (info) => {
           return `${info["winLosePercent"]}%`;
         },
       },
       {
         name: "래더",
-        width: "200px",
+        style: {
+          width: "200px",
+          flex: 2,
+        },
         renderer: (info) => {
           return `${info["score"]}점`;
         },

@@ -45,7 +45,7 @@ const TopBar = ({ userInfo, ...props }) => {
                   fontWeight: "bold",
                 }}
               >
-                {userInfo?.name}
+                {userInfo?.name || ""}
               </div>
               <div
                 style={{
@@ -69,7 +69,7 @@ const TopBar = ({ userInfo, ...props }) => {
                 fontSize: "16px",
               }}
             >
-              <div>{userInfo?.clanName}</div>
+              <div>{userInfo?.clanName || ""}</div>
             </div>
           </div>
         </StyledTopBar>
@@ -98,12 +98,14 @@ const TopBar = ({ userInfo, ...props }) => {
                   fontWeight: "bold",
                 }}
               >
-                {userInfo?.name}
+                {userInfo?.name || ""}
               </div>
             </div>
             <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-              <div style={{ fontWeight: "bold" }}>{userInfo?.clanName}</div>
-              <div>{`래더점수 ${userInfo?.ladderPoint}점`}</div>
+              <div style={{ fontWeight: "bold" }}>
+                {userInfo?.clanName || "-"}
+              </div>
+              <div>{`래더점수 ${userInfo?.ladderPoint || "-"}점`}</div>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>

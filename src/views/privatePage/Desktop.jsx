@@ -19,12 +19,15 @@ const Desktop = ({ userInfoList, isEnd, onClickMoreButton }) => {
       {
         name: "순위",
         key: "rank",
-        width: "96px",
+        style: { width: "96px", flex: 2 },
         align: "center",
       },
       {
         name: "닉네임",
-        width: "430px",
+        style: {
+          width: "430px",
+          flex: 5,
+        },
         renderer: (info) => {
           {
             /* TODO : export extra component, <User {...userProps} />} */
@@ -42,42 +45,42 @@ const Desktop = ({ userInfoList, isEnd, onClickMoreButton }) => {
       },
       {
         name: "승리",
-        width: "200px",
+        style: { width: "200px", flex: 2 },
         renderer: (info) => {
           return `${info["winCount"]}승`;
         },
       },
       {
         name: "패배",
-        width: "200px",
+        style: { width: "200px", flex: 2 },
         renderer: (info) => {
           return `${info["loseCount"]}패`;
         },
       },
       {
         name: "승률",
-        width: "200px",
+        style: { width: "200px", flex: 2 },
         renderer: (info) => {
           return `${info["winLosePercent"].toFixed(1)}%`;
         },
       },
       {
         name: "킬뎃",
-        width: "200px",
+        style: { width: "200px", flex: 2 },
         renderer: (info) => {
           return `${info["killDeath"].toFixed(1)}%`;
         },
       },
       {
         name: "평균킬",
-        width: "200px",
+        style: { width: "200px", flex: 2 },
         renderer: (info) => {
           return `${info["killPerGame"]}킬`;
         },
       },
       {
         name: "래더",
-        width: "200px",
+        style: { width: "200px", flex: 2 },
         renderer: (info) => {
           return `${info["score"]}점`;
         },

@@ -53,7 +53,7 @@ const ClanDetailTopBar = ({
                   fontWeight: "bold",
                 }}
               >
-                {nickname}
+                {nickname || ""}
               </div>
               <div
                 style={{
@@ -79,7 +79,9 @@ const ClanDetailTopBar = ({
                 fontSize: "16px",
               }}
             >
-              <div>{`P4U공식리그-${clanLevel}-${ranking}위`}</div>
+              <div>{`P4U공식리그 - ${clanLevel || "-"} - ${
+                ranking || "-"
+              }위`}</div>
             </div>
           </div>
         </StyledTopBar>
@@ -108,11 +110,13 @@ const ClanDetailTopBar = ({
                   fontWeight: "bold",
                 }}
               >
-                {nickname}
+                {nickname || ""}
               </div>
             </div>
             <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-              <div>{`P4U공식리그-${clanLevel}-${ranking}위`}</div>
+              <div>{`P4U공식리그 - ${clanLevel || "-"} - ${
+                ranking || "-"
+              }위`}</div>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>

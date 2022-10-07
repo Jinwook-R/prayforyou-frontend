@@ -17,31 +17,33 @@ const Mobile = ({ clanInfo, matches, onClickMoreButton, isEnd }) => {
         clanLevel={clanInfo.clanLevel}
       />
       <div>
-        <div
-          style={{
-            paddingInline: "18px",
-            marginBottom: "12px",
-            display: "flex",
-            width: "100%",
-            flexDirection: "column",
-          }}
-        >
-          <InfoFieldItem
-            height={"64px"}
-            fieldName={"래더"}
-            value={`${clanInfo.ladderPoint}점`}
-          />
-          <InfoFieldItem
-            height={"64px"}
-            fieldName={"승률"}
-            value={`${(clanInfo.winLosePercent || 0).toFixed(2)}점`}
-          />
-          <InfoFieldItem
-            height={"64px"}
-            fieldName={"랭킹"}
-            value={`${clanInfo.ranking}위`}
-          />
-        </div>
+        {clanInfo?.clanId && (
+          <div
+            style={{
+              paddingInline: "18px",
+              marginBottom: "12px",
+              display: "flex",
+              width: "100%",
+              flexDirection: "column",
+            }}
+          >
+            <InfoFieldItem
+              height={"64px"}
+              fieldName={"래더"}
+              value={`${clanInfo?.ladderPoint}점`}
+            />
+            <InfoFieldItem
+              height={"64px"}
+              fieldName={"승률"}
+              value={`${(clanInfo?.winLosePercent || 0).toFixed(2)}점`}
+            />
+            <InfoFieldItem
+              height={"64px"}
+              fieldName={"랭킹"}
+              value={`${clanInfo?.ranking}위`}
+            />
+          </div>
+        )}
         <MatchList>
           {(matches || []).map((match) => {
             return (
@@ -59,7 +61,7 @@ const Mobile = ({ clanInfo, matches, onClickMoreButton, isEnd }) => {
             );
           })}
         </MatchList>
-        {isEnd && (
+        {isEnd && (matches || []).length > 0 && (
           <StyledButtonWrapper
             height={"80px"}
             onClick={onClickMoreButton}

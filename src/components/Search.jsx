@@ -122,8 +122,10 @@ const Search = ({
             marginBottom={isMobile ? "8px" : "10px"}
           >
             <a
+              target={"_blank"}
               href="https://open.kakao.com/o/slcFiuFe"
               style={{ color: "#775ee1" }}
+              rel="noreferrer"
             >
               리그 신청하러가기 &nbsp;
             </a>
@@ -140,8 +142,10 @@ const Search = ({
             marginBottom={"100px"}
           >
             <a
+              target={"_blank"}
               href="https://docs.google.com/document/d/1p9xNOjsWjDDWXkZmQl7_-75uRcr3paci0a0aOOGeRJk/edit#"
               style={{ color: "#775ee1" }}
+              rel="noreferrer"
             >
               리그 규칙 보러가기&nbsp;
             </a>

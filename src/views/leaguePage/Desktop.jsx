@@ -23,7 +23,7 @@ const Desktop = ({
     cellConfigs: [
       {
         name: "참여중인 클랜",
-        style: { flex: 1, minWidth: "430px" },
+        style: { flex: 5, width: "430px" },
         renderer: (clan) => {
           return (
             <User
@@ -38,42 +38,42 @@ const Desktop = ({
       },
       {
         name: "",
-        width: "200px",
+        style: { flex: 2, width: "430px" },
         renderer: ({ leagueType }) => {
           return `${leagueType === "first" ? 1 : 2}부리그`;
         },
       },
       {
         name: "",
-        width: "200px",
+        style: { flex: 2, width: "200px" },
         renderer: ({ winCount }) => {
           return `${winCount}승`;
         },
       },
       {
         name: "",
-        width: "200px",
+        style: { flex: 2, width: "200px" },
         renderer: ({ loseCount }) => {
           return `${loseCount}패`;
         },
       },
       {
         name: "",
-        width: "200px",
+        style: { flex: 2, width: "200px" },
         renderer: ({ winLosePercent }) => {
           return `${winLosePercent.toFixed(1)}%`;
         },
       },
       {
         name: "",
-        width: "200px",
+        style: { flex: 2, width: "200px" },
         renderer: ({ score }) => {
           return `${score}점`;
         },
       },
       {
         name: "",
-        width: "200px",
+        style: { flex: 2, width: "200px" },
         renderer: ({ createdAt }) => {
           const date = new Date(createdAt);
           if (isDate(date)) {
