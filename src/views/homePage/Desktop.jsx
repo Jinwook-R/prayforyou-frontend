@@ -87,48 +87,58 @@ const Desktop = () => {
             dropDown={dropDown}
           />
           {dropDown && userName !== "" && !!filteredUserNames.length && (
-            <StyledList
-              width={"750px"}
-              padding={"16px 30px"}
-              onClick={(e) => {
-                // console.log(e.target);
+            <div
+              style={{
+                position: "absolute",
+                top: "90px",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
-              {dropDown &&
-                userName &&
-                filteredUserNames.map((item, idx) => (
-                  <StyledListItemWrapper
-                    key={`${idx}`}
-                    marginBottom={"16px"}
-                    borderRadius={"15px"}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigate(`/record/${item.userNexonId}`);
-                    }}
-                  >
-                    <StyledListItem
-                      justifyContent={"spaceBetween"}
-                      width={"100%"}
-                      height={"72px"}
+              <StyledList
+                width={"750px"}
+                padding={"16px 30px"}
+                onClick={(e) => {
+                  // console.log(e.target);
+                }}
+              >
+                {dropDown &&
+                  userName &&
+                  filteredUserNames.map((item, idx) => (
+                    <StyledListItemWrapper
+                      key={`${idx}`}
+                      marginBottom={"16px"}
+                      borderRadius={"15px"}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/record/${item.userNexonId}`);
+                      }}
                     >
-                      <StyledListItemText
-                        flex={1}
-                        textAlign="left"
-                        fontSize={"20px"}
+                      <StyledListItem
+                        justifyContent={"spaceBetween"}
+                        width={"100%"}
+                        height={"72px"}
                       >
-                        {item.nickname}
-                      </StyledListItemText>
-                      <StyledListItemText
-                        flex={1}
-                        textAlign="right"
-                        fontSize={"20px"}
-                      >
-                        {item?.clanName}
-                      </StyledListItemText>
-                    </StyledListItem>
-                  </StyledListItemWrapper>
-                ))}
-            </StyledList>
+                        <StyledListItemText
+                          flex={1}
+                          textAlign="left"
+                          fontSize={"20px"}
+                        >
+                          {item.nickname}
+                        </StyledListItemText>
+                        <StyledListItemText
+                          flex={1}
+                          textAlign="right"
+                          fontSize={"20px"}
+                        >
+                          {item?.clanName}
+                        </StyledListItemText>
+                      </StyledListItem>
+                    </StyledListItemWrapper>
+                  ))}
+              </StyledList>
+            </div>
           )}
         </div>
       </StyledMainContentWrapper>
