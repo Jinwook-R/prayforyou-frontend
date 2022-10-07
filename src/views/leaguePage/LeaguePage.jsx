@@ -53,7 +53,6 @@ const LeaguePage = () => {
   const dispatch = useDispatch();
   const includedClans = useSelector((store) => store.includedClans);
 
-  console.log("할루", includedClans);
   useEffect(() => {
     dispatch(getIncludedClans());
   }, [dispatch]);
