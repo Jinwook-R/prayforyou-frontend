@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const TopBar = ({ userInfo, ...props }) => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
 
+  const navigate = useNavigate();
   return (
     <>
       {isMobile && (
@@ -116,7 +118,13 @@ const TopBar = ({ userInfo, ...props }) => {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <SearchInputWrapper>
-              <StyledButton onChange={() => {}}>맵으로</StyledButton>
+              <StyledButton
+                onChange={() => {
+                  navigate(`/user/${userInfo.userNexonId}`);
+                }}
+              >
+                포지션 기록
+              </StyledButton>
             </SearchInputWrapper>
           </div>
         </StyledTopBar>

@@ -31,7 +31,6 @@ export const MatchDetailSlice = createSlice({
     [getMatchDetail.fulfilled]: (state, action) => {
       state.status = "succeeded";
       const matchData = action.payload.data;
-      console.log("하위", action, state, matchData);
       state.matchMap = {
         ...state.matchMap,
         [action.meta.arg.matchId]: matchData,
