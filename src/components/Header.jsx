@@ -60,6 +60,7 @@ const Header = () => {
                       </StyledNavLink>
                       <StyledNavLink
                         to={"/clan"}
+                        end
                         className={({ isActive }) => (isActive ? "active" : "")}
                       >
                         클랜랭킹
@@ -129,6 +130,7 @@ const Header = () => {
                   </DropdownItem>
                   <DropdownItem
                     to={"/clan"}
+                    end
                     onClick={mobileHeaderMenuHandler}
                     className={({ isActive }) => (isActive ? "active" : "")}
                   >
@@ -159,6 +161,7 @@ const Header = () => {
               </StyledNavLink>
               <StyledNavLink
                 to={"/clan"}
+                end
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 클랜랭킹
