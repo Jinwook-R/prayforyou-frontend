@@ -118,12 +118,13 @@ const Search = ({
           marginTop={isMobile ? "15px" : "40px"}
           marginBottom={isMobile ? "8px" : "10px"}
         >
-          <span style={{ color: "#141414" }}>
-            Pray For You가 무엇인가요?&nbsp;
-          </span>
-          <span style={{ color: "#775ee1" }} className="check-it-out">
-            &nbsp;확인하러 가기👀
-          </span>
+          <a
+            href="https://open.kakao.com/o/slcFiuFe"
+            style={{ color: "#775ee1" }}
+          >
+            리그 신청하러가기 &nbsp;
+          </a>
+          <div>👀</div>
         </StyledPrayForYouNav>
       )}
       {!userName && (
@@ -133,13 +134,16 @@ const Search = ({
             display: "flex",
             justifyContent: "center",
             fontSize: isMobile ? "13px" : "20px",
+            marginTop: isMobile ? "10px" : "20px",
           }}
           marginBottom={"100px"}
         >
-          <span style={{ color: "#141414" }}>Pray For You</span>
-          <span style={{ color: "#775ee1" }} className="check-it-out">
-            &nbsp;리그 신청하러가기🔫
-          </span>
+          <a
+            href="https://docs.google.com/document/d/1p9xNOjsWjDDWXkZmQl7_-75uRcr3paci0a0aOOGeRJk/edit#"
+            style={{ color: "#775ee1" }}
+          >
+            리그 규칙 보러가기&nbsp;
+          </a>
         </StyledPrayForYouNav>
       )}
     </StyledSearchWrapper>
