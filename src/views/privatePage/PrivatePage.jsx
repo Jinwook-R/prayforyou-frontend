@@ -6,6 +6,7 @@ import { BREAK_POINT } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { getPrivateRankings } from "../../redux/private";
 import { useInfinite } from "../../hooks";
+import { resetStore } from "../../redux/store";
 
 const PrivatePage = () => {
   const isMobile = useMediaQuery({
@@ -24,6 +25,9 @@ const PrivatePage = () => {
 
   useEffect(() => {
     dispatch(getPrivateRankings({ page: pageCount }));
+    return () => {
+      dispatch(resetStore());
+    };
   }, [dispatch, pageCount]);
 
   const addedRankData = useMemo(() => {

@@ -1,4 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {
+  combineReducers,
+  configureStore,
+  createAction,
+} from "@reduxjs/toolkit";
 import { bannerReducer } from "./banner";
 import { userSearchReducer } from "./user";
 import { battleReducer } from "./battle";
@@ -12,20 +16,36 @@ import { matchDetailSliceReducer } from "./record/matchDetailSlice";
 import { clanInfoReducer } from "./clan/clanInfoSlice";
 import { includedReducer } from "./clan/includedClansSlice";
 
+export function resetStore() {
+  return {
+    type: "reset",
+    payload: undefined,
+  };
+}
+
+const combinedReducer = combineReducers({
+  banner: bannerReducer,
+  userSearch: userSearchReducer,
+  userInfo: userInfoReducer,
+  includedClans: includedReducer,
+  clanInfo: clanInfoReducer,
+  battle: battleReducer,
+  ranking: rankingReducer,
+  map: mapReducer,
+  clanRankingList: clanRankingReducer,
+  privateRankingList: privateRankingReducer,
+  userRecords: userRecordsReducer,
+  clanRecords: clanRecordsReducer,
+  matchDetail: matchDetailSliceReducer,
+});
+const rootReducer = (state, action) => {
+  if (action.type === "reset") {
+    state = {};
+  }
+
+  return combinedReducer(state, action);
+};
+
 export const store = configureStore({
-  reducer: {
-    banner: bannerReducer,
-    userSearch: userSearchReducer,
-    userInfo: userInfoReducer,
-    includedClans: includedReducer,
-    clanInfo: clanInfoReducer,
-    battle: battleReducer,
-    ranking: rankingReducer,
-    map: mapReducer,
-    clanRankingList: clanRankingReducer,
-    privateRankingList: privateRankingReducer,
-    userRecords: userRecordsReducer,
-    clanRecords: clanRecordsReducer,
-    matchDetail: matchDetailSliceReducer,
-  },
+  reducer: rootReducer,
 });
