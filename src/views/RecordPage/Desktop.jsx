@@ -9,15 +9,7 @@ import { InfoFieldItem, MatchListItem } from "../../components/listItem";
 import { StyledButtonWrapper } from "../../components/wrapper";
 import styled from "@emotion/styled";
 
-const Desktop = ({
-  userInfo,
-  matches,
-  onClickMoreButton,
-  isEnd,
-  selectedMatch,
-  matchDetail,
-  setSelectedMatch,
-}) => {
+const Desktop = ({ userInfo, matches, onClickMoreButton, isEnd }) => {
   return (
     <>
       <div
@@ -45,20 +37,7 @@ const Desktop = ({
               <div style={{ marginBottom: "10px" }}>
                 <DesktopContainer>
                   {(matches || []).map((match) => (
-                    <MatchListItem
-                      key={match.matchId}
-                      matchData={match}
-                      onClickRightButton={() => {
-                        if (
-                          selectedMatch &&
-                          selectedMatch?.matchId === match.matchId
-                        ) {
-                          setSelectedMatch(null);
-                        } else {
-                          setSelectedMatch(match);
-                        }
-                      }}
-                    />
+                    <MatchListItem key={match.matchId} matchData={match} />
                   ))}
                 </DesktopContainer>
               </div>

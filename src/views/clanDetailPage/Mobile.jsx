@@ -4,15 +4,7 @@ import { ClanDetailTopBar, TopBar } from "../../components";
 import { StyledButtonWrapper } from "../../components/wrapper";
 import MobileMatchTable from "../../components/table/MobileMatchTable";
 import styled from "@emotion/styled";
-const Mobile = ({
-  clanInfo,
-  matches,
-  onClickMoreButton,
-  isEnd,
-  selectedMatch,
-  matchDetail,
-  setSelectedMatch,
-}) => {
+const Mobile = ({ clanInfo, matches, onClickMoreButton, isEnd }) => {
   return (
     <>
       {/* TODO : Top 바 기록실, 클랜 페이지 각각 커스텀 필요 */}
@@ -51,23 +43,11 @@ const Mobile = ({
           />
         </div>
         <MatchList>
-          {matches.map((match, index) => {
-            const detailVisible =
-              selectedMatch && selectedMatch.matchId === match.matchId;
+          {(matches || []).map((match) => {
             return (
               <MobileMatchTable
                 key={`${match.matchId}`}
                 matchId={match.matchId}
-                isDetailVisible={detailVisible}
-                selectedMatch={selectedMatch}
-                matchDetail={detailVisible && matchDetail}
-                onClickDetail={() => {
-                  if (detailVisible) {
-                    setSelectedMatch(null);
-                  } else {
-                    setSelectedMatch(match);
-                  }
-                }}
                 isWin={match.win}
                 lastGameDay={match.lastGameDay}
                 addScore={match.addScore}

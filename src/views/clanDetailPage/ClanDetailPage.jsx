@@ -9,6 +9,7 @@ import { getClanRecords, getUserRecords } from "../../redux/record";
 import { useInfinite } from "../../hooks";
 import { getMatchDetail } from "../../redux/record/matchDetailSlice";
 import { getClanInfo } from "../../redux/clan/clanInfoSlice";
+import { resetStore } from "../../redux/store";
 
 const ClanDetailPage = ({ ...props }) => {
   const { clanId } = useParams();
@@ -24,7 +25,7 @@ const ClanDetailPage = ({ ...props }) => {
   const { loadNextPage, slicedData, pageCount } = useInfinite({
     data: content,
     isSuccess: status === "succeeded",
-    isAsync: false,
+    isAsync: true,
   });
 
   useEffect(() => {
@@ -35,23 +36,13 @@ const ClanDetailPage = ({ ...props }) => {
 
   useEffect(() => {
     dispatch(getClanRecords({ clanId, page: pageCount }));
+    return () => {
+      dispatch(resetStore());
+    };
   }, [pageCount, dispatch, clanId]);
-
-  const [selectedMatch, setSelectedMatch] = useState(null);
-
-  const detailMatch = useSelector((store) => store.matchDetail);
-
-  useEffect(() => {
-    if (selectedMatch && selectedMatch.matchId) {
-      dispatch(getMatchDetail({ matchId: selectedMatch.matchId }));
-    }
-  }, [dispatch, selectedMatch]);
 
   return isMobile ? (
     <Mobile
-      selectedMatch={selectedMatch}
-      setSelectedMatch={setSelectedMatch}
-      matchDetail={detailMatch}
       clanInfo={info}
       matches={slicedData}
       isEnd={isEnd}
@@ -59,9 +50,6 @@ const ClanDetailPage = ({ ...props }) => {
     />
   ) : (
     <Desktop
-      selectedMatch={selectedMatch}
-      setSelectedMatch={setSelectedMatch}
-      matchDetail={detailMatch}
       clanInfo={info}
       matches={slicedData}
       isEnd={isEnd}

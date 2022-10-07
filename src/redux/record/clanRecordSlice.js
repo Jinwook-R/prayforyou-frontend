@@ -22,6 +22,7 @@ export const clanRecordsSlice = createSlice({
   initialState: {
     content: [],
     status: null,
+    isEnd: true,
   },
   reducers: {},
   extraReducers: {
@@ -31,6 +32,7 @@ export const clanRecordsSlice = createSlice({
     [getClanRecords.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.content = action.payload.data;
+      state.isEnd = action.payload.last;
     },
     [getClanRecords.rejected]: (state, action) => {
       state.status = "failed";

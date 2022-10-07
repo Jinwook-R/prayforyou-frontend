@@ -51,26 +51,13 @@ const Desktop = ({
               <div style={{ marginBottom: "10px" }}>
                 <DesktopContainer>
                   {(matches || []).map((match) => (
-                    <React.Fragment key={match.matchId}>
-                      <MatchListItem
-                        matchData={match}
-                        onClickRightButton={() => {
-                          setSelectedMatch(match);
-                        }}
-                      />
-                      {selectedMatch &&
-                        selectedMatch.matchId === match.matchId &&
-                        matchDetail?.data &&
-                        matchDetail?.status === "succeeded" && (
-                          <MatchDetailTable
-                            isWin={matchDetail?.data.redTeamWin}
-                            mapName={"제 3 보급 창고"}
-                            gameProgressTime={matchDetail?.data.gameStartTime}
-                            redTeam={matchDetail?.data.redUsers}
-                            blueTeam={matchDetail?.data.blueUsers}
-                          />
-                        )}
-                    </React.Fragment>
+                    <MatchListItem
+                      key={match.matchId}
+                      matchData={match}
+                      onClickRightButton={() => {
+                        setSelectedMatch(match);
+                      }}
+                    />
                   ))}
                 </DesktopContainer>
               </div>
