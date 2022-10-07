@@ -44,7 +44,8 @@ const DropDown = ({ ...props }) => {
               key={`${idx}`}
               marginBottom={isMobile ? "10px" : "16px"}
               borderRadius={isMobile && "15px"}
-              onClick={() => {
+              onClick={(e) => {
+                console.log(e);
                 navigate("/record", {
                   state: { userId: item.userId, nickname: item.nickname },
                 });

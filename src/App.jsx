@@ -24,7 +24,7 @@ function App() {
         <MainWrapper>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route exact path="/record" element={<PrivatePage />} />
+            <Route exact path="/record/:userId" element={<PrivatePage />} />
             <Route exact path="/clan" element={<ClanPage />} />
             <Route exact path="/user" element={<UserPage />} />
             <Route exact path="/league" element={<LeaguePage />} />

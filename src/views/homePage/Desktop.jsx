@@ -18,6 +18,7 @@ import {
 } from "../../components/wrapper";
 import { fetchAllBanners } from "../../redux/banner/bannerSlice";
 import { fetchAllRanking } from "../../redux/ranking/rankingSlice";
+import { useNavigate } from "react-router";
 
 const bannerProps = {
   width: "100%",
@@ -29,6 +30,7 @@ const Desktop = () => {
   const banners = useSelector((store) => store.banner);
   const ranking = useSelector((store) => store.ranking.ranking);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // dispatch(fetchAllBanners());
@@ -88,14 +90,25 @@ const Desktop = () => {
             dropDown={dropDown}
           />
           {dropDown && userName !== "" && !!filteredUserNames.length && (
-            <StyledList width={"750px"} padding={"16px 30px"}>
+            <StyledList
+              width={"750px"}
+              padding={"16px 30px"}
+              onClick={(e) => {
+                // console.log(e.target);
+              }}
+            >
               {dropDown &&
                 userName &&
                 filteredUserNames.map((item, idx) => (
                   <StyledListItemWrapper
+                    name={item.userId}
                     key={`${idx}`}
                     marginBottom={"16px"}
                     borderRadius={"15px"}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/record/${item.userId}`);
+                    }}
                   >
                     <StyledListItem
                       justifyContent={"spaceBetween"}

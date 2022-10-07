@@ -20,7 +20,7 @@ const Search = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [runSearchUser, clearRunSearchUser, searchedUserNames] =
-    useDispatchDebounce(searchUserByName, 600, []);
+    useDispatchDebounce(searchUserByName, 200, []);
 
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
