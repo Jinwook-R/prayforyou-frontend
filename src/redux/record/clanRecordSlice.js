@@ -30,7 +30,6 @@ export const clanRecordsSlice = createSlice({
     },
     [getClanRecords.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      console.log("뭐야", action);
       state.content = action.payload.data;
     },
     [getClanRecords.rejected]: (state, action) => {

@@ -1,8 +1,8 @@
 import React from "react";
-import { Banner } from "../../components";
 import { Table } from "../../components/table";
 import MobilePageToolbarWrapper from "../../components/wrapper/MobilePageToolbarWrapper";
 import MobileClanListItem from "../../components/listItem/MobileClanListItem";
+import { useNavigate } from "react-router-dom";
 
 const Mobile = ({
   leagueTitle,
@@ -13,6 +13,7 @@ const Mobile = ({
   isFavorite,
   onClickFavorite,
 }) => {
+  const navigate = useNavigate();
   const clanTableProps = {
     cellConfigs: [
       {
@@ -22,6 +23,9 @@ const Mobile = ({
           return (
             <MobileClanListItem
               winCount={clan.winCount}
+              onClickName={() => {
+                navigate(`/clan/${clan.clanId}`);
+              }}
               loseCount={clan.loseCount}
               winLosePercent={clan.winLosePercent}
               clanName={clan.clanName}

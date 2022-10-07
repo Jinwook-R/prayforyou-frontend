@@ -4,9 +4,10 @@ import {
   StyledMainContentWrapper,
 } from "../../components";
 import { Table } from "../../components/table";
-import { User, Toggle } from "../../components/common";
+import { User } from "../../components/common";
 import { TablePageTitleWrapper } from "../../components/wrapper";
 import { format, isDate } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const Desktop = ({
   leagueTitle,
@@ -17,13 +18,22 @@ const Desktop = ({
   isFavorite,
   onClickFavorite,
 }) => {
+  const navigate = useNavigate();
   const clanTableProps = {
     cellConfigs: [
       {
         name: "참여중인 클랜",
         style: { flex: 1, minWidth: "430px" },
         renderer: (clan) => {
-          return <User thumbnail={clan.clanMarkUrl} name={clan.clanName} />;
+          return (
+            <User
+              thumbnail={clan.clanMarkUrl}
+              name={clan.clanName}
+              onClick={() => {
+                navigate(`/clan/${clan.clanId}`);
+              }}
+            />
+          );
         },
       },
       {
@@ -89,14 +99,12 @@ const Desktop = ({
                 height: "59px",
                 fontSize: "40px",
                 fontWeight: "bold",
+                marginBottom: "20px",
                 display: "inline-block",
               }}
             >
               {leagueTitle}
             </div>
-          </div>
-          <div style={{ height: "29px", fontSize: "20px" }}>
-            {`${leagueType === "public" ? "공식" : "개인"}`}
           </div>
           <div style={{ height: "29px", fontSize: "20px" }}>
             {`${clanData.length}개의 클랜 참여중`}

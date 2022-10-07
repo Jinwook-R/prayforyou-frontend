@@ -7,6 +7,7 @@ const MobileClanListItem = ({
   isDownTarget,
   leagueType,
   winCount,
+  onClickName,
   loseCount,
   winLosePercent,
   ladderPoint,
@@ -17,6 +18,7 @@ const MobileClanListItem = ({
         <User
           paddingBetween={"8px"}
           name={clanName}
+          onClick={onClickName}
           thumbnailSize={20}
           thumbnail={thumbnail}
           fontSize={"15px"}
