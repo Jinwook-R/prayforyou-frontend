@@ -81,7 +81,7 @@ const Table = ({
         </TableBody>
       </StyledTable>
 
-      {!isEnd && (
+      {!isEnd && data.length > 0 && (
         <StyledButtonWrapper
           height={"80px"}
           justifyContent={"center"}
