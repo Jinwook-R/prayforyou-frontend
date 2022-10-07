@@ -47,11 +47,8 @@ const Mobile = () => {
           setUserName={setUserName}
           userName={userName}
         />
-        {dropDown && userName && (
-          <StyledList
-            width={"80%"}
-            padding={filteredUserNames.length ? "10px" : "none"}
-          >
+        {dropDown && userName && !!filteredUserNames.length && (
+          <StyledList width={"80%"} padding="10px">
             {filteredUserNames.map((item, idx) => (
               <StyledListItemWrapper
                 key={`${idx}`}
