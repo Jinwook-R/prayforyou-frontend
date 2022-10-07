@@ -116,6 +116,10 @@ const Desktop = ({
                 fieldName={"랭킹"}
                 value={`${userInfo?.ranking}위`}
               />
+              <InfoFieldItem
+                fieldName={"킬뎃"}
+                value={`${(userInfo?.killDeath || 0).toFixed(2)}%`}
+              />
             </div>
           </div>
         </StyledMainContentWrapper>

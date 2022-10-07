@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
-import { ReactComponent as Medal } from "../assets/mvp_medal.svg";
 import { BREAK_POINT } from "../utils/constants";
 
 const TopBar = ({ userInfo, ...props }) => {
@@ -109,39 +108,9 @@ const TopBar = ({ userInfo, ...props }) => {
               >
                 {userInfo?.name}
               </div>
-              <div
-                style={{
-                  fontSize: "16px",
-                }}
-              >
-                {`승률 ${100}%`}
-              </div>
-              <div
-                style={{
-                  fontSize: "16px",
-                }}
-              >
-                {`${5}회`}
-              </div>
-              <div
-                style={{
-                  fontSize: "16px",
-                  marginLeft: "10px",
-                  color: "white",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Medal width={"20px"} height={"20px"} />
-                {`${5}회`}
-              </div>
             </div>
             <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
               <div style={{ fontWeight: "bold" }}>{userInfo?.clanName}</div>
-              <div>{`킬뎃 ${(userInfo?.killDeath || 0).toFixed(1)}% 판킬 ${
-                userInfo?.killPerGame
-              }`}</div>
-              <div>{`${userInfo?.ranking}`}</div>
               <div>{`래더점수 ${userInfo?.ladderPoint}점`}</div>
             </div>
           </div>
