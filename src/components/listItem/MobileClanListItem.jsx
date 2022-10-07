@@ -8,6 +8,7 @@ const MobileClanListItem = ({
   leagueType,
   winCount,
   loseCount,
+  winLosePercent,
   ladderPoint,
 }) => {
   return (
@@ -27,7 +28,7 @@ const MobileClanListItem = ({
         style={{ marginTop: "7px", fontSize: "13px" }}
       >{`${winCount}승/${loseCount}패`}</Row>
       <Row style={{ marginTop: "8px", fontSize: "13px" }}>
-        <div>{`승률 ${(winCount / (winCount + loseCount)).toFixed(1)}%`}</div>{" "}
+        <div>{`승률 ${(winLosePercent || 0).toFixed(1)}%`}</div>{" "}
         <div>{`래더 ${ladderPoint}점`}</div>
       </Row>
     </Wrapper>

@@ -11,7 +11,6 @@ import { format, isDate } from "date-fns";
 const Desktop = ({
   leagueTitle,
   leagueType,
-  includingCount,
   clanData,
   //managerTableProps,
   //mapTableProps,
@@ -24,7 +23,7 @@ const Desktop = ({
         name: "참여중인 클랜",
         style: { flex: 1, minWidth: "430px" },
         renderer: (clan) => {
-          return <User thumbnail={clan.thumbnail} name={clan.clanName} />;
+          return <User thumbnail={clan.clanMarkUrl} name={clan.clanName} />;
         },
       },
       {
@@ -51,23 +50,24 @@ const Desktop = ({
       {
         name: "",
         width: "200px",
-        renderer: ({ winCount, loseCount }) => {
-          return `${(winCount / (winCount + loseCount)).toFixed(1)}%`;
+        renderer: ({ winLosePercent }) => {
+          return `${winLosePercent.toFixed(1)}%`;
         },
       },
       {
         name: "",
         width: "200px",
-        renderer: ({ ladderPoint }) => {
-          return `${ladderPoint}점`;
+        renderer: ({ score }) => {
+          return `${score}점`;
         },
       },
       {
         name: "",
         width: "200px",
-        renderer: ({ createdDate }) => {
-          if (isDate(createdDate)) {
-            return `${format(createdDate, "yyyy.MM.dd")} 가입`;
+        renderer: ({ createdAt }) => {
+          const date = new Date(createdAt);
+          if (isDate(date)) {
+            return `${format(date, "yyyy.MM.dd")} 가입`;
           } else {
             return "";
           }
@@ -99,7 +99,7 @@ const Desktop = ({
             {`${leagueType === "public" ? "공식" : "개인"}`}
           </div>
           <div style={{ height: "29px", fontSize: "20px" }}>
-            {`${includingCount}개의 클랜 참여중`}
+            {`${clanData.length}개의 클랜 참여중`}
           </div>
         </TablePageTitleWrapper>
         {/* TODO: 추후 연동 <Table

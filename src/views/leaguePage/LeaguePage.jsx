@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Desktop from "./Desktop";
 import Mobile from "./Mobile";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../../utils/constants";
 
 import sampleImg from "../../assets/clan_logo_sample_1.png";
+import { useDispatch, useSelector } from "react-redux";
+import { getIncludedClans } from "../../redux/clan/includedClansSlice";
 
 const clanListItemMockData = {
   clanName: "토끼토끼 클랜",
@@ -47,52 +49,30 @@ const LeaguePage = () => {
     query: `(max-width: ${BREAK_POINT})`,
   });
   //TODO : connect 'favorite' Update Api
-  const [isFavorite, setIsFavorite] = useState(leaguePageMockData.isFavorite);
 
-  /* TODO: 추후 연동 사항
-  const mockManagerTableProps = {
-    cellConfigs: [
-      {
-        name: "리그 관리자",
-        key: "managerName",
-        style: { fontSize: isMobile ? "15px" : "20px" },
-      },
-    ],
-    data: [...leaguePageMockData.includingManagers],
-  };
-  const mockMapTableProps = {
-    cellConfigs: [
-      {
-        name: "리그 맵",
-        key: "mapName",
-        style: { fontSize: isMobile ? "15px" : "20px" },
-      },
-    ],
-    data: [...leaguePageMockData.includingMaps],
-  };*/
+  const dispatch = useDispatch();
+  const includedClans = useSelector((store) => store.includedClans);
 
-  const favoriteClickHandler = () => setIsFavorite((prevState) => !prevState);
+  console.log("할루", includedClans);
+  useEffect(() => {
+    dispatch(getIncludedClans());
+  }, [dispatch]);
+
   return isMobile ? (
     <Mobile
-      leagueTitle={leaguePageMockData.leagueTitle}
-      leagueType={leaguePageMockData.leagueType}
-      includingCount={leaguePageMockData.includingCount}
-      clanData={leaguePageMockData.includingClans}
+      leagueTitle={"P4U 공식리그"}
+      leagueType={"public"}
+      clanData={includedClans.content}
       //managerTableProps={mockManagerTableProps}
       //mapTableProps={mockMapTableProps}
-      isFavorite={isFavorite}
-      onClickFavorite={favoriteClickHandler}
     />
   ) : (
     <Desktop
-      leagueTitle={leaguePageMockData.leagueTitle}
-      leagueType={leaguePageMockData.leagueType}
-      includingCount={leaguePageMockData.includingCount}
-      clanData={leaguePageMockData.includingClans}
+      leagueTitle={"P4U 공식리그"}
+      leagueType={"public"}
+      clanData={includedClans.content}
       //managerTableProps={mockManagerTableProps}
       //mapTableProps={mockMapTableProps}
-      isFavorite={isFavorite}
-      onClickFavorite={favoriteClickHandler}
     />
   );
 };

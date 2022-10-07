@@ -7,7 +7,6 @@ import MobileClanListItem from "../../components/listItem/MobileClanListItem";
 const Mobile = ({
   leagueTitle,
   leagueType,
-  includingCount,
   clanData,
   //managerTableProps,
   //mapTableProps,
@@ -24,10 +23,11 @@ const Mobile = ({
             <MobileClanListItem
               winCount={clan.winCount}
               loseCount={clan.loseCount}
+              winLosePercent={clan.winLosePercent}
               clanName={clan.clanName}
-              thumbnail={clan.thumbnail}
+              thumbnail={clan.clanMarkUrl}
               leagueType={clan.leagueType}
-              ladderPoint={clan.ladderPoint}
+              ladderPoint={clan.score}
             />
           );
         },
@@ -78,7 +78,7 @@ const Mobile = ({
           <div
             style={{ height: "24px", display: "flex", alignItems: "center" }}
           >
-            {`${includingCount}개의 클랜 참여중`}
+            {`${clanData.length}개의 클랜 참여중`}
           </div>
         </div>
       </MobilePageToolbarWrapper>
