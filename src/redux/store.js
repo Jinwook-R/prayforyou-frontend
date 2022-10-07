@@ -1,17 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { bannerReducer } from "./banner";
-import { userReducer } from "./user";
+import { userSearchReducer } from "./user";
 import { battleReducer } from "./battle";
 import { rankingReducer } from "./ranking";
 import { mapReducer } from "./map";
 import { clanRankingReducer } from "./clan";
 import { privateRankingReducer } from "./private";
 import { clanRecordsReducer, userRecordsReducer } from "./record";
+import { userInfoReducer } from "./user/userInfoSlice";
+import { matchDetailSliceReducer } from "./record/matchDetailSlice";
 
 export const store = configureStore({
   reducer: {
     banner: bannerReducer,
-    user: userReducer,
+    userSearch: userSearchReducer,
+    userInfo: userInfoReducer,
     battle: battleReducer,
     ranking: rankingReducer,
     map: mapReducer,
@@ -19,5 +22,6 @@ export const store = configureStore({
     privateRankingList: privateRankingReducer,
     userRecords: userRecordsReducer,
     clanRecords: clanRecordsReducer,
+    matchDetail: matchDetailSliceReducer,
   },
 });

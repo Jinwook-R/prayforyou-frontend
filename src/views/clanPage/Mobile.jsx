@@ -5,7 +5,13 @@ import { MobileUserListItem } from "../../components/listItem";
 import { StyledButtonWrapper } from "../../components/wrapper";
 import { useNavigate } from "react-router-dom";
 
-const Mobile = ({ isFirstView, onClickViewChange, clanData }) => {
+const Mobile = ({
+  isFirstView,
+  onClickViewChange,
+  clanData,
+  isEnd,
+  onClickMoreButton,
+}) => {
   const navigate = useNavigate();
   const mockTableProps = {
     cellConfigs: [
@@ -30,12 +36,10 @@ const Mobile = ({ isFirstView, onClickViewChange, clanData }) => {
         },
       },
     ],
-    data: [...clanData[isFirstView ? "first" : "second"]].map(
-      (item, index) => ({
-        ...item,
-        rank: index + 1,
-      })
-    ),
+    data: [...clanData].map((item, index) => ({
+      ...item,
+      rank: index + 1,
+    })),
   };
   return (
     <>
@@ -93,6 +97,8 @@ const Mobile = ({ isFirstView, onClickViewChange, clanData }) => {
             height: "auto",
           };
         }}
+        isEnd={isEnd}
+        onClickMoreButton={onClickMoreButton}
         {...mockTableProps}
       />
     </>

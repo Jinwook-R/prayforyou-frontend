@@ -5,15 +5,23 @@ import {
 } from "../../components";
 import { InfoFieldItem, MatchListItem } from "../../components/listItem";
 import { MatchRecordMockData } from "../../components/listItem/MatchListItem";
-import MatchDetailTable from "../../components/table/MatchDetailTable";
-import { MatchRecordList } from "../../components/list";
-import { matchDetailMockData } from "../RecordPage/RecordPage";
 import { COMMON_LAYOUT_PC_HORIZONTAL_MAX } from "../../utils/constants";
+import React, { useEffect, useState } from "react";
+import styled from "@emotion/styled";
+import { useDispatch, useSelector } from "react-redux";
+import { getMatchDetail } from "../../redux/record/matchDetailSlice";
 
 const Desktop = ({ matches }) => {
-  const sampleDetailMatch = {
-    ...matchDetailMockData,
-  };
+  const [selectedMatchId, setSelectedMatchId] = useState(null);
+
+  const detailMatch = useSelector((store) => store.matchDetail);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (selectedMatchId) {
+      dispatch(getMatchDetail(selectedMatchId));
+    }
+  }, [dispatch, selectedMatchId]);
 
   return (
     <>
@@ -45,15 +53,24 @@ const Desktop = ({ matches }) => {
                   matchData={{ ...MatchRecordMockData }}
                   rightButtonText={"닫기"}
                 />
-                <MatchDetailTable
+                {/*<MatchDetailTable
                   mapName={sampleDetailMatch.mapName}
                   gameProgressTime={sampleDetailMatch.gameProgressTime}
                   redTeam={sampleDetailMatch.redTeam}
                   blueTeam={sampleDetailMatch.blueTeam}
-                />
+                />*/}
               </div>
               <div style={{ marginBottom: "10px" }}>
-                <MatchRecordList matches={matches} />
+                <DesktopContainer>
+                  {(matches || []).map((match) => (
+                    <MatchListItem
+                      matchData={match}
+                      onClickRightButton={() => {
+                        setSelectedMatchId(match.matchId);
+                      }}
+                    />
+                  ))}
+                </DesktopContainer>
               </div>
             </div>
             <div
@@ -73,4 +90,11 @@ const Desktop = ({ matches }) => {
     </>
   );
 };
+
+const DesktopContainer = styled.div`
+  overflow: auto;
+  > * + * {
+    margin-top: 10px;
+  }
+`;
 export default Desktop;

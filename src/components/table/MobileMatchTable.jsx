@@ -21,7 +21,7 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
           renderer: (user) => {
             return (
               <div style={{ paddingLeft: "14px", fontWeight: "bold" }}>
-                {user.nickname}
+                {user.name}
               </div>
             );
           },
@@ -33,7 +33,7 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
             flex: 1,
           },
           renderer: (user) => {
-            return `${user.weapon}`;
+            return `${user.sniper ? "스나이퍼" : "돌격소총"}`;
           },
         },
         {
@@ -43,7 +43,7 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
             flex: 1,
           },
           renderer: (user) => {
-            return `${user.kill}/${user.death}`;
+            return `${user.killCount}/${user.deathCount}`;
           },
         },
       ],
@@ -75,7 +75,7 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
           renderer: (user) => {
             return (
               <div style={{ paddingLeft: "14px", fontWeight: "bold" }}>
-                {user.nickname}
+                {user.name}
               </div>
             );
           },
@@ -87,7 +87,7 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
             flex: 1,
           },
           renderer: (user) => {
-            return `${user.weapon}`;
+            return `${user.sniper ? "스나이퍼" : "돌격소총"}`;
           },
         },
         {
@@ -97,7 +97,7 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
             flex: 1,
           },
           renderer: (user) => {
-            return `${user.kill}/${user.death}`;
+            return `${user.killCount}/${user.deathCount}`;
           },
         },
       ],
@@ -191,16 +191,17 @@ const TableTitle = styled.div`
 `;
 
 const MobileMatchTable = ({
+  selectedMatch,
+  matchDetail,
+  setSelectedMatch,
   mapName,
   lastGameDay,
   addScore,
-  gameProgressTime,
+  matchId,
   isWin,
-  kill,
-  death,
   blueTeam,
   redTeam,
-  onClickMoreButton,
+  onClickDetail,
   isDetailVisible,
 }) => {
   return (
@@ -242,7 +243,7 @@ const MobileMatchTable = ({
         </div>
         <MoreButton
           className={isDetailVisible ? "active" : ""}
-          onClick={onClickMoreButton}
+          onClick={onClickDetail}
           background={isWin ? "#775ee2" : "#676472"}
         >
           <div style={{ width: "14px" }}>
@@ -250,12 +251,12 @@ const MobileMatchTable = ({
           </div>
         </MoreButton>
       </div>
-      {isDetailVisible && (
+      {isDetailVisible && matchDetail.status === "succeeded" && (
         <MatchDetailTable
-          redTeam={redTeam}
-          blueTeam={blueTeam}
-          gameProgressTime={gameProgressTime}
-          isWin={isWin}
+          redTeam={{ ...redTeam, members: matchDetail.data.redUsers }}
+          blueTeam={{ ...blueTeam, members: matchDetail.data.blueUsers }}
+          gameProgressTime={matchDetail.data.gameStartTime}
+          isWin={matchDetail.data.redTeamWin}
         />
       )}
     </div>

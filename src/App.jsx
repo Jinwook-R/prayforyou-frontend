@@ -24,11 +24,11 @@ function App() {
         <MainWrapper>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route exact path="/private" element={<PrivatePage />} />
+            <Route exact path="/record" element={<PrivatePage />} />
             <Route exact path="/clan" element={<ClanPage />} />
             <Route exact path="/user" element={<UserPage />} />
             <Route exact path="/league" element={<LeaguePage />} />
-            <Route path="/record/:userId" element={<RecordPage />} />
+            <Route path="/record/:userNexonId" element={<RecordPage />} />
             <Route path="/clan/:clanId" element={<ClanDetailPage />} />
           </Routes>
         </MainWrapper>

@@ -1,10 +1,11 @@
 import React from "react";
 import MobilePageToolbarWrapper from "../../components/wrapper/MobilePageToolbarWrapper";
-import { Banner } from "../../components";
 import { Table } from "../../components/table";
 import { MobileUserListItem } from "../../components/listItem";
+import { useNavigate } from "react-router-dom";
 
-const Mobile = ({ userInfoList }) => {
+const Mobile = ({ userInfoList, isEnd, onClickMoreButton }) => {
+  const navigate = useNavigate();
   const mockTableProps = {
     cellConfigs: [
       {
@@ -13,23 +14,24 @@ const Mobile = ({ userInfoList }) => {
         renderer: (userInfo) => {
           return (
             <MobileUserListItem
-              userName={userInfo.nickname}
-              thumbnail={userInfo.thumbnail}
+              userName={userInfo.name}
+              thumbnail={userInfo.clanMarkUrl}
+              onClick={() => {
+                navigate(`/record/${userInfo.userNexonId}`);
+              }}
               rank={userInfo.rank}
               winCount={userInfo.winCount}
               loseCount={userInfo.loseCount}
+              rate={userInfo.winLosePercent}
               killAverage={userInfo.killAverage}
               killDeathRate={userInfo.killDeathRate}
-              ladderPoint={userInfo.ladderPoint}
+              ladderPoint={userInfo.score}
             />
           );
         },
       },
     ],
-    data: [...userInfoList].map((item, index) => ({
-      ...item,
-      rank: index + 1,
-    })),
+    data: userInfoList,
   };
   return (
     <>
@@ -67,6 +69,8 @@ const Mobile = ({ userInfoList }) => {
       </MobilePageToolbarWrapper>
       {/*<Banner height={"50px"} margin={"10px"} /> */}
       <Table
+        isEnd={isEnd}
+        onClickMoreButton={onClickMoreButton}
         headerStyle={{ paddingInline: "30px" }}
         rowStyler={() => {
           return {

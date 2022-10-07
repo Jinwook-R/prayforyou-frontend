@@ -4,9 +4,12 @@ import Desktop from "./Desktop";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { getMapPositions } from "../../redux/map";
-import { searchBattle } from "../../redux/battle";
 import { MatchRecordMockData } from "../../components/listItem/MatchListItem";
+import { useParams } from "react-router";
+import { getUserInfo } from "../../redux/user/userInfoSlice";
+import { getUserRecords } from "../../redux/record";
+import { useInfinite } from "../../hooks";
+import { getMatchDetail } from "../../redux/record/matchDetailSlice";
 
 export const memberMockData = {
   nickname: "안녕하살법사",
@@ -42,22 +45,62 @@ const mockMatches = Array.from({ length: 15 }, (_, index) => {
 });
 
 const RecordPage = () => {
+  const { userNexonId } = useParams();
+
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
 
   const dispatch = useDispatch();
-  const userBattle = useSelector((state) => state.battle.battle);
+  const { info } = useSelector((store) => store.userInfo);
+  const { content, status, isEnd } = useSelector((store) => store.userRecords);
+
+  const { loadNextPage, slicedData, pageCount } = useInfinite({
+    data: content,
+    isSuccess: status === "succeeded",
+    isAsync: true,
+  });
 
   useEffect(() => {
-    dispatch(getMapPositions());
-    dispatch(searchBattle(1));
-  }, [dispatch]);
+    if (userNexonId !== undefined) {
+      dispatch(getUserInfo({ userNexonId }));
+    }
+  }, [dispatch, userNexonId]);
+
+  useEffect(() => {
+    dispatch(getUserRecords({ userNexonId, page: pageCount }));
+  }, [pageCount, dispatch, userNexonId]);
+
+  const [selectedMatch, setSelectedMatch] = useState(null);
+
+  const detailMatch = useSelector((store) => store.matchDetail);
+
+  useEffect(() => {
+    if (selectedMatch) {
+      dispatch(getMatchDetail({ matchId: selectedMatch.matchId }));
+    }
+  }, [dispatch, selectedMatch]);
 
   return isMobile ? (
-    <Mobile userBattle={userBattle} matches={mockMatches} />
+    <Mobile
+      selectedMatch={selectedMatch}
+      setSelectedMatch={setSelectedMatch}
+      matchDetail={detailMatch}
+      userInfo={info}
+      matches={slicedData}
+      isEnd={isEnd}
+      onClickMoreButton={loadNextPage}
+    />
   ) : (
-    <Desktop userBattle={userBattle} matches={mockMatches} />
+    <Desktop
+      selectedMatch={selectedMatch}
+      setSelectedMatch={setSelectedMatch}
+      matchDetail={detailMatch}
+      userInfo={info}
+      matches={slicedData}
+      isEnd={isEnd}
+      onClickMoreButton={loadNextPage}
+    />
   );
 };
 

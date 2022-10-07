@@ -2,13 +2,13 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { DESTINATION_DOMAIN_ADDRESS } from "../../utils/constants";
 
-export const getClanRankings = createAsyncThunk(
-  "clan/ranking",
-  async ({ levelName }) => {
+export const getMatchDetail = createAsyncThunk(
+  "clan/matchDetail",
+  async ({ matchId, page = 0 }) => {
     const responseData = await axios
-      .get(`${DESTINATION_DOMAIN_ADDRESS}/clan/ranking?levelName=${levelName}`)
+      .get(`${DESTINATION_DOMAIN_ADDRESS}/clan/match/detail?matchId=${matchId}`)
       .then((res) => {
-        return res.data.data;
+        return res.data;
       })
       .catch((err) => {
         console.log(err);
@@ -17,26 +17,26 @@ export const getClanRankings = createAsyncThunk(
   }
 );
 
-export const clanRankingSlice = createSlice({
-  name: "clanRankingList",
+export const MatchDetailSlice = createSlice({
+  name: "matchDetail",
   initialState: {
-    content: [],
+    data: {},
     status: null,
   },
   reducers: {},
   extraReducers: {
-    [getClanRankings.pending]: (state, action) => {
+    [getMatchDetail.pending]: (state, action) => {
       state.status = "loading";
     },
-    [getClanRankings.fulfilled]: (state, action) => {
+    [getMatchDetail.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.content = action.payload;
+      state.data = action.payload.data;
     },
-    [getClanRankings.rejected]: (state, action) => {
+    [getMatchDetail.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     },
   },
 });
 
-export const clanRankingReducer = clanRankingSlice.reducer;
+export const matchDetailSliceReducer = MatchDetailSlice.reducer;

@@ -17,7 +17,8 @@ const memberMockData = {
   kill: 12,
   death: 5,
   weapon: "라이플",
-};*/
+};
+*/
 const mockMatches = Array.from({ length: 15 }, (_, index) => {
   return {
     ...MatchRecordMockData,
@@ -38,7 +39,6 @@ const ClanDetailPage = ({ ...props }) => {
     dispatch(getMapPositions());
     dispatch(searchBattle(1));
     if (clanId !== undefined) {
-      console.log("안녕하시렵니까?", clanId);
       dispatch(getClanRecords({ clanId }));
     }
   }, [dispatch, clanId]);

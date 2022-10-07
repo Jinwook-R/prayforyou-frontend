@@ -22,7 +22,7 @@ const MatchDetailTable = ({
             flex: 1,
           },
           renderer: (user) => {
-            return <div style={{ paddingLeft: "60px" }}>{user.nickname}</div>;
+            return <div style={{ paddingLeft: "60px" }}>{user.name}</div>;
           },
         },
         {
@@ -42,7 +42,7 @@ const MatchDetailTable = ({
             flex: 1,
           },
           renderer: (user) => {
-            return `${user.kill}/${user.death}`;
+            return `${user.killCount}/${user.deathCount}`;
           },
         },
         {
@@ -52,11 +52,11 @@ const MatchDetailTable = ({
             flex: 1,
           },
           renderer: (user) => {
-            return `${user.weapon}`;
+            return `${user.sniper ? "스나이퍼" : "돌격소총"}`;
           },
         },
       ],
-      data: [...redTeam.members],
+      data: [...redTeam],
       headerStyle: {
         fontWeight: "normal",
         fontSize: "18px",
@@ -80,7 +80,7 @@ const MatchDetailTable = ({
             flex: 1,
           },
           renderer: (user) => {
-            return <div style={{ paddingLeft: "60px" }}>{user.nickname} </div>;
+            return <div style={{ paddingLeft: "60px" }}>{user.name} </div>;
           },
         },
         {
@@ -100,22 +100,21 @@ const MatchDetailTable = ({
             flex: 1,
           },
           renderer: (user) => {
-            return `${user.kill}/${user.death}`;
+            return `${user.killCount}/${user.deathCount}`;
           },
         },
         {
           name: "무기",
-
           style: {
             width: "254px",
             flex: 1,
           },
           renderer: (user) => {
-            return `${user.weapon}`;
+            return `${user.sniper ? "스나이퍼" : "돌격소총"}`;
           },
         },
       ],
-      data: [...blueTeam.members],
+      data: [...blueTeam],
       headerStyle: {
         fontWeight: "normal",
         fontSize: "18px",

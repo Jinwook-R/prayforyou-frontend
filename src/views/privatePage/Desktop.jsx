@@ -6,13 +6,15 @@ import {
 import { Table } from "../../components/table";
 import { User } from "../../components/common";
 import { TablePageTitleWrapper } from "../../components/wrapper";
+import { useNavigate } from "react-router-dom";
 
 /** PrivateTableRow
  * @field
  */
 
-const Desktop = ({ userInfoList }) => {
-  const mockTableProps = {
+const Desktop = ({ userInfoList, isEnd, onClickMoreButton }) => {
+  const navigate = useNavigate();
+  const userInfoTableProps = {
     cellConfigs: [
       {
         name: "순위",
@@ -27,7 +29,15 @@ const Desktop = ({ userInfoList }) => {
           {
             /* TODO : export extra component, <User {...userProps} />} */
           }
-          return <User thumbnail={info.thumbnail} name={info.nickname} />;
+          return (
+            <User
+              onClick={() => {
+                navigate(`/record/${info.userNexonId}`);
+              }}
+              thumbnail={info.clanMarkUrl}
+              name={info.name}
+            />
+          );
         },
       },
       {
@@ -48,35 +58,32 @@ const Desktop = ({ userInfoList }) => {
         name: "승률",
         width: "200px",
         renderer: (info) => {
-          return `${info["rate"]}%`;
+          return `${info["winLosePercent"].toFixed(1)}%`;
         },
       },
       {
         name: "킬뎃",
         width: "200px",
         renderer: (info) => {
-          return `${info["killDeathRate"]}%`;
+          return `${info["killDeath"].toFixed(1)}%`;
         },
       },
       {
         name: "평균킬",
         width: "200px",
         renderer: (info) => {
-          return `${info["killAverage"]}킬`;
+          return `${info["killPerGame"]}킬`;
         },
       },
       {
         name: "래더",
         width: "200px",
         renderer: (info) => {
-          return `${info["ladderPoint"]}점`;
+          return `${info["score"]}점`;
         },
       },
     ],
-    data: [...userInfoList].map((item, index) => ({
-      ...item,
-      rank: index + 1,
-    })),
+    data: userInfoList || [],
   };
   return (
     <StyledDesktopWrapper>
@@ -89,7 +96,11 @@ const Desktop = ({ userInfoList }) => {
             랭킹은 1시간마다 갱신되며, 배치고사가 종료된 플레이어만 표시됩니다.
           </div>
         </TablePageTitleWrapper>
-        <Table {...mockTableProps} />
+        <Table
+          {...userInfoTableProps}
+          onClickMoreButton={onClickMoreButton}
+          isEnd={isEnd}
+        />
       </StyledMainContentWrapper>
     </StyledDesktopWrapper>
   );

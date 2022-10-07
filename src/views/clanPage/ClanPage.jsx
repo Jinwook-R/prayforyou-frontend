@@ -6,6 +6,7 @@ import { BREAK_POINT } from "../../utils/constants";
 import sampleImg from "../../assets/clan_logo_sample_1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getClanRankings } from "../../redux/clan";
+import { useInfinite } from "../../hooks";
 const sampleClanItemData1 = {
   id: 1235123,
   clanId: 191120000005,
@@ -63,18 +64,22 @@ const ClanPage = () => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
-
-  const dispatch = useDispatch();
-  const { clans } = useSelector((store) => store.clanRankingList);
-
-  console.log("클랜?", clans);
-
-  useEffect(() => {
-    dispatch(getClanRankings());
-  }, []);
-
   //TODO : 필요에 따라, 아래 방식이 아닌 개별 라우트 페이지처리 필요
   const [isFirstView, setIsFirstView] = useState(true); //first or second
+
+  const dispatch = useDispatch();
+
+  const { content, status } = useSelector((store) => store.clanRankingList);
+  const { loadNextPage, slicedData, isEnd, clear } = useInfinite({
+    data: content,
+    isSuccess: status === "succeeded",
+    isAsync: true,
+  });
+
+  useEffect(() => {
+    dispatch(getClanRankings({ levelName: isFirstView ? "A" : "B" }));
+    clear();
+  }, [dispatch, isFirstView, clear]);
 
   const linkButtonHandler = useCallback(() => {
     setIsFirstView((prevState) => !prevState);
@@ -83,14 +88,18 @@ const ClanPage = () => {
   return isMobile ? (
     <Mobile
       isFirstView={isFirstView}
+      isEnd={isEnd}
+      onClickMoreButton={loadNextPage}
       onClickViewChange={linkButtonHandler}
-      clanData={clanPageMockData}
+      clanData={slicedData}
     />
   ) : (
     <Desktop
       isFirstView={isFirstView}
+      isEnd={isEnd}
+      onClickMoreButton={loadNextPage}
       onClickViewChange={linkButtonHandler}
-      clanData={clanPageMockData}
+      clanData={slicedData}
     />
   );
 };

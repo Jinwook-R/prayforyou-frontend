@@ -4,10 +4,18 @@ import { InfoFieldItem } from "../../components/listItem";
 import { TopBar } from "../../components";
 import { StyledButtonWrapper } from "../../components/wrapper";
 import MobileMatchTable from "../../components/table/MobileMatchTable";
-const Mobile = ({ userBattle, matches }) => {
+const Mobile = ({
+  userInfo,
+  matches,
+  onClickMoreButton,
+  isEnd,
+  selectedMatch,
+  matchDetail,
+  setSelectedMatch,
+}) => {
   return (
     <>
-      <TopBar nickname={"안녕하신가"} userId={123124} battle={userBattle} />
+      <TopBar nickname={"안녕하신가"} userId={123124} userInfo={userInfo} />
       <div>
         <div
           style={{
@@ -21,29 +29,37 @@ const Mobile = ({ userBattle, matches }) => {
           <InfoFieldItem
             height={"64px"}
             fieldName={"래더"}
-            value={`${1231}점`}
+            value={`${userInfo?.ladderPoint}점`}
           />
           <InfoFieldItem
             height={"64px"}
             fieldName={"승률"}
-            value={`${1231}점`}
+            value={`${(userInfo?.winLosePercent || 0).toFixed(2)}%`}
           />
           <InfoFieldItem
             height={"64px"}
             fieldName={"랭킹"}
-            value={`${1231}점`}
+            value={`${userInfo?.ranking}위`}
           />
         </div>
         <MatchList>
-          {matches.map((match, index) => {
+          {(matches || []).map((match) => {
+            const detailVisible =
+              selectedMatch && selectedMatch.matchId === match.matchId;
             return (
               <MobileMatchTable
-                isDetailVisible={index === 1}
                 key={`${match.matchId}`}
-                isWin={match.isWin}
+                matchId={match.matchId}
+                isDetailVisible={detailVisible}
+                selectedMatch={selectedMatch}
+                matchDetail={detailVisible && matchDetail}
+                onClickDetail={() => {
+                  setSelectedMatch(match);
+                }}
+                isWin={match.win}
                 lastGameDay={match.lastGameDay}
                 addScore={match.addScore}
-                mapName={match.mapName}
+                mapName={"제 3 보급 창고"}
                 gameProgressTime={match.gameProgressTime}
                 redTeam={match.redTeam}
                 blueTeam={match.blueTeam}
@@ -52,22 +68,25 @@ const Mobile = ({ userBattle, matches }) => {
           })}
         </MatchList>
 
-        <StyledButtonWrapper
-          height={"80px"}
-          justifyContent={"center"}
-          style={{
-            width: "100%",
-            marginTop: "20px",
-            alignItems: "center",
-            background: "#775ee2",
-            fontWeight: "bold",
-            fontSize: "20px",
-            color: "white",
-            cursor: "pointer",
-          }}
-        >
-          더보기
-        </StyledButtonWrapper>
+        {!isEnd && (
+          <StyledButtonWrapper
+            height={"80px"}
+            justifyContent={"center"}
+            onClick={onClickMoreButton}
+            style={{
+              width: "100%",
+              marginTop: "20px",
+              alignItems: "center",
+              background: "#775ee2",
+              fontWeight: "bold",
+              fontSize: "20px",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            더보기
+          </StyledButtonWrapper>
+        )}
       </div>
     </>
   );

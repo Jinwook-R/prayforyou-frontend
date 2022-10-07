@@ -16,26 +16,12 @@ const Table = ({
   overflow = "auto",
   cellConfigs,
   data,
-  pageUnit = 8,
   bodyStyle,
   headerStyle,
   rowStyler,
+  isEnd = true,
+  onClickMoreButton,
 }) => {
-  const [pageCount, setPageCount] = useState(0);
-  const isEnd = useMemo(() => {
-    return (pageCount + 1) * pageUnit > data.length;
-  }, [pageUnit, data, pageCount]);
-
-  const slicedData = useMemo(() => {
-    const sliceCount = (pageCount + 1) * pageUnit;
-    const parsed = data.length < sliceCount ? data.length : sliceCount;
-    return (data || []).slice(0, parsed);
-  }, [data, pageCount, pageUnit]);
-
-  const moreButtonHandler = () => {
-    setPageCount((prevState) => prevState + 1);
-  };
-
   return (
     <>
       <StyledTable overflow={overflow}>
@@ -58,7 +44,7 @@ const Table = ({
           ))}
         </TableHeader>
         <TableBody style={bodyStyle}>
-          {(slicedData || []).map((listItemData, rowIndex) => {
+          {(data || []).map((listItemData, rowIndex) => {
             const inheritStyle = rowStyler
               ? rowStyler(listItemData, rowIndex)
               : undefined;
@@ -99,7 +85,7 @@ const Table = ({
         <StyledButtonWrapper
           height={"80px"}
           justifyContent={"center"}
-          onClick={moreButtonHandler}
+          onClick={onClickMoreButton}
           style={{
             width: "100%",
             marginTop: "20px",
