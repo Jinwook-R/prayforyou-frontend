@@ -60,7 +60,12 @@ const Desktop = () => {
         />*/}
       </StyledBannerWrapper>
       <StyledMainContentWrapper style={{ paddingInline: "50px" }}>
-        <Title width="280px" marginBottom="50px" marginTop={"130px"} />
+        <Title
+          width="380px"
+          height="80px"
+          marginBottom="50px"
+          marginTop={"130px"}
+        />
         <div
           onMouseDown={(e) => {
             if (!e.target.className.includes("searchInput")) {
@@ -82,40 +87,39 @@ const Desktop = () => {
             userName={userName}
             dropDown={dropDown}
           />
-          {dropDown && userName !== "" && (
-            <>
-              <StyledList width={"80%"} padding={"16px 30px"}>
-                {dropDown &&
-                  userName &&
-                  filteredUserNames.map((item, idx) => (
-                    <StyledListItemWrapper
-                      key={`${idx}`}
-                      marginBottom={"16px"}
-                      borderRadius={"15px"}
+          {dropDown && userName !== "" && !!filteredUserNames.length && (
+            <StyledList width={"750px"} padding={"16px 30px"}>
+              {dropDown &&
+                userName &&
+                filteredUserNames.map((item, idx) => (
+                  <StyledListItemWrapper
+                    key={`${idx}`}
+                    marginBottom={"16px"}
+                    borderRadius={"15px"}
+                  >
+                    <StyledListItem
+                      justifyContent={"spaceBetween"}
+                      width={"100%"}
+                      height={"72px"}
                     >
-                      <StyledListItem
-                        justifyContent={"spaceBetween"}
-                        height={"72px"}
+                      <StyledListItemText
+                        flex={1}
+                        textAlign="left"
+                        fontSize={"20px"}
                       >
-                        <StyledListItemText
-                          flex={1}
-                          textAlign="left"
-                          fontSize={"20px"}
-                        >
-                          {item.nickname}
-                        </StyledListItemText>
-                        <StyledListItemText
-                          flex={1}
-                          textAlign="right"
-                          fontSize={"20px"}
-                        >
-                          {"클랜 명"}
-                        </StyledListItemText>
-                      </StyledListItem>
-                    </StyledListItemWrapper>
-                  ))}
-              </StyledList>
-            </>
+                        {item.nickname}
+                      </StyledListItemText>
+                      <StyledListItemText
+                        flex={1}
+                        textAlign="right"
+                        fontSize={"20px"}
+                      >
+                        {"클랜 명"}
+                      </StyledListItemText>
+                    </StyledListItem>
+                  </StyledListItemWrapper>
+                ))}
+            </StyledList>
           )}
         </div>
       </StyledMainContentWrapper>

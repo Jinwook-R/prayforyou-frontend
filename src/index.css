@@ -24,3 +24,7 @@ li {
   display: block;
   text-align: inherit;
 }
+
+a {
+  text-decoration: none;
+}

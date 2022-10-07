@@ -47,18 +47,19 @@ const Mobile = () => {
           setUserName={setUserName}
           userName={userName}
         />
-        {dropDown && userName && (
-          <StyledList
-            width={"80%"}
-            padding={filteredUserNames.length ? "10px" : "none"}
-          >
+        {dropDown && userName && !!filteredUserNames.length && (
+          <StyledList width={"80%"} padding="10px">
             {filteredUserNames.map((item, idx) => (
               <StyledListItemWrapper
                 key={`${idx}`}
                 marginBottom={"10px"}
                 borderRadius={"15px"}
               >
-                <StyledListItem height={"72px"}>
+                <StyledListItem
+                  height={"72px"}
+                  width={"100%"}
+                  justifyContent={"spaceBetween"}
+                >
                   <StyledListItemText
                     flex={1}
                     textAlign="left"
