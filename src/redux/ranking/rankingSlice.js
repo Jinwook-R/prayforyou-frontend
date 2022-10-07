@@ -4,9 +4,11 @@ import axios from "axios";
 
 export const fetchAllRanking = createAsyncThunk(
   "ranking/fetchAllRanking",
-  async () => {
+  async (param) => {
+    const { levelName } = param;
+
     const responseData = await axios
-      .get(`${DESTINATION_DOMAIN_ADDRESS}/view/ranking`)
+      .get(`${DESTINATION_DOMAIN_ADDRESS}/clan/ranking?levelName=${levelName}`)
       .then((res) => res.data)
       .catch((err) => {
         console.log(err);

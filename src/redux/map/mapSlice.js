@@ -1,25 +1,36 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { DESTINATION_DOMAIN_ADDRESS } from "../../utils/constants";
-import { searchBattle } from "../battle";
 
-export const getMapPositions = createAsyncThunk("map/positions", async () => {
-  const responseData = await axios
-    .get(`${DESTINATION_DOMAIN_ADDRESS}/battle/positions`)
-    .then((res) => res.data.data)
-    .catch((err) => {
-      console.log(err);
-    });
-  return responseData;
-});
+export const getMapPositions = createAsyncThunk(
+  "battle/positions",
+  async () => {
+    const responseData = await axios
+      .get(`${DESTINATION_DOMAIN_ADDRESS}/battle/positions`)
+      .then((res) => res.data.data)
+      .catch((err) => {
+        console.log(err);
+      });
+    return responseData;
+  }
+);
 
 export const mapSlice = createSlice({
   name: "map",
   initialState: {
     map: [],
+    hover: {
+      isHovered: false,
+      hoveredPlaceType: "",
+    },
+    positions: [],
     status: null,
   },
-  reducers: {},
+  reducers: {
+    setHover: (state, action) => {
+      state.hover = action.payload;
+    },
+  },
   extraReducers: {
     [getMapPositions.pending]: (state, action) => {
       state.status = "loading";
@@ -35,4 +46,5 @@ export const mapSlice = createSlice({
   },
 });
 
+export const { setHover } = mapSlice.actions;
 export const mapReducer = mapSlice.reducer;

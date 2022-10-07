@@ -27,12 +27,12 @@ const bannerProps = {
 
 const Desktop = () => {
   const banners = useSelector((store) => store.banner);
-  //const ranking = useSelector((store) => store.ranking.ranking);
+  const ranking = useSelector((store) => store.ranking.ranking);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllBanners());
-    dispatch(fetchAllRanking());
+    // dispatch(fetchAllBanners());
+    // dispatch(fetchAllRanking());
   }, []);
 
   const [dropDown, setDropDown] = useState(false);
@@ -109,7 +109,6 @@ const Desktop = () => {
                           textAlign="right"
                           fontSize={"20px"}
                         >
-                          {/* 클랜명 들어가야함. */}
                           {"클랜 명"}
                         </StyledListItemText>
                       </StyledListItem>

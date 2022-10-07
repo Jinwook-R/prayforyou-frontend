@@ -12,7 +12,7 @@ const Mobile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllBanners());
+    // dispatch(fetchAllBanners());
   }, []);
 
   const [dropDown, setDropDown] = useState(false);
@@ -34,9 +34,9 @@ const Mobile = () => {
           alignItems: "center",
         }}
         onMouseDown={(e) => {
-          if (!e.target.className.includes("searchInput")) {
-            e.preventDefault();
-          }
+          // if (!e.target.className.includes("searchInput")) {
+          //   e.preventDefault();
+          // }
         }}
       >
         <Search
@@ -71,7 +71,6 @@ const Mobile = () => {
                     textAlign="right"
                     fontSize={"15px"}
                   >
-                    {/* TODO: 클랜명 연동 */}
                     {"테스트 클랜명"}
                   </StyledListItemText>
                 </StyledListItem>

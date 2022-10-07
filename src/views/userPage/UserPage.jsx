@@ -21,7 +21,9 @@ const UserPage = () => {
 
   const location = useLocation();
   const dispatch = useDispatch();
-  const userBattle = useSelector((state) => state.battle.battle);
+  const userBattlePositions = useSelector(
+    (state) => state.battle.battlePositions
+  );
   const { positions } = useSelector((store) => store.map);
   const [clickedButton, setClickedButton] = useState(POSITION_BUTTON);
   const [offset, setOffset] = useState(1);
@@ -41,13 +43,15 @@ const UserPage = () => {
     setOffset(offset + 1);
   };
 
-  const userBattlePlaceData = userBattle.battlePlace;
-
   const parsedPositions = useMemo(() => {
     let result = [];
     const battleDataMap = new Map();
-    userBattlePlaceData.forEach((data) => {
-      if (data?.place) battleDataMap.set(data.place, data.rate);
+    userBattlePositions?.forEach((data) => {
+      if (data?.place)
+        battleDataMap.set(
+          data.description,
+          Math.floor(data.kill / data.kill + data.death) * 100
+        );
     });
     (positions || []).forEach((mapData) => {
       const polygonString = mapData.polygon;
@@ -63,28 +67,23 @@ const UserPage = () => {
       }
     });
     return result;
-  }, [positions, userBattlePlaceData]);
+  }, [positions, userBattlePositions]);
 
   return (
     <>
-      {isMobile && userBattle && (
+      {isMobile && userBattlePositions && (
         <Mobile
           mapPositions={parsedPositions}
           location={location}
-          userBattle={userBattle}
-          clickedButton={clickedButton}
-          handleClickedButton={handleClickedButton}
+          userBattlePositions={userBattlePositions}
           offset={offset}
           handleOffset={handleOffset}
         />
       )}
-      {isDesktop && userBattle && (
+      {isDesktop && userBattlePositions && (
         <Desktop
           mapPositions={parsedPositions}
-          location={location}
-          userBattle={userBattle}
-          clickedButton={POSITION_BUTTON}
-          // handleClickedButton={handleClickedButton}
+          userBattlePositions={userBattlePositions}
           offset={offset}
           handleOffset={handleOffset}
         />
