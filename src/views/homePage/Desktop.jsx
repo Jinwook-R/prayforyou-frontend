@@ -100,6 +100,7 @@ const Desktop = () => {
                     >
                       <StyledListItem
                         justifyContent={"spaceBetween"}
+                        width={"100%"}
                         height={"72px"}
                       >
                         <StyledListItemText

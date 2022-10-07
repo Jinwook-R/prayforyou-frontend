@@ -58,7 +58,11 @@ const Mobile = () => {
                 marginBottom={"10px"}
                 borderRadius={"15px"}
               >
-                <StyledListItem height={"72px"}>
+                <StyledListItem
+                  height={"72px"}
+                  width={"100%"}
+                  justifyContent={"spaceBetween"}
+                >
                   <StyledListItemText
                     flex={1}
                     textAlign="left"
