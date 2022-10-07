@@ -124,7 +124,7 @@ const Desktop = ({
                 }
               })}
               width="100%"
-              outputText={["description", "rate"]}
+              outputText={["description", "kill", "death", "rate"]}
               offset={offset}
               handleOffset={handleOffset}
             />

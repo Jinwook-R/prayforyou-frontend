@@ -71,7 +71,6 @@ const Mobile = () => {
                     textAlign="right"
                     fontSize={"15px"}
                   >
-                    {/* TODO: 클랜명 연동 */}
                     {"테스트 클랜명"}
                   </StyledListItemText>
                 </StyledListItem>

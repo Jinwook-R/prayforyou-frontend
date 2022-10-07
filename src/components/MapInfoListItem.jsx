@@ -28,9 +28,17 @@ const MapInfoListItem = ({ outputText, item, index }) => {
             {item[outputText[0]]}
           </StyledListItemText>
         </div>
-        <StyledListItemText fontSize="15px" fontWeight="bold">
-          {`${item[outputText[1]]}%`}
-        </StyledListItemText>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <StyledListItemText fontSize="15px" fontWeight="bold">
+            {item[outputText[1]]} 킬
+          </StyledListItemText>
+          <StyledListItemText fontSize="15px" fontWeight="bold">
+            {item[outputText[2]]} 데스
+          </StyledListItemText>
+          <StyledListItemText fontSize="15px" fontWeight="bold">
+            {item[outputText[3]]}%
+          </StyledListItemText>
+        </div>
       </div>
     );
   };

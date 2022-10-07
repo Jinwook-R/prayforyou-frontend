@@ -23,7 +23,6 @@ const targetedStyle = {
 
 const BattleMap = ({ mapPositions, userBattlePositions }) => {
   const [hoveringPosition, setHoveringPosition] = useState(false);
-
   const [placeType, setPlaceType] = useState("");
   const [rate, setRate] = useState("");
   const hover = useSelector((state) => state.map.hover);
@@ -31,7 +30,7 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
 
   useEffect(() => {
     if (hover.isHovered) {
-      const hoveredPosition = userBattlePositions.find(
+      const hoveredPosition = userBattlePositions?.find(
         (item) => item.description === hover.hoveredPlaceType
       );
 
@@ -45,7 +44,7 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
 
   const mouseOverPosition = (event, position, nextX, nextY) => {
     setPlaceType(position.placeType);
-    const userBattlePosition = userBattlePositions.find(
+    const userBattlePosition = userBattlePositions?.find(
       (item) => item.description === position.placeType
     );
 
@@ -71,16 +70,18 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
     return [x, y];
   };
 
+  console.log(mapPositions);
+
   return (
     <div className="map-info-wrapper" style={{ marginBottom: "24px" }}>
       <div
+        className="map"
         style={{
           maxWidth: BREAK_POINT,
           maxHeight: BREAK_POINT,
           cursor: "pointer",
           position: "relative",
         }}
-        className="map"
       >
         <img
           style={{ width: "100%", height: "100%" }}
@@ -104,49 +105,45 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
                 hover.hoveredPlaceType === position.placeType);
 
             return (
-              <>
-                <g onMouseLeave={mouseLeavePosition}>
-                  <polygon
-                    key={`${position.placeType}`}
-                    className={idx.toString()}
-                    id={position.placeType}
-                    points={position.polygon}
+              <g onMouseLeave={mouseLeavePosition}>
+                <polygon
+                  key={`${position.placeType}`}
+                  className={idx.toString()}
+                  id={position.placeType}
+                  points={position.polygon}
+                  style={highlighted ? targetedStyle : { fill: "transparent" }}
+                  onMouseOver={(event) => {
+                    mouseOverPosition(event, position, pickerX, pickerY);
+                  }}
+                />
+                <g>
+                  <foreignObject
+                    x={pickerX}
+                    y={pickerY}
+                    width={isMobile ? "100px" : "148px"}
+                    height="50px"
                     style={
-                      highlighted ? targetedStyle : { fill: "transparent" }
+                      highlighted
+                        ? { fill: "#775ee1", color: "#fff" }
+                        : { display: "none" }
                     }
-                    onMouseOver={(event) => {
-                      mouseOverPosition(event, position, pickerX, pickerY);
-                    }}
-                  />
-                  <g>
-                    <foreignObject
-                      x={pickerX}
-                      y={pickerY}
-                      width={isMobile ? "100px" : "148px"}
-                      height="50px"
-                      style={
-                        highlighted
-                          ? { fill: "#775ee1", color: "#fff" }
-                          : { display: "none" }
-                      }
+                  >
+                    <div
+                      style={{
+                        backgroundColor: "#775ee1",
+                        display: "flex",
+                        justifyContent: "space-around",
+                        borderRadius: "35px",
+                        fontSize: isMobile ? "12px" : "15px",
+                        padding: "0 5px",
+                      }}
                     >
-                      <div
-                        style={{
-                          backgroundColor: "#775ee1",
-                          display: "flex",
-                          justifyContent: "space-around",
-                          borderRadius: "35px",
-                          fontSize: isMobile ? "12px" : "15px",
-                          padding: "0 5px",
-                        }}
-                      >
-                        <p>{placeType}</p>
-                        <p>{rate}%</p>
-                      </div>
-                    </foreignObject>
-                  </g>
+                      <p>{placeType}</p>
+                      <p>{rate}%</p>
+                    </div>
+                  </foreignObject>
                 </g>
-              </>
+              </g>
             );
           })}
         </svg>

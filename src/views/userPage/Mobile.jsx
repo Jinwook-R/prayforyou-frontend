@@ -15,17 +15,19 @@ const Mobile = ({
   offset,
   handleOffset,
 }) => {
-  const { nickname, userId } = location.state;
   return (
     <>
       {/* <TopBar nickname={nickname} userId={userId} battle={userBattle} /> */}
-      <BattleMap positions={mapPositions} />
+      <BattleMap
+        mapPositions={mapPositions}
+        userBattlePositions={userBattlePositions}
+      />
       <div style={{ marginTop: "20px" }} />
       <MapInfoList
         data={userBattlePositions}
         width="90%"
         margin="0 auto"
-        outputText={["description", "rate"]}
+        outputText={["description", "kill", "death", "rate"]}
         offset={offset}
         handleOffset={handleOffset}
       />

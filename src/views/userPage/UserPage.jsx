@@ -76,7 +76,6 @@ const UserPage = () => {
           mapPositions={parsedPositions}
           location={location}
           userBattlePositions={userBattlePositions}
-          clickedButton={clickedButton}
           offset={offset}
           handleOffset={handleOffset}
         />
