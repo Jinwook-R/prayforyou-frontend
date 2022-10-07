@@ -53,7 +53,7 @@ const Header = () => {
                         리그홈
                       </StyledNavLink>
                       <StyledNavLink
-                        to={"/record"}
+                        to={"/private"}
                         className={({ isActive }) => (isActive ? "active" : "")}
                       >
                         개인랭킹
@@ -121,7 +121,7 @@ const Header = () => {
                     리그홈
                   </DropdownItem>
                   <DropdownItem
-                    to={"/record"}
+                    to={"/private"}
                     onClick={mobileHeaderMenuHandler}
                     className={({ isActive }) => (isActive ? "active" : "")}
                   >
@@ -152,7 +152,7 @@ const Header = () => {
                 리그홈
               </StyledNavLink>
               <StyledNavLink
-                to={"/record"}
+                to={"/private"}
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 개인랭킹
