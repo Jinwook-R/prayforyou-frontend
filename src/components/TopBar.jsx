@@ -1,53 +1,12 @@
-import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import useLocalStorage from "../hooks/useLocalStorage";
 import { useMediaQuery } from "react-responsive";
 import { ReactComponent as Medal } from "../assets/mvp_medal.svg";
-import {
-  BREAK_POINT,
-  COMMON_LAYOUT_PC_HORIZONTAL_MAX,
-} from "../utils/constants";
-import { Toggle } from "./common";
+import { BREAK_POINT } from "../utils/constants";
 
-const TopBar = ({ userId, nickname, battle, ...props }) => {
-  const { battleStats } = battle;
-  const { kill, death, gameCount } = battleStats;
-  const [favoriteUsers, setFavoriteUsers] = useLocalStorage(
-    "favoriteUsers",
-    []
-  );
-
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  useEffect(() => {
-    const isFavorite =
-      favoriteUsers?.some((user) => user.userId === userId) ?? false;
-    setIsFavorite(isFavorite);
-  }, [favoriteUsers]);
-
+const TopBar = ({ userInfo, ...props }) => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
-
-  const handleOnClick = () => {
-    if (!favoriteUsers.length) {
-      setFavoriteUsers("favoriteUsers", [
-        ...favoriteUsers,
-        { userId, nickname },
-      ]);
-      return;
-    }
-
-    const filteredFavoriteUsers = favoriteUsers.filter(
-      (user) => user.userId !== userId
-    );
-    setFavoriteUsers(
-      "favoriteUsers",
-      filteredFavoriteUsers.length === favoriteUsers.length
-        ? [...filteredFavoriteUsers, { userId, nickname }]
-        : [...filteredFavoriteUsers]
-    );
-  };
 
   return (
     <>
@@ -85,7 +44,7 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                   fontWeight: "bold",
                 }}
               >
-                {nickname}
+                {userInfo?.name}
               </div>
               <div
                 style={{
@@ -96,7 +55,7 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                 }}
               >
                 <div>
-                  <span>{`${"스나이퍼"}`}</span>
+                  <span>{`${userInfo?.weapon}`}</span>
                 </div>
                 {/*<Toggle
                   onClick={handleOnClick}
@@ -114,11 +73,12 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                 fontSize: "16px",
               }}
             >
-              <div>테스트 클랜</div>
+              <div>{userInfo?.clanName}</div>
               <div style={{ fontWeight: "bold" }}>{`킬뎃 ${(
-                (kill * 100) /
-                (kill + death)
-              ).toFixed(1)}%  판킬 ${(kill / gameCount).toFixed(2)}`}</div>
+                userInfo?.killDeath || 0
+              ).toFixed(1)}%  판킬 ${(userInfo?.killPerGame || 0).toFixed(
+                2
+              )}`}</div>
             </div>
           </div>
         </StyledTopBar>
@@ -147,7 +107,7 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
                   fontWeight: "bold",
                 }}
               >
-                {nickname}
+                {userInfo?.name}
               </div>
               <div
                 style={{
@@ -177,10 +137,12 @@ const TopBar = ({ userId, nickname, battle, ...props }) => {
               </div>
             </div>
             <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-              <div style={{ fontWeight: "bold" }}>테스트 클랜</div>
-              <div>{`킬뎃 ${38.2}% 판킬 ${11}`}</div>
-              <div>{`${114}위/${4000}명`}</div>
-              <div>{`래더점수 ${371}점`}</div>
+              <div style={{ fontWeight: "bold" }}>{userInfo?.clanName}</div>
+              <div>{`킬뎃 ${(userInfo?.killDeath || 0).toFixed(1)}% 판킬 ${
+                userInfo?.killPerGame
+              }`}</div>
+              <div>{`${userInfo?.ranking}`}</div>
+              <div>{`래더점수 ${userInfo?.ladderPoint}점`}</div>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>

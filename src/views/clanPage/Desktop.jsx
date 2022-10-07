@@ -15,7 +15,13 @@ import { useNavigate } from "react-router-dom";
  * @field
  */
 
-const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
+const Desktop = ({
+  isFirstView,
+  onClickViewChange,
+  clanData,
+  isEnd,
+  onClickMoreButton,
+}) => {
   const navigate = useNavigate();
   const clanTableProps = {
     cellConfigs: [
@@ -61,7 +67,7 @@ const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
         name: "승률",
         width: "200px",
         renderer: (info) => {
-          return `${info["rate"]}%`;
+          return `${info["winLosePercent"]}%`;
         },
       },
       {
@@ -72,12 +78,7 @@ const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
         },
       },
     ],
-    data: [...clanData[isFirstView ? "first" : "second"]].map(
-      (item, index) => ({
-        ...item,
-        rank: index + 1,
-      })
-    ),
+    data: clanData,
   };
   return (
     <StyledDesktopWrapper>
@@ -118,6 +119,8 @@ const Desktop = ({ isFirstView, onClickViewChange, clanData }) => {
           </div>
         </TablePageTitleWrapper>
         <Table
+          isEnd={isEnd}
+          onClickMoreButton={onClickMoreButton}
           rowStyler={(clanData) => {
             return {
               background: clanData.downDanger ? "#ffebeb" : "white",

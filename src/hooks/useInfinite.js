@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 const useInfinite = ({
   pageUnit = 8,
@@ -28,6 +28,9 @@ const useInfinite = ({
       setSlicedData(sliceData());
     }
   }, [isAsync, sliceData]);
+  useMemo(() => {
+    return slicedData;
+  }, [slicedData]);
   return { isEnd, pageCount, loadNextPage, slicedData };
 };
 

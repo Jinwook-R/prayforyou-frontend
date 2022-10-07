@@ -6,17 +6,19 @@ import {
 } from "../../components";
 import { COMMON_LAYOUT_PC_HORIZONTAL_MAX } from "../../utils/constants";
 import { InfoFieldItem, MatchListItem } from "../../components/listItem";
-import { MatchRecordMockData } from "../../components/listItem/MatchListItem";
-import MatchDetailTable from "../../components/table/MatchDetailTable";
-import { MatchRecordList } from "../../components/list";
 import { StyledButtonWrapper } from "../../components/wrapper";
-import { matchDetailMockData } from "./RecordPage";
+import styled from "@emotion/styled";
+import MatchDetailTable from "../../components/table/MatchDetailTable";
 
-const Desktop = ({ userBattle, matches }) => {
-  const sampleDetailMatch = {
-    ...matchDetailMockData,
-  };
-
+const Desktop = ({
+  userInfo,
+  matches,
+  onClickMoreButton,
+  isEnd,
+  selectedMatch,
+  matchDetail,
+  setSelectedMatch,
+}) => {
   return (
     <>
       <div
@@ -33,9 +35,7 @@ const Desktop = ({ userBattle, matches }) => {
             width: "100%",
             maxWidth: COMMON_LAYOUT_PC_HORIZONTAL_MAX,
           }}
-          userId={1231234}
-          nickname={"안녕하신가"}
-          battle={userBattle}
+          userInfo={userInfo}
         />
       </div>
 
@@ -44,37 +44,58 @@ const Desktop = ({ userBattle, matches }) => {
           <div style={{ display: "flex", marginTop: "49px", gap: "117px" }}>
             <div style={{ overflow: "auto" }}>
               <div style={{ marginBottom: "10px" }}>
-                <MatchListItem
-                  matchData={{ ...MatchRecordMockData }}
-                  rightButtonText={"닫기"}
-                />
-                <MatchDetailTable
-                  isWin={sampleDetailMatch.isWin}
-                  mapName={sampleDetailMatch.mapName}
-                  gameProgressTime={sampleDetailMatch.gameProgressTime}
-                  redTeam={sampleDetailMatch.redTeam}
-                  blueTeam={sampleDetailMatch.blueTeam}
-                />
+                {selectedMatch && matchDetail?.status === "succeeded" && (
+                  <MatchListItem
+                    matchData={selectedMatch}
+                    onClickRightButton={() => {
+                      setSelectedMatch(null);
+                    }}
+                    rightButtonText={"닫기"}
+                  />
+                )}
+                {selectedMatch &&
+                  matchDetail?.data &&
+                  matchDetail?.status === "succeeded" && (
+                    <MatchDetailTable
+                      isWin={matchDetail?.data.redTeamWin}
+                      mapName={"제 3 보급 창고"}
+                      gameProgressTime={matchDetail?.data.gameStartTime}
+                      redTeam={matchDetail?.data.redUsers}
+                      blueTeam={matchDetail?.data.blueUsers}
+                    />
+                  )}
               </div>
               <div style={{ marginBottom: "10px" }}>
-                <MatchRecordList matches={matches} />
+                <DesktopContainer>
+                  {(matches || []).map((match) => (
+                    <MatchListItem
+                      matchData={match}
+                      onClickRightButton={() => {
+                        setSelectedMatch(match);
+                      }}
+                    />
+                  ))}
+                </DesktopContainer>
               </div>
-              <StyledButtonWrapper
-                height={"80px"}
-                justifyContent={"center"}
-                style={{
-                  width: "100%",
-                  marginTop: "20px",
-                  alignItems: "center",
-                  background: "#775ee2",
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                  color: "white",
-                  cursor: "pointer",
-                }}
-              >
-                더보기
-              </StyledButtonWrapper>
+              {!isEnd && (
+                <StyledButtonWrapper
+                  onClick={onClickMoreButton}
+                  height={"80px"}
+                  justifyContent={"center"}
+                  style={{
+                    width: "100%",
+                    marginTop: "20px",
+                    alignItems: "center",
+                    background: "#775ee2",
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                    color: "white",
+                    cursor: "pointer",
+                  }}
+                >
+                  더보기
+                </StyledButtonWrapper>
+              )}
             </div>
             <div
               style={{
@@ -83,9 +104,18 @@ const Desktop = ({ userBattle, matches }) => {
                 flexDirection: "column",
               }}
             >
-              <InfoFieldItem fieldName={"래더"} value={`${1231}점`} />
-              <InfoFieldItem fieldName={"승률"} value={`${1231}점`} />
-              <InfoFieldItem fieldName={"랭킹"} value={`${1231}점`} />
+              <InfoFieldItem
+                fieldName={"래더"}
+                value={`${userInfo?.ladderPoint}점`}
+              />
+              <InfoFieldItem
+                fieldName={"승률"}
+                value={`${userInfo?.winLosePercent?.toFixed(2)}%`}
+              />
+              <InfoFieldItem
+                fieldName={"랭킹"}
+                value={`${userInfo?.ranking}위`}
+              />
             </div>
           </div>
         </StyledMainContentWrapper>
@@ -93,5 +123,12 @@ const Desktop = ({ userBattle, matches }) => {
     </>
   );
 };
+
+const DesktopContainer = styled.div`
+  overflow: auto;
+  > * + * {
+    margin-top: 10px;
+  }
+`;
 
 export default Desktop;

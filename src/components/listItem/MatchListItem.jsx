@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 
 const memberMockData = {
@@ -40,8 +40,9 @@ const MatchListItem = ({
   rightButtonText = "상세 보기",
 }) => {
   const winLoseColor = useMemo(() => {
-    return matchData.isWin ? "#775ee2" : "#676472";
-  }, [matchData.isWin]);
+    return matchData.win ? "#775ee2" : "#676472";
+  }, [matchData.win]);
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -54,7 +55,7 @@ const MatchListItem = ({
         <div style={{ fontSize: "18px" }}>{matchData.mapName}</div>
         <div>{matchData.gameProgressTime}</div>
         <div style={{ color: winLoseColor }}>
-          {matchData.isWin ? "승리" : "패배"}
+          {matchData.win ? "승리" : "패배"}
         </div>
         <div>{matchData.lastGameDay}</div>
       </Cell>
@@ -91,12 +92,12 @@ const MatchListItem = ({
         {matchData.redTeam.members.map((member) => {
           return (
             <div
-              key={member.userId}
+              key={member.id}
               onClick={() => {
-                // navigate route
+                navigate(`/record/${member.id}`);
               }}
             >
-              {member.nickname}
+              {member.name}
             </div>
           );
         })}
@@ -105,22 +106,18 @@ const MatchListItem = ({
         {matchData.blueTeam.members.map((member) => {
           return (
             <div
-              key={member.userId}
+              key={member.id}
               onClick={() => {
-                // navigate route
+                navigate(`/record/${member.id}`);
               }}
             >
-              {member.nickname}
+              {member.name}
             </div>
           );
         })}
       </Cell>
       {/* 해당 페이지 도메인 + pathParam 혹은 query param 으로 처리*/}
-      <DetailButton
-        onClick={onClickRightButton}
-        background={winLoseColor}
-        to={matchData.matchId}
-      >
+      <DetailButton onClick={onClickRightButton} background={winLoseColor}>
         {rightButtonText}
       </DetailButton>
     </div>

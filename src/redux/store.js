@@ -8,6 +8,7 @@ import { clanRankingReducer } from "./clan";
 import { privateRankingReducer } from "./private";
 import { clanRecordsReducer, userRecordsReducer } from "./record";
 import { userInfoReducer } from "./user/userInfoSlice";
+import { matchDetailSliceReducer } from "./record/matchDetailSlice";
 
 export const store = configureStore({
   reducer: {
@@ -21,5 +22,6 @@ export const store = configureStore({
     privateRankingList: privateRankingReducer,
     userRecords: userRecordsReducer,
     clanRecords: clanRecordsReducer,
+    matchDetail: matchDetailSliceReducer,
   },
 });

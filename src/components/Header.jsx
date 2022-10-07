@@ -23,11 +23,6 @@ const Header = () => {
     setMobileMenuDropdown((prevState) => !prevState);
   };
 
-  console.log(
-    "뭐지?",
-    !isMobile && (pathname.includes("/clan/") || pathname.includes("/record/"))
-  );
-
   return (
     <StyledHeader
       justifyContents={isMobile ? "center" : ""}
@@ -46,7 +41,8 @@ const Header = () => {
             </NavLink>
 
             {!isMobile &&
-              (pathname.includes("/clan") || pathname.includes("/record")) && (
+              (pathname.includes("/clan/") ||
+                pathname.includes("/record/")) && (
                 <>
                   <div style={{ display: "flex", flex: 1 }}>
                     <StyledHeaderNavigation padding={0}>
@@ -57,7 +53,7 @@ const Header = () => {
                         리그홈
                       </StyledNavLink>
                       <StyledNavLink
-                        to={"/private"}
+                        to={"/record"}
                         className={({ isActive }) => (isActive ? "active" : "")}
                       >
                         개인랭킹
@@ -125,7 +121,7 @@ const Header = () => {
                     리그홈
                   </DropdownItem>
                   <DropdownItem
-                    to={"/private"}
+                    to={"/record"}
                     onClick={mobileHeaderMenuHandler}
                     className={({ isActive }) => (isActive ? "active" : "")}
                   >
@@ -145,8 +141,8 @@ const Header = () => {
         </StyledHeaderInner>
       </StyledHeaderInnerWrapper>
       {!isMobile &&
-        !pathname.includes("/record") &&
-        !pathname.includes("/clan") && (
+        !pathname.includes("/record/") &&
+        !pathname.includes("/clan/") && (
           <StyledHeaderInnerWrapper>
             <StyledHeaderNavigation padding={0}>
               <StyledNavLink
@@ -156,7 +152,7 @@ const Header = () => {
                 리그홈
               </StyledNavLink>
               <StyledNavLink
-                to={"/private"}
+                to={"/record"}
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 개인랭킹

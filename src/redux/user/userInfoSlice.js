@@ -7,7 +7,7 @@ export const getUserInfo = createAsyncThunk(
   async ({ userNexonId }) => {
     const responseData = await axios
       .get(`${DESTINATION_DOMAIN_ADDRESS}/user/${userNexonId}`)
-      .then(({ data }) => data)
+      .then((res) => res.data)
       .catch((err) => {
         console.log(err);
       });

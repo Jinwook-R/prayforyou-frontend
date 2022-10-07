@@ -17,7 +17,8 @@ const memberMockData = {
   kill: 12,
   death: 5,
   weapon: "라이플",
-};*/
+};
+*/
 const mockMatches = Array.from({ length: 15 }, (_, index) => {
   return {
     ...MatchRecordMockData,

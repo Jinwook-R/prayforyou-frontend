@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { DESTINATION_DOMAIN_ADDRESS } from "../../utils/constants";
 
-export const getUserRecords = createAsyncThunk(
+export const getUserRecordDetail = createAsyncThunk(
   "user/matches",
   async ({ userNexonId, page = 0 }) => {
     const responseData = await axios
@@ -19,8 +19,8 @@ export const getUserRecords = createAsyncThunk(
   }
 );
 
-export const userRecordsSlice = createSlice({
-  name: "userRecords",
+export const userRecordDetailSlice = createSlice({
+  name: "userRecordDetail",
   initialState: {
     content: [],
     isEnd: true,
@@ -28,19 +28,19 @@ export const userRecordsSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [getUserRecords.pending]: (state, action) => {
+    [getUserRecordDetail.pending]: (state, action) => {
       state.status = "loading";
     },
-    [getUserRecords.fulfilled]: (state, action) => {
+    [getUserRecordDetail.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.content = action.payload.data;
       state.isEnd = action.payload.last;
     },
-    [getUserRecords.rejected]: (state, action) => {
+    [getUserRecordDetail.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     },
   },
 });
 
-export const userRecordsReducer = userRecordsSlice.reducer;
+export const userRecordDetailReducer = userRecordDetailSlice.reducer;
