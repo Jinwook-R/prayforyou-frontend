@@ -2,8 +2,17 @@ import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 import { ReactComponent as Medal } from "../assets/mvp_medal.svg";
 import { BREAK_POINT } from "../utils/constants";
+import ranking from "./Ranking";
 
-const ClanDetailTopBar = ({ userId, nickname, ...props }) => {
+const ClanDetailTopBar = ({
+  userId,
+  nickname,
+  clanLevel,
+  ranking,
+  winCount,
+  loseCount,
+  ...props
+}) => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
@@ -70,7 +79,7 @@ const ClanDetailTopBar = ({ userId, nickname, ...props }) => {
                 fontSize: "16px",
               }}
             >
-              <div>{`P4U공식리그-${1}부리그-${1}위`}</div>
+              <div>{`P4U공식리그-${clanLevel}-${ranking}위`}</div>
             </div>
           </div>
         </StyledTopBar>
@@ -103,7 +112,7 @@ const ClanDetailTopBar = ({ userId, nickname, ...props }) => {
               </div>
             </div>
             <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-              <div>{`P4U공식리그-${1}부리그-${1}위`}</div>
+              <div>{`P4U공식리그-${clanLevel}-${ranking}위`}</div>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>

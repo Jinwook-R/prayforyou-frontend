@@ -9,12 +9,14 @@ import { privateRankingReducer } from "./private";
 import { clanRecordsReducer, userRecordsReducer } from "./record";
 import { userInfoReducer } from "./user/userInfoSlice";
 import { matchDetailSliceReducer } from "./record/matchDetailSlice";
+import { clanInfoReducer } from "./clan/clanInfoSlice";
 
 export const store = configureStore({
   reducer: {
     banner: bannerReducer,
     userSearch: userSearchReducer,
     userInfo: userInfoReducer,
+    clanInfo: clanInfoReducer,
     battle: battleReducer,
     ranking: rankingReducer,
     map: mapReducer,

@@ -4,11 +4,26 @@ import { ClanDetailTopBar, TopBar } from "../../components";
 import { StyledButtonWrapper } from "../../components/wrapper";
 import MobileMatchTable from "../../components/table/MobileMatchTable";
 import styled from "@emotion/styled";
-const Mobile = ({ userBattle, matches }) => {
+const Mobile = ({
+  clanInfo,
+  matches,
+  onClickMoreButton,
+  isEnd,
+  selectedMatch,
+  matchDetail,
+  setSelectedMatch,
+}) => {
   return (
     <>
       {/* TODO : Top 바 기록실, 클랜 페이지 각각 커스텀 필요 */}
-      <ClanDetailTopBar nickname={"토끼토끼 클랜"} userId={123124} />
+      <ClanDetailTopBar
+        nickname={clanInfo.name}
+        userId={clanInfo.clanId}
+        ranking={clanInfo.ranking}
+        winCount={clanInfo.winCount}
+        loseCount={clanInfo.loseCount}
+        clanLevel={clanInfo.clanLevel}
+      />
       <div>
         <div
           style={{
@@ -22,29 +37,41 @@ const Mobile = ({ userBattle, matches }) => {
           <InfoFieldItem
             height={"64px"}
             fieldName={"래더"}
-            value={`${1231}점`}
+            value={`${clanInfo.ladderPoint}점`}
           />
           <InfoFieldItem
             height={"64px"}
             fieldName={"승률"}
-            value={`${1231}점`}
+            value={`${(clanInfo.winLosePercent || 0).toFixed(2)}점`}
           />
           <InfoFieldItem
             height={"64px"}
             fieldName={"랭킹"}
-            value={`${1231}점`}
+            value={`${clanInfo.ranking}위`}
           />
         </div>
         <MatchList>
           {matches.map((match, index) => {
+            const detailVisible =
+              selectedMatch && selectedMatch.matchId === match.matchId;
             return (
               <MobileMatchTable
-                isDetailVisible={index === 1}
                 key={`${match.matchId}`}
-                isWin={match.isWin}
+                matchId={match.matchId}
+                isDetailVisible={detailVisible}
+                selectedMatch={selectedMatch}
+                matchDetail={detailVisible && matchDetail}
+                onClickDetail={() => {
+                  if (detailVisible) {
+                    setSelectedMatch(null);
+                  } else {
+                    setSelectedMatch(match);
+                  }
+                }}
+                isWin={match.win}
                 lastGameDay={match.lastGameDay}
                 addScore={match.addScore}
-                mapName={match.mapName}
+                mapName={"제 3 보급 창고"}
                 gameProgressTime={match.gameProgressTime}
                 redTeam={match.redTeam}
                 blueTeam={match.blueTeam}
@@ -52,23 +79,25 @@ const Mobile = ({ userBattle, matches }) => {
             );
           })}
         </MatchList>
-
-        <StyledButtonWrapper
-          height={"80px"}
-          justifyContent={"center"}
-          style={{
-            width: "100%",
-            marginTop: "20px",
-            alignItems: "center",
-            background: "#775ee2",
-            fontWeight: "bold",
-            fontSize: "20px",
-            color: "white",
-            cursor: "pointer",
-          }}
-        >
-          더보기
-        </StyledButtonWrapper>
+        {isEnd && (
+          <StyledButtonWrapper
+            height={"80px"}
+            onClick={onClickMoreButton}
+            justifyContent={"center"}
+            style={{
+              width: "100%",
+              marginTop: "20px",
+              alignItems: "center",
+              background: "#775ee2",
+              fontWeight: "bold",
+              fontSize: "20px",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            더보기
+          </StyledButtonWrapper>
+        )}
       </div>
     </>
   );

@@ -8,7 +8,7 @@ export const getClanRecords = createAsyncThunk(
     const responseData = await axios
       .get(`${DESTINATION_DOMAIN_ADDRESS}/clan/match?clanId=${clanId}`)
       .then((res) => {
-        return res.data.content;
+        return res.data;
       })
       .catch((err) => {
         console.log(err);
@@ -20,7 +20,7 @@ export const getClanRecords = createAsyncThunk(
 export const clanRecordsSlice = createSlice({
   name: "clanRecordList",
   initialState: {
-    matches: [],
+    content: [],
     status: null,
   },
   reducers: {},
@@ -30,7 +30,8 @@ export const clanRecordsSlice = createSlice({
     },
     [getClanRecords.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.matches = action.payload;
+      console.log("뭐야", action);
+      state.content = action.payload.data;
     },
     [getClanRecords.rejected]: (state, action) => {
       state.status = "failed";

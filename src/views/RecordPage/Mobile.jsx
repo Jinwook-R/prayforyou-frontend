@@ -15,7 +15,7 @@ const Mobile = ({
 }) => {
   return (
     <>
-      <TopBar nickname={"안녕하신가"} userId={123124} userInfo={userInfo} />
+      <TopBar userInfo={userInfo} />
       <div>
         <div
           style={{

@@ -73,7 +73,7 @@ const ClanPage = () => {
   const { loadNextPage, slicedData, isEnd, clear } = useInfinite({
     data: content,
     isSuccess: status === "succeeded",
-    isAsync: true,
+    isAsync: false,
   });
 
   useEffect(() => {
