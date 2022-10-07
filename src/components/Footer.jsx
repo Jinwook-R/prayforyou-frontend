@@ -8,17 +8,10 @@ const Footer = () => {
   });
   return (
     <StyledFooter
-      height={isMobile ? "auto" : "216px"}
+      height={isMobile ? "auto" : "180px"}
       style={{ padding: isMobile ? "60px 15px 29px 15px" : "40px 144px" }}
     >
-      Privacy Policy
-      <br />
-      © 2012-2022 OP.GG. OP.GG isn’t endorsed by Riot Games and doesn’t reflect
-      the views or opinions of Riot Games or anyone officially involved in
-      producing or managing League of Legends.
-      <br />
-      League of Legends and Riot Games are trademarks or registered trademarks
-      of Riot Games, Inc. League of Legends © Riot Games, Inc.
+      Created By @TeamPrayforYou
     </StyledFooter>
   );
 };
@@ -29,7 +22,10 @@ const StyledFooter = styled.div`
   padding: 40px 144px;
   background-color: #1e1839;
   color: #d9d9d9;
-  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  font-size: 17px;
   line-height: normal;
   text-overflow: ellipsis;
   white-space: break-spaces;
