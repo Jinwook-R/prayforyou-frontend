@@ -6,7 +6,6 @@ const useInfinite = ({
   isSuccess = true,
   isAsync = false,
 }) => {
-  const isEnd = false;
   const [pageCount, setPageCount] = useState(0);
   const [slicedData, setSlicedData] = useState([]);
 
@@ -28,10 +27,21 @@ const useInfinite = ({
       setSlicedData(sliceData());
     }
   }, [isAsync, sliceData]);
+
+  const clear = useCallback(() => {
+    setPageCount(0);
+    setSlicedData([]);
+  }, []);
   useMemo(() => {
     return slicedData;
   }, [slicedData]);
-  return { isEnd, pageCount, loadNextPage, slicedData };
+  return {
+    pageCount,
+    loadNextPage,
+    slicedData,
+    clear,
+    isEnd: slicedData.length >= data.length,
+  };
 };
 
 export default useInfinite;

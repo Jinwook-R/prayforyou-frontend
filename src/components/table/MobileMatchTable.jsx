@@ -9,8 +9,6 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
     return isWinner ? "#775ee2" : "#676472";
   }, []);
 
-  console.log("ㅎㅇ", redTeam, blueTeam);
-
   const redTeamTableProps = useMemo(() => {
     return {
       cellConfigs: [

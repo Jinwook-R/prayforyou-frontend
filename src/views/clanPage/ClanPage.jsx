@@ -70,17 +70,16 @@ const ClanPage = () => {
   const dispatch = useDispatch();
 
   const { content, status } = useSelector((store) => store.clanRankingList);
-  const { loadNextPage, slicedData, isEnd } = useInfinite({
+  const { loadNextPage, slicedData, isEnd, clear } = useInfinite({
     data: content,
     isSuccess: status === "succeeded",
-    isAsync: false,
+    isAsync: true,
   });
-
-  console.log("클랜?", content);
 
   useEffect(() => {
     dispatch(getClanRankings({ levelName: isFirstView ? "A" : "B" }));
-  }, [dispatch, isFirstView]);
+    clear();
+  }, [dispatch, isFirstView, clear]);
 
   const linkButtonHandler = useCallback(() => {
     setIsFirstView((prevState) => !prevState);
@@ -89,6 +88,8 @@ const ClanPage = () => {
   return isMobile ? (
     <Mobile
       isFirstView={isFirstView}
+      isEnd={isEnd}
+      onClickMoreButton={loadNextPage}
       onClickViewChange={linkButtonHandler}
       clanData={slicedData}
     />

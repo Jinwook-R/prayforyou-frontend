@@ -46,7 +46,6 @@ const Mobile = ({
           {(matches || []).map((match) => {
             const detailVisible =
               selectedMatch && selectedMatch.matchId === match.matchId;
-            console.log("뭐지?", match);
             return (
               <MobileMatchTable
                 key={`${match.matchId}`}

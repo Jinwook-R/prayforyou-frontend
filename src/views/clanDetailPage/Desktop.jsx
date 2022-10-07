@@ -17,8 +17,6 @@ const Desktop = ({ matches }) => {
   const detailMatch = useSelector((store) => store.matchDetail);
   const dispatch = useDispatch();
 
-  console.log("uyggy", detailMatch);
-
   useEffect(() => {
     if (selectedMatchId) {
       dispatch(getMatchDetail(selectedMatchId));
