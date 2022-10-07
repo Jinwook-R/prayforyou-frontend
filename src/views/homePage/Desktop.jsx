@@ -60,7 +60,12 @@ const Desktop = () => {
         />*/}
       </StyledBannerWrapper>
       <StyledMainContentWrapper style={{ paddingInline: "50px" }}>
-        <Title width="280px" marginBottom="50px" marginTop={"130px"} />
+        <Title
+          width="380px"
+          height="80px"
+          marginBottom="50px"
+          marginTop={"130px"}
+        />
         <div
           onMouseDown={(e) => {
             if (!e.target.className.includes("searchInput")) {
@@ -84,7 +89,7 @@ const Desktop = () => {
           />
           {dropDown && userName !== "" && (
             <>
-              <StyledList width={"80%"} padding={"16px 30px"}>
+              <StyledList width={"750px"} padding={"16px 30px"}>
                 {dropDown &&
                   userName &&
                   filteredUserNames.map((item, idx) => (
