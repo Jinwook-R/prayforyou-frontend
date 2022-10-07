@@ -109,8 +109,8 @@ const TopBar = ({ userInfo, ...props }) => {
           <div style={{ display: "flex", alignItems: "center" }}>
             <SearchInputWrapper>
               <StyledButton
-                onChange={() => {
-                  navigate(`/user/${userInfo.userNexonId}`);
+                onClick={() => {
+                  navigate(`/private/${userInfo.userNexonId}`);
                 }}
               >
                 포지션 기록

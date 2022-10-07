@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../../utils/constants";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import Desktop from "./Desktop";
 import Mobile from "./Mobile";
@@ -19,7 +19,7 @@ const UserPage = () => {
     query: `(max-width: ${BREAK_POINT})`,
   });
 
-  const location = useLocation();
+  const { userNexonId } = useParams();
   const dispatch = useDispatch();
   const userBattlePositions = useSelector(
     (state) => state.battle.battlePositions
@@ -27,12 +27,11 @@ const UserPage = () => {
   const { positions } = useSelector((store) => store.map);
   const [clickedButton, setClickedButton] = useState(POSITION_BUTTON);
   const [offset, setOffset] = useState(1);
-  const { userId } = location.state;
 
   useEffect(() => {
     dispatch(getMapPositions());
-    dispatch(searchBattle(userId));
-  }, [dispatch, userId]);
+    dispatch(searchBattle({ userNexonId }));
+  }, [dispatch, userNexonId]);
 
   const handleClickedButton = (e) => {
     const { name } = e.target;
@@ -74,7 +73,6 @@ const UserPage = () => {
       {isMobile && userBattlePositions && (
         <Mobile
           mapPositions={parsedPositions}
-          location={location}
           userBattlePositions={userBattlePositions}
           offset={offset}
           handleOffset={handleOffset}

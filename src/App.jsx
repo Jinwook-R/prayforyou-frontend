@@ -25,8 +25,8 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/private" element={<PrivatePage />} />
+            <Route exact path="/private/:userNexonId" element={<UserPage />} />
             <Route exact path="/clan" element={<ClanPage />} />
-            <Route exact path="/user" element={<UserPage />} />
             <Route exact path="/league" element={<LeaguePage />} />
             <Route path="/record/:userNexonId" element={<RecordPage />} />
             <Route path="/clan/:clanId" element={<ClanDetailPage />} />

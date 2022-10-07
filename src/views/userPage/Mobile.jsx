@@ -10,7 +10,6 @@ const BANNER_PROPS = {
 
 const Mobile = ({
   mapPositions,
-  location,
   userBattlePositions,
   offset,
   handleOffset,

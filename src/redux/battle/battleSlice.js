@@ -4,9 +4,11 @@ import { DESTINATION_DOMAIN_ADDRESS } from "../../utils/constants";
 
 export const searchBattle = createAsyncThunk(
   "battle/searchBattle",
-  async (userId) => {
+  async ({ userNexonId }) => {
     const responseData = await axios
-      .get(`${DESTINATION_DOMAIN_ADDRESS}/battle/place?userNexonId=${userId}`)
+      .get(
+        `${DESTINATION_DOMAIN_ADDRESS}/battle/place?userNexonId=${userNexonId}`
+      )
       .then((res) => res.data)
       .then(({ data }) => data)
       .catch((err) => {
