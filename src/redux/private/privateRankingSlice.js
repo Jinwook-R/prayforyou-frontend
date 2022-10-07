@@ -8,7 +8,7 @@ export const getPrivateRankings = createAsyncThunk(
     const responseData = await axios
       .get(`${DESTINATION_DOMAIN_ADDRESS}/user/ranking?page=${page}`)
       .then((res) => {
-        return res.data.data;
+        return res.data;
       })
       .catch((err) => {
         console.log(err);
@@ -33,8 +33,8 @@ export const privateRankingSlice = createSlice({
     },
     [getPrivateRankings.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      const { content, last } = action.payload;
-      state.data = { content, isLast: last };
+      const { data, last } = action.payload;
+      state.data = { content: data, isLast: last };
     },
     [getPrivateRankings.rejected]: (state, action) => {
       state.status = "failed";
