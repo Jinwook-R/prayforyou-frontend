@@ -60,7 +60,7 @@ const Desktop = ({
         name: "패배",
         width: "200px",
         renderer: (info) => {
-          return `${info["loseCount"]}승`;
+          return `${info["loseCount"]}패`;
         },
       },
       {
