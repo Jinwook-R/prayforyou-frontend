@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Title, Search, DropDown } from "../../components";
-import { useDispatch } from "react-redux";
-import { fetchAllBanners } from "../../redux/banner/bannerSlice";
+import React, { useState } from "react";
+import { Title, Search } from "../../components";
 import {
   StyledList,
   StyledListItemWrapper,
   StyledListItem,
   StyledListItemText,
 } from "../../components/wrapper";
+import { useNavigate } from "react-router-dom";
 const Mobile = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // dispatch(fetchAllBanners());
-  }, []);
+  const navigate = useNavigate();
 
   const [dropDown, setDropDown] = useState(false);
   const handleDropDown = (value) => {
@@ -51,13 +46,16 @@ const Mobile = () => {
           <StyledList width={"80%"} padding="10px">
             {filteredUserNames.map((item, idx) => (
               <StyledListItemWrapper
-                key={`${idx}`}
+                key={`${item.userNexonId}`}
                 marginBottom={"10px"}
                 borderRadius={"15px"}
               >
                 <StyledListItem
                   height={"72px"}
                   width={"100%"}
+                  onClick={() => {
+                    navigate(`/record/${item.userNexonId}`);
+                  }}
                   justifyContent={"spaceBetween"}
                 >
                   <StyledListItemText
@@ -72,14 +70,14 @@ const Mobile = () => {
                     textAlign="right"
                     fontSize={"15px"}
                   >
-                    {"테스트 클랜명"}
+                    {item?.clanName}
                   </StyledListItemText>
                 </StyledListItem>
               </StyledListItemWrapper>
             ))}
           </StyledList>
         )}
-        {!dropDown && !userName && (
+        {!dropDown && (
           <div
             style={{
               height: "250px",

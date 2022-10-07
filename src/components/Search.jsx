@@ -57,10 +57,10 @@ const Search = ({
               if (searchedUsers.length > 0) {
                 setLocalStorage("searchedUsers", [
                   ...searchedUsers.filter(
-                    (user) => user.userId !== filteredUser[0].userId
+                    (user) => user.userNexonId !== filteredUser[0].userNexonId
                   ),
                   {
-                    userId: filteredUser[0].userId,
+                    userNexonId: filteredUser[0].userNexonId,
                     nickname: filteredUser[0].nickname,
                     clanName: filteredUser[0].clanName,
                   },
@@ -68,7 +68,7 @@ const Search = ({
               } else {
                 setLocalStorage("searchedUsers", [
                   {
-                    userId: filteredUser[0].userId,
+                    userNexonId: filteredUser[0].userNexonId,
                     nickname: filteredUser[0].nickname,
                     clanName: filteredUser[0].clanName,
                   },
@@ -109,7 +109,7 @@ const Search = ({
         />
         {isMobile && <SearchIcon onClick={handleSearch} />}
       </StyledSearchInputWrapper>
-      {!userName && (
+      {!dropDown && (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div style={{ maxWidth: "300px" }}>
             <StyledPrayForYouNav

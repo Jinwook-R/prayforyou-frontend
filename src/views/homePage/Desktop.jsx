@@ -27,9 +27,6 @@ const bannerProps = {
 };
 
 const Desktop = () => {
-  const banners = useSelector((store) => store.banner);
-  const ranking = useSelector((store) => store.ranking.ranking);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,13 +98,12 @@ const Desktop = () => {
                 userName &&
                 filteredUserNames.map((item, idx) => (
                   <StyledListItemWrapper
-                    name={item.userId}
                     key={`${idx}`}
                     marginBottom={"16px"}
                     borderRadius={"15px"}
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate(`/record/${item.userId}`);
+                      navigate(`/record/${item.userNexonId}`);
                     }}
                   >
                     <StyledListItem
@@ -127,7 +123,7 @@ const Desktop = () => {
                         textAlign="right"
                         fontSize={"20px"}
                       >
-                        {"클랜 명"}
+                        {item?.clanName}
                       </StyledListItemText>
                     </StyledListItem>
                   </StyledListItemWrapper>
