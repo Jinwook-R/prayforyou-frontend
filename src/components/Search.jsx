@@ -76,7 +76,7 @@ const Search = ({
               }
 
               setUserName("");
-              navigate("user", { state: { ...filteredUser[0] } });
+              navigate(`/record/${filteredUser[0].userNexonId}`);
             }
           }
         })();
@@ -109,47 +109,45 @@ const Search = ({
         />
         {isMobile && <SearchIcon onClick={handleSearch} />}
       </StyledSearchInputWrapper>
-      {!dropDown && (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ maxWidth: "300px" }}>
-            <StyledPrayForYouNav
-              className="pray-for-you-nav"
-              style={{
-                display: "flex",
-                justifyContent: "start",
-                fontSize: isMobile ? "13px" : "20px",
-              }}
-              marginTop={isMobile ? "15px" : "40px"}
-              marginBottom={isMobile ? "8px" : "10px"}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ maxWidth: "300px" }}>
+          <StyledPrayForYouNav
+            className="pray-for-you-nav"
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              fontSize: isMobile ? "13px" : "20px",
+            }}
+            marginTop={isMobile ? "15px" : "40px"}
+            marginBottom={isMobile ? "8px" : "10px"}
+          >
+            <a
+              href="https://open.kakao.com/o/slcFiuFe"
+              style={{ color: "#775ee1" }}
             >
-              <a
-                href="https://open.kakao.com/o/slcFiuFe"
-                style={{ color: "#775ee1" }}
-              >
-                리그 신청하러가기 &nbsp;
-              </a>
-              <div>👀</div>
-            </StyledPrayForYouNav>
-            <StyledPrayForYouNav
-              className="pray-for-you-nav"
-              style={{
-                display: "flex",
-                justifyContent: "start",
-                fontSize: isMobile ? "13px" : "20px",
-                marginTop: isMobile ? "10px" : "20px",
-              }}
-              marginBottom={"100px"}
+              리그 신청하러가기 &nbsp;
+            </a>
+            <div>👀</div>
+          </StyledPrayForYouNav>
+          <StyledPrayForYouNav
+            className="pray-for-you-nav"
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              fontSize: isMobile ? "13px" : "20px",
+              marginTop: isMobile ? "10px" : "20px",
+            }}
+            marginBottom={"100px"}
+          >
+            <a
+              href="https://docs.google.com/document/d/1p9xNOjsWjDDWXkZmQl7_-75uRcr3paci0a0aOOGeRJk/edit#"
+              style={{ color: "#775ee1" }}
             >
-              <a
-                href="https://docs.google.com/document/d/1p9xNOjsWjDDWXkZmQl7_-75uRcr3paci0a0aOOGeRJk/edit#"
-                style={{ color: "#775ee1" }}
-              >
-                리그 규칙 보러가기&nbsp;
-              </a>
-            </StyledPrayForYouNav>
-          </div>
+              리그 규칙 보러가기&nbsp;
+            </a>
+          </StyledPrayForYouNav>
         </div>
-      )}
+      </div>
     </StyledSearchWrapper>
   );
 };
