@@ -22,7 +22,12 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
           },
           renderer: (user) => {
             return (
-              <div style={{ paddingLeft: "14px", fontWeight: "bold" }}>
+              <div
+                style={{ paddingLeft: "14px", fontWeight: "bold" }}
+                onClick={() => {
+                  window.location.href = `/record/${user.userNexonId}`;
+                }}
+              >
                 {user.name}
               </div>
             );
@@ -76,7 +81,12 @@ const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
           },
           renderer: (user) => {
             return (
-              <div style={{ paddingLeft: "14px", fontWeight: "bold" }}>
+              <div
+                style={{ paddingLeft: "14px", fontWeight: "bold" }}
+                onClick={() => {
+                  window.location.href = `/record/${user.userNexonId}`;
+                }}
+              >
                 {user.name}
               </div>
             );

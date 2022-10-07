@@ -78,8 +78,9 @@ const MatchListItem = ({ matchData }) => {
             return (
               <div
                 key={member.id}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
-                  navigate(`/record/${member.id}`);
+                  window.location.href = `/record/${member.id}`;
                 }}
               >
                 {member.name}
@@ -92,8 +93,9 @@ const MatchListItem = ({ matchData }) => {
             return (
               <div
                 key={member.id}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
-                  navigate(`/record/${member.id}`);
+                  window.location.href = `/record/${member.id}`;
                 }}
               >
                 {member.name}
