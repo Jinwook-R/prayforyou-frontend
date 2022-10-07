@@ -42,9 +42,7 @@ const ClanDetailPage = ({ ...props }) => {
   const detailMatch = useSelector((store) => store.matchDetail);
 
   useEffect(() => {
-    console.log("뭐지?", selectedMatch);
     if (selectedMatch && selectedMatch.matchId) {
-      console.log("뭐지?", selectedMatch);
       dispatch(getMatchDetail({ matchId: selectedMatch.matchId }));
     }
   }, [dispatch, selectedMatch]);
