@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Desktop from "./Desktop";
 import Mobile from "./Mobile";
 import { useMediaQuery } from "react-responsive";
@@ -85,13 +85,19 @@ const ClanPage = () => {
     setIsFirstView((prevState) => !prevState);
   }, []);
 
+  const rankedData = useMemo(() => {
+    return slicedData.map((item, index) => {
+      return { ...item, rank: index + 1 };
+    });
+  }, [slicedData]);
+
   return isMobile ? (
     <Mobile
       isFirstView={isFirstView}
       isEnd={isEnd}
       onClickMoreButton={loadNextPage}
       onClickViewChange={linkButtonHandler}
-      clanData={slicedData}
+      clanData={rankedData}
     />
   ) : (
     <Desktop
@@ -99,7 +105,7 @@ const ClanPage = () => {
       isEnd={isEnd}
       onClickMoreButton={loadNextPage}
       onClickViewChange={linkButtonHandler}
-      clanData={slicedData}
+      clanData={rankedData}
     />
   );
 };
