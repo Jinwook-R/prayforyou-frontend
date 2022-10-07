@@ -20,7 +20,7 @@ export const getMatchDetail = createAsyncThunk(
 export const MatchDetailSlice = createSlice({
   name: "matchDetail",
   initialState: {
-    data: {},
+    matchMap: {},
     status: null,
   },
   reducers: {},
@@ -30,7 +30,12 @@ export const MatchDetailSlice = createSlice({
     },
     [getMatchDetail.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.data = action.payload.data;
+      const matchData = action.payload.data;
+      console.log("하위", action, state, matchData);
+      state.matchMap = {
+        ...state.matchMap,
+        [action.meta.arg.matchId]: matchData,
+      };
     },
     [getMatchDetail.rejected]: (state, action) => {
       state.status = "failed";

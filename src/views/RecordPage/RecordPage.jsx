@@ -4,12 +4,11 @@ import Desktop from "./Desktop";
 import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { MatchRecordMockData } from "../../components/listItem/MatchListItem";
 import { useParams } from "react-router";
 import { getUserInfo } from "../../redux/user/userInfoSlice";
 import { getUserRecords } from "../../redux/record";
 import { useInfinite } from "../../hooks";
-import { getMatchDetail } from "../../redux/record/matchDetailSlice";
+import { resetStore } from "../../redux/store";
 
 export const memberMockData = {
   nickname: "안녕하살법사",
@@ -37,13 +36,6 @@ export const matchDetailMockData = {
   },
 };
 
-const mockMatches = Array.from({ length: 15 }, (_, index) => {
-  return {
-    ...MatchRecordMockData,
-    isWin: index % 2 === 0,
-  };
-});
-
 const RecordPage = () => {
   const { userNexonId } = useParams();
 
@@ -65,42 +57,24 @@ const RecordPage = () => {
     if (userNexonId !== undefined) {
       dispatch(getUserInfo({ userNexonId }));
     }
+    return () => {
+      dispatch(resetStore());
+    };
   }, [dispatch, userNexonId]);
 
   useEffect(() => {
     dispatch(getUserRecords({ userNexonId, page: pageCount }));
   }, [pageCount, dispatch, userNexonId]);
 
-  const [selectedMatch, setSelectedMatch] = useState(null);
-
-  const detailMatch = useSelector((store) => store.matchDetail);
-
-  useEffect(() => {
-    if (selectedMatch) {
-      dispatch(getMatchDetail({ matchId: selectedMatch.matchId }));
-    }
-  }, [dispatch, selectedMatch]);
-
   return isMobile ? (
     <Mobile
-      selectedMatch={selectedMatch}
-      setSelectedMatch={setSelectedMatch}
-      matchDetail={detailMatch}
       userInfo={info}
       matches={slicedData}
       isEnd={isEnd}
       onClickMoreButton={loadNextPage}
     />
   ) : (
-    <Desktop
-      selectedMatch={selectedMatch}
-      setSelectedMatch={setSelectedMatch}
-      matchDetail={detailMatch}
-      userInfo={info}
-      matches={slicedData}
-      isEnd={isEnd}
-      onClickMoreButton={loadNextPage}
-    />
+    <Desktop userInfo={info} matches={slicedData} isEnd={isEnd} />
   );
 };
 

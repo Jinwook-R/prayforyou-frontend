@@ -4,15 +4,7 @@ import { InfoFieldItem } from "../../components/listItem";
 import { TopBar } from "../../components";
 import { StyledButtonWrapper } from "../../components/wrapper";
 import MobileMatchTable from "../../components/table/MobileMatchTable";
-const Mobile = ({
-  userInfo,
-  matches,
-  onClickMoreButton,
-  isEnd,
-  selectedMatch,
-  matchDetail,
-  setSelectedMatch,
-}) => {
+const Mobile = ({ userInfo, matches, isEnd, onClickMoreButton }) => {
   return (
     <>
       <TopBar userInfo={userInfo} />
@@ -44,18 +36,10 @@ const Mobile = ({
         </div>
         <MatchList>
           {(matches || []).map((match) => {
-            const detailVisible =
-              selectedMatch && selectedMatch.matchId === match.matchId;
             return (
               <MobileMatchTable
                 key={`${match.matchId}`}
                 matchId={match.matchId}
-                isDetailVisible={detailVisible}
-                selectedMatch={selectedMatch}
-                matchDetail={detailVisible && matchDetail}
-                onClickDetail={() => {
-                  setSelectedMatch(match);
-                }}
                 isWin={match.win}
                 lastGameDay={match.lastGameDay}
                 addScore={match.addScore}

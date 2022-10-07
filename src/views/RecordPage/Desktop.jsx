@@ -8,7 +8,6 @@ import { COMMON_LAYOUT_PC_HORIZONTAL_MAX } from "../../utils/constants";
 import { InfoFieldItem, MatchListItem } from "../../components/listItem";
 import { StyledButtonWrapper } from "../../components/wrapper";
 import styled from "@emotion/styled";
-import MatchDetailTable from "../../components/table/MatchDetailTable";
 
 const Desktop = ({
   userInfo,
@@ -44,34 +43,20 @@ const Desktop = ({
           <div style={{ display: "flex", marginTop: "49px", gap: "117px" }}>
             <div style={{ overflow: "auto" }}>
               <div style={{ marginBottom: "10px" }}>
-                {selectedMatch && matchDetail?.status === "succeeded" && (
-                  <MatchListItem
-                    matchData={selectedMatch}
-                    onClickRightButton={() => {
-                      setSelectedMatch(null);
-                    }}
-                    rightButtonText={"닫기"}
-                  />
-                )}
-                {selectedMatch &&
-                  matchDetail?.data &&
-                  matchDetail?.status === "succeeded" && (
-                    <MatchDetailTable
-                      isWin={matchDetail?.data.redTeamWin}
-                      mapName={"제 3 보급 창고"}
-                      gameProgressTime={matchDetail?.data.gameStartTime}
-                      redTeam={matchDetail?.data.redUsers}
-                      blueTeam={matchDetail?.data.blueUsers}
-                    />
-                  )}
-              </div>
-              <div style={{ marginBottom: "10px" }}>
                 <DesktopContainer>
                   {(matches || []).map((match) => (
                     <MatchListItem
+                      key={match.matchId}
                       matchData={match}
                       onClickRightButton={() => {
-                        setSelectedMatch(match);
+                        if (
+                          selectedMatch &&
+                          selectedMatch?.matchId === match.matchId
+                        ) {
+                          setSelectedMatch(null);
+                        } else {
+                          setSelectedMatch(match);
+                        }
                       }}
                     />
                   ))}

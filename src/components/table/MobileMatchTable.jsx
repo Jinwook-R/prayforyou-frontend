@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import { ReactComponent as DownArrow } from "../../assets/down_arrow.svg";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import TableWithTitle from "./TableWithTitle";
+import { useDispatch, useSelector } from "react-redux";
+import { getMatchDetail } from "../../redux/record/matchDetailSlice";
 
 const MatchDetailTable = ({ redTeam, blueTeam, gameProgressTime, isWin }) => {
   const getWinLoseColor = useCallback((isWinner) => {
@@ -191,19 +193,30 @@ const TableTitle = styled.div`
 `;
 
 const MobileMatchTable = ({
-  selectedMatch,
-  matchDetail,
-  setSelectedMatch,
   mapName,
+  matchId,
   lastGameDay,
   addScore,
-  matchId,
   isWin,
   blueTeam,
   redTeam,
-  onClickDetail,
-  isDetailVisible,
 }) => {
+  const [isDetailVisible, setIsDetailVisible] = useState(false);
+  const dispatch = useDispatch();
+  const { matchMap } = useSelector((store) => store.matchDetail);
+
+  const loadDetail = async () => {
+    await dispatch(getMatchDetail({ matchId: matchId }));
+  };
+
+  const rightButtonClickHandler = async () => {
+    if (isDetailVisible) {
+      setIsDetailVisible(false);
+    } else {
+      await loadDetail();
+      setIsDetailVisible(true);
+    }
+  };
   return (
     <div
       style={{
@@ -243,7 +256,7 @@ const MobileMatchTable = ({
         </div>
         <MoreButton
           className={isDetailVisible ? "active" : ""}
-          onClick={onClickDetail}
+          onClick={rightButtonClickHandler}
           background={isWin ? "#775ee2" : "#676472"}
         >
           <div style={{ width: "14px" }}>
@@ -251,12 +264,12 @@ const MobileMatchTable = ({
           </div>
         </MoreButton>
       </div>
-      {isDetailVisible && matchDetail.status === "succeeded" && (
+      {isDetailVisible && matchMap[matchId] && (
         <MatchDetailTable
-          redTeam={{ ...redTeam, members: matchDetail.data.redUsers }}
-          blueTeam={{ ...blueTeam, members: matchDetail.data.blueUsers }}
-          gameProgressTime={matchDetail.data.gameStartTime}
-          isWin={matchDetail.data.redTeamWin}
+          redTeam={{ ...redTeam, members: matchMap[matchId]?.redUsers }}
+          blueTeam={{ ...blueTeam, members: matchMap[matchId]?.blueUsers }}
+          gameProgressTime={matchMap[matchId]?.gameStartTime}
+          isWin={matchMap[matchId]?.redTeamWin}
         />
       )}
     </div>
