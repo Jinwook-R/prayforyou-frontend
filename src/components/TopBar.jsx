@@ -58,11 +58,6 @@ const TopBar = ({ userInfo, ...props }) => {
                 <div>
                   <span>{`${userInfo?.weapon}`}</span>
                 </div>
-                {/*<Toggle
-                  onClick={handleOnClick}
-                  style={{ width: "54px", height: "30px", cursor: "pointer" }}
-                  toggled={isFavorite}
-                />*/}
               </div>
             </div>
             <div
@@ -75,11 +70,6 @@ const TopBar = ({ userInfo, ...props }) => {
               }}
             >
               <div>{userInfo?.clanName}</div>
-              <div style={{ fontWeight: "bold" }}>{`킬뎃 ${(
-                userInfo?.killDeath || 0
-              ).toFixed(1)}%  판킬 ${(userInfo?.killPerGame || 0).toFixed(
-                2
-              )}`}</div>
             </div>
           </div>
         </StyledTopBar>
