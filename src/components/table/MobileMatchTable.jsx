@@ -253,8 +253,8 @@ const MobileMatchTable = ({
             </ListItemBodyCell>
             <ListItemBodyCell width={"60px"}>
               <div
-                style={{ color: isWin ? "#775ee2" : "#676472" }}
-              >{`${addScore}점`}</div>
+                style={{ color: "black"}}
+              >제 3보급창고</div>
             </ListItemBodyCell>
             <ListItemBodyCell width={"95px"}>
               {redTeam.clanName}

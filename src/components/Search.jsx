@@ -136,7 +136,7 @@ const Search = ({
             >
               리그 신청하러가기 &nbsp;
             </a>
-            <div>👀</div>
+            <div>💯</div>
           </StyledPrayForYouNav>
           <StyledPrayForYouNav
             className="pray-for-you-nav"
@@ -155,6 +155,7 @@ const Search = ({
             >
               리그 규칙 보러가기 &nbsp;
             </a>
+            <div>👀</div>
           </StyledPrayForYouNav>
         </div>
       </div>
