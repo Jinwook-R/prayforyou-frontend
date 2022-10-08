@@ -64,7 +64,7 @@ const Mobile = ({ userInfoList, isEnd, onClickMoreButton }) => {
             fontSize: "10px",
           }}
         >
-          랭킹은 1시간마다 갱신되며, 배치고사가 종료된 플레이어만 표시됩니다.
+          랭킹은 20분마다 갱신되고, 래더 점수 기준으로 순위가 판정됩니다.
         </div>
       </MobilePageToolbarWrapper>
       {/*<Banner height={"50px"} margin={"10px"} /> */}

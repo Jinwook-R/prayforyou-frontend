@@ -164,7 +164,7 @@ const Desktop = () => {
                       textAlign: "left",
                     }}
                   >
-                    최근 기록실
+                    최근 기록실 (P4U 리그 최신순 10경기)
                   </div>
                   <DesktopContainer>
                     {(slicedData || []).map((match, index) => (

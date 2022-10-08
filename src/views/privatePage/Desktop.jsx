@@ -96,7 +96,7 @@ const Desktop = ({ userInfoList, isEnd, onClickMoreButton }) => {
             개인 랭킹
           </div>
           <div style={{ height: "29px", fontSize: "20px" }}>
-            랭킹은 1시간마다 갱신되며, 배치고사가 종료된 플레이어만 표시됩니다.
+            랭킹은 20분마다 갱신되고, 래더 점수 기준으로 순위가 판정됩니다.
           </div>
         </TablePageTitleWrapper>
         <Table
