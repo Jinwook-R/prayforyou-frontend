@@ -11,6 +11,7 @@ const ClanDetailTopBar = ({
   ranking,
   winCount,
   loseCount,
+  openKaKaoLink,
   ...props
 }) => {
   const isMobile = useMediaQuery({
@@ -119,11 +120,17 @@ const ClanDetailTopBar = ({
               }위`}</div>
             </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <SearchInputWrapper>
-              <StyledButton onChange={() => {}}>클랜모집 오픈카톡</StyledButton>
-            </SearchInputWrapper>
-          </div>
+          {openKaKaoLink && (
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <SearchInputWrapper>
+                <StyledButton>
+                  <a href={openKaKaoLink} target={"_blank"} rel="noreferrer">
+                    클랜모집 오픈카톡
+                  </a>
+                </StyledButton>
+              </SearchInputWrapper>
+            </div>
+          )}
         </StyledTopBar>
       )}
     </>

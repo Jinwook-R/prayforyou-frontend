@@ -23,7 +23,7 @@ import { useNavigate } from "react-router";
 import { InfoFieldItem, MatchListItem } from "../../components/listItem";
 import styled from "@emotion/styled";
 import { useInfinite } from "../../hooks";
-import { getUserRecords } from "../../redux/record";
+import { getRecentRecords, getUserRecords } from "../../redux/record";
 import { resetStore } from "../../redux/store";
 
 const bannerProps = {
@@ -49,20 +49,20 @@ const Desktop = () => {
   const [filteredUserNames, setFilteredUserNames] = useState([]);
   const [userName, setUserName] = useState("");
 
-  const { content, status, isEnd } = useSelector((store) => store.userRecords);
+  const { content, status } = useSelector((store) => store.recentRecords);
 
-  const { loadNextPage, slicedData, pageCount } = useInfinite({
+  const { loadNextPage, slicedData, isEnd } = useInfinite({
     data: content,
     isSuccess: status === "succeeded",
-    isAsync: true,
+    isAsync: false,
   });
 
   useEffect(() => {
-    dispatch(getUserRecords({ userNexonId: "100942704", page: pageCount }));
+    dispatch(getRecentRecords());
     return () => {
       dispatch(resetStore());
     };
-  }, [pageCount, dispatch]);
+  }, [dispatch]);
 
   return (
     <StyledDesktopWrapper>
@@ -152,11 +152,27 @@ const Desktop = () => {
         <StyledDesktopWrapper>
           <StyledMainContentWrapper>
             <div style={{ display: "flex", marginTop: "49px", gap: "117px" }}>
-              <div style={{ overflow: "auto" }}>
+              <div style={{ overflow: "auto", flex: 1 }}>
                 <div style={{ marginBottom: "10px" }}>
+                  <div
+                    style={{
+                      background: "#775ee1",
+                      color: "white",
+                      fontSize: "24px",
+                      width: "100%",
+                      padding: "18px",
+                      textAlign: "left",
+                    }}
+                  >
+                    최근 기록실
+                  </div>
                   <DesktopContainer>
                     {(slicedData || []).map((match) => (
-                      <MatchListItem key={match.matchId} matchData={match} />
+                      <MatchListItem
+                        key={match.matchId}
+                        matchData={match}
+                        showLadder={false}
+                      />
                     ))}
                   </DesktopContainer>
                 </div>

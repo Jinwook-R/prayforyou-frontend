@@ -10,13 +10,14 @@ const BANNER_PROPS = {
 
 const Mobile = ({
   mapPositions,
+  userInfo,
   userBattlePositions,
   offset,
   handleOffset,
 }) => {
   return (
     <>
-      {/* <TopBar nickname={nickname} userId={userId} battle={userBattle} /> */}
+      <TopBar userInfo={userInfo} showButton={false} />
       <BattleMap
         mapPositions={mapPositions}
         userBattlePositions={userBattlePositions}

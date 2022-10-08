@@ -10,7 +10,11 @@ import { rankingReducer } from "./ranking";
 import { mapReducer } from "./map";
 import { clanRankingReducer } from "./clan";
 import { privateRankingReducer } from "./private";
-import { clanRecordsReducer, userRecordsReducer } from "./record";
+import {
+  clanRecordsReducer,
+  recentRecordsReducer,
+  userRecordsReducer,
+} from "./record";
 import { userInfoReducer } from "./user/userInfoSlice";
 import { matchDetailSliceReducer } from "./record/matchDetailSlice";
 import { clanInfoReducer } from "./clan/clanInfoSlice";
@@ -37,6 +41,7 @@ const combinedReducer = combineReducers({
   userRecords: userRecordsReducer,
   clanRecords: clanRecordsReducer,
   matchDetail: matchDetailSliceReducer,
+  recentRecords: recentRecordsReducer,
 });
 const rootReducer = (state, action) => {
   if (action.type === "reset") {

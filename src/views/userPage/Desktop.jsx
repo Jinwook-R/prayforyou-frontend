@@ -14,6 +14,7 @@ const Desktop = ({
   mapPositions,
   userBattlePositions,
   offset,
+  userInfo,
   handleOffset,
 }) => {
   // const banners = useSelector((store) => store.banner);
@@ -27,7 +28,7 @@ const Desktop = ({
 
   return (
     <>
-      {/* <div
+      <div
         style={{
           display: "flex",
           backgroundColor: "#775ee1",
@@ -36,20 +37,19 @@ const Desktop = ({
           paddingLeft: "16px",
         }}
       >
-        {userBattlePositions && (
+        {userInfo && (
           <TopBar
+            showButton={false}
             style={{
               paddingLeft: "10px",
               margin: "0 auto",
               width: "100%",
               maxWidth: COMMON_LAYOUT_PC_HORIZONTAL_MAX,
             }}
-            userId={userId}
-            nickname={nickname}
-            userBattlePositions={userBattlePositions}
+            userInfo={userInfo}
           />
         )}
-      </div> */}
+      </div>
       <div
         style={{
           paddingInline: "16px",

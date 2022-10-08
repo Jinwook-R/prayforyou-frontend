@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMatchDetail } from "../../redux/record/matchDetailSlice";
 import MatchDetailTable from "../table/MatchDetailTable";
 
-const MatchListItem = ({ matchData }) => {
+const MatchListItem = ({ matchData, showLadder = true }) => {
   const [isDetailVisible, setIsDetailVisible] = useState(false);
   const dispatch = useDispatch();
   const { matchMap } = useSelector((store) => store.matchDetail);
@@ -31,6 +31,7 @@ const MatchListItem = ({ matchData }) => {
     <>
       <div
         style={{
+          width: "100%",
           display: "flex",
           height: "180px",
         }}
@@ -44,13 +45,15 @@ const MatchListItem = ({ matchData }) => {
           </div>
           <div>{matchData.lastGameDay}</div>
         </Cell>
-        <Cell width={"100px"} fontSize={"18px"}>
-          <div>래더</div>
-          <div
-            style={{ fontWeight: "bold", color: winLoseColor }}
-          >{`${matchData.addScore}점`}</div>
-        </Cell>
-        <Cell width={"206px"} fontSize={"13px"}>
+        {showLadder && (
+          <Cell width={"100px"} fontSize={"18px"}>
+            <div>래더</div>
+            <div
+              style={{ fontWeight: "bold", color: winLoseColor }}
+            >{`${matchData.addScore}점`}</div>
+          </Cell>
+        )}
+        <Cell width={"206px"} fontSize={"13px"} flex={1}>
           <div style={{ fontWeight: "bold", fontSize: "18px" }}>
             {matchData.redTeam.clanName}
           </div>
@@ -64,7 +67,7 @@ const MatchListItem = ({ matchData }) => {
         >
           vs
         </Cell>
-        <Cell width={"206px"} fontSize={"13px"}>
+        <Cell width={"206px"} fontSize={"13px"} flex={1}>
           <div style={{ fontWeight: "bold", fontSize: "18px" }}>
             {matchData.blueTeam.clanName}
           </div>
@@ -73,7 +76,7 @@ const MatchListItem = ({ matchData }) => {
         <Cell width={"206px"} fontSize={"18px"} color={winLoseColor}>
           <div>5 vs 5</div>
         </Cell>
-        <Cell width={"206px"} fontSize={"15px"}>
+        <Cell width={"206px"} fontSize={"15px"} flex={1}>
           {matchData.redTeam.members.map((member) => {
             return (
               <div
@@ -88,7 +91,7 @@ const MatchListItem = ({ matchData }) => {
             );
           })}
         </Cell>
-        <Cell width={"206px"} fontSize={"15px"}>
+        <Cell width={"206px"} fontSize={"15px"} flex={1}>
           {matchData.blueTeam.members.map((member) => {
             return (
               <div
@@ -127,6 +130,7 @@ const MatchListItem = ({ matchData }) => {
 const Cell = styled.div`
   width: ${(props) => props.width};
   display: flex;
+  flex: ${(props) => props.flex};
   flex-direction: column;
   font-size: ${(props) => props.fontSize || "15px"};
   gap: ${(props) => props.gap || "8px"};

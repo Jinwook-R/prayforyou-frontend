@@ -24,7 +24,7 @@ const StyledFooter = styled.div`
   color: #d9d9d9;
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: start;
   font-size: 17px;
   line-height: normal;
   text-overflow: ellipsis;

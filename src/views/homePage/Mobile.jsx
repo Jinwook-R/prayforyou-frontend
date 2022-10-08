@@ -20,7 +20,7 @@ const Mobile = () => {
 
   return (
     <div style={{ padding: "0 16px", paddingTop: "100px" }}>
-      <Title marginBottom="50px" width="210px" />
+      <Title marginBottom="30px" width="210px" />
       <div
         style={{
           position: "relative",
@@ -43,39 +43,49 @@ const Mobile = () => {
           userName={userName}
         />
         {dropDown && userName && !!filteredUserNames.length && (
-          <StyledList width={"80%"} padding="10px">
-            {filteredUserNames.map((item, idx) => (
-              <StyledListItemWrapper
-                key={`${item.userNexonId}`}
-                marginBottom={"10px"}
-                borderRadius={"15px"}
-              >
-                <StyledListItem
-                  height={"72px"}
-                  width={"100%"}
-                  onClick={() => {
-                    navigate(`/record/${item.userNexonId}`);
-                  }}
-                  justifyContent={"spaceBetween"}
+          <div
+            style={{
+              position: "absolute",
+              top: "60px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <StyledList width={"80%"} padding="10px">
+              {filteredUserNames.map((item, idx) => (
+                <StyledListItemWrapper
+                  key={`${item.userNexonId}`}
+                  marginBottom={"10px"}
+                  borderRadius={"15px"}
                 >
-                  <StyledListItemText
-                    flex={1}
-                    textAlign="left"
-                    fontSize={"15px"}
+                  <StyledListItem
+                    height={"72px"}
+                    width={"100%"}
+                    onClick={() => {
+                      navigate(`/record/${item.userNexonId}`);
+                    }}
+                    justifyContent={"spaceBetween"}
                   >
-                    {item.nickname}
-                  </StyledListItemText>
-                  <StyledListItemText
-                    flex={1}
-                    textAlign="right"
-                    fontSize={"15px"}
-                  >
-                    {item?.clanName}
-                  </StyledListItemText>
-                </StyledListItem>
-              </StyledListItemWrapper>
-            ))}
-          </StyledList>
+                    <StyledListItemText
+                      flex={1}
+                      textAlign="left"
+                      fontSize={"15px"}
+                    >
+                      {item.nickname}
+                    </StyledListItemText>
+                    <StyledListItemText
+                      flex={1}
+                      textAlign="right"
+                      fontSize={"15px"}
+                    >
+                      {item?.clanName}
+                    </StyledListItemText>
+                  </StyledListItem>
+                </StyledListItemWrapper>
+              ))}
+            </StyledList>
+          </div>
         )}
         {!dropDown && (
           <div

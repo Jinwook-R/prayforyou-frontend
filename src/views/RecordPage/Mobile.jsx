@@ -37,6 +37,10 @@ const Mobile = ({ userInfo, matches, isEnd, onClickMoreButton }) => {
             fieldName={"킬뎃"}
             value={`${(userInfo?.killDeath || 0).toFixed(2)}%`}
           />
+          <InfoFieldItem
+            fieldName={"판킬"}
+            value={`${(userInfo?.killPerGame || 0).toFixed(2)}%`}
+          />
         </div>
         <MatchList>
           {(matches || []).map((match) => {

@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 
-const TopBar = ({ userInfo, ...props }) => {
+const TopBar = ({ userInfo, showButton = true, ...props }) => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
   });
@@ -105,19 +105,20 @@ const TopBar = ({ userInfo, ...props }) => {
               <div style={{ fontWeight: "bold" }}>
                 {userInfo?.clanName || "-"}
               </div>
-              <div>{`래더점수 ${userInfo?.ladderPoint || "-"}점`}</div>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <SearchInputWrapper>
-              <StyledButton
-                onClick={() => {
-                  navigate(`/private/${userInfo.userNexonId}`);
-                }}
-              >
-                포지션 기록
-              </StyledButton>
-            </SearchInputWrapper>
+            {showButton && (
+              <SearchInputWrapper>
+                <StyledButton
+                  onClick={() => {
+                    navigate(`/private/${userInfo.userNexonId}`);
+                  }}
+                >
+                  포지션 기록
+                </StyledButton>
+              </SearchInputWrapper>
+            )}
           </div>
         </StyledTopBar>
       )}

@@ -17,7 +17,7 @@ const Mobile = ({
   const clanTableProps = {
     cellConfigs: [
       {
-        name: "참여중인 클랜",
+        name: "",
         style: { width: "100%", fontSize: "15px" },
         renderer: (clan) => {
           return (
@@ -114,7 +114,7 @@ const Mobile = ({
         {...mapTableProps}
       />*/}
       <Table
-        headerStyle={{ paddingInline: "30px" }}
+        headerStyle={{ height: "0px" }}
         rowStyler={() => {
           return {
             height: "auto",

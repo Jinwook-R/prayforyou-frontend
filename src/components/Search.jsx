@@ -109,7 +109,16 @@ const Search = ({
         {isMobile && <SearchIcon onClick={handleSearch} />}
       </StyledSearchInputWrapper>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <div style={{ maxWidth: "300px" }}>
+        <div
+          style={{
+            maxWidth: "800px",
+            marginTop: "40px",
+            marginBottom: "80px",
+            display: "flex",
+            alignItems: "center",
+            gap: "40px",
+          }}
+        >
           <StyledPrayForYouNav
             className="pray-for-you-nav"
             style={{
@@ -117,8 +126,6 @@ const Search = ({
               justifyContent: "start",
               fontSize: isMobile ? "13px" : "20px",
             }}
-            marginTop={isMobile ? "15px" : "40px"}
-            marginBottom={isMobile ? "8px" : "10px"}
           >
             <a
               target={"_blank"}
@@ -136,9 +143,7 @@ const Search = ({
               display: "flex",
               justifyContent: "start",
               fontSize: isMobile ? "13px" : "20px",
-              marginTop: isMobile ? "10px" : "20px",
             }}
-            marginBottom={"100px"}
           >
             <a
               target={"_blank"}

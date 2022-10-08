@@ -36,7 +36,10 @@ const MapInfoListItem = ({ outputText, item, index }) => {
             {item[outputText[2]]} 데스
           </StyledListItemText>
           <StyledListItemText fontSize="15px" fontWeight="bold">
-            {item[outputText[3]]}%
+            {`${(
+              (item[outputText[1]] * 100) /
+              (item[outputText[1]] + item[outputText[2]])
+            ).toFixed(2)}%`}
           </StyledListItemText>
         </div>
       </div>

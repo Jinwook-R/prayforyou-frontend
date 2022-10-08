@@ -35,7 +35,12 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
       );
 
       setPlaceType(hoveredPosition.description);
-      setRate(hoveredPosition.rate);
+      setRate(
+        (
+          (hoveredPosition.kill * 100) /
+          (hoveredPosition.kill + hoveredPosition.death)
+        ).toFixed(1)
+      );
     } else {
       setPlaceType("");
       setRate("");
@@ -48,7 +53,16 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
       (item) => item.description === position.placeType
     );
 
-    setRate(`${userBattlePosition ? `${userBattlePosition.rate}` : "0"}`);
+    setRate(
+      `${
+        userBattlePosition
+          ? `${(
+              (userBattlePosition.kill * 100) /
+              (userBattlePosition.kill + userBattlePosition.death)
+            ).toFixed(1)}`
+          : "0"
+      }`
+    );
 
     setHoveringPosition({
       ...position,
@@ -69,8 +83,6 @@ const BattleMap = ({ mapPositions, userBattlePositions }) => {
     });
     return [x, y];
   };
-
-  console.log(mapPositions);
 
   return (
     <div className="map-info-wrapper" style={{ marginBottom: "24px" }}>
