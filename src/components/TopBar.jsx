@@ -45,31 +45,47 @@ const TopBar = ({ userInfo, showButton = true, ...props }) => {
                   fontWeight: "bold",
                 }}
               >
-                {userInfo?.name || ""}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  color: "white",
-                }}
-              >
-                <div>
-                  <span>{`${userInfo?.weapon}`}</span>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {userInfo?.name || ""}
+                  </div>
+                </div>
+                <div
+                  style={{ display: "flex", gap: "20px", marginTop: "20px" }}
+                >
+                  <div style={{ fontSize: "16px" }}>
+                    {userInfo?.clanName || "-"}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginTop: "10px",
-                fontSize: "16px",
-              }}
-            >
-              <div>{userInfo?.clanName || ""}</div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                {showButton && (
+                  <SearchInputWrapper width={"100px"}>
+                    <StyledButton
+                      style={{
+                        fontSize: "13px",
+                        height: "30px",
+                      }}
+                      onClick={() => {
+                        navigate(`/private/${userInfo.userNexonId}`);
+                      }}
+                    >
+                      포지션 기록
+                    </StyledButton>
+                  </SearchInputWrapper>
+                )}
+              </div>
             </div>
           </div>
         </StyledTopBar>
@@ -158,7 +174,7 @@ const SearchInputWrapper = styled.div`
   align-items: center;
   height: ${(props) => props.height};
   box-sizing: border-box;
-  width: 150px;
+  width: ${(props) => props.width || "150px"};
   color: white;
   font-size: 24px;
   border-radius: 50px;
