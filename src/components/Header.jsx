@@ -42,7 +42,8 @@ const Header = () => {
 
             {!isMobile &&
               (pathname.includes("/clan/") ||
-                pathname.includes("/record/")) && (
+                pathname.includes("/record/") ||
+                pathname.includes("/private/")) && (
                 <>
                   <div style={{ display: "flex", flex: 1 }}>
                     <StyledHeaderNavigation padding={0}>
@@ -144,7 +145,8 @@ const Header = () => {
       </StyledHeaderInnerWrapper>
       {!isMobile &&
         !pathname.includes("/record/") &&
-        !pathname.includes("/clan/") && (
+        !pathname.includes("/clan/") &&
+        !pathname.includes("/private/") && (
           <StyledHeaderInnerWrapper>
             <StyledHeaderNavigation padding={0}>
               <StyledNavLink

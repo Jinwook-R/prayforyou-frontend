@@ -29,9 +29,7 @@ const ClanDetailPage = ({ ...props }) => {
   });
 
   useEffect(() => {
-    if (clanId !== undefined) {
-      dispatch(getClanInfo({ clanId }));
-    }
+    dispatch(getClanInfo({ clanId }));
   }, [dispatch, clanId]);
 
   useEffect(() => {

@@ -86,7 +86,7 @@ const Desktop = ({ userInfo, matches, onClickMoreButton, isEnd }) => {
               />
               <InfoFieldItem
                 fieldName={"판킬"}
-                value={`${(userInfo?.killPerGame || 0).toFixed(2)}%`}
+                value={`${(userInfo?.killPerGame || 0).toFixed(2)}`}
               />
             </div>
           </div>

@@ -246,15 +246,15 @@ const MobileMatchTable = ({
         >
           <ListItemTitle background={isWin ? "#775ee2" : "#676472"}>
             <div>{`${mapName} - ${lastGameDay}`}</div>
-            <div>{`${addScore}점`}</div>
           </ListItemTitle>
           <ListItemBody>
             <ListItemBodyCell width={"50px"}>
               {isWin ? "승" : "패"}
             </ListItemBodyCell>
             <ListItemBodyCell width={"60px"}>
-              <div>{`무슨 값이지`}</div>
-              <div style={{ fontSize: "10px" }}>{`(무슨값이지 %)`}</div>
+              <div
+                style={{ color: isWin ? "#775ee2" : "#676472" }}
+              >{`${addScore}점`}</div>
             </ListItemBodyCell>
             <ListItemBodyCell width={"95px"}>
               {redTeam.clanName}

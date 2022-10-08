@@ -76,8 +76,6 @@ const UserPage = () => {
     return result;
   }, [positions, userBattlePositions]);
 
-  console.log("하위", info);
-
   return (
     <>
       {isMobile && userBattlePositions && (

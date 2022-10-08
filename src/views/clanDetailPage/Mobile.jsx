@@ -61,7 +61,7 @@ const Mobile = ({ clanInfo, matches, onClickMoreButton, isEnd }) => {
             );
           })}
         </MatchList>
-        {isEnd && (matches || []).length > 0 && (
+        {!isEnd && (matches || []).length > 0 && (
           <StyledButtonWrapper
             height={"80px"}
             onClick={onClickMoreButton}

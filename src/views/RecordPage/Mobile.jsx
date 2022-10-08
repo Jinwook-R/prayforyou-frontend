@@ -39,7 +39,7 @@ const Mobile = ({ userInfo, matches, isEnd, onClickMoreButton }) => {
           />
           <InfoFieldItem
             fieldName={"판킬"}
-            value={`${(userInfo?.killPerGame || 0).toFixed(2)}%`}
+            value={`${(userInfo?.killPerGame || 0).toFixed(2)}`}
           />
         </div>
         <MatchList>
