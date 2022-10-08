@@ -41,7 +41,7 @@ const MobileUserListItem = ({
         <div>{`래더 ${ladderPoint}점`}</div>
       </Row>
       <Row style={{ marginTop: "7px", fontSize: "13px" }}>
-        {rate && <div>{`승률 ${rate.toFixed(1)}%`}</div>}
+        {typeof rate === "number" && <div>{`승률 ${rate.toFixed(1)}%`}</div>}
         {typeof killAverage === "number" && (
           <div>{`평균킬 ${killAverage.toFixed(1)}`}</div>
         )}

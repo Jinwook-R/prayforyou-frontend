@@ -167,9 +167,9 @@ const Desktop = () => {
                     최근 기록실
                   </div>
                   <DesktopContainer>
-                    {(slicedData || []).map((match) => (
+                    {(slicedData || []).map((match, index) => (
                       <MatchListItem
-                        key={match.matchId}
+                        key={`${match.matchId}-${index}`}
                         matchData={match}
                         showLadder={false}
                       />

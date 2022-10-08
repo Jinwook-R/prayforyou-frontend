@@ -36,8 +36,11 @@ const Desktop = ({ userInfo, matches, onClickMoreButton, isEnd }) => {
             <div style={{ overflow: "auto" }}>
               <div style={{ marginBottom: "10px" }}>
                 <DesktopContainer>
-                  {(matches || []).map((match) => (
-                    <MatchListItem key={match.matchId} matchData={match} />
+                  {(matches || []).map((match, index) => (
+                    <MatchListItem
+                      key={`${match.matchId}-${index}`}
+                      matchData={match}
+                    />
                   ))}
                 </DesktopContainer>
               </div>

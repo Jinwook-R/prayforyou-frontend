@@ -50,9 +50,9 @@ const Desktop = ({
             <div style={{ overflow: "auto" }}>
               <div style={{ marginBottom: "10px" }}>
                 <DesktopContainer>
-                  {(matches || []).map((match) => (
+                  {(matches || []).map((match, index) => (
                     <MatchListItem
-                      key={match.matchId}
+                      key={`${match.matchId}-${index}`}
                       matchData={match}
                       onClickRightButton={() => {
                         setSelectedMatch(match);

@@ -43,10 +43,10 @@ const Mobile = ({ userInfo, matches, isEnd, onClickMoreButton }) => {
           />
         </div>
         <MatchList>
-          {(matches || []).map((match) => {
+          {(matches || []).map((match, index) => {
             return (
               <MobileMatchTable
-                key={`${match.matchId}`}
+                key={`${match.matchId}-${index}`}
                 matchId={match.matchId}
                 isWin={match.win}
                 lastGameDay={match.lastGameDay}
