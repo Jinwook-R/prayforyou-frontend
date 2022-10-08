@@ -83,7 +83,7 @@ const Desktop = ({
           flex: 2,
         },
         renderer: (info) => {
-          return `${info["winLosePercent"]}%`;
+          return `${(info["winLosePercent"] || 0).toFixed(1)}%`;
         },
       },
       {

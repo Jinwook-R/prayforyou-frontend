@@ -58,13 +58,14 @@ const Mobile = () => {
                   key={`${item.userNexonId}`}
                   marginBottom={"10px"}
                   borderRadius={"15px"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/record/${item.userNexonId}`);
+                  }}
                 >
                   <StyledListItem
                     height={"72px"}
                     width={"100%"}
-                    onClick={() => {
-                      navigate(`/record/${item.userNexonId}`);
-                    }}
                     justifyContent={"spaceBetween"}
                   >
                     <StyledListItemText
