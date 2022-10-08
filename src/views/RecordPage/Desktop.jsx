@@ -91,6 +91,7 @@ const Desktop = ({ userInfo, matches, onClickMoreButton, isEnd }) => {
                 fieldName={"판킬"}
                 value={`${(userInfo?.killPerGame || 0).toFixed(2)}`}
               />
+              <InfoFieldItem fieldName={"주총"} value={userInfo?.weapon} />
             </div>
           </div>
         </StyledMainContentWrapper>

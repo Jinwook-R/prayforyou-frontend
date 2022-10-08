@@ -17,7 +17,7 @@ const Mobile = ({ clanInfo, matches, onClickMoreButton, isEnd }) => {
         clanLevel={clanInfo.clanLevel}
       />
       <div>
-        {clanInfo?.clanId && (
+        {clanInfo && (
           <div
             style={{
               paddingInline: "18px",
