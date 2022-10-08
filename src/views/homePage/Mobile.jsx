@@ -29,9 +29,9 @@ const Mobile = () => {
           alignItems: "center",
         }}
         onMouseDown={(e) => {
-          // if (!e.target.className.includes("searchInput")) {
-          //   e.preventDefault();
-          // }
+          if (!e.target.className.includes("searchInput")) {
+            e.preventDefault();
+          }
         }}
       >
         <Search
