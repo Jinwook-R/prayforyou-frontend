@@ -55,6 +55,7 @@ const Header = () => {
                       </StyledNavLink>
                       <StyledNavLink
                         to={"/private"}
+                        end
                         className={({ isActive }) => (isActive ? "active" : "")}
                       >
                         개인랭킹
@@ -124,6 +125,7 @@ const Header = () => {
                   </DropdownItem>
                   <DropdownItem
                     to={"/private"}
+                    end
                     onClick={mobileHeaderMenuHandler}
                     className={({ isActive }) => (isActive ? "active" : "")}
                   >
@@ -157,6 +159,7 @@ const Header = () => {
               </StyledNavLink>
               <StyledNavLink
                 to={"/private"}
+                end
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 개인랭킹
