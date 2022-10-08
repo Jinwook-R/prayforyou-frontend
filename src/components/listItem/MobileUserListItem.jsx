@@ -28,20 +28,23 @@ const MobileUserListItem = ({
         />
         <div>{`${rank}위`}</div>
       </Row>
-      <Row style={{ marginTop: "7px", fontSize: "13px" }}>
-        <div>{`${winCount}승/${loseCount}패`}</div>
-        {killAverage && <div>{`평균킬 ${killAverage.toFixed(1)}`}</div>}
-      </Row>
-      <Row style={{ marginTop: "8px", fontSize: "13px" }}>
+
+      <Row style={{ marginTop: "16px", fontSize: "13px" }}>
         <div style={{ display: "flex" }}>
-          {rate && <div>{`승률 ${rate.toFixed(1)}%`}</div>}
-          {killDeathRate && (
+          <div>{`${winCount}승/${loseCount}패`}</div>
+          {typeof killDeathRate === "number" && (
             <div style={{ marginLeft: "10px" }}>{`KD ${killDeathRate.toFixed(
               1
             )}%`}</div>
           )}
         </div>{" "}
         <div>{`래더 ${ladderPoint}점`}</div>
+      </Row>
+      <Row style={{ marginTop: "7px", fontSize: "13px" }}>
+        {rate && <div>{`승률 ${rate.toFixed(1)}%`}</div>}
+        {typeof killAverage === "number" && (
+          <div>{`평균킬 ${killAverage.toFixed(1)}`}</div>
+        )}
       </Row>
     </Wrapper>
   );
