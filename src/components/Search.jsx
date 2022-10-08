@@ -124,6 +124,7 @@ const Search = ({
             style={{
               display: "flex",
               justifyContent: "start",
+              alignItems: "center",
               fontSize: isMobile ? "13px" : "20px",
             }}
           >
@@ -142,6 +143,7 @@ const Search = ({
             style={{
               display: "flex",
               justifyContent: "start",
+              alignItems: "center",
               fontSize: isMobile ? "13px" : "20px",
             }}
           >
