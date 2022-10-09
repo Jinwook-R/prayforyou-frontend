@@ -47,10 +47,7 @@ const MatchListItem = ({ matchData, showLadder = true }) => {
         </Cell>
         {showLadder && (
           <Cell width={"100px"} fontSize={"18px"}>
-            <div>래더</div>
-            <div
-              style={{ fontWeight: "bold", color: winLoseColor }}
-            >{`${matchData.addScore}점`}</div>
+            <div>3보급창고</div>
           </Cell>
         )}
         <Cell width={"206px"} fontSize={"13px"} flex={1}>
