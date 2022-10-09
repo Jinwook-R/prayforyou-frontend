@@ -9,6 +9,7 @@ const Mobile = ({ clanInfo, matches, onClickMoreButton, isEnd }) => {
     <>
       {/* TODO : Top 바 기록실, 클랜 페이지 각각 커스텀 필요 */}
       <ClanDetailTopBar
+        openKaKaoLink={clanInfo.openKaKaoLink}
         nickname={clanInfo.name}
         userId={clanInfo.clanId}
         ranking={clanInfo.ranking}

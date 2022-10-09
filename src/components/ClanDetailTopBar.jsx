@@ -32,58 +32,86 @@ const ClanDetailTopBar = ({
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              margin: "0 auto",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
           >
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
+                flexDirection: "column",
+                justifyContent: "start",
               }}
             >
               <div
                 style={{
-                  flexGrow: 0,
-                  flexShrink: 0,
-                  flexBasis: "50%",
-                  textAlign: "left",
-                  fontSize: "20px",
-                  fontWeight: "bold",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
-                {nickname || ""}
+                <div
+                  style={{
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    flexBasis: "50%",
+                    textAlign: "left",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {nickname || ""}
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    color: "white",
+                  }}
+                ></div>
               </div>
               <div
                 style={{
                   display: "flex",
+                  justifyContent: "space-between",
                   alignItems: "center",
-                  gap: "10px",
-                  color: "white",
+                  marginTop: "10px",
+                  fontSize: "16px",
                 }}
               >
-                {/*<Toggle
-                  onClick={handleOnClick}
-                  style={{ width: "54px", height: "30px", cursor: "pointer" }}
-                  toggled={isFavorite}
-                />*/}
+                <div>{`P4U공식리그 - ${clanLevel || "-"} - ${
+                  ranking || "-"
+                }위`}</div>
               </div>
             </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginTop: "10px",
-                fontSize: "16px",
-              }}
-            >
-              <div>{`P4U공식리그 - ${clanLevel || "-"} - ${
-                ranking || "-"
-              }위`}</div>
-            </div>
+            {openKaKaoLink && (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <SearchInputWrapper heght={"40px"}>
+                  <StyledButton
+                    style={{
+                      height: "40px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <a
+                      style={{
+                        color: "white",
+                        textDecoration: "none",
+                        fontSize: "13px",
+                      }}
+                      href={openKaKaoLink}
+                      target={"_blank"}
+                      rel="noreferrer"
+                    >
+                      클랜모집 오픈카톡
+                    </a>
+                  </StyledButton>
+                </SearchInputWrapper>
+              </div>
+            )}
           </div>
         </StyledTopBar>
       )}
@@ -124,7 +152,12 @@ const ClanDetailTopBar = ({
             <div style={{ display: "flex", alignItems: "center" }}>
               <SearchInputWrapper>
                 <StyledButton>
-                  <a href={openKaKaoLink} target={"_blank"} rel="noreferrer">
+                  <a
+                    style={{ color: "white", textDecoration: "none" }}
+                    href={openKaKaoLink}
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
                     클랜모집 오픈카톡
                   </a>
                 </StyledButton>

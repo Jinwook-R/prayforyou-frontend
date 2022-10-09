@@ -35,6 +35,7 @@ const Desktop = ({
             width: "100%",
             maxWidth: COMMON_LAYOUT_PC_HORIZONTAL_MAX,
           }}
+          openKaKaoLink={clanInfo.openKaKaoLink}
           clanLevel={clanInfo.clanLevel}
           winCount={clanInfo.winCount}
           loseCount={clanInfo.loseCount}
