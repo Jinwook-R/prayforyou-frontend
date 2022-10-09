@@ -29,22 +29,6 @@ const managerMockData = {
   managerName: "김순경",
 };
 
-const leaguePageMockData = {
-  leagueTitle: "P4U 공식리그",
-  leagueType: "public", //public or private
-  isFavorite: false,
-  includingCount: 46,
-  includingManagers: Array.from({ length: 1 }, () => {
-    return { ...managerMockData };
-  }),
-  includingMaps: Array.from({ length: 2 }, () => {
-    return { ...mapListMockData };
-  }),
-  includingClans: Array.from({ length: 30 }, () => {
-    return { ...clanListItemMockData };
-  }),
-};
-
 const LeaguePage = () => {
   const isMobile = useMediaQuery({
     query: `(max-width: ${BREAK_POINT})`,
@@ -67,7 +51,7 @@ const LeaguePage = () => {
   return isMobile ? (
     <Mobile
       leagueTitle={"P4U 공식리그"}
-      leagueType={"public"}
+      leagueType={"공식"}
       clanData={includedClans.content}
       //managerTableProps={mockManagerTableProps}
       //mapTableProps={mockMapTableProps}
@@ -75,7 +59,7 @@ const LeaguePage = () => {
   ) : (
     <Desktop
       leagueTitle={"P4U 공식리그"}
-      leagueType={"public"}
+      leagueType={"공식"}
       clanData={includedClans.content}
       //managerTableProps={mockManagerTableProps}
       //mapTableProps={mockMapTableProps}
