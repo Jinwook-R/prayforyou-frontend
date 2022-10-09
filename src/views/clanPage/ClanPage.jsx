@@ -7,6 +7,7 @@ import sampleImg from "../../assets/clan_logo_sample_1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getClanRankings } from "../../redux/clan";
 import { useInfinite } from "../../hooks";
+import { resetStore } from "../../redux/store";
 const sampleClanItemData1 = {
   id: 1235123,
   clanId: 191120000005,
@@ -80,6 +81,12 @@ const ClanPage = () => {
     dispatch(getClanRankings({ levelName: isFirstView ? "A" : "B" }));
     clear();
   }, [dispatch, isFirstView, clear]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetStore());
+    };
+  }, []);
 
   const linkButtonHandler = useCallback(() => {
     setIsFirstView((prevState) => !prevState);

@@ -25,10 +25,13 @@ const PrivatePage = () => {
 
   useEffect(() => {
     dispatch(getPrivateRankings({ page: pageCount }));
+  }, [dispatch, pageCount]);
+
+  useEffect(() => {
     return () => {
       dispatch(resetStore());
     };
-  }, [dispatch, pageCount]);
+  }, []);
 
   const addedRankData = useMemo(() => {
     return slicedData.map((item, index) => {

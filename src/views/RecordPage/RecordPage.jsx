@@ -31,10 +31,13 @@ const RecordPage = () => {
     if (userNexonId !== undefined) {
       dispatch(getUserInfo({ userNexonId }));
     }
+  }, [dispatch, userNexonId]);
+
+  useEffect(() => {
     return () => {
       dispatch(resetStore());
     };
-  }, [dispatch, userNexonId]);
+  }, []);
 
   useEffect(() => {
     dispatch(getUserRecords({ userNexonId, page: pageCount }));

@@ -34,11 +34,12 @@ const ClanDetailPage = ({ ...props }) => {
 
   useEffect(() => {
     dispatch(getClanRecords({ clanId, page: pageCount }));
+  }, [pageCount, dispatch, clanId]);
+  useEffect(() => {
     return () => {
       dispatch(resetStore());
     };
-  }, [pageCount, dispatch, clanId]);
-
+  }, []);
   return isMobile ? (
     <Mobile
       clanInfo={info}

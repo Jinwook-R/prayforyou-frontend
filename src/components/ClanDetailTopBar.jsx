@@ -106,7 +106,7 @@ const ClanDetailTopBar = ({
                       target={"_blank"}
                       rel="noreferrer"
                     >
-                      클랜모집 오픈카톡
+                      클모방
                     </a>
                   </StyledButton>
                 </SearchInputWrapper>

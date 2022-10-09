@@ -4,9 +4,11 @@ import { DESTINATION_DOMAIN_ADDRESS } from "../../utils/constants";
 
 export const getClanRecords = createAsyncThunk(
   "clans/records",
-  async ({ clanId }) => {
+  async ({ clanId, page }) => {
     const responseData = await axios
-      .get(`${DESTINATION_DOMAIN_ADDRESS}/clan/match?clanId=${clanId}`)
+      .get(
+        `${DESTINATION_DOMAIN_ADDRESS}/clan/match?clanId=${clanId}&page=${page}`
+      )
       .then((res) => {
         return res.data;
       })

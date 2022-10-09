@@ -7,6 +7,7 @@ import { BREAK_POINT } from "../../utils/constants";
 import sampleImg from "../../assets/clan_logo_sample_1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getIncludedClans } from "../../redux/clan/includedClansSlice";
+import { resetStore } from "../../redux/store";
 
 const clanListItemMockData = {
   clanName: "토끼토끼 클랜",
@@ -56,6 +57,12 @@ const LeaguePage = () => {
   useEffect(() => {
     dispatch(getIncludedClans());
   }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetStore());
+    };
+  }, []);
 
   return isMobile ? (
     <Mobile
