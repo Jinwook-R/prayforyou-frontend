@@ -39,8 +39,8 @@ const Desktop = ({
       {
         name: "",
         style: { flex: 2, width: "430px" },
-        renderer: ({ leagueType }) => {
-          return `${leagueType === "first" ? 1 : 2}부리그`;
+        renderer: ({ clanLevel }) => {
+          return clanLevel;
         },
       },
       {
