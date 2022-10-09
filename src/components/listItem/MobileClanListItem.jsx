@@ -5,7 +5,7 @@ const MobileClanListItem = ({
   clanName,
   thumbnail,
   isDownTarget,
-  leagueType,
+  clanLevel,
   winCount,
   onClickName,
   loseCount,
@@ -24,7 +24,7 @@ const MobileClanListItem = ({
           fontSize={"15px"}
           fontWeight={"bold"}
         />
-        <div>{`${leagueType === "first" ? 1 : 2}부리그`}</div>
+        <div>{`${clanLevel}`}</div>
       </Row>
       <Row
         style={{ marginTop: "7px", fontSize: "13px" }}

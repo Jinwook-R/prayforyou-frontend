@@ -30,7 +30,7 @@ const Mobile = ({
               winLosePercent={clan.winLosePercent}
               clanName={clan.clanName}
               thumbnail={clan.clanMarkUrl}
-              leagueType={clan.leagueType}
+              clanLevel={clan.clanLevel}
               ladderPoint={clan.score}
             />
           );
@@ -77,7 +77,7 @@ const Mobile = ({
           <div
             style={{ height: "24px", display: "flex", alignItems: "center" }}
           >
-            {`${leagueType === "public" ? "공식" : "개인"}`}
+            {`${leagueType}`}
           </div>
           <div
             style={{ height: "24px", display: "flex", alignItems: "center" }}
