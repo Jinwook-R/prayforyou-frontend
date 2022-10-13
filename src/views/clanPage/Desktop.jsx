@@ -10,6 +10,7 @@ import {
   TablePageTitleWrapper,
 } from "../../components/wrapper";
 import { useNavigate } from "react-router-dom";
+import styled from "@emotion/styled";
 
 /** PrivateTableRow
  * @field
@@ -83,7 +84,13 @@ const Desktop = ({
           flex: 2,
         },
         renderer: (info) => {
-          return `${(info["winLosePercent"] || 0).toFixed(1)}%`;
+          return info["winLosePercent"] > 60 ?
+              <DarkRedFontColor>
+                {(info["winLosePercent"] || 0).toFixed(1)}%
+              </DarkRedFontColor> :
+              <BlackFontColor>
+                {(info["winLosePercent"] || 0).toFixed(1)}%
+              </BlackFontColor>
         },
       },
       {
@@ -151,5 +158,19 @@ const Desktop = ({
     </StyledDesktopWrapper>
   );
 };
+
+const DarkRedFontColor = styled.div`
+  color: DarkRed;
+  font-weight: bold;
+`;
+
+const BlackFontColor = styled.div`
+  color: black;
+`;
+
+const DarkPurpleFontColor = styled.div`
+  color: Purple;
+  font-weight: bold;
+`;
 
 export default Desktop;
